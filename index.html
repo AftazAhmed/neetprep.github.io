@@ -129,6 +129,8 @@
             display: flex;
             gap: 10px;
             margin-top: 15px;
+            align-items: center;
+            flex-wrap: wrap;
         }
         
         .btn {
@@ -143,6 +145,11 @@
         .btn-answer {
             background: #28a745;
             color: white;
+        }
+
+        .btn-copy {
+            background: #ffc107;
+            color: #212529;
         }
         
         .btn-explain {
@@ -178,6 +185,14 @@
             font-size: 12px;
             color: #666;
             margin-top: 6px;
+        }
+
+        .helper-text {
+            font-size: 12px;
+            color: #555;
+            background: #eef2ff;
+            padding: 6px 10px;
+            border-radius: 12px;
         }
     </style>
 </head>
@@ -468,7 +483,9 @@
                         </div>
                         <div class="button-group">
                             <button class="btn btn-answer" onclick="showAnswer('${qId}')">Show Answer</button>
-                            <button class="btn btn-explain" onclick="explainQuestion('${encodeURIComponent(questionData.question)}', '${encodeURIComponent(questionData.options.join(' '))}')">Get Explanation</button>
+                            <button class="btn btn-copy" onclick="copyQuestion(this, '${encodeURIComponent(questionData.year)}', '${encodeURIComponent(questionData.question)}', ${encodeURIComponent(JSON.stringify(questionData.options))})">Copy Question</button>
+                            <button class="btn btn-explain" onclick="openChatGPT()">Get Explanation</button>
+                            <span class="helper-text">Copy and paste here</span>
                         </div>
                         <div id="${qId}" class="answer-area">
                             <strong>Answer:</strong> ${questionData.answer}
@@ -497,13 +514,63 @@
         function showAnswer(answerId) {
             const answerArea = document.getElementById(answerId);
             if (!answerArea) return;
-            answerArea.style.display = answerArea.style.display === 'none' || answerArea.style.display === '' ? 'block' : 'none';
+            answerArea.style.display = (answerArea.style.display === 'none' || answerArea.style.display === '') ? 'block' : 'none';
         }
 
-        function explainQuestion(question, options) {
-            const prompt = `Explain this NEET Biology question in detail: ${decodeURIComponent(question)} Options: ${decodeURIComponent(options)}`;
-            const chatGPTUrl = `https://chat.openai.com/?q=${encodeURIComponent(prompt)}`;
-            window.open(chatGPTUrl, '_blank');
+        // Opens ChatGPT without any pre-filled prompt to avoid predefined sentences.
+        function openChatGPT() {
+            const chatGPTUrl = 'https://chat.openai.com/';
+            window.open(chatGPTUrl, '_blank', 'noopener');
+        }
+
+        // Copies the question with choices to clipboard.
+        function copyQuestion(btn, yearEnc, questionEnc, optionsJsonEnc) {
+            const year = decodeURIComponent(yearEnc);
+            const question = decodeURIComponent(questionEnc);
+            const options = JSON.parse(decodeURIComponent(optionsJsonEnc));
+
+            const text = [
+                `${year}`,
+                `${question}`,
+                ...options
+            ].join('
+');
+
+            const originalLabel = btn.textContent;
+            const setCopied = () => {
+                btn.textContent = 'Copied!';
+                btn.disabled = true;
+                setTimeout(() => {
+                    btn.textContent = originalLabel;
+                    btn.disabled = false;
+                }, 1500);
+            };
+
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text).then(setCopied).catch(() => fallbackCopy(text, setCopied));
+            } else {
+                fallbackCopy(text, setCopied);
+            }
+        }
+
+        function fallbackCopy(text, onSuccess) {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.top = '-9999px';
+            document.body.appendChild(ta);
+            ta.focus();
+            ta.select();
+            try {
+                document.execCommand('copy');
+                onSuccess();
+            } catch (e) {
+                alert('Unable to copy automatically. Please select and copy manually:
+
+' + text);
+            } finally {
+                document.body.removeChild(ta);
+            }
         }
     </script>
 
