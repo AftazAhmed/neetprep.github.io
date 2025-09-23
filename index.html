@@ -80,6 +80,7 @@
             background: #f8f9fa;
             border-radius: 10px;
             display: none;
+            width: 100%;
         }
         
         .page-info {
@@ -97,6 +98,7 @@
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             border-left: 4px solid #28a745;
+            width: 100%;
         }
         
         .question-year {
@@ -187,33 +189,24 @@
             margin-top: 6px;
         }
 
-        .helper-text {
-            font-size: 12px;
-            color: #555;
-            background: #eef2ff;
-            padding: 6px 10px;
-            border-radius: 12px;
+        .arrow-indicator {
+            font-size: 22px;
+            line-height: 1;
+            color: #6b7280;
+            user-select: none;
+            padding: 0 2px;
         }
 
-        .prompt-box {
-            width: 100%;
-            min-height: 90px;
-            margin-top: 12px;
-            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-            font-size: 13px;
-            line-height: 1.5;
-            background: #f3f4f6;
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
-            padding: 10px;
-            color: #111827;
-            resize: vertical;
-        }
-
-        .prompt-label {
-            margin-top: 10px;
-            font-size: 13px;
-            color: #374151;
+        /* Mobile widening tweaks */
+        @media (max-width: 600px) {
+            body { padding: 8px; }
+            .container { padding: 14px; border-radius: 12px; }
+            .dropdown-container { gap: 12px; }
+            .content-area { padding: 12px; }
+            .question-container { margin: 10px 0; padding: 18px; }
+            h1 { font-size: 1.9em; }
+            .btn { padding: 10px 14px; font-size: 13px; }
+            .arrow-indicator { font-size: 20px; }
         }
     </style>
 </head>
@@ -224,7 +217,7 @@
         <div class="dropdown-container">
             <div class="dropdown-group">
                 <label for="class-select">Select Class:</label>
-                <select id="class-select" onchange="loadChapters()">
+                <select id="class-select">
                     <option value="">Select Class</option>
                     <option value="11">Class 11</option>
                     <option value="12">Class 12</option>
@@ -236,14 +229,14 @@
             
             <div class="dropdown-group">
                 <label for="chapter-select">Select Chapter:</label>
-                <select id="chapter-select" onchange="loadPages()" disabled>
+                <select id="chapter-select" disabled>
                     <option value="">Select Chapter</option>
                 </select>
             </div>
             
             <div class="dropdown-group">
                 <label for="page-select">Select Page:</label>
-                <select id="page-select" onchange="loadQuestions()" disabled>
+                <select id="page-select" disabled>
                     <option value="">Select Page</option>
                 </select>
             </div>
@@ -398,14 +391,49 @@
             "12": {}
         };
 
+        // DOM elements
+        const classSelect = document.getElementById('class-select');
+        const chapterSelect = document.getElementById('chapter-select');
+        const pageSelect = document.getElementById('page-select');
+        const contentArea = document.getElementById('content-area');
+        const editionNote = document.getElementById('edition-note');
+
+        // Event listeners (CSP-safe: no inline handlers)
+        document.addEventListener('DOMContentLoaded', () => {
+            classSelect.addEventListener('change', loadChapters);
+            chapterSelect.addEventListener('change', loadPages);
+            pageSelect.addEventListener('change', loadQuestions);
+
+            // Delegate all question button clicks
+            contentArea.addEventListener('click', (e) => {
+                const btn = e.target.closest('button');
+                if (!btn) return;
+
+                if (btn.classList.contains('btn-answer')) {
+                    const answerArea = btn.closest('.question-container')?.querySelector('.answer-area');
+                    if (answerArea) {
+                        const show = answerArea.style.display !== 'block';
+                        answerArea.style.display = show ? 'block' : 'none';
+                    }
+                }
+
+                if (btn.classList.contains('btn-copy')) {
+                    const year = btn.dataset.year || '';
+                    const question = btn.dataset.question || '';
+                    let options = [];
+                    try { options = JSON.parse(btn.dataset.options || '[]'); } catch (e) { options = []; }
+                    const text = buildPrompt(year, question, options);
+                    copyToClipboard(btn, text);
+                }
+
+                if (btn.classList.contains('btn-explain')) {
+                    openChatGPT();
+                }
+            });
+        });
+
         function loadChapters() {
-            const classSelect = document.getElementById('class-select');
-            const chapterSelect = document.getElementById('chapter-select');
-            const pageSelect = document.getElementById('page-select');
-            const contentArea = document.getElementById('content-area');
-            const editionNote = document.getElementById('edition-note');
-            
-            // Reset dependent dropdowns
+            // Reset dependent dropdowns and content
             chapterSelect.innerHTML = '<option value="">Select Chapter</option>';
             pageSelect.innerHTML = '<option value="">Select Page</option>';
             chapterSelect.disabled = true;
@@ -414,7 +442,7 @@
             editionNote.style.display = classSelect.value ? 'block' : 'none';
             
             if (classSelect.value) {
-                const chapters = chaptersData[classSelect.value];
+                const chapters = chaptersData[classSelect.value] || [];
                 chapters.forEach(chapter => {
                     const option = document.createElement('option');
                     option.value = chapter.id;
@@ -426,25 +454,20 @@
         }
 
         function loadPages() {
-            const classSelect = document.getElementById('class-select');
-            const chapterSelect = document.getElementById('chapter-select');
-            const pageSelect = document.getElementById('page-select');
-            const contentArea = document.getElementById('content-area');
-            
-            // Reset page dropdown
+            // Reset page dropdown and content
             pageSelect.innerHTML = '<option value="">Select Page</option>';
             pageSelect.disabled = true;
             contentArea.style.display = 'none';
             
             if (chapterSelect.value) {
                 const selectedClass = classSelect.value;
-                const chapters = chaptersData[selectedClass];
+                const chapters = chaptersData[selectedClass] || [];
                 const selectedChapter = chapters.find(ch => ch.id === chapterSelect.value);
                 
                 if (selectedChapter) {
                     for (let p = selectedChapter.startPage; p <= selectedChapter.endPage; p++) {
                         const option = document.createElement('option');
-                        option.value = p;
+                        option.value = String(p);
                         option.textContent = `Page ${p}`;
                         pageSelect.appendChild(option);
                     }
@@ -454,11 +477,6 @@
         }
 
         function loadQuestions() {
-            const classSelect = document.getElementById('class-select');
-            const chapterSelect = document.getElementById('chapter-select');
-            const pageSelect = document.getElementById('page-select');
-            const contentArea = document.getElementById('content-area');
-            
             if (!pageSelect.value) {
                 contentArea.style.display = 'none';
                 return;
@@ -471,13 +489,11 @@
             contentArea.innerHTML = '';
             contentArea.style.display = 'block';
             
-            // Check if questions exist for this page
             const pageData = questionsData[selectedClass] && 
-                           questionsData[selectedClass][selectedChapter] && 
-                           questionsData[selectedClass][selectedChapter][selectedPage];
+                             questionsData[selectedClass][selectedChapter] && 
+                             questionsData[selectedClass][selectedChapter][selectedPage];
             
             if (pageData) {
-                // Page info
                 const pageInfo = document.createElement('div');
                 pageInfo.className = 'page-info';
                 pageInfo.innerHTML = `
@@ -487,42 +503,40 @@
                 `;
                 contentArea.appendChild(pageInfo);
                 
-                // Questions
                 pageData.questions.forEach((questionData, index) => {
                     const qId = `answer-${selectedClass}-${selectedChapter}-${selectedPage}-${index}`;
-                    const promptId = `prompt-${selectedClass}-${selectedChapter}-${selectedPage}-${index}`;
-                    const yearEnc = encodeURIComponent(questionData.year);
-                    const questionEnc = encodeURIComponent(questionData.question);
-                    const optionsEnc = encodeURIComponent(JSON.stringify(questionData.options));
 
                     const questionDiv = document.createElement('div');
                     questionDiv.className = 'question-container';
+
+                    // Build options HTML
+                    const optionsHTML = questionData.options.map(opt => `<div class="option">${opt}</div>`).join('');
+
                     questionDiv.innerHTML = `
                         <div class="question-year">${questionData.year}</div>
                         <div class="question-text">${questionData.question}</div>
-                        <div class="options">
-                            ${questionData.options.map(option => `<div class="option">${option}</div>`).join('')}
-                        </div>
+                        <div class="options">${optionsHTML}</div>
                         <div class="button-group">
-                            <button class="btn btn-answer" onclick="showAnswer('${qId}')">Show Answer</button>
-                            <button class="btn btn-copy" onclick="copyPrompt(this, '${yearEnc}', '${questionEnc}', '${optionsEnc}')">Copy Prompt</button>
-                            <button class="btn btn-explain" onclick="openChatGPT()">Open in ChatGPT</button>
-                            <span class="helper-text">Copy and paste here</span>
+                            <button class="btn btn-answer" aria-controls="${qId}">Get Answer</button>
+                            <span class="arrow-indicator" aria-hidden="true">→</span>
+                            <button class="btn btn-copy" title="Copy question with choices">Copy Prompt</button>
+                            <span class="arrow-indicator" aria-hidden="true">→</span>
+                            <button class="btn btn-explain" title="Open ChatGPT in a new tab">Open in ChatGPT</button>
                         </div>
-                        <div class="prompt-label">Prompt preview:</div>
-                        <textarea id="${promptId}" class="prompt-box" readonly aria-label="Prompt preview"></textarea>
-                        <div id="${qId}" class="answer-area">
+                        <div id="${qId}" class="answer-area" role="region" aria-label="Answer">
                             <strong>Answer:</strong> ${questionData.answer}
                         </div>
                     `;
-                    contentArea.appendChild(questionDiv);
 
-                    // Fill prompt preview
-                    const preview = document.getElementById(promptId);
-                    preview.value = buildPrompt(questionData.year, questionData.question, questionData.options);
+                    // Attach data to Copy button via dataset (CSP-safe, no inline)
+                    const copyBtn = questionDiv.querySelector('.btn-copy');
+                    copyBtn.dataset.year = questionData.year;
+                    copyBtn.dataset.question = questionData.question;
+                    copyBtn.dataset.options = JSON.stringify(questionData.options);
+
+                    contentArea.appendChild(questionDiv);
                 });
             } else {
-                // No questions found
                 const pageInfo = document.createElement('div');
                 pageInfo.className = 'page-info';
                 pageInfo.innerHTML = `
@@ -539,12 +553,6 @@
             }
         }
 
-        function showAnswer(answerId) {
-            const answerArea = document.getElementById(answerId);
-            if (!answerArea) return;
-            answerArea.style.display = (answerArea.style.display === 'none' || answerArea.style.display === '') ? 'block' : 'none';
-        }
-
         // Build a simple prompt with the question and choices (no predefined extra instructions).
         function buildPrompt(year, question, options) {
             const lines = [
@@ -553,23 +561,12 @@
                 `Choices:`,
                 ...options
             ];
-            return lines.join('\
+            return lines.join('
 ');
         }
 
-        // Opens ChatGPT in a new tab without any pre-filled text.
-        function openChatGPT() {
-            const chatGPTUrl = 'https://chat.openai.com/';
-            window.open(chatGPTUrl, '_blank', 'noopener');
-        }
-
-        // Copies the prompt (question + choices) to clipboard, TurboScribe-style "Copy Prompt" UX.
-        function copyPrompt(btn, yearEnc, questionEnc, optionsJsonEnc) {
-            const year = decodeURIComponent(yearEnc);
-            const question = decodeURIComponent(questionEnc);
-            const options = JSON.parse(decodeURIComponent(optionsJsonEnc));
-            const text = buildPrompt(year, question, options);
-
+        // Copies text to clipboard with graceful fallback and visual feedback.
+        function copyToClipboard(btn, text) {
             const originalLabel = btn.textContent;
             const setCopied = () => {
                 btn.textContent = 'Copied!';
@@ -599,12 +596,17 @@
                 document.execCommand('copy');
                 onSuccess();
             } catch (e) {
-                alert('Unable to copy automatically. Please select and copy manually:\
-\
+                alert('Unable to copy automatically. Please select and copy manually:
+
 ' + text);
             } finally {
                 document.body.removeChild(ta);
             }
+        }
+
+        // Opens ChatGPT in a new tab without any pre-filled text, inside a user click handler.
+        function openChatGPT() {
+            window.open('https://chat.openai.com/', '_blank', 'noopener');
         }
     </script>
 
