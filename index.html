@@ -6,18 +6,19 @@
     <title>NCERT Biology Page Selector + NEET PYQs</title>
     <style>
         :root{
-            --bg1:#0f172a;        /* slate-900 */
-            --bg2:#111827;        /* gray-900 */
-            --card:#0b1220;       /* deep navy */
-            --muted:#94a3b8;      /* slate-400 */
-            --text:#e5e7eb;       /* gray-200 */
-            --accent:#8b5cf6;     /* violet-500 */
-            --accent2:#22d3ee;    /* cyan-400 */
-            --accent3:#14b8a6;    /* teal-500 */
-            --line:#1f2937;       /* gray-800 */
-            --good:#22c55e;       /* green-500 */
-            --bad:#ef4444;        /* red-500 */
-            --chip:#0e7490;       /* cyan-700 */
+            --bg1:#0f172a;
+            --bg2:#111827;
+            --card:#0b1220;
+            --muted:#94a3b8;
+            --text:#e5e7eb;
+            --accent:#8b5cf6;
+            --accent2:#22d3ee;
+            --accent3:#14b8a6;
+            --line:#1f2937;
+            --good:#22c55e;
+            --bad:#ef4444;
+            --chip:#0e7490;
+            --gold:#f59e0b;
         }
         *{box-sizing:border-box}
         html,body{height:100%}
@@ -59,7 +60,7 @@
         }
         .results{ margin-top:18px; border-top:1px dashed rgba(148,163,184,.25); padding-top:16px; }
 
-        /* Meta cards */
+        /* Meta */
         .meta{
             display:grid; grid-template-columns: 1.2fr .6fr; gap:12px; margin-bottom:14px;
         }
@@ -102,9 +103,9 @@
             border:1px solid rgba(255,255,255,.08); color:#e5e7eb;
         }
         .actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:2px; }
+
         .btn{
-            padding:10px 14px; border-radius:10px; border:1px solid rgba(255,255,255,.1);
-            background: linear-gradient(90deg, rgba(139,92,246,.3), rgba(34,211,238,.25));
+            padding:10px 14px; border-radius:10px; border:1px solid rgba(255,255,255,.12);
             color:#f8fafc; cursor:pointer; font-size:14px;
             transition: transform .06s ease, box-shadow .2s ease, filter .2s ease;
             box-shadow: 0 8px 20px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.05);
@@ -112,16 +113,60 @@
         }
         .btn:hover{ filter:brightness(1.08); box-shadow: 0 10px 26px rgba(0,0,0,.35); }
         .btn:active{ transform: translateY(1px); }
+
         .btn-alt{
             background: linear-gradient(90deg, rgba(20,184,166,.28), rgba(34,197,94,.25));
             border-color: rgba(16,185,129,.35);
         }
+        .btn-primary{
+            background: linear-gradient(90deg, rgba(139,92,246,.3), rgba(34,211,238,.25));
+            border-color: rgba(139,92,246,.4);
+        }
+
         .answer{
             display:none; margin-top:10px; padding:10px 12px; border-radius:10px;
             background: linear-gradient(90deg, rgba(34,197,94,.12), rgba(34,211,238,.12));
             border:1px solid rgba(34,197,94,.35); color:#bbf7d0; font-weight:600;
         }
         .answer.show{ display:block; }
+
+        /* Get Explanation Box */
+        .exp-box{
+            display:none; margin-top:10px; padding:12px; border-radius:12px;
+            background: linear-gradient(180deg, rgba(17,24,39,.85), rgba(15,23,42,.85));
+            border:1px solid rgba(255,255,255,.08);
+        }
+        .exp-box.show{ display:block; }
+        .exp-toolbar{
+            display:flex; align-items:center; gap:10px; margin-bottom:10px; flex-wrap:wrap;
+        }
+        .tab{
+            display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px;
+            background: linear-gradient(90deg, rgba(34,211,238,.16), rgba(99,102,241,.16));
+            border:1px solid rgba(34,211,238,.35); color:#e0e7ff; font-size:13px;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+            cursor: pointer;
+        }
+        .tab:hover{ filter:brightness(1.08); }
+        .arrow-chip{
+            display:inline-flex; align-items:center; justify-content:center;
+            width:34px; height:34px; border-radius:50%;
+            background: linear-gradient(145deg, rgba(245,158,11,.2), rgba(245,158,11,.12));
+            border:1px solid rgba(245,158,11,.45); color:#fde68a; font-weight:700;
+            user-select:none;
+        }
+        .launcher{
+            padding:9px 14px; border-radius:12px; border:1px solid rgba(139,92,246,.45);
+            background: linear-gradient(90deg, rgba(139,92,246,.25), rgba(22,163,74,.22));
+            color:#fafafa; cursor:pointer; font-size:14px;
+        }
+        .launcher:hover{ filter:brightness(1.07); }
+        .prompt{
+            white-space: pre-wrap; background: linear-gradient(180deg, #0c1222, #0a101c);
+            border:1px solid rgba(255,255,255,.08); color:#e5e7eb; border-radius:10px;
+            padding:10px 12px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size:13px;
+        }
 
         @media (max-width:760px){
             .meta{ grid-template-columns: 1fr; }
@@ -211,7 +256,6 @@
         };
 
         // Page-wise official NEET/AIPMT questions for Class 11, Chapter 1 (The Living World), pages 3–9.
-        // Stems/options verified from Examside NEET/AIPMT entries; pagination per NCERT Reprint 2025–26.
         var questionsData = {
             "11": {
                 "ch1": {
@@ -391,7 +435,7 @@ The two correct statements are",
             var chBag = (((questionsData[cls]||{})[chId])||{});
             var pageData = chBag[page] || { concept:"No data", items:[] };
 
-            // Header meta (no page indicator here per request)
+            // Meta (no page indicator duplication)
             var meta = document.createElement('div');
             meta.className = 'meta';
             meta.innerHTML = [
@@ -402,7 +446,7 @@ The two correct statements are",
             ].join('');
             resultsEl.appendChild(meta);
 
-            // Questions list
+            // Questions
             var list = document.createElement('div');
             list.className = 'q-list';
 
@@ -463,11 +507,50 @@ The two correct statements are",
                 });
 
                 var btnExp = document.createElement('button');
-                btnExp.className = 'btn';
+                btnExp.className = 'btn btn-primary';
                 btnExp.textContent = 'Get Explanation';
+                btnExp.setAttribute('aria-expanded', 'false');
+
+                // Explanation panel (contains Copy tab, Arrow mark, ChatGPT launcher, and the prompt text)
+                var exp = document.createElement('div');
+                exp.className = 'exp-box';
+
+                var toolbar = document.createElement('div');
+                toolbar.className = 'exp-toolbar';
+
+                var copyTab = document.createElement('div');
+                copyTab.className = 'tab';
+                copyTab.setAttribute('role','button');
+                copyTab.setAttribute('tabindex','0');
+                copyTab.innerHTML = svgClipboard() + '<span>Copy</span>';
+
+                var arrow = document.createElement('div');
+                arrow.className = 'arrow-chip';
+                arrow.innerHTML = '➜';
+
+                var launcher = document.createElement('button');
+                launcher.className = 'launcher';
+                launcher.innerHTML = svgChatGPT() + ' <span style="margin-left:6px">Open ChatGPT</span>';
+
+                var promptDiv = document.createElement('div');
+                promptDiv.className = 'prompt';
+                var promptText = buildExplainPrompt(it);
+                promptDiv.textContent = promptText;
+
+                // Handlers
+                copyTab.addEventListener('click', function(){ copyPrompt(promptText); });
+                copyTab.addEventListener('keydown', function(e){ if(e.key==='Enter' || e.key===' ') { e.preventDefault(); copyPrompt(promptText); }});
+                launcher.addEventListener('click', function(){ openChatGPT(); });
+
+                toolbar.appendChild(copyTab);
+                toolbar.appendChild(arrow);
+                toolbar.appendChild(launcher);
+                exp.appendChild(toolbar);
+                exp.appendChild(promptDiv);
+
                 btnExp.addEventListener('click', function(){
-                    var prompt = buildExplainPrompt(it);
-                    openChatGPTWithPrompt(prompt);
+                    var shown = exp.classList.toggle('show');
+                    btnExp.setAttribute('aria-expanded', shown ? 'true' : 'false');
                 });
 
                 actions.appendChild(btnAns);
@@ -477,6 +560,7 @@ The two correct statements are",
                 card.appendChild(body);
                 card.appendChild(choices);
                 card.appendChild(actions);
+                card.appendChild(exp);
                 card.appendChild(ans);
                 list.appendChild(card);
             });
@@ -490,6 +574,17 @@ The two correct statements are",
                 empty.textContent = 'No official NEET/AIPMT question mapped to this page in the current dataset.';
                 resultsEl.appendChild(empty);
             }
+        }
+
+        function svgClipboard(){
+            return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="vertical-align:-2px">'+
+                   '<path d="M9 3h6a2 2 0 0 1 2 2v1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h1V5a2 2 0 0 1 2-2z" stroke="#a5b4fc" stroke-width="1.4"/>'+
+                   '<rect x="8" y="2" width="8" height="4" rx="1.5" stroke="#22d3ee" stroke-width="1.4"/></svg>';
+        }
+        function svgChatGPT(){
+            return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="vertical-align:-2px">'+
+                   '<circle cx="12" cy="12" r="9" stroke="#a7f3d0" stroke-width="1.4"/>'+
+                   '<path d="M12 6v6l4 2" stroke="#22d3ee" stroke-width="1.4" stroke-linecap="round"/></svg>';
         }
 
         function buildExplainPrompt(it){
@@ -511,13 +606,13 @@ The two correct statements are",
 ");
         }
 
-        async function openChatGPTWithPrompt(prompt){
-            // Attempt to copy silently; requires HTTPS and user gesture in most browsers.
-            try { await navigator.clipboard.writeText(prompt); } catch(e) {}
+        async function copyPrompt(text){
+            try { await navigator.clipboard.writeText(text); } catch(e) { /* ignore */ }
+        }
 
-            // Open ChatGPT in a new tab/window; direct auto-type is not possible due to cross-origin restrictions.
-            // The user can paste immediately (prompt is already on clipboard).
-            var url = 'https://chat.openai.com/'; // Fallback: 'https://chatgpt.com/' if regionally redirected.
+        function openChatGPT(){
+            // Auto-typing into another origin is blocked by SOP; open new tab and paste the copied prompt there.
+            var url = 'https://chat.openai.com/';
             try { window.open(url, '_blank', 'noopener'); }
             catch(e){ window.location.href = url; }
         }
