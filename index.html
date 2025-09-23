@@ -187,24 +187,33 @@
             margin-top: 6px;
         }
 
-        .arrow-indicator {
-            font-size: 22px;
-            line-height: 1;
-            color: #6b7280;
-            user-select: none;
-            padding: 0 2px;
+        .helper-text {
+            font-size: 12px;
+            color: #555;
+            background: #eef2ff;
+            padding: 6px 10px;
+            border-radius: 12px;
         }
 
-        /* Mobile widening tweaks */
-        @media (max-width: 600px) {
-            body { padding: 8px; }
-            .container { padding: 14px; border-radius: 12px; }
-            .dropdown-container { gap: 12px; }
-            .content-area { padding: 12px; }
-            .question-container { margin: 10px 0; padding: 18px; }
-            h1 { font-size: 1.9em; }
-            .btn { padding: 10px 14px; font-size: 13px; }
-            .arrow-indicator { font-size: 20px; }
+        .prompt-box {
+            width: 100%;
+            min-height: 90px;
+            margin-top: 12px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            font-size: 13px;
+            line-height: 1.5;
+            background: #f3f4f6;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 10px;
+            color: #111827;
+            resize: vertical;
+        }
+
+        .prompt-label {
+            margin-top: 10px;
+            font-size: 13px;
+            color: #374151;
         }
     </style>
 </head>
@@ -462,11 +471,13 @@
             contentArea.innerHTML = '';
             contentArea.style.display = 'block';
             
+            // Check if questions exist for this page
             const pageData = questionsData[selectedClass] && 
                            questionsData[selectedClass][selectedChapter] && 
                            questionsData[selectedClass][selectedChapter][selectedPage];
             
             if (pageData) {
+                // Page info
                 const pageInfo = document.createElement('div');
                 pageInfo.className = 'page-info';
                 pageInfo.innerHTML = `
@@ -476,8 +487,10 @@
                 `;
                 contentArea.appendChild(pageInfo);
                 
+                // Questions
                 pageData.questions.forEach((questionData, index) => {
                     const qId = `answer-${selectedClass}-${selectedChapter}-${selectedPage}-${index}`;
+                    const promptId = `prompt-${selectedClass}-${selectedChapter}-${selectedPage}-${index}`;
                     const yearEnc = encodeURIComponent(questionData.year);
                     const questionEnc = encodeURIComponent(questionData.question);
                     const optionsEnc = encodeURIComponent(JSON.stringify(questionData.options));
@@ -491,19 +504,25 @@
                             ${questionData.options.map(option => `<div class="option">${option}</div>`).join('')}
                         </div>
                         <div class="button-group">
-                            <button class="btn btn-answer" onclick="showAnswer('${qId}')">Get Answer</button>
-                            <span class="arrow-indicator" aria-hidden="true">→</span>
-                            <button class="btn btn-copy" onclick="copyPrompt(this, '${yearEnc}', '${questionEnc}', '${optionsEnc}')" title="Copy question with choices">Copy Prompt</button>
-                            <span class="arrow-indicator" aria-hidden="true">→</span>
-                            <button class="btn btn-explain" onclick="openChatGPT()" title="Open ChatGPT in a new tab">Open in ChatGPT</button>
+                            <button class="btn btn-answer" onclick="showAnswer('${qId}')">Show Answer</button>
+                            <button class="btn btn-copy" onclick="copyPrompt(this, '${yearEnc}', '${questionEnc}', '${optionsEnc}')">Copy Prompt</button>
+                            <button class="btn btn-explain" onclick="openChatGPT()">Open in ChatGPT</button>
+                            <span class="helper-text">Copy and paste here</span>
                         </div>
+                        <div class="prompt-label">Prompt preview:</div>
+                        <textarea id="${promptId}" class="prompt-box" readonly aria-label="Prompt preview"></textarea>
                         <div id="${qId}" class="answer-area">
                             <strong>Answer:</strong> ${questionData.answer}
                         </div>
                     `;
                     contentArea.appendChild(questionDiv);
+
+                    // Fill prompt preview
+                    const preview = document.getElementById(promptId);
+                    preview.value = buildPrompt(questionData.year, questionData.question, questionData.options);
                 });
             } else {
+                // No questions found
                 const pageInfo = document.createElement('div');
                 pageInfo.className = 'page-info';
                 pageInfo.innerHTML = `
@@ -534,7 +553,7 @@
                 `Choices:`,
                 ...options
             ];
-            return lines.join('
+            return lines.join('\
 ');
         }
 
@@ -544,7 +563,7 @@
             window.open(chatGPTUrl, '_blank', 'noopener');
         }
 
-        // Copies the prompt (question + choices) to clipboard.
+        // Copies the prompt (question + choices) to clipboard, TurboScribe-style "Copy Prompt" UX.
         function copyPrompt(btn, yearEnc, questionEnc, optionsJsonEnc) {
             const year = decodeURIComponent(yearEnc);
             const question = decodeURIComponent(questionEnc);
@@ -580,8 +599,8 @@
                 document.execCommand('copy');
                 onSuccess();
             } catch (e) {
-                alert('Unable to copy automatically. Please select and copy manually:
-
+                alert('Unable to copy automatically. Please select and copy manually:\
+\
 ' + text);
             } finally {
                 document.body.removeChild(ta);
