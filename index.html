@@ -194,6 +194,27 @@
             padding: 6px 10px;
             border-radius: 12px;
         }
+
+        .prompt-box {
+            width: 100%;
+            min-height: 90px;
+            margin-top: 12px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            font-size: 13px;
+            line-height: 1.5;
+            background: #f3f4f6;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 10px;
+            color: #111827;
+            resize: vertical;
+        }
+
+        .prompt-label {
+            margin-top: 10px;
+            font-size: 13px;
+            color: #374151;
+        }
     </style>
 </head>
 <body>
@@ -277,7 +298,6 @@
         };
 
         // Questions data - aligned to textbook page numbers.
-        // Note: Adjusted Class 11 Chapter 1 to only include pages within 3–9 per NCERT Contents mapping.
         const questionsData = {
             "11": {
                 "ch1": {
@@ -373,12 +393,9 @@
                             }
                         ]
                     }
-                    // Pages 8 and 9 can be added later as data becomes available
                 }
             },
-            "12": {
-                // Class 12 chapters data can be added page-wise similarly using the startPage–endPage ranges above
-            }
+            "12": {}
         };
 
         function loadChapters() {
@@ -473,6 +490,11 @@
                 // Questions
                 pageData.questions.forEach((questionData, index) => {
                     const qId = `answer-${selectedClass}-${selectedChapter}-${selectedPage}-${index}`;
+                    const promptId = `prompt-${selectedClass}-${selectedChapter}-${selectedPage}-${index}`;
+                    const yearEnc = encodeURIComponent(questionData.year);
+                    const questionEnc = encodeURIComponent(questionData.question);
+                    const optionsEnc = encodeURIComponent(JSON.stringify(questionData.options));
+
                     const questionDiv = document.createElement('div');
                     questionDiv.className = 'question-container';
                     questionDiv.innerHTML = `
@@ -483,15 +505,21 @@
                         </div>
                         <div class="button-group">
                             <button class="btn btn-answer" onclick="showAnswer('${qId}')">Show Answer</button>
-                            <button class="btn btn-copy" onclick="copyQuestion(this, '${encodeURIComponent(questionData.year)}', '${encodeURIComponent(questionData.question)}', ${encodeURIComponent(JSON.stringify(questionData.options))})">Copy Question</button>
-                            <button class="btn btn-explain" onclick="openChatGPT()">Get Explanation</button>
+                            <button class="btn btn-copy" onclick="copyPrompt(this, '${yearEnc}', '${questionEnc}', '${optionsEnc}')">Copy Prompt</button>
+                            <button class="btn btn-explain" onclick="openChatGPT()">Open in ChatGPT</button>
                             <span class="helper-text">Copy and paste here</span>
                         </div>
+                        <div class="prompt-label">Prompt preview:</div>
+                        <textarea id="${promptId}" class="prompt-box" readonly aria-label="Prompt preview"></textarea>
                         <div id="${qId}" class="answer-area">
                             <strong>Answer:</strong> ${questionData.answer}
                         </div>
                     `;
                     contentArea.appendChild(questionDiv);
+
+                    // Fill prompt preview
+                    const preview = document.getElementById(promptId);
+                    preview.value = buildPrompt(questionData.year, questionData.question, questionData.options);
                 });
             } else {
                 // No questions found
@@ -517,24 +545,30 @@
             answerArea.style.display = (answerArea.style.display === 'none' || answerArea.style.display === '') ? 'block' : 'none';
         }
 
-        // Opens ChatGPT without any pre-filled prompt to avoid predefined sentences.
+        // Build a simple prompt with the question and choices (no predefined extra instructions).
+        function buildPrompt(year, question, options) {
+            const lines = [
+                `${year}`,
+                `Question: ${question}`,
+                `Choices:`,
+                ...options
+            ];
+            return lines.join('\
+');
+        }
+
+        // Opens ChatGPT in a new tab without any pre-filled text.
         function openChatGPT() {
             const chatGPTUrl = 'https://chat.openai.com/';
             window.open(chatGPTUrl, '_blank', 'noopener');
         }
 
-        // Copies the question with choices to clipboard.
-        function copyQuestion(btn, yearEnc, questionEnc, optionsJsonEnc) {
+        // Copies the prompt (question + choices) to clipboard, TurboScribe-style "Copy Prompt" UX.
+        function copyPrompt(btn, yearEnc, questionEnc, optionsJsonEnc) {
             const year = decodeURIComponent(yearEnc);
             const question = decodeURIComponent(questionEnc);
             const options = JSON.parse(decodeURIComponent(optionsJsonEnc));
-
-            const text = [
-                `${year}`,
-                `${question}`,
-                ...options
-            ].join('
-');
+            const text = buildPrompt(year, question, options);
 
             const originalLabel = btn.textContent;
             const setCopied = () => {
@@ -565,8 +599,8 @@
                 document.execCommand('copy');
                 onSuccess();
             } catch (e) {
-                alert('Unable to copy automatically. Please select and copy manually:
-
+                alert('Unable to copy automatically. Please select and copy manually:\
+\
 ' + text);
             } finally {
                 document.body.removeChild(ta);
@@ -592,7 +626,7 @@
       - Unit IX: 161–187; Ch9 p.163, Ch10 p.177; inferred ends 176, 187.
       - Unit X: 188–227; Ch11 p.190, Ch12 p.205, Ch13 p.216; inferred ends 204, 215, 227.
 
-    The page dropdown now lists actual textbook page numbers from startPage through endPage for each selected chapter, and question mapping keys should use those absolute page numbers.
+    The page dropdown lists actual textbook page numbers from startPage through endPage for each selected chapter, and question mapping keys use those absolute page numbers.
     -->
 </body>
 </html>
