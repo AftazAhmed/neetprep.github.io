@@ -53,6 +53,8 @@
             border:1px solid rgba(255,255,255,.08);
             outline:none; transition:border .2s, box-shadow .2s, transform .06s;
             box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 6px 18px rgba(0,0,0,.25);
+            position: relative; /* ensure proper stacking in some browsers */
+            z-index: 1; /* keep above local decorations */
         }
         select:hover, select:focus{
             border-color: rgba(139,92,246,.6);
@@ -78,6 +80,8 @@
             border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:14px 14px 12px;
             background: linear-gradient(180deg, rgba(2,6,23,.9), rgba(2,6,23,.75));
             box-shadow: 0 12px 28px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.05);
+            position: relative;
+            z-index: 0; /* ensure dropdowns remain visible */
         }
         .q-head{ display:flex; flex-wrap:wrap; gap:8px; align-items:center; justify-content:space-between; margin-bottom:4px; }
         .q-left{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
@@ -135,6 +139,8 @@
             display:none; margin-top:10px; padding:12px; border-radius:12px;
             background: linear-gradient(180deg, rgba(17,24,39,.85), rgba(15,23,42,.85));
             border:1px solid rgba(255,255,255,.08);
+            position: relative; /* non-fixed to avoid overlay conflicts */
+            z-index: 0; /* below native dropdown overlays */
         }
         .exp-box.show{ display:block; }
         .exp-toolbar{
@@ -511,7 +517,7 @@ The two correct statements are",
                 btnExp.textContent = 'Get Explanation';
                 btnExp.setAttribute('aria-expanded', 'false');
 
-                // Explanation panel (contains Copy tab, Arrow mark, ChatGPT launcher, and the prompt text)
+                // Explanation panel with Copy tab, Arrow, and ChatGPT launcher
                 var exp = document.createElement('div');
                 exp.className = 'exp-box';
 
@@ -537,7 +543,6 @@ The two correct statements are",
                 var promptText = buildExplainPrompt(it);
                 promptDiv.textContent = promptText;
 
-                // Handlers
                 copyTab.addEventListener('click', function(){ copyPrompt(promptText); });
                 copyTab.addEventListener('keydown', function(e){ if(e.key==='Enter' || e.key===' ') { e.preventDefault(); copyPrompt(promptText); }});
                 launcher.addEventListener('click', function(){ openChatGPT(); });
@@ -607,11 +612,11 @@ The two correct statements are",
         }
 
         async function copyPrompt(text){
-            try { await navigator.clipboard.writeText(text); } catch(e) { /* ignore */ }
+            try { await navigator.clipboard.writeText(text); } catch(e) { /* ignore or show toast if desired */ }
         }
 
         function openChatGPT(){
-            // Auto-typing into another origin is blocked by SOP; open new tab and paste the copied prompt there.
+            // Independent launcher; no auto-typing or paste to avoid cross-origin + focus issues
             var url = 'https://chat.openai.com/';
             try { window.open(url, '_blank', 'noopener'); }
             catch(e){ window.location.href = url; }
