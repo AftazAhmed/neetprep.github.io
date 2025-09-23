@@ -3,9 +3,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <!-- Optional: Add a CSP header at the server instead of meta for production -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NEET Biology Questions - Page Wise</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Note: In production, set CSP via HTTP headers; this page avoids inline JS so strict script-src works cleanly. [MDN CSP guidance] -->
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -19,7 +19,7 @@
       padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
     h1 {
-      text-align: center; color: #333; margin-bottom: 30px; font-size: 2.2em;
+      text-align: center; color: #333; margin-bottom: 30px; font-size: 2.4em;
       background: linear-gradient(45deg, #667eea, #764ba2);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
@@ -46,7 +46,6 @@
     .btn-answer { background: #28a745; color: #fff; }
     .btn-copy { background: #ffc107; color: #212529; }
     .btn-explain { background: #007bff; color: #fff; }
-    .btn-gemini { background: #1a73e8; color: #fff; }
     .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
     .answer-area { background: #d4edda; padding: 15px; border-radius: 5px; margin-top: 10px; display: none; border: 1px solid #c3e6cb; }
     .no-questions { text-align: center; color: #666; font-style: italic; padding: 40px; background: #fff; border-radius: 8px; margin-top: 20px; }
@@ -58,7 +57,7 @@
       .dropdown-container { gap: 12px; }
       .content-area { padding: 12px; }
       .question-container { margin: 10px 0; padding: 18px; }
-      h1 { font-size: 1.8em; }
+      h1 { font-size: 1.9em; }
       .btn { padding: 10px 14px; font-size: 13px; }
       .arrow-indicator { font-size: 20px; }
     }
@@ -99,7 +98,7 @@
     <div id="content-area" class="content-area"></div>
   </div>
 
-  <!-- Load all JS externally and defer (CSP-safe, no inline JS) -->
+  <!-- External JS only; no inline JS to satisfy strict CSP and replicate TurboScribe’s reliable flow -->
   <script src="app.js" defer></script>
 </body>
 </html>
