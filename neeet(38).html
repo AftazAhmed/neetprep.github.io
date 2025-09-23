@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCERT Biology Page Selector</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px; margin: 0 auto; background: #fff; border-radius: 14px;
+            padding: 26px; box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+        }
+        h1 {
+            text-align: center; color: #333; margin-bottom: 24px; font-size: 2em;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .dropdowns {
+            display: flex; flex-wrap: wrap; gap: 18px; justify-content: center;
+        }
+        .group { display: flex; flex-direction: column; min-width: 240px; }
+        label { font-weight: bold; color: #333; margin-bottom: 8px; font-size: 14px; }
+        select {
+            padding: 12px 14px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 16px; background: #fff;
+            cursor: pointer; transition: all .25s ease;
+        }
+        select:hover, select:focus {
+            border-color: #667eea; outline: none; box-shadow: 0 0 8px rgba(102,126,234,.25);
+        }
+        .note {
+            margin-top: 18px; text-align: center; color: #555; font-size: 13px;
+        }
+        /* No question UI here by request */
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>NCERT Biology Page Selector</h1>
+
+    <div class="dropdowns">
+        <div class="group">
+            <label for="class-select">Select Class</label>
+            <select id="class-select">
+                <option value="">Select Class</option>
+                <option value="11">Class 11</option>
+                <option value="12">Class 12</option>
+            </select>
+        </div>
+
+        <div class="group">
+            <label for="chapter-select">Select Chapter</label>
+            <select id="chapter-select" disabled>
+                <option value="">Select Chapter</option>
+            </select>
+        </div>
+
+        <div class="group">
+            <label for="page-select">Select Page</label>
+            <select id="page-select" disabled>
+                <option value="">Select Page</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="note">Aligned to NCERT reprint ranges; ready to attach page-wise question feeds later in code comments.</div>
+</div>
+
+<script>
+(function () {
+    'use strict';
+
+    // Run after the DOM is parsed so element lookups and listeners are reliable.
+    // Ref: DOMContentLoaded fires when the initial HTML is fully parsed (no need to wait for images).
+    // MDN: https://developer.mozilla.org/en-US/docs/Web/API/Document/DOMContentLoaded_event
+    function onReady(fn) {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', fn);
+        } else {
+            fn();
+        }
+    }
+
+    onReady(function () {
+        // NCERT chapter start/end pages (reprint 2025–26 mapping).
+        // These ranges are used to generate page numbers; no question UI is rendered here.
+        var chaptersData = {
+            "11": [
+                { id: "ch1",  name: "Chapter 1: The Living World",                         startPage: 3,   endPage: 9  },
+                { id: "ch2",  name: "Chapter 2: Biological Classification",                 startPage: 10,  endPage: 22 },
+                { id: "ch3",  name: "Chapter 3: Plant Kingdom",                             startPage: 23,  endPage: 36 },
+                { id: "ch4",  name: "Chapter 4: Animal Kingdom",                            startPage: 37,  endPage: 54 },
+                { id: "ch5",  name: "Chapter 5: Morphology of Flowering Plants",            startPage: 57,  endPage: 70 },
+                { id: "ch6",  name: "Chapter 6: Anatomy of Flowering Plants",               startPage: 71,  endPage: 78 },
+                { id: "ch7",  name: "Chapter 7: Structural Organisation in Animals",        startPage: 79,  endPage: 84 },
+                { id: "ch8",  name: "Chapter 8: Cell - The Unit of Life",                   startPage: 87,  endPage: 103 },
+                { id: "ch9",  name: "Chapter 9: Biomolecules",                              startPage: 104, endPage: 119 },
+                { id: "ch10", name: "Chapter 10: Cell Cycle and Cell Division",             startPage: 120, endPage: 130 },
+                { id: "ch11", name: "Chapter 11: Photosynthesis in Higher Plants",          startPage: 133, endPage: 152 },
+                { id: "ch12", name: "Chapter 12: Respiration in Plants",                    startPage: 153, endPage: 165 },
+                { id: "ch13", name: "Chapter 13: Plant Growth and Development",             startPage: 166, endPage: 180 },
+                { id: "ch14", name: "Chapter 14: Breathing and Exchange of Gases",          startPage: 183, endPage: 192 },
+                { id: "ch15", name: "Chapter 15: Body Fluids and Circulation",              startPage: 193, endPage: 204 },
+                { id: "ch16", name: "Chapter 16: Excretory Products and their Elimination", startPage: 205, endPage: 216 },
+                { id: "ch17", name: "Chapter 17: Locomotion and Movement",                  startPage: 217, endPage: 229 },
+                { id: "ch18", name: "Chapter 18: Neural Control and Coordination",          startPage: 230, endPage: 238 },
+                { id: "ch19", name: "Chapter 19: Chemical Coordination and Integration",    startPage: 239, endPage: 250 }
+            ],
+            "12": [
+                { id: "ch1",  name: "Chapter 1: Sexual Reproduction in Flowering Plants",   startPage: 3,   endPage: 25  },
+                { id: "ch2",  name: "Chapter 2: Human Reproduction",                        startPage: 26,  endPage: 40  },
+                { id: "ch3",  name: "Chapter 3: Reproductive Health",                       startPage: 41,  endPage: 50  },
+                { id: "ch4",  name: "Chapter 4: Principles of Inheritance and Variation",   startPage: 53,  endPage: 78  },
+                { id: "ch5",  name: "Chapter 5: Molecular Basis of Inheritance",            startPage: 79,  endPage: 109 },
+                { id: "ch6",  name: "Chapter 6: Evolution",                                 startPage: 110, endPage: 126 },
+                { id: "ch7",  name: "Chapter 7: Human Health and Disease",                  startPage: 129, endPage: 148 },
+                { id: "ch8",  name: "Chapter 8: Microbes in Human Welfare",                 startPage: 149, endPage: 160 },
+                { id: "ch9",  name: "Chapter 9: Biotechnology: Principles and Processes",   startPage: 163, endPage: 176 },
+                { id: "ch10", name: "Chapter 10: Biotechnology and Its Applications",       startPage: 177, endPage: 187 },
+                { id: "ch11", name: "Chapter 11: Organisms and Populations",                startPage: 190, endPage: 204 },
+                { id: "ch12", name: "Chapter 12: Ecosystem",                                startPage: 205, endPage: 215 },
+                { id: "ch13", name: "Chapter 13: Biodiversity and Conservation",            startPage: 216, endPage: 227 }
+            ]
+        };
+
+        // Elements
+        var classSelect   = document.getElementById('class-select');
+        var chapterSelect = document.getElementById('chapter-select');
+        var pageSelect    = document.getElementById('page-select');
+
+        // Wire events after DOM is ready.
+        classSelect.addEventListener('change', onClassChange, false);
+        chapterSelect.addEventListener('change', onChapterChange, false);
+
+        function resetChapterAndPage() {
+            chapterSelect.innerHTML = '<option value="">Select Chapter</option>';
+            pageSelect.innerHTML = '<option value="">Select Page</option>';
+            chapterSelect.disabled = true; // disabled makes control non-interactive until enabled
+            pageSelect.disabled = true;    // per HTML disabled attribute semantics
+        }
+
+        function onClassChange() {
+            resetChapterAndPage();
+            var cls = classSelect.value;
+            if (!cls) return;
+            var chapters = chaptersData[cls] || [];
+            for (var i = 0; i < chapters.length; i++) {
+                var ch = chapters[i];
+                var opt = document.createElement('option');
+                opt.value = ch.id;
+                opt.textContent = ch.name + ' (p. ' + ch.startPage + '–' + ch.endPage + ')';
+                chapterSelect.appendChild(opt);
+            }
+            chapterSelect.disabled = false; // enable after class selection
+        }
+
+        function onChapterChange() {
+            pageSelect.innerHTML = '<option value="">Select Page</option>';
+            pageSelect.disabled = true;
+
+            var cls = classSelect.value;
+            var chId = chapterSelect.value;
+            if (!cls || !chId) return;
+
+            var chapters = chaptersData[cls] || [];
+            var selected = null;
+            for (var i = 0; i < chapters.length; i++) {
+                if (chapters[i].id === chId) { selected = chapters[i]; break; }
+            }
+            if (!selected) return;
+
+            for (var p = selected.startPage; p <= selected.endPage; p++) {
+                var opt = document.createElement('option');
+                opt.value = String(p);
+                opt.textContent = 'Page ' + p;
+                pageSelect.appendChild(opt);
+            }
+            pageSelect.disabled = false; // enable after chapter selection
+        }
+
+        // Future integration note (no UI impact):
+        // To add page-wise question feeds later, define a questionsData object keyed by class -> chapterId -> pageNumber,
+        // and attach a change listener on pageSelect to render questions for that page into a new content area.
+        // Keeping logic separate ensures dropdowns remain stable if question rendering fails.
+    });
+})();
+</script>
+</body>
+</html>
