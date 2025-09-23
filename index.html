@@ -2,202 +2,55 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- CSP with nonce for inline script, and allowance for inline styles used in this page -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'nonce-NEET123'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; base-uri 'self'; frame-ancestors 'self';">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEET Biology Questions - Page Wise</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Arial', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
         }
-        
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            max-width: 1200px; margin: 0 auto; background: white; border-radius: 15px;
+            padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
-        
         h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 30px;
-            font-size: 2.5em;
+            text-align: center; color: #333; margin-bottom: 30px; font-size: 2.5em;
             background: linear-gradient(45deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-        
-        .dropdown-container {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        
-        .dropdown-group {
-            display: flex;
-            flex-direction: column;
-            min-width: 250px;
-        }
-        
-        label {
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 8px;
-            font-size: 14px;
-        }
-        
+        .dropdown-container { display: flex; gap: 20px; margin-bottom: 30px; flex-wrap: wrap; justify-content: center; }
+        .dropdown-group { display: flex; flex-direction: column; min-width: 250px; }
+        label { font-weight: bold; color: #333; margin-bottom: 8px; font-size: 14px; }
         select {
-            padding: 12px 15px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 16px;
-            background: white;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            padding: 12px 15px; border: 2px solid #ddd; border-radius: 8px; font-size: 16px;
+            background: white; cursor: pointer; transition: all 0.3s ease;
         }
-        
-        select:hover, select:focus {
-            border-color: #667eea;
-            outline: none;
-            box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
-        }
-        
-        .content-area {
-            margin-top: 30px;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            display: none;
-            width: 100%;
-        }
-        
-        .page-info {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            border-left: 4px solid #667eea;
-        }
-        
+        select:hover, select:focus { border-color: #667eea; outline: none; box-shadow: 0 0 10px rgba(102, 126, 234, 0.3); }
+        .content-area { margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px; display: none; width: 100%; }
+        .page-info { background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #667eea; }
         .question-container {
-            background: white;
-            padding: 20px;
-            margin: 15px 0;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            border-left: 4px solid #28a745;
-            width: 100%;
+            background: white; padding: 20px; margin: 15px 0; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid #28a745; width: 100%;
         }
-        
-        .question-year {
-            background: #667eea;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 12px;
-            font-weight: bold;
-            display: inline-block;
-            margin-bottom: 10px;
-        }
-        
-        .question-text {
-            font-size: 16px;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-        
-        .options {
-            margin: 15px 0;
-        }
-        
-        .option {
-            padding: 8px 0;
-            font-size: 14px;
-        }
-        
-        .button-group {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        
-        .btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-answer {
-            background: #28a745;
-            color: white;
-        }
-
-        .btn-copy {
-            background: #ffc107;
-            color: #212529;
-        }
-        
-        .btn-explain {
-            background: #007bff;
-            color: white;
-        }
-        
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-        
-        .answer-area {
-            background: #d4edda;
-            padding: 15px;
-            border-radius: 5px;
-            margin-top: 10px;
-            display: none;
-            border: 1px solid #c3e6cb;
-        }
-        
-        .no-questions {
-            text-align: center;
-            color: #666;
-            font-style: italic;
-            padding: 40px;
-            background: white;
-            border-radius: 8px;
-            margin-top: 20px;
-        }
-        
-        .chapter-note {
-            font-size: 12px;
-            color: #666;
-            margin-top: 6px;
-        }
-
-        .arrow-indicator {
-            font-size: 22px;
-            line-height: 1;
-            color: #6b7280;
-            user-select: none;
-            padding: 0 2px;
-        }
-
-        /* Mobile widening tweaks */
+        .question-year { background: #667eea; color: white; padding: 5px 10px; border-radius: 15px; font-size: 12px; font-weight: bold; display: inline-block; margin-bottom: 10px; }
+        .question-text { font-size: 16px; line-height: 1.6; margin-bottom: 15px; }
+        .options { margin: 15px 0; }
+        .option { padding: 8px 0; font-size: 14px; }
+        .button-group { display: flex; gap: 10px; margin-top: 15px; align-items: center; flex-wrap: wrap; }
+        .btn { padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 14px; transition: all 0.3s ease; }
+        .btn-answer { background: #28a745; color: white; }
+        .btn-copy { background: #ffc107; color: #212529; }
+        .btn-explain { background: #007bff; color: white; }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+        .answer-area { background: #d4edda; padding: 15px; border-radius: 5px; margin-top: 10px; display: none; border: 1px solid #c3e6cb; }
+        .no-questions { text-align: center; color: #666; font-style: italic; padding: 40px; background: white; border-radius: 8px; margin-top: 20px; }
+        .chapter-note { font-size: 12px; color: #666; margin-top: 6px; }
+        .arrow-indicator { font-size: 22px; line-height: 1; color: #6b7280; user-select: none; padding: 0 2px; }
         @media (max-width: 600px) {
             body { padding: 8px; }
             .container { padding: 14px; border-radius: 12px; }
@@ -213,7 +66,7 @@
 <body>
     <div class="container">
         <h1>NEET Biology Questions - Page Wise Analysis</h1>
-        
+
         <div class="dropdown-container">
             <div class="dropdown-group">
                 <label for="class-select">Select Class:</label>
@@ -226,14 +79,14 @@
                     Edition aligned to NCERT Reprint 2025–26 (March 2024), official Contents page mapping.
                 </div>
             </div>
-            
+
             <div class="dropdown-group">
                 <label for="chapter-select">Select Chapter:</label>
                 <select id="chapter-select" disabled>
                     <option value="">Select Chapter</option>
                 </select>
             </div>
-            
+
             <div class="dropdown-group">
                 <label for="page-select">Select Page:</label>
                 <select id="page-select" disabled>
@@ -241,16 +94,14 @@
                 </select>
             </div>
         </div>
-        
+
         <div id="content-area" class="content-area">
             <!-- Questions will be loaded here -->
         </div>
     </div>
 
-    <script>
-        // Chapter data with actual NCERT textbook start and end page numbers (Reprint 2025–26)
-        // Class 11 source: NCERT Class XI Biology Contents (Unit and chapter starts) — Ch1 p.3, Ch2 p.10, Ch3 p.23, Ch4 p.37, Unit I ends p.54; Unit II 55–84; Unit III 85–130; Unit IV 131–180; Unit V 181–250
-        // Class 12 source: NCERT Class XII Biology Contents — Unit VI 1–50 (Ch1 p.3, Ch2 p.26, Ch3 p.41), Unit VII 51–126 (Ch4 p.53, Ch5 p.79, Ch6 p.110), Unit VIII 127–160, Unit IX 161–187, Unit X 188–227
+    <script nonce="NEET123">
+        // Data
         const chaptersData = {
             "11": [
                 { id: "ch1",  name: "Chapter 1: The Living World",                         startPage: 3,   endPage: 9  },
@@ -290,7 +141,6 @@
             ]
         };
 
-        // Questions data - aligned to textbook page numbers.
         const questionsData = {
             "11": {
                 "ch1": {
@@ -311,12 +161,7 @@
                             {
                                 year: "NEET 2016",
                                 question: "Study the four statements (A-D) and select the two correct ones: (A) Definition of biological species was given by Ernst Mayr (B) Photoperiod does not affect reproduction in plants (C) Binomial nomenclature system was given by R.H. Whittaker (D) In unicellular organisms, reproduction is synonymous with growth",
-                                options: [
-                                    "(a) B and C",
-                                    "(b) C and D",
-                                    "(c) A and D",
-                                    "(d) A and B"
-                                ],
+                                options: ["(a) B and C","(b) C and D","(c) A and D","(d) A and B"],
                                 answer: "(c) A and D"
                             }
                         ]
@@ -327,12 +172,7 @@
                             {
                                 year: "NEET 2013",
                                 question: "The common characteristics between tomato and potato will be maximum at the level of their:",
-                                options: [
-                                    "(a) Division",
-                                    "(b) Class",
-                                    "(c) Family",
-                                    "(d) Genus"
-                                ],
+                                options: ["(a) Division","(b) Class","(c) Family","(d) Genus"],
                                 answer: "(d) Genus"
                             }
                         ]
@@ -343,45 +183,25 @@
                             {
                                 year: "NEET 2019",
                                 question: "Select the correctly written scientific name of Mango, which was first described by Carolus Linnaeus:",
-                                options: [
-                                    "(a) Mangifera Indica",
-                                    "(b) Mangifera Indica Car. Linn",
-                                    "(c) Mangifera indica Linn",
-                                    "(d) None"
-                                ],
+                                options: ["(a) Mangifera Indica","(b) Mangifera Indica Car. Linn","(c) Mangifera indica Linn","(d) None"],
                                 answer: "(c) Mangifera indica Linn"
                             },
                             {
                                 year: "AIPMT 2012",
                                 question: "Which organism is correctly named according to international rules?",
-                                options: [
-                                    "(a) Mangifera indica",
-                                    "(b) mangifera indica",
-                                    "(c) Mangifera Indica",
-                                    "(d) MANGIFERA INDICA"
-                                ],
+                                options: ["(a) Mangifera indica","(b) mangifera indica","(c) Mangifera Indica","(d) MANGIFERA INDICA"],
                                 answer: "(a) Mangifera indica"
                             },
                             {
                                 year: "NEET 2016",
                                 question: "Nomenclature is governed by certain universal rules. Which one is contrary to the rules?",
-                                options: [
-                                    "(a) Biological names can be written in any language",
-                                    "(b) First word represents genus, second is specific epithet",
-                                    "(c) Names are written in Latin and italicized when printed",
-                                    "(d) When handwritten, names are underlined"
-                                ],
+                                options: ["(a) Biological names can be written in any language","(b) First word represents genus, second is specific epithet","(c) Names are written in Latin and italicized when printed","(d) When handwritten, names are underlined"],
                                 answer: "(a) Biological names can be written in any language"
                             },
                             {
                                 year: "NEET 2019",
                                 question: "Which of the following is against the rules of ICBN?",
-                                options: [
-                                    "(a) Handwritten scientific names should be underlined",
-                                    "(b) Every species should have a generic name and a specific epithet",
-                                    "(c) Scientific names are in Latin and should be italicized when printed",
-                                    "(d) Generic and specific names should be written starting with small letters"
-                                ],
+                                options: ["(a) Handwritten scientific names should be underlined","(b) Every species should have a generic name and a specific epithet","(c) Scientific names are in Latin and should be italicized when printed","(d) Generic and specific names should be written starting with small letters"],
                                 answer: "(d) Generic and specific names should be written starting with small letters"
                             }
                         ]
@@ -391,37 +211,34 @@
             "12": {}
         };
 
-        // DOM elements
+        // Elements
         const classSelect = document.getElementById('class-select');
         const chapterSelect = document.getElementById('chapter-select');
-        const pageSelect = document.getElementById('page-select');
-        const contentArea = document.getElementById('content-area');
-        const editionNote = document.getElementById('edition-note');
+        const pageSelect   = document.getElementById('page-select');
+        const contentArea  = document.getElementById('content-area');
+        const editionNote  = document.getElementById('edition-note');
 
-        // Event listeners (CSP-safe: no inline handlers)
+        // Wire events (no inline handlers; CSP-safe)
         document.addEventListener('DOMContentLoaded', () => {
             classSelect.addEventListener('change', loadChapters);
             chapterSelect.addEventListener('change', loadPages);
             pageSelect.addEventListener('change', loadQuestions);
 
-            // Delegate all question button clicks
+            // Delegate clicks inside content area
             contentArea.addEventListener('click', (e) => {
                 const btn = e.target.closest('button');
                 if (!btn) return;
 
                 if (btn.classList.contains('btn-answer')) {
                     const answerArea = btn.closest('.question-container')?.querySelector('.answer-area');
-                    if (answerArea) {
-                        const show = answerArea.style.display !== 'block';
-                        answerArea.style.display = show ? 'block' : 'none';
-                    }
+                    if (answerArea) answerArea.style.display = answerArea.style.display === 'block' ? 'none' : 'block';
                 }
 
                 if (btn.classList.contains('btn-copy')) {
                     const year = btn.dataset.year || '';
                     const question = btn.dataset.question || '';
                     let options = [];
-                    try { options = JSON.parse(btn.dataset.options || '[]'); } catch (e) { options = []; }
+                    try { options = JSON.parse(btn.dataset.options || '[]'); } catch {}
                     const text = buildPrompt(year, question, options);
                     copyToClipboard(btn, text);
                 }
@@ -433,43 +250,40 @@
         });
 
         function loadChapters() {
-            // Reset dependent dropdowns and content
             chapterSelect.innerHTML = '<option value="">Select Chapter</option>';
             pageSelect.innerHTML = '<option value="">Select Page</option>';
             chapterSelect.disabled = true;
             pageSelect.disabled = true;
             contentArea.style.display = 'none';
             editionNote.style.display = classSelect.value ? 'block' : 'none';
-            
+
             if (classSelect.value) {
                 const chapters = chaptersData[classSelect.value] || [];
-                chapters.forEach(chapter => {
-                    const option = document.createElement('option');
-                    option.value = chapter.id;
-                    option.textContent = `${chapter.name} (p. ${chapter.startPage}–${chapter.endPage})`;
-                    chapterSelect.appendChild(option);
+                chapters.forEach(ch => {
+                    const opt = document.createElement('option');
+                    opt.value = ch.id;
+                    opt.textContent = `${ch.name} (p. ${ch.startPage}–${ch.endPage})`;
+                    chapterSelect.appendChild(opt);
                 });
                 chapterSelect.disabled = false;
             }
         }
 
         function loadPages() {
-            // Reset page dropdown and content
             pageSelect.innerHTML = '<option value="">Select Page</option>';
             pageSelect.disabled = true;
             contentArea.style.display = 'none';
-            
+
             if (chapterSelect.value) {
                 const selectedClass = classSelect.value;
                 const chapters = chaptersData[selectedClass] || [];
-                const selectedChapter = chapters.find(ch => ch.id === chapterSelect.value);
-                
-                if (selectedChapter) {
-                    for (let p = selectedChapter.startPage; p <= selectedChapter.endPage; p++) {
-                        const option = document.createElement('option');
-                        option.value = String(p);
-                        option.textContent = `Page ${p}`;
-                        pageSelect.appendChild(option);
+                const chapter = chapters.find(c => c.id === chapterSelect.value);
+                if (chapter) {
+                    for (let p = chapter.startPage; p <= chapter.endPage; p++) {
+                        const opt = document.createElement('option');
+                        opt.value = String(p);
+                        opt.textContent = `Page ${p}`;
+                        pageSelect.appendChild(opt);
                     }
                     pageSelect.disabled = false;
                 }
@@ -477,22 +291,19 @@
         }
 
         function loadQuestions() {
-            if (!pageSelect.value) {
-                contentArea.style.display = 'none';
-                return;
-            }
-            
+            if (!pageSelect.value) { contentArea.style.display = 'none'; return; }
+
             const selectedClass = classSelect.value;
             const selectedChapter = chapterSelect.value;
             const selectedPage = pageSelect.value;
-            
+
             contentArea.innerHTML = '';
             contentArea.style.display = 'block';
-            
-            const pageData = questionsData[selectedClass] && 
-                             questionsData[selectedClass][selectedChapter] && 
+
+            const pageData = questionsData[selectedClass] &&
+                             questionsData[selectedClass][selectedChapter] &&
                              questionsData[selectedClass][selectedChapter][selectedPage];
-            
+
             if (pageData) {
                 const pageInfo = document.createElement('div');
                 pageInfo.className = 'page-info';
@@ -502,19 +313,15 @@
                     <p><strong>No. of questions found:</strong> ${pageData.questions.length}</p>
                 `;
                 contentArea.appendChild(pageInfo);
-                
-                pageData.questions.forEach((questionData, index) => {
-                    const qId = `answer-${selectedClass}-${selectedChapter}-${selectedPage}-${index}`;
 
-                    const questionDiv = document.createElement('div');
-                    questionDiv.className = 'question-container';
-
-                    // Build options HTML
-                    const optionsHTML = questionData.options.map(opt => `<div class="option">${opt}</div>`).join('');
-
-                    questionDiv.innerHTML = `
-                        <div class="question-year">${questionData.year}</div>
-                        <div class="question-text">${questionData.question}</div>
+                pageData.questions.forEach((q, idx) => {
+                    const qId = `answer-${selectedClass}-${selectedChapter}-${selectedPage}-${idx}`;
+                    const div = document.createElement('div');
+                    div.className = 'question-container';
+                    const optionsHTML = q.options.map(opt => `<div class="option">${opt}</div>`).join('');
+                    div.innerHTML = `
+                        <div class="question-year">${q.year}</div>
+                        <div class="question-text">${q.question}</div>
                         <div class="options">${optionsHTML}</div>
                         <div class="button-group">
                             <button class="btn btn-answer" aria-controls="${qId}">Get Answer</button>
@@ -524,17 +331,16 @@
                             <button class="btn btn-explain" title="Open ChatGPT in a new tab">Open in ChatGPT</button>
                         </div>
                         <div id="${qId}" class="answer-area" role="region" aria-label="Answer">
-                            <strong>Answer:</strong> ${questionData.answer}
+                            <strong>Answer:</strong> ${q.answer}
                         </div>
                     `;
+                    // Attach data for copy
+                    const copyBtn = div.querySelector('.btn-copy');
+                    copyBtn.dataset.year = q.year;
+                    copyBtn.dataset.question = q.question;
+                    copyBtn.dataset.options = JSON.stringify(q.options);
 
-                    // Attach data to Copy button via dataset (CSP-safe, no inline)
-                    const copyBtn = questionDiv.querySelector('.btn-copy');
-                    copyBtn.dataset.year = questionData.year;
-                    copyBtn.dataset.question = questionData.question;
-                    copyBtn.dataset.options = JSON.stringify(questionData.options);
-
-                    contentArea.appendChild(questionDiv);
+                    contentArea.appendChild(div);
                 });
             } else {
                 const pageInfo = document.createElement('div');
@@ -545,90 +351,49 @@
                     <p><strong>No. of questions found:</strong> No questions detected</p>
                 `;
                 contentArea.appendChild(pageInfo);
-                
-                const noQuestionsMsg = document.createElement('div');
-                noQuestionsMsg.className = 'no-questions';
-                noQuestionsMsg.innerHTML = '<h3>No questions detected for this page</h3><p>Questions data will be added in future updates.</p>';
-                contentArea.appendChild(noQuestionsMsg);
+
+                const noQ = document.createElement('div');
+                noQ.className = 'no-questions';
+                noQ.innerHTML = '<h3>No questions detected for this page</h3><p>Questions data will be added in future updates.</p>';
+                contentArea.appendChild(noQ);
             }
         }
 
-        // Build a simple prompt with the question and choices (no predefined extra instructions).
         function buildPrompt(year, question, options) {
-            const lines = [
-                `${year}`,
-                `Question: ${question}`,
-                `Choices:`,
-                ...options
-            ];
-            return lines.join('
+            return [year, `Question: ${question}`, 'Choices:', ...options].join('
 ');
         }
 
-        // Copies text to clipboard with graceful fallback and visual feedback.
         function copyToClipboard(btn, text) {
-            const originalLabel = btn.textContent;
-            const setCopied = () => {
+            const original = btn.textContent;
+            const done = () => {
                 btn.textContent = 'Copied!';
                 btn.disabled = true;
-                setTimeout(() => {
-                    btn.textContent = originalLabel;
-                    btn.disabled = false;
-                }, 1500);
+                setTimeout(() => { btn.textContent = original; btn.disabled = false; }, 1500);
             };
-
             if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(text).then(setCopied).catch(() => fallbackCopy(text, setCopied));
+                navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
             } else {
-                fallbackCopy(text, setCopied);
+                fallbackCopy(text, done);
             }
         }
 
-        function fallbackCopy(text, onSuccess) {
+        function fallbackCopy(text, done) {
             const ta = document.createElement('textarea');
             ta.value = text;
             ta.style.position = 'fixed';
             ta.style.top = '-9999px';
             document.body.appendChild(ta);
-            ta.focus();
-            ta.select();
-            try {
-                document.execCommand('copy');
-                onSuccess();
-            } catch (e) {
-                alert('Unable to copy automatically. Please select and copy manually:
-
-' + text);
-            } finally {
-                document.body.removeChild(ta);
-            }
+            ta.focus(); ta.select();
+            try { document.execCommand('copy'); done(); }
+            finally { document.body.removeChild(ta); }
         }
 
-        // Opens ChatGPT in a new tab without any pre-filled text, inside a user click handler.
         function openChatGPT() {
             window.open('https://chat.openai.com/', '_blank', 'noopener');
         }
     </script>
 
-    <!-- 
-    ===========================================
-    NOTES ON ALIGNMENT TO NCERT (REPRINT 2025–26)
-    ===========================================
-    Class 11: Chapters reduced to 19; chapter start pages and unit ranges per official Contents:
-      - Unit I: 1–54; Ch1 p.3, Ch2 p.10, Ch3 p.23, Ch4 p.37; inferred ends 9, 22, 36, 54.
-      - Unit II: 55–84; Ch5 p.57, Ch6 p.71, Ch7 p.79; inferred ends 70, 78, 84.
-      - Unit III: 85–130; Ch8 p.87, Ch9 p.104, Ch10 p.120; inferred ends 103, 119, 130.
-      - Unit IV: 131–180; Ch11 p.133, Ch12 p.153, Ch13 p.166; inferred ends 152, 165, 180.
-      - Unit V: 181–250; Ch14 p.183, Ch15 p.193, Ch16 p.205, Ch17 p.217, Ch18 p.230, Ch19 p.239; inferred ends 192, 204, 216, 229, 238, 250.
-
-    Class 12: Chapter starts and unit ranges per official Contents:
-      - Unit VI: 1–50; Ch1 p.3, Ch2 p.26, Ch3 p.41; inferred ends 25, 40, 50.
-      - Unit VII: 51–126; Ch4 p.53, Ch5 p.79, Ch6 p.110; inferred ends 78, 109, 126.
-      - Unit VIII: 127–160; Ch7 p.129, Ch8 p.149; inferred ends 148, 160.
-      - Unit IX: 161–187; Ch9 p.163, Ch10 p.177; inferred ends 176, 187.
-      - Unit X: 188–227; Ch11 p.190, Ch12 p.205, Ch13 p.216; inferred ends 204, 215, 227.
-
-    The page dropdown lists actual textbook page numbers from startPage through endPage for each selected chapter, and question mapping keys use those absolute page numbers.
-    -->
+    <!-- Notes on alignment to NCERT (Reprint 2025–26) retained -->
 </body>
 </html>
