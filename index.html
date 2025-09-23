@@ -1,115 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>NCERT Biology Page Selector + NEET PYQs</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-            color: #111;
+        :root{
+            --bg1:#0f172a;        /* slate-900 */
+            --bg2:#111827;        /* gray-900 */
+            --card:#0b1220;       /* deep navy */
+            --muted:#94a3b8;      /* slate-400 */
+            --text:#e5e7eb;       /* gray-200 */
+            --accent:#8b5cf6;     /* violet-500 */
+            --accent2:#22d3ee;    /* cyan-400 */
+            --accent3:#14b8a6;    /* teal-500 */
+            --line:#1f2937;       /* gray-800 */
+            --good:#22c55e;       /* green-500 */
+            --bad:#ef4444;        /* red-500 */
+            --chip:#0e7490;       /* cyan-700 */
         }
-        .container {
-            max-width: 1000px; margin: 0 auto; background: #fff; border-radius: 14px;
-            padding: 26px; box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+        *{box-sizing:border-box}
+        html,body{height:100%}
+        body{
+            margin:0;
+            font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji","Segoe UI Emoji";
+            color:var(--text);
+            background: radial-gradient(1200px 800px at 10% -10%, #1e293b 0%, #0b1220 35%, #070b13 70%), linear-gradient(135deg, #0b1220, #0a0f1a);
+            padding:20px;
         }
-        h1 {
-            text-align: center; color: #333; margin-bottom: 24px; font-size: 2em;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        .container{
+            max-width:1100px; margin:0 auto; background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+            border:1px solid rgba(255,255,255,0.08);
+            border-radius:16px; padding:26px;
+            box-shadow: 0 20px 60px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.05);
+            backdrop-filter: blur(6px);
         }
-        .dropdowns {
-            display: flex; flex-wrap: wrap; gap: 18px; justify-content: center; margin-bottom: 16px;
+        h1{
+            margin:0 0 20px;
+            font-size:28px; line-height:1.2; text-align:center;
+            background: linear-gradient(90deg, #e5e7eb, #a5b4fc, #22d3ee);
+            -webkit-background-clip:text; -webkit-text-fill-color:transparent;
         }
-        .group { display: flex; flex-direction: column; min-width: 240px; }
-        label { font-weight: bold; color: #333; margin-bottom: 8px; font-size: 14px; }
-        select {
-            padding: 12px 14px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 16px; background: #fff;
-            cursor: pointer; transition: all .25s ease;
+        .dropdowns{
+            display:flex; flex-wrap:wrap; gap:16px; justify-content:center; margin-bottom:8px;
         }
-        select:hover, select:focus {
-            border-color: #667eea; outline: none; box-shadow: 0 0 8px rgba(102,126,234,.25);
+        .group{ display:flex; flex-direction:column; min-width:240px; }
+        label{ font-size:12px; color:var(--muted); margin:0 0 6px 6px; letter-spacing:.02em; }
+        select{
+            padding:12px 14px; border-radius:12px; font-size:15px; color:#e5e7eb;
+            background:linear-gradient(180deg, #0d1628, #0a1120);
+            border:1px solid rgba(255,255,255,.08);
+            outline:none; transition:border .2s, box-shadow .2s, transform .06s;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 6px 18px rgba(0,0,0,.25);
         }
-        .note {
-            margin-top: 6px; text-align: center; color: #555; font-size: 13px;
+        select:hover, select:focus{
+            border-color: rgba(139,92,246,.6);
+            box-shadow: 0 0 0 3px rgba(139,92,246,.15), inset 0 1px 0 rgba(255,255,255,.06);
         }
+        .results{ margin-top:18px; border-top:1px dashed rgba(148,163,184,.25); padding-top:16px; }
 
-        /* Questions area */
-        .results {
-            margin-top: 22px;
-            border-top: 1px dashed #e2e8f0;
-            padding-top: 18px;
+        /* Meta cards */
+        .meta{
+            display:grid; grid-template-columns: 1.2fr .6fr; gap:12px; margin-bottom:14px;
         }
-        .meta {
-            display: grid; grid-template-columns: repeat(3, 1fr);
-            gap: 12px; margin-bottom: 12px;
+        .box{
+            border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:12px 14px;
+            background: linear-gradient(180deg, rgba(34,211,238,.08), rgba(139,92,246,.06));
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
         }
-        .meta .box {
-            background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px;
-            padding: 10px 12px;
-        }
-        .meta .title { font-size: 12px; color: #666; margin-bottom: 4px; }
-        .meta .value { font-size: 14px; color: #111; }
+        .title{ font-size:12px; color:#cbd5e1; margin-bottom:4px; letter-spacing:.02em; }
+        .value{ font-size:14px; color:#e2e8f0; }
 
-        .q-list { display: grid; gap: 14px; }
-        .q-card {
-            border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px;
-            background: #fff;
+        /* Question list */
+        .q-list{ display:grid; gap:14px; }
+        .q-card{
+            border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:14px 14px 12px;
+            background: linear-gradient(180deg, rgba(2,6,23,.9), rgba(2,6,23,.75));
+            box-shadow: 0 12px 28px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.05);
         }
-        .q-head {
-            display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline; margin-bottom: 8px;
+        .q-head{ display:flex; flex-wrap:wrap; gap:8px; align-items:center; justify-content:space-between; margin-bottom:4px; }
+        .q-left{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+        .badge{
+            font-size:12px; padding:4px 8px; border-radius:999px; letter-spacing:.02em;
+            background: linear-gradient(90deg, rgba(139,92,246,.15), rgba(34,197,94,.15));
+            border:1px solid rgba(139,92,246,.35); color:#c7d2fe;
         }
-        .q-num { font-weight: bold; color: #111; }
-        .q-year { color: #555; font-size: 13px; }
-        .q-body { color: #111; margin: 6px 0 10px; line-height: 1.4; }
-        .choices { margin: 8px 0 10px; }
-        .choice { padding: 6px 8px; border-radius: 8px; margin: 4px 0; background: #f8fafc; border: 1px solid #e2e8f0; }
-        .actions { display: flex; gap: 10px; flex-wrap: wrap; }
-        .btn {
-            padding: 8px 12px; border: none; border-radius: 8px; cursor: pointer;
-            font-size: 14px; transition: transform .05s ease, box-shadow .2s ease;
+        .year{
+            font-size:12px; padding:4px 8px; border-radius:999px;
+            background: linear-gradient(90deg, rgba(34,211,238,.12), rgba(20,184,166,.12));
+            border:1px solid rgba(34,211,238,.35); color:#a5f3fc;
         }
-        .btn:active { transform: translateY(1px); }
-        .btn-primary { background: #667eea; color: #fff; }
-        .btn-secondary { background: #e2e8f0; color: #111; }
-        .answer {
-            display: none; margin-top: 10px; padding: 10px; border-radius: 8px;
-            background: #ecfeff; border: 1px solid #a5f3fc; color: #0e7490;
-            font-weight: bold;
+        .paper{
+            font-size:12px; padding:4px 8px; border-radius:999px;
+            background: linear-gradient(90deg, rgba(99,102,241,.14), rgba(139,92,246,.14));
+            border:1px solid rgba(99,102,241,.4); color:#e9d5ff;
         }
-        .answer.show { display: block; }
+        .q-body{ color:#eef2ff; margin:8px 0 10px; line-height:1.5; }
+        .choices{ display:grid; gap:8px; margin:8px 0 8px; }
+        .choice{
+            padding:10px 12px; border-radius:10px; background: linear-gradient(180deg, #0c1222, #0a101c);
+            border:1px solid rgba(255,255,255,.08); color:#e5e7eb;
+        }
+        .actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:2px; }
+        .btn{
+            padding:10px 14px; border-radius:10px; border:1px solid rgba(255,255,255,.1);
+            background: linear-gradient(90deg, rgba(139,92,246,.3), rgba(34,211,238,.25));
+            color:#f8fafc; cursor:pointer; font-size:14px;
+            transition: transform .06s ease, box-shadow .2s ease, filter .2s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.05);
+            backdrop-filter: blur(2px);
+        }
+        .btn:hover{ filter:brightness(1.08); box-shadow: 0 10px 26px rgba(0,0,0,.35); }
+        .btn:active{ transform: translateY(1px); }
+        .btn-alt{
+            background: linear-gradient(90deg, rgba(20,184,166,.28), rgba(34,197,94,.25));
+            border-color: rgba(16,185,129,.35);
+        }
+        .answer{
+            display:none; margin-top:10px; padding:10px 12px; border-radius:10px;
+            background: linear-gradient(90deg, rgba(34,197,94,.12), rgba(34,211,238,.12));
+            border:1px solid rgba(34,197,94,.35); color:#bbf7d0; font-weight:600;
+        }
+        .answer.show{ display:block; }
 
-        /* Modal for explanation (autotype) */
-        .modal {
-            position: fixed; inset: 0; background: rgba(0,0,0,.5); display: none;
-            align-items: center; justify-content: center; padding: 16px; z-index: 50;
-        }
-        .modal.show { display: flex; }
-        .modal-card {
-            width: 100%; max-width: 720px; background: #fff; border-radius: 12px; overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0,0,0,.35);
-        }
-        .modal-head {
-            padding: 12px 16px; background: #111827; color: #fff; display: flex; align-items: center; justify-content: space-between;
-        }
-        .modal-title { font-size: 16px; font-weight: bold; }
-        .modal-body { padding: 14px 16px; max-height: 70vh; overflow: auto; }
-        .typebox {
-            border: 1px solid #e2e8f0; background: #f8fafc; padding: 10px; border-radius: 8px; min-height: 120px;
-            white-space: pre-wrap; font-family: Consolas, Menlo, Monaco, monospace; font-size: 13px;
-        }
-        .modal-foot { padding: 12px 16px; display: flex; gap: 10px; justify-content: flex-end; background: #f9fafb; }
-        .kbd {
-            display: inline-block; padding: 2px 6px; border: 1px solid #e2e8f0; border-radius: 6px; background: #fff;
-            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 12px; color: #111;
-        }
-
-        @media (max-width: 720px) {
-            .meta { grid-template-columns: 1fr; }
+        @media (max-width:760px){
+            .meta{ grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -142,81 +157,61 @@
         </div>
     </div>
 
-    <div class="note">Aligned to NCERT (Reprint 2025–26) chapter page ranges; official NEET/AIPMT items only, rendered page-wise with hidden answers and explanation autotyping.</div>
-
     <div id="results" class="results" aria-live="polite"></div>
 </div>
 
-<!-- Explanation Modal -->
-<div id="expModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="expTitle">
-    <div class="modal-card">
-        <div class="modal-head">
-            <div id="expTitle" class="modal-title">Get Explanation Prompt</div>
-            <button class="btn btn-secondary" id="btnCloseExp" aria-label="Close">Close</button>
-        </div>
-        <div class="modal-body">
-            <div class="typebox" id="typebox" aria-label="Autotyping prompt area"></div>
-        </div>
-        <div class="modal-foot">
-            <button class="btn btn-secondary" id="btnStopType">Stop</button>
-            <button class="btn btn-secondary" id="btnCopyPrompt">Copy Prompt <span class="kbd">Ctrl/Cmd+C</span></button>
-            <button class="btn btn-primary" id="btnClearType">Clear</button>
-        </div>
-    </div>
-</div>
-
 <script>
-(function () {
+(function(){
     'use strict';
 
-    function onReady(fn) {
-        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn);
+    function onReady(fn){
+        if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn);
         else fn();
     }
 
-    onReady(function () {
+    onReady(function(){
         // NCERT chapter start/end pages (Reprint 2025–26 mapping).
         var chaptersData = {
             "11": [
-                { id: "ch1",  name: "Chapter 1: The Living World",                         startPage: 3,   endPage: 9  },
-                { id: "ch2",  name: "Chapter 2: Biological Classification",                 startPage: 10,  endPage: 22 },
-                { id: "ch3",  name: "Chapter 3: Plant Kingdom",                             startPage: 23,  endPage: 36 },
-                { id: "ch4",  name: "Chapter 4: Animal Kingdom",                            startPage: 37,  endPage: 54 },
-                { id: "ch5",  name: "Chapter 5: Morphology of Flowering Plants",            startPage: 57,  endPage: 70 },
-                { id: "ch6",  name: "Chapter 6: Anatomy of Flowering Plants",               startPage: 71,  endPage: 78 },
-                { id: "ch7",  name: "Chapter 7: Structural Organisation in Animals",        startPage: 79,  endPage: 84 },
-                { id: "ch8",  name: "Chapter 8: Cell - The Unit of Life",                   startPage: 87,  endPage: 103 },
-                { id: "ch9",  name: "Chapter 9: Biomolecules",                              startPage: 104, endPage: 119 },
-                { id: "ch10", name: "Chapter 10: Cell Cycle and Cell Division",             startPage: 120, endPage: 130 },
-                { id: "ch11", name: "Chapter 11: Photosynthesis in Higher Plants",          startPage: 133, endPage: 152 },
-                { id: "ch12", name: "Chapter 12: Respiration in Plants",                    startPage: 153, endPage: 165 },
-                { id: "ch13", name: "Chapter 13: Plant Growth and Development",             startPage: 166, endPage: 180 },
-                { id: "ch14", name: "Chapter 14: Breathing and Exchange of Gases",          startPage: 183, endPage: 192 },
-                { id: "ch15", name: "Chapter 15: Body Fluids and Circulation",              startPage: 193, endPage: 204 },
-                { id: "ch16", name: "Chapter 16: Excretory Products and their Elimination", startPage: 205, endPage: 216 },
-                { id: "ch17", name: "Chapter 17: Locomotion and Movement",                  startPage: 217, endPage: 229 },
-                { id: "ch18", name: "Chapter 18: Neural Control and Coordination",          startPage: 230, endPage: 238 },
-                { id: "ch19", name: "Chapter 19: Chemical Coordination and Integration",    startPage: 239, endPage: 250 }
+                { id:"ch1",  name:"Chapter 1: The Living World",                         startPage:3,   endPage:9 },
+                { id:"ch2",  name:"Chapter 2: Biological Classification",                 startPage:10,  endPage:22 },
+                { id:"ch3",  name:"Chapter 3: Plant Kingdom",                             startPage:23,  endPage:36 },
+                { id:"ch4",  name:"Chapter 4: Animal Kingdom",                            startPage:37,  endPage:54 },
+                { id:"ch5",  name:"Chapter 5: Morphology of Flowering Plants",            startPage:57,  endPage:70 },
+                { id:"ch6",  name:"Chapter 6: Anatomy of Flowering Plants",               startPage:71,  endPage:78 },
+                { id:"ch7",  name:"Chapter 7: Structural Organisation in Animals",        startPage:79,  endPage:84 },
+                { id:"ch8",  name:"Chapter 8: Cell - The Unit of Life",                   startPage:87,  endPage:103 },
+                { id:"ch9",  name:"Chapter 9: Biomolecules",                              startPage:104, endPage:119 },
+                { id:"ch10", name:"Chapter 10: Cell Cycle and Cell Division",             startPage:120, endPage:130 },
+                { id:"ch11", name:"Chapter 11: Photosynthesis in Higher Plants",          startPage:133, endPage:152 },
+                { id:"ch12", name:"Chapter 12: Respiration in Plants",                    startPage:153, endPage:165 },
+                { id:"ch13", name:"Chapter 13: Plant Growth and Development",             startPage:166, endPage:180 },
+                { id:"ch14", name:"Chapter 14: Breathing and Exchange of Gases",          startPage:183, endPage:192 },
+                { id:"ch15", name:"Chapter 15: Body Fluids and Circulation",              startPage:193, endPage:204 },
+                { id:"ch16", name:"Chapter 16: Excretory Products and their Elimination", startPage:205, endPage:216 },
+                { id:"ch17", name:"Chapter 17: Locomotion and Movement",                  startPage:217, endPage:229 },
+                { id:"ch18", name:"Chapter 18: Neural Control and Coordination",          startPage:230, endPage:238 },
+                { id:"ch19", name:"Chapter 19: Chemical Coordination and Integration",    startPage:239, endPage:250 }
             ],
             "12": [
-                { id: "ch1",  name: "Chapter 1: Sexual Reproduction in Flowering Plants",   startPage: 3,   endPage: 25  },
-                { id: "ch2",  name: "Chapter 2: Human Reproduction",                        startPage: 26,  endPage: 40  },
-                { id: "ch3",  name: "Chapter 3: Reproductive Health",                       startPage: 41,  endPage: 50  },
-                { id: "ch4",  name: "Chapter 4: Principles of Inheritance and Variation",   startPage: 53,  endPage: 78  },
-                { id: "ch5",  name: "Chapter 5: Molecular Basis of Inheritance",            startPage: 79,  endPage: 109 },
-                { id: "ch6",  name: "Chapter 6: Evolution",                                 startPage: 110, endPage: 126 },
-                { id: "ch7",  name: "Chapter 7: Human Health and Disease",                  startPage: 129, endPage: 148 },
-                { id: "ch8",  name: "Chapter 8: Microbes in Human Welfare",                 startPage: 149, endPage: 160 },
-                { id: "ch9",  name: "Chapter 9: Biotechnology: Principles and Processes",   startPage: 163, endPage: 176 },
-                { id: "ch10", name: "Chapter 10: Biotechnology and Its Applications",       startPage: 177, endPage: 187 },
-                { id: "ch11", name: "Chapter 11: Organisms and Populations",                startPage: 190, endPage: 204 },
-                { id: "ch12", name: "Chapter 12: Ecosystem",                                startPage: 205, endPage: 215 },
-                { id: "ch13", name: "Chapter 13: Biodiversity and Conservation",            startPage: 216, endPage: 227 }
+                { id:"ch1",  name:"Chapter 1: Sexual Reproduction in Flowering Plants",   startPage:3,   endPage:25 },
+                { id:"ch2",  name:"Chapter 2: Human Reproduction",                        startPage:26,  endPage:40 },
+                { id:"ch3",  name:"Chapter 3: Reproductive Health",                       startPage:41,  endPage:50 },
+                { id:"ch4",  name:"Chapter 4: Principles of Inheritance and Variation",   startPage:53,  endPage:78 },
+                { id:"ch5",  name:"Chapter 5: Molecular Basis of Inheritance",            startPage:79,  endPage:109 },
+                { id:"ch6",  name:"Chapter 6: Evolution",                                 startPage:110, endPage:126 },
+                { id:"ch7",  name:"Chapter 7: Human Health and Disease",                  startPage:129, endPage:148 },
+                { id:"ch8",  name:"Chapter 8: Microbes in Human Welfare",                 startPage:149, endPage:160 },
+                { id:"ch9",  name:"Chapter 9: Biotechnology: Principles and Processes",   startPage:163, endPage:176 },
+                { id:"ch10", name:"Chapter 10: Biotechnology and Its Applications",       startPage:177, endPage:187 },
+                { id:"ch11", name:"Chapter 11: Organisms and Populations",                startPage:190, endPage:204 },
+                { id:"ch12", name:"Chapter 12: Ecosystem",                                startPage:205, endPage:215 },
+                { id:"ch13", name:"Chapter 13: Biodiversity and Conservation",            startPage:216, endPage:227 }
             ]
         };
 
         // Page-wise official NEET/AIPMT questions for Class 11, Chapter 1 (The Living World), pages 3–9.
-        // Source mapping: NCERT pagination (reprint 2025–26) and Examside official PYQ entries.
+        // Stems/options verified from Examside NEET/AIPMT entries; pagination per NCERT Reprint 2025–26.
         var questionsData = {
             "11": {
                 "ch1": {
@@ -240,7 +235,14 @@
                                 no: 2,
                                 paper: "NEET 2016 (Phase 2)",
                                 year: 2016,
-                                q: "Study the four statements (A-D) given below and select the two correct ones out of them.\n\nA. Definition of biological species was given by Ernst Mayr.\nB. Photoperiod does not affect reproduction in plants.\nC. Binomial nomenclature system was given by R.H. Whittaker.\nD. In unicellular organisms, reproduction is synonymous with growth.\n\nThe two correct statements are",
+                                q: "Study the four statements (A–D) given below and select the two correct ones out of them.
+
+A. Definition of biological species was given by Ernst Mayr.
+B. Photoperiod does not affect reproduction in plants.
+C. Binomial nomenclature system was given by R.H. Whittaker.
+D. In unicellular organisms, reproduction is synonymous with growth.
+
+The two correct statements are",
                                 choices: [
                                     "A. B and C",
                                     "B. C and D",
@@ -269,14 +271,8 @@
                             }
                         ]
                     },
-                    "5": {
-                        concept: "Taxonomy processes overview (characterisation, identification, classification, nomenclature); intro to systematics",
-                        items: []
-                    },
-                    "6": {
-                        concept: "Systematics and evolutionary relationships; start of taxonomic categories and taxa",
-                        items: []
-                    },
+                    "5": { concept: "Taxonomy processes overview; intro to systematics", items: [] },
+                    "6": { concept: "Systematics and evolutionary relationships; taxon/category", items: [] },
                     "7": {
                         concept: "Taxonomic categories—Species, Genus, Family; rank applications and examples",
                         items: [
@@ -295,12 +291,9 @@
                             }
                         ]
                     },
-                    "8": {
-                        concept: "Order and Class; aggregation of families into orders and related orders into classes",
-                        items: []
-                    },
+                    "8": { concept: "Order and Class; grouping families and orders", items: [] },
                     "9": {
-                        concept: "Phylum/Division and Kingdom; complete taxonomic hierarchy; ascending order recall",
+                        concept: "Phylum/Division and Kingdom; ascending order recall",
                         items: [
                             {
                                 no: 1,
@@ -327,34 +320,32 @@
         var pageSelect    = document.getElementById('page-select');
         var resultsEl     = document.getElementById('results');
 
-        // Modal elements
-        var expModal   = document.getElementById('expModal');
-        var btnClose   = document.getElementById('btnCloseExp');
-        var btnCopy    = document.getElementById('btnCopyPrompt');
-        var btnClear   = document.getElementById('btnClearType');
-        var btnStop    = document.getElementById('btnStopType');
-        var typebox    = document.getElementById('typebox');
+        // Wire events
+        classSelect.addEventListener('change', onClassChange, false);
+        chapterSelect.addEventListener('change', onChapterChange, false);
+        pageSelect.addEventListener('change', onPageChange, false);
 
-        var typerTimer = null;
-        var typerIndex = 0;
-        var typerText  = "";
+        // Preselect Class 11 -> Chapter 1
+        classSelect.value = "11";
+        onClassChange();
+        chapterSelect.value = "ch1";
+        onChapterChange();
 
-        function resetChapterAndPage() {
+        function resetChapterAndPage(){
             chapterSelect.innerHTML = '<option value="">Select Chapter</option>';
             pageSelect.innerHTML = '<option value="">Select Page</option>';
             chapterSelect.disabled = true;
             pageSelect.disabled = true;
             clearResults();
         }
+        function clearResults(){ resultsEl.innerHTML = ""; }
 
-        function clearResults() { resultsEl.innerHTML = ""; }
-
-        function onClassChange() {
+        function onClassChange(){
             resetChapterAndPage();
             var cls = classSelect.value;
-            if (!cls) return;
+            if(!cls) return;
             var chapters = chaptersData[cls] || [];
-            for (var i = 0; i < chapters.length; i++) {
+            for(var i=0;i<chapters.length;i++){
                 var ch = chapters[i];
                 var opt = document.createElement('option');
                 opt.value = ch.id;
@@ -364,23 +355,23 @@
             chapterSelect.disabled = false;
         }
 
-        function onChapterChange() {
+        function onChapterChange(){
             pageSelect.innerHTML = '<option value="">Select Page</option>';
             pageSelect.disabled = true;
             clearResults();
 
             var cls = classSelect.value;
             var chId = chapterSelect.value;
-            if (!cls || !chId) return;
+            if(!cls || !chId) return;
 
             var chapters = chaptersData[cls] || [];
             var selected = null;
-            for (var i = 0; i < chapters.length; i++) {
-                if (chapters[i].id === chId) { selected = chapters[i]; break; }
+            for(var i=0;i<chapters.length;i++){
+                if(chapters[i].id === chId){ selected = chapters[i]; break; }
             }
-            if (!selected) return;
+            if(!selected) return;
 
-            for (var p = selected.startPage; p <= selected.endPage; p++) {
+            for(var p=selected.startPage; p<=selected.endPage; p++){
                 var opt = document.createElement('option');
                 opt.value = String(p);
                 opt.textContent = 'Page ' + p;
@@ -389,24 +380,25 @@
             pageSelect.disabled = false;
         }
 
-        function onPageChange() {
+        function onPageChange(){
             clearResults();
 
             var cls = classSelect.value;
             var chId = chapterSelect.value;
             var page = pageSelect.value;
-            if (!cls || !chId || !page) return;
+            if(!cls || !chId || !page) return;
 
-            var chBag = (((questionsData[cls] || {})[chId]) || {});
-            var pageData = chBag[page] || { concept: "No data", items: [] };
+            var chBag = (((questionsData[cls]||{})[chId])||{});
+            var pageData = chBag[page] || { concept:"No data", items:[] };
 
-            // Header meta
+            // Header meta (no page indicator here per request)
             var meta = document.createElement('div');
             meta.className = 'meta';
             meta.innerHTML = [
-                '<div class="box"><div class="title">Page</div><div class="value">', page, '</div></div>',
-                '<div class="box"><div class="title">Concept covered</div><div class="value">', escapeHTML(pageData.concept || ''), '</div></div>',
-                '<div class="box"><div class="title">No. of questions found</div><div class="value">', (pageData.items || []).length, '</div></div>'
+                '<div class="box"><div class="title">Concept covered</div><div class="value">',
+                escapeHTML(pageData.concept || ''), '</div></div>',
+                '<div class="box"><div class="title">No. of questions found</div><div class="value">',
+                (pageData.items||[]).length, '</div></div>'
             ].join('');
             resultsEl.appendChild(meta);
 
@@ -414,20 +406,33 @@
             var list = document.createElement('div');
             list.className = 'q-list';
 
-            (pageData.items || []).forEach(function (it) {
+            (pageData.items||[]).forEach(function(it){
                 var card = document.createElement('div');
                 card.className = 'q-card';
 
                 var head = document.createElement('div');
                 head.className = 'q-head';
-                var qnum = document.createElement('div');
-                qnum.className = 'q-num';
-                qnum.textContent = 'Question ' + it.no + ' (' + it.paper + ')';
-                var qyear = document.createElement('div');
-                qyear.className = 'q-year';
-                qyear.textContent = 'NEET/AIPMT year: ' + it.year;
-                head.appendChild(qnum);
-                head.appendChild(qyear);
+
+                var left = document.createElement('div');
+                left.className = 'q-left';
+
+                var b1 = document.createElement('span');
+                b1.className = 'badge';
+                b1.textContent = 'Question ' + it.no;
+
+                var b2 = document.createElement('span');
+                b2.className = 'year';
+                b2.textContent = 'Year ' + it.year;
+
+                var b3 = document.createElement('span');
+                b3.className = 'paper';
+                b3.textContent = it.paper;
+
+                left.appendChild(b1);
+                left.appendChild(b2);
+                left.appendChild(b3);
+
+                head.appendChild(left);
 
                 var body = document.createElement('div');
                 body.className = 'q-body';
@@ -435,11 +440,11 @@
 
                 var choices = document.createElement('div');
                 choices.className = 'choices';
-                (it.choices || []).forEach(function (c) {
-                    var li = document.createElement('div');
-                    li.className = 'choice';
-                    li.textContent = c;
-                    choices.appendChild(li);
+                (it.choices||[]).forEach(function(c){
+                    var el = document.createElement('div');
+                    el.className = 'choice';
+                    el.textContent = c;
+                    choices.appendChild(el);
                 });
 
                 var ans = document.createElement('div');
@@ -450,35 +455,19 @@
                 actions.className = 'actions';
 
                 var btnAns = document.createElement('button');
-                btnAns.className = 'btn btn-primary';
+                btnAns.className = 'btn btn-alt';
                 btnAns.textContent = 'Show Answer';
-                btnAns.addEventListener('click', function () {
+                btnAns.addEventListener('click', function(){
                     var shown = ans.classList.toggle('show');
                     btnAns.textContent = shown ? 'Hide Answer' : 'Show Answer';
                 });
 
                 var btnExp = document.createElement('button');
-                btnExp.className = 'btn btn-secondary';
+                btnExp.className = 'btn';
                 btnExp.textContent = 'Get Explanation';
-                btnExp.addEventListener('click', function () {
-                    // Build an explanation prompt that includes the question and choices
-                    var prompt = [
-                        "Act as a NEET Biology mentor and explain the following official NEET/AIPMT question.",
-                        "",
-                        "Question (" + it.paper + "):",
-                        it.q,
-                        "",
-                        "Choices:",
-                        (it.choices || []).join("\n"),
-                        "",
-                        "Task:",
-                        "1) Identify the correct option and justify it using core NCERT lines for The Living World.",
-                        "2) Explain why each incorrect option is wrong.",
-                        "3) Keep it concise (under 150 words) but conceptually precise.",
-                        ""
-                    ].join("\n");
-
-                    openModalWithAutotype(prompt);
+                btnExp.addEventListener('click', function(){
+                    var prompt = buildExplainPrompt(it);
+                    openChatGPTWithPrompt(prompt);
                 });
 
                 actions.appendChild(btnAns);
@@ -494,70 +483,50 @@
 
             resultsEl.appendChild(list);
 
-            if ((pageData.items || []).length === 0) {
+            if((pageData.items||[]).length === 0){
                 var empty = document.createElement('div');
-                empty.style.color = '#555';
+                empty.style.color = '#94a3b8';
                 empty.style.marginTop = '6px';
-                empty.textContent = 'No official NEET/AIPMT question mapped to this page range in the current dataset.';
+                empty.textContent = 'No official NEET/AIPMT question mapped to this page in the current dataset.';
                 resultsEl.appendChild(empty);
             }
         }
 
-        function escapeHTML(s) {
-            return String(s).replace(/[&<>"']/g, function (m) {
+        function buildExplainPrompt(it){
+            return [
+                "Act as a NEET Biology mentor and give a concise explanation for the following official NEET/AIPMT question from NCERT Class 11 Chapter 1 (The Living World).",
+                "",
+                "Question (" + it.paper + "):",
+                it.q,
+                "",
+                "Choices:",
+                (it.choices||[]).join("
+"),
+                "",
+                "Tasks:",
+                "1) Identify the correct option and justify it with NCERT-aligned reasoning.",
+                "2) Briefly state why the other options are incorrect.",
+                "3) Keep the explanation within 120–150 words."
+            ].join("
+");
+        }
+
+        async function openChatGPTWithPrompt(prompt){
+            // Attempt to copy silently; requires HTTPS and user gesture in most browsers.
+            try { await navigator.clipboard.writeText(prompt); } catch(e) {}
+
+            // Open ChatGPT in a new tab/window; direct auto-type is not possible due to cross-origin restrictions.
+            // The user can paste immediately (prompt is already on clipboard).
+            var url = 'https://chat.openai.com/'; // Fallback: 'https://chatgpt.com/' if regionally redirected.
+            try { window.open(url, '_blank', 'noopener'); }
+            catch(e){ window.location.href = url; }
+        }
+
+        function escapeHTML(s){
+            return String(s).replace(/[&<>"']/g, function(m){
                 return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[m];
             });
         }
-
-        // Modal/Autotype helpers
-        function openModalWithAutotype(text) {
-            typerText = text;
-            typerIndex = 0;
-            typebox.textContent = "";
-            expModal.classList.add('show');
-            startTyper();
-        }
-        function startTyper() {
-            clearInterval(typerTimer);
-            typerTimer = setInterval(function () {
-                if (typerIndex >= typerText.length) {
-                    clearInterval(typerTimer); typerTimer = null; return;
-                }
-                typebox.textContent += typerText.charAt(typerIndex++);
-                typebox.scrollTop = typebox.scrollHeight;
-            }, 10);
-        }
-        function stopTyper() { clearInterval(typerTimer); typerTimer = null; }
-        function closeModal() {
-            stopTyper();
-            expModal.classList.remove('show');
-            typebox.textContent = "";
-        }
-
-        btnClose.addEventListener('click', closeModal);
-        btnStop.addEventListener('click', stopTyper);
-        btnClear.addEventListener('click', function () { typebox.textContent = ""; });
-        btnCopy.addEventListener('click', function () {
-            var s = window.getSelection();
-            var r = document.createRange();
-            r.selectNodeContents(typebox);
-            s.removeAllRanges();
-            s.addRange(r);
-            try { document.execCommand('copy'); } catch (e) {}
-            s.removeAllRanges();
-        });
-        expModal.addEventListener('click', function (e) { if (e.target === expModal) closeModal(); });
-
-        // Wire events
-        classSelect.addEventListener('change', onClassChange, false);
-        chapterSelect.addEventListener('change', onChapterChange, false);
-        pageSelect.addEventListener('change', onPageChange, false);
-
-        // Preselect Class 11 -> Chapter 1 for convenience
-        classSelect.value = "11";
-        onClassChange();
-        chapterSelect.value = "ch1";
-        onChapterChange();
     });
 })();
 </script>
