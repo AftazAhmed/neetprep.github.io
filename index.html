@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NCERT Biology Page Selector</title>
+    <title>NCERT Biology Page Selector + NEET PYQs</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -11,9 +11,10 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
+            color: #111;
         }
         .container {
-            max-width: 900px; margin: 0 auto; background: #fff; border-radius: 14px;
+            max-width: 1000px; margin: 0 auto; background: #fff; border-radius: 14px;
             padding: 26px; box-shadow: 0 10px 30px rgba(0,0,0,0.25);
         }
         h1 {
@@ -22,7 +23,7 @@
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
         .dropdowns {
-            display: flex; flex-wrap: wrap; gap: 18px; justify-content: center;
+            display: flex; flex-wrap: wrap; gap: 18px; justify-content: center; margin-bottom: 16px;
         }
         .group { display: flex; flex-direction: column; min-width: 240px; }
         label { font-weight: bold; color: #333; margin-bottom: 8px; font-size: 14px; }
@@ -34,9 +35,82 @@
             border-color: #667eea; outline: none; box-shadow: 0 0 8px rgba(102,126,234,.25);
         }
         .note {
-            margin-top: 18px; text-align: center; color: #555; font-size: 13px;
+            margin-top: 6px; text-align: center; color: #555; font-size: 13px;
         }
-        /* No question UI here by request */
+
+        /* Questions area */
+        .results {
+            margin-top: 22px;
+            border-top: 1px dashed #e2e8f0;
+            padding-top: 18px;
+        }
+        .meta {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 12px; margin-bottom: 12px;
+        }
+        .meta .box {
+            background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px;
+            padding: 10px 12px;
+        }
+        .meta .title { font-size: 12px; color: #666; margin-bottom: 4px; }
+        .meta .value { font-size: 14px; color: #111; }
+
+        .q-list { display: grid; gap: 14px; }
+        .q-card {
+            border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px;
+            background: #fff;
+        }
+        .q-head {
+            display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline; margin-bottom: 8px;
+        }
+        .q-num { font-weight: bold; color: #111; }
+        .q-year { color: #555; font-size: 13px; }
+        .q-body { color: #111; margin: 6px 0 10px; line-height: 1.4; }
+        .choices { margin: 8px 0 10px; }
+        .choice { padding: 6px 8px; border-radius: 8px; margin: 4px 0; background: #f8fafc; border: 1px solid #e2e8f0; }
+        .actions { display: flex; gap: 10px; flex-wrap: wrap; }
+        .btn {
+            padding: 8px 12px; border: none; border-radius: 8px; cursor: pointer;
+            font-size: 14px; transition: transform .05s ease, box-shadow .2s ease;
+        }
+        .btn:active { transform: translateY(1px); }
+        .btn-primary { background: #667eea; color: #fff; }
+        .btn-secondary { background: #e2e8f0; color: #111; }
+        .answer {
+            display: none; margin-top: 10px; padding: 10px; border-radius: 8px;
+            background: #ecfeff; border: 1px solid #a5f3fc; color: #0e7490;
+            font-weight: bold;
+        }
+        .answer.show { display: block; }
+
+        /* Modal for explanation (autotype) */
+        .modal {
+            position: fixed; inset: 0; background: rgba(0,0,0,.5); display: none;
+            align-items: center; justify-content: center; padding: 16px; z-index: 50;
+        }
+        .modal.show { display: flex; }
+        .modal-card {
+            width: 100%; max-width: 720px; background: #fff; border-radius: 12px; overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,.35);
+        }
+        .modal-head {
+            padding: 12px 16px; background: #111827; color: #fff; display: flex; align-items: center; justify-content: space-between;
+        }
+        .modal-title { font-size: 16px; font-weight: bold; }
+        .modal-body { padding: 14px 16px; max-height: 70vh; overflow: auto; }
+        .typebox {
+            border: 1px solid #e2e8f0; background: #f8fafc; padding: 10px; border-radius: 8px; min-height: 120px;
+            white-space: pre-wrap; font-family: Consolas, Menlo, Monaco, monospace; font-size: 13px;
+        }
+        .modal-foot { padding: 12px 16px; display: flex; gap: 10px; justify-content: flex-end; background: #f9fafb; }
+        .kbd {
+            display: inline-block; padding: 2px 6px; border: 1px solid #e2e8f0; border-radius: 6px; background: #fff;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 12px; color: #111;
+        }
+
+        @media (max-width: 720px) {
+            .meta { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
@@ -46,7 +120,7 @@
     <div class="dropdowns">
         <div class="group">
             <label for="class-select">Select Class</label>
-            <select id="class-select">
+            <select id="class-select" aria-label="Select Class">
                 <option value="">Select Class</option>
                 <option value="11">Class 11</option>
                 <option value="12">Class 12</option>
@@ -55,40 +129,53 @@
 
         <div class="group">
             <label for="chapter-select">Select Chapter</label>
-            <select id="chapter-select" disabled>
+            <select id="chapter-select" disabled aria-label="Select Chapter">
                 <option value="">Select Chapter</option>
             </select>
         </div>
 
         <div class="group">
             <label for="page-select">Select Page</label>
-            <select id="page-select" disabled>
+            <select id="page-select" disabled aria-label="Select Page">
                 <option value="">Select Page</option>
             </select>
         </div>
     </div>
 
-    <div class="note">Aligned to NCERT reprint ranges; ready to attach page-wise question feeds later in code comments.</div>
+    <div class="note">Aligned to NCERT (Reprint 2025–26) chapter page ranges; official NEET/AIPMT items only, rendered page-wise with hidden answers and explanation autotyping.</div>
+
+    <div id="results" class="results" aria-live="polite"></div>
+</div>
+
+<!-- Explanation Modal -->
+<div id="expModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="expTitle">
+    <div class="modal-card">
+        <div class="modal-head">
+            <div id="expTitle" class="modal-title">Get Explanation Prompt</div>
+            <button class="btn btn-secondary" id="btnCloseExp" aria-label="Close">Close</button>
+        </div>
+        <div class="modal-body">
+            <div class="typebox" id="typebox" aria-label="Autotyping prompt area"></div>
+        </div>
+        <div class="modal-foot">
+            <button class="btn btn-secondary" id="btnStopType">Stop</button>
+            <button class="btn btn-secondary" id="btnCopyPrompt">Copy Prompt <span class="kbd">Ctrl/Cmd+C</span></button>
+            <button class="btn btn-primary" id="btnClearType">Clear</button>
+        </div>
+    </div>
 </div>
 
 <script>
 (function () {
     'use strict';
 
-    // Run after the DOM is parsed so element lookups and listeners are reliable.
-    // Ref: DOMContentLoaded fires when the initial HTML is fully parsed (no need to wait for images).
-    // MDN: https://developer.mozilla.org/en-US/docs/Web/API/Document/DOMContentLoaded_event
     function onReady(fn) {
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', fn);
-        } else {
-            fn();
-        }
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn);
+        else fn();
     }
 
     onReady(function () {
-        // NCERT chapter start/end pages (reprint 2025–26 mapping).
-        // These ranges are used to generate page numbers; no question UI is rendered here.
+        // NCERT chapter start/end pages (Reprint 2025–26 mapping).
         var chaptersData = {
             "11": [
                 { id: "ch1",  name: "Chapter 1: The Living World",                         startPage: 3,   endPage: 9  },
@@ -128,21 +215,139 @@
             ]
         };
 
+        // Page-wise official NEET/AIPMT questions for Class 11, Chapter 1 (The Living World), pages 3–9.
+        // Source mapping: NCERT pagination (reprint 2025–26) and Examside official PYQ entries.
+        var questionsData = {
+            "11": {
+                "ch1": {
+                    "3": {
+                        concept: "What is living; growth, reproduction, metabolism, consciousness; species concept",
+                        items: [
+                            {
+                                no: 1,
+                                paper: "AIPMT 2011 (Mains)",
+                                year: 2011,
+                                q: "Which one of the following aspects is in exclusive characteristics of living things?",
+                                choices: [
+                                    "A. Isolated metabolic reactions occur in vitro",
+                                    "B. Increase in mass from inside only",
+                                    "C. Perception of events happening in the environment and their memory.",
+                                    "D. Increase in mass by accumulation of material both on surface as well as internally."
+                                ],
+                                answer: "C"
+                            },
+                            {
+                                no: 2,
+                                paper: "NEET 2016 (Phase 2)",
+                                year: 2016,
+                                q: "Study the four statements (A-D) given below and select the two correct ones out of them.\n\nA. Definition of biological species was given by Ernst Mayr.\nB. Photoperiod does not affect reproduction in plants.\nC. Binomial nomenclature system was given by R.H. Whittaker.\nD. In unicellular organisms, reproduction is synonymous with growth.\n\nThe two correct statements are",
+                                choices: [
+                                    "A. B and C",
+                                    "B. C and D",
+                                    "C. A and D",
+                                    "D. A and B"
+                                ],
+                                answer: "C"
+                            }
+                        ]
+                    },
+                    "4": {
+                        concept: "Scientific nomenclature; ICBN/ICZN codes; binomial rules; author citation",
+                        items: [
+                            {
+                                no: 1,
+                                paper: "AIPMT 2007",
+                                year: 2007,
+                                q: "ICBN stands for",
+                                choices: [
+                                    "A. International Code of Botanical Nomenclature",
+                                    "B. International Congress of Biological Names",
+                                    "C. Indian Code of Botanical Nomenclature",
+                                    "D. Indian Congress of Biological Names."
+                                ],
+                                answer: "A"
+                            }
+                        ]
+                    },
+                    "5": {
+                        concept: "Taxonomy processes overview (characterisation, identification, classification, nomenclature); intro to systematics",
+                        items: []
+                    },
+                    "6": {
+                        concept: "Systematics and evolutionary relationships; start of taxonomic categories and taxa",
+                        items: []
+                    },
+                    "7": {
+                        concept: "Taxonomic categories—Species, Genus, Family; rank applications and examples",
+                        items: [
+                            {
+                                no: 1,
+                                paper: "NEET 2021",
+                                year: 2021,
+                                q: "Which one of the following belongs to the family Muscidae?",
+                                choices: [
+                                    "A. House fly",
+                                    "B. Fire fly",
+                                    "C. Grasshopper",
+                                    "D. Cockroach"
+                                ],
+                                answer: "A"
+                            }
+                        ]
+                    },
+                    "8": {
+                        concept: "Order and Class; aggregation of families into orders and related orders into classes",
+                        items: []
+                    },
+                    "9": {
+                        concept: "Phylum/Division and Kingdom; complete taxonomic hierarchy; ascending order recall",
+                        items: [
+                            {
+                                no: 1,
+                                paper: "NEET 2022 (Phase 1)",
+                                year: 2022,
+                                q: "In the taxonomic categories which hierarchical arrangement in ascending order is correct in case of animals?",
+                                choices: [
+                                    "A. Kingdom, Phylum, Class, Order, Family, Genus, Species",
+                                    "B. Kingdom, Class, Phylum, Family, Order, Genus, Species",
+                                    "C. Kingdom, Order, Class, Phylum, Family, Genus, Species",
+                                    "D. Kingdom, Order, Phylum, Class, Family, Genus, Species"
+                                ],
+                                answer: "A"
+                            }
+                        ]
+                    }
+                }
+            }
+        };
+
         // Elements
         var classSelect   = document.getElementById('class-select');
         var chapterSelect = document.getElementById('chapter-select');
         var pageSelect    = document.getElementById('page-select');
+        var resultsEl     = document.getElementById('results');
 
-        // Wire events after DOM is ready.
-        classSelect.addEventListener('change', onClassChange, false);
-        chapterSelect.addEventListener('change', onChapterChange, false);
+        // Modal elements
+        var expModal   = document.getElementById('expModal');
+        var btnClose   = document.getElementById('btnCloseExp');
+        var btnCopy    = document.getElementById('btnCopyPrompt');
+        var btnClear   = document.getElementById('btnClearType');
+        var btnStop    = document.getElementById('btnStopType');
+        var typebox    = document.getElementById('typebox');
+
+        var typerTimer = null;
+        var typerIndex = 0;
+        var typerText  = "";
 
         function resetChapterAndPage() {
             chapterSelect.innerHTML = '<option value="">Select Chapter</option>';
             pageSelect.innerHTML = '<option value="">Select Page</option>';
-            chapterSelect.disabled = true; // disabled makes control non-interactive until enabled
-            pageSelect.disabled = true;    // per HTML disabled attribute semantics
+            chapterSelect.disabled = true;
+            pageSelect.disabled = true;
+            clearResults();
         }
+
+        function clearResults() { resultsEl.innerHTML = ""; }
 
         function onClassChange() {
             resetChapterAndPage();
@@ -156,12 +361,13 @@
                 opt.textContent = ch.name + ' (p. ' + ch.startPage + '–' + ch.endPage + ')';
                 chapterSelect.appendChild(opt);
             }
-            chapterSelect.disabled = false; // enable after class selection
+            chapterSelect.disabled = false;
         }
 
         function onChapterChange() {
             pageSelect.innerHTML = '<option value="">Select Page</option>';
             pageSelect.disabled = true;
+            clearResults();
 
             var cls = classSelect.value;
             var chId = chapterSelect.value;
@@ -180,13 +386,178 @@
                 opt.textContent = 'Page ' + p;
                 pageSelect.appendChild(opt);
             }
-            pageSelect.disabled = false; // enable after chapter selection
+            pageSelect.disabled = false;
         }
 
-        // Future integration note (no UI impact):
-        // To add page-wise question feeds later, define a questionsData object keyed by class -> chapterId -> pageNumber,
-        // and attach a change listener on pageSelect to render questions for that page into a new content area.
-        // Keeping logic separate ensures dropdowns remain stable if question rendering fails.
+        function onPageChange() {
+            clearResults();
+
+            var cls = classSelect.value;
+            var chId = chapterSelect.value;
+            var page = pageSelect.value;
+            if (!cls || !chId || !page) return;
+
+            var chBag = (((questionsData[cls] || {})[chId]) || {});
+            var pageData = chBag[page] || { concept: "No data", items: [] };
+
+            // Header meta
+            var meta = document.createElement('div');
+            meta.className = 'meta';
+            meta.innerHTML = [
+                '<div class="box"><div class="title">Page</div><div class="value">', page, '</div></div>',
+                '<div class="box"><div class="title">Concept covered</div><div class="value">', escapeHTML(pageData.concept || ''), '</div></div>',
+                '<div class="box"><div class="title">No. of questions found</div><div class="value">', (pageData.items || []).length, '</div></div>'
+            ].join('');
+            resultsEl.appendChild(meta);
+
+            // Questions list
+            var list = document.createElement('div');
+            list.className = 'q-list';
+
+            (pageData.items || []).forEach(function (it) {
+                var card = document.createElement('div');
+                card.className = 'q-card';
+
+                var head = document.createElement('div');
+                head.className = 'q-head';
+                var qnum = document.createElement('div');
+                qnum.className = 'q-num';
+                qnum.textContent = 'Question ' + it.no + ' (' + it.paper + ')';
+                var qyear = document.createElement('div');
+                qyear.className = 'q-year';
+                qyear.textContent = 'NEET/AIPMT year: ' + it.year;
+                head.appendChild(qnum);
+                head.appendChild(qyear);
+
+                var body = document.createElement('div');
+                body.className = 'q-body';
+                body.textContent = it.q;
+
+                var choices = document.createElement('div');
+                choices.className = 'choices';
+                (it.choices || []).forEach(function (c) {
+                    var li = document.createElement('div');
+                    li.className = 'choice';
+                    li.textContent = c;
+                    choices.appendChild(li);
+                });
+
+                var ans = document.createElement('div');
+                ans.className = 'answer';
+                ans.textContent = 'Answer: ' + (it.answer || '');
+
+                var actions = document.createElement('div');
+                actions.className = 'actions';
+
+                var btnAns = document.createElement('button');
+                btnAns.className = 'btn btn-primary';
+                btnAns.textContent = 'Show Answer';
+                btnAns.addEventListener('click', function () {
+                    var shown = ans.classList.toggle('show');
+                    btnAns.textContent = shown ? 'Hide Answer' : 'Show Answer';
+                });
+
+                var btnExp = document.createElement('button');
+                btnExp.className = 'btn btn-secondary';
+                btnExp.textContent = 'Get Explanation';
+                btnExp.addEventListener('click', function () {
+                    // Build an explanation prompt that includes the question and choices
+                    var prompt = [
+                        "Act as a NEET Biology mentor and explain the following official NEET/AIPMT question.",
+                        "",
+                        "Question (" + it.paper + "):",
+                        it.q,
+                        "",
+                        "Choices:",
+                        (it.choices || []).join("\n"),
+                        "",
+                        "Task:",
+                        "1) Identify the correct option and justify it using core NCERT lines for The Living World.",
+                        "2) Explain why each incorrect option is wrong.",
+                        "3) Keep it concise (under 150 words) but conceptually precise.",
+                        ""
+                    ].join("\n");
+
+                    openModalWithAutotype(prompt);
+                });
+
+                actions.appendChild(btnAns);
+                actions.appendChild(btnExp);
+
+                card.appendChild(head);
+                card.appendChild(body);
+                card.appendChild(choices);
+                card.appendChild(actions);
+                card.appendChild(ans);
+                list.appendChild(card);
+            });
+
+            resultsEl.appendChild(list);
+
+            if ((pageData.items || []).length === 0) {
+                var empty = document.createElement('div');
+                empty.style.color = '#555';
+                empty.style.marginTop = '6px';
+                empty.textContent = 'No official NEET/AIPMT question mapped to this page range in the current dataset.';
+                resultsEl.appendChild(empty);
+            }
+        }
+
+        function escapeHTML(s) {
+            return String(s).replace(/[&<>"']/g, function (m) {
+                return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[m];
+            });
+        }
+
+        // Modal/Autotype helpers
+        function openModalWithAutotype(text) {
+            typerText = text;
+            typerIndex = 0;
+            typebox.textContent = "";
+            expModal.classList.add('show');
+            startTyper();
+        }
+        function startTyper() {
+            clearInterval(typerTimer);
+            typerTimer = setInterval(function () {
+                if (typerIndex >= typerText.length) {
+                    clearInterval(typerTimer); typerTimer = null; return;
+                }
+                typebox.textContent += typerText.charAt(typerIndex++);
+                typebox.scrollTop = typebox.scrollHeight;
+            }, 10);
+        }
+        function stopTyper() { clearInterval(typerTimer); typerTimer = null; }
+        function closeModal() {
+            stopTyper();
+            expModal.classList.remove('show');
+            typebox.textContent = "";
+        }
+
+        btnClose.addEventListener('click', closeModal);
+        btnStop.addEventListener('click', stopTyper);
+        btnClear.addEventListener('click', function () { typebox.textContent = ""; });
+        btnCopy.addEventListener('click', function () {
+            var s = window.getSelection();
+            var r = document.createRange();
+            r.selectNodeContents(typebox);
+            s.removeAllRanges();
+            s.addRange(r);
+            try { document.execCommand('copy'); } catch (e) {}
+            s.removeAllRanges();
+        });
+        expModal.addEventListener('click', function (e) { if (e.target === expModal) closeModal(); });
+
+        // Wire events
+        classSelect.addEventListener('change', onClassChange, false);
+        chapterSelect.addEventListener('change', onChapterChange, false);
+        pageSelect.addEventListener('change', onPageChange, false);
+
+        // Preselect Class 11 -> Chapter 1 for convenience
+        classSelect.value = "11";
+        onClassChange();
+        chapterSelect.value = "ch1";
+        onChapterChange();
     });
 })();
 </script>
