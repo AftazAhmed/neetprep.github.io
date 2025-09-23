@@ -1,104 +1,399 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>NEET Biology Questions - Page Wise</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Note: In production, set CSP via HTTP headers; this page avoids inline JS so strict script-src works cleanly. [MDN CSP guidance] -->
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      min-height: 100vh;
-      padding: 20px;
-    }
-    .container {
-      max-width: 1200px; margin: 0 auto; background: #fff; border-radius: 15px;
-      padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    }
-    h1 {
-      text-align: center; color: #333; margin-bottom: 30px; font-size: 2.4em;
-      background: linear-gradient(45deg, #667eea, #764ba2);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    }
-    .dropdown-container { display: flex; gap: 20px; margin-bottom: 30px; flex-wrap: wrap; justify-content: center; }
-    .dropdown-group { display: flex; flex-direction: column; min-width: 250px; }
-    label { font-weight: bold; color: #333; margin-bottom: 8px; font-size: 14px; }
-    select {
-      padding: 12px 15px; border: 2px solid #ddd; border-radius: 8px; font-size: 16px; background: #fff;
-      cursor: pointer; transition: all .3s ease;
-    }
-    select:hover, select:focus { border-color: #667eea; outline: none; box-shadow: 0 0 10px rgba(102,126,234,0.3); }
-    .content-area { margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px; display: none; width: 100%; }
-    .page-info { background: #fff; padding: 20px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #667eea; }
-    .question-container {
-      background: #fff; padding: 20px; margin: 15px 0; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      border-left: 4px solid #28a745; width: 100%;
-    }
-    .question-year { background: #667eea; color: #fff; padding: 5px 10px; border-radius: 15px; font-size: 12px; font-weight: bold; display: inline-block; margin-bottom: 10px; }
-    .question-text { font-size: 16px; line-height: 1.6; margin-bottom: 15px; }
-    .options { margin: 15px 0; }
-    .option { padding: 8px 0; font-size: 14px; }
-    .button-group { display: flex; gap: 10px; margin-top: 15px; align-items: center; flex-wrap: wrap; }
-    .btn { padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 14px; transition: all .3s ease; }
-    .btn-answer { background: #28a745; color: #fff; }
-    .btn-copy { background: #ffc107; color: #212529; }
-    .btn-explain { background: #007bff; color: #fff; }
-    .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
-    .answer-area { background: #d4edda; padding: 15px; border-radius: 5px; margin-top: 10px; display: none; border: 1px solid #c3e6cb; }
-    .no-questions { text-align: center; color: #666; font-style: italic; padding: 40px; background: #fff; border-radius: 8px; margin-top: 20px; }
-    .chapter-note { font-size: 12px; color: #666; margin-top: 6px; }
-    .arrow-indicator { font-size: 22px; line-height: 1; color: #6b7280; user-select: none; padding: 0 2px; }
-    @media (max-width: 600px) {
-      body { padding: 8px; }
-      .container { padding: 14px; border-radius: 12px; }
-      .dropdown-container { gap: 12px; }
-      .content-area { padding: 12px; }
-      .question-container { margin: 10px 0; padding: 18px; }
-      h1 { font-size: 1.9em; }
-      .btn { padding: 10px 14px; font-size: 13px; }
-      .arrow-indicator { font-size: 20px; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <!-- CSP with nonce for inline script, and allowance for inline styles used in this page -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'nonce-NEET123'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; base-uri 'self'; frame-ancestors 'self';">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEET Biology Questions - Page Wise</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px; margin: 0 auto; background: white; border-radius: 15px;
+            padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        h1 {
+            text-align: center; color: #333; margin-bottom: 30px; font-size: 2.5em;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .dropdown-container { display: flex; gap: 20px; margin-bottom: 30px; flex-wrap: wrap; justify-content: center; }
+        .dropdown-group { display: flex; flex-direction: column; min-width: 250px; }
+        label { font-weight: bold; color: #333; margin-bottom: 8px; font-size: 14px; }
+        select {
+            padding: 12px 15px; border: 2px solid #ddd; border-radius: 8px; font-size: 16px;
+            background: white; cursor: pointer; transition: all 0.3s ease;
+        }
+        select:hover, select:focus { border-color: #667eea; outline: none; box-shadow: 0 0 10px rgba(102, 126, 234, 0.3); }
+        .content-area { margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px; display: none; width: 100%; }
+        .page-info { background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #667eea; }
+        .question-container {
+            background: white; padding: 20px; margin: 15px 0; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid #28a745; width: 100%;
+        }
+        .question-year { background: #667eea; color: white; padding: 5px 10px; border-radius: 15px; font-size: 12px; font-weight: bold; display: inline-block; margin-bottom: 10px; }
+        .question-text { font-size: 16px; line-height: 1.6; margin-bottom: 15px; }
+        .options { margin: 15px 0; }
+        .option { padding: 8px 0; font-size: 14px; }
+        .button-group { display: flex; gap: 10px; margin-top: 15px; align-items: center; flex-wrap: wrap; }
+        .btn { padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 14px; transition: all 0.3s ease; }
+        .btn-answer { background: #28a745; color: white; }
+        .btn-copy { background: #ffc107; color: #212529; }
+        .btn-explain { background: #007bff; color: white; }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+        .answer-area { background: #d4edda; padding: 15px; border-radius: 5px; margin-top: 10px; display: none; border: 1px solid #c3e6cb; }
+        .no-questions { text-align: center; color: #666; font-style: italic; padding: 40px; background: white; border-radius: 8px; margin-top: 20px; }
+        .chapter-note { font-size: 12px; color: #666; margin-top: 6px; }
+        .arrow-indicator { font-size: 22px; line-height: 1; color: #6b7280; user-select: none; padding: 0 2px; }
+        @media (max-width: 600px) {
+            body { padding: 8px; }
+            .container { padding: 14px; border-radius: 12px; }
+            .dropdown-container { gap: 12px; }
+            .content-area { padding: 12px; }
+            .question-container { margin: 10px 0; padding: 18px; }
+            h1 { font-size: 1.9em; }
+            .btn { padding: 10px 14px; font-size: 13px; }
+            .arrow-indicator { font-size: 20px; }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>NEET Biology Questions - Page Wise Analysis</h1>
+    <div class="container">
+        <h1>NEET Biology Questions - Page Wise Analysis</h1>
 
-    <div class="dropdown-container">
-      <div class="dropdown-group">
-        <label for="class-select">Select Class:</label>
-        <select id="class-select">
-          <option value="">Select Class</option>
-          <option value="11">Class 11</option>
-          <option value="12">Class 12</option>
-        </select>
-        <div class="chapter-note" id="edition-note" style="display:none;">
-          Edition aligned to NCERT Reprint 2025–26 (March 2024), official Contents page mapping.
+        <div class="dropdown-container">
+            <div class="dropdown-group">
+                <label for="class-select">Select Class:</label>
+                <select id="class-select">
+                    <option value="">Select Class</option>
+                    <option value="11">Class 11</option>
+                    <option value="12">Class 12</option>
+                </select>
+                <div class="chapter-note" id="edition-note" style="display:none;">
+                    Edition aligned to NCERT Reprint 2025–26 (March 2024), official Contents page mapping.
+                </div>
+            </div>
+
+            <div class="dropdown-group">
+                <label for="chapter-select">Select Chapter:</label>
+                <select id="chapter-select" disabled>
+                    <option value="">Select Chapter</option>
+                </select>
+            </div>
+
+            <div class="dropdown-group">
+                <label for="page-select">Select Page:</label>
+                <select id="page-select" disabled>
+                    <option value="">Select Page</option>
+                </select>
+            </div>
         </div>
-      </div>
 
-      <div class="dropdown-group">
-        <label for="chapter-select">Select Chapter:</label>
-        <select id="chapter-select" disabled>
-          <option value="">Select Chapter</option>
-        </select>
-      </div>
-
-      <div class="dropdown-group">
-        <label for="page-select">Select Page:</label>
-        <select id="page-select" disabled>
-          <option value="">Select Page</option>
-        </select>
-      </div>
+        <div id="content-area" class="content-area">
+            <!-- Questions will be loaded here -->
+        </div>
     </div>
 
-    <div id="content-area" class="content-area"></div>
-  </div>
+    <script nonce="NEET123">
+        // Data
+        const chaptersData = {
+            "11": [
+                { id: "ch1",  name: "Chapter 1: The Living World",                         startPage: 3,   endPage: 9  },
+                { id: "ch2",  name: "Chapter 2: Biological Classification",                 startPage: 10,  endPage: 22 },
+                { id: "ch3",  name: "Chapter 3: Plant Kingdom",                             startPage: 23,  endPage: 36 },
+                { id: "ch4",  name: "Chapter 4: Animal Kingdom",                            startPage: 37,  endPage: 54 },
+                { id: "ch5",  name: "Chapter 5: Morphology of Flowering Plants",            startPage: 57,  endPage: 70 },
+                { id: "ch6",  name: "Chapter 6: Anatomy of Flowering Plants",               startPage: 71,  endPage: 78 },
+                { id: "ch7",  name: "Chapter 7: Structural Organisation in Animals",        startPage: 79,  endPage: 84 },
+                { id: "ch8",  name: "Chapter 8: Cell - The Unit of Life",                   startPage: 87,  endPage: 103 },
+                { id: "ch9",  name: "Chapter 9: Biomolecules",                              startPage: 104, endPage: 119 },
+                { id: "ch10", name: "Chapter 10: Cell Cycle and Cell Division",             startPage: 120, endPage: 130 },
+                { id: "ch11", name: "Chapter 11: Photosynthesis in Higher Plants",          startPage: 133, endPage: 152 },
+                { id: "ch12", name: "Chapter 12: Respiration in Plants",                    startPage: 153, endPage: 165 },
+                { id: "ch13", name: "Chapter 13: Plant Growth and Development",             startPage: 166, endPage: 180 },
+                { id: "ch14", name: "Chapter 14: Breathing and Exchange of Gases",          startPage: 183, endPage: 192 },
+                { id: "ch15", name: "Chapter 15: Body Fluids and Circulation",              startPage: 193, endPage: 204 },
+                { id: "ch16", name: "Chapter 16: Excretory Products and their Elimination", startPage: 205, endPage: 216 },
+                { id: "ch17", name: "Chapter 17: Locomotion and Movement",                  startPage: 217, endPage: 229 },
+                { id: "ch18", name: "Chapter 18: Neural Control and Coordination",          startPage: 230, endPage: 238 },
+                { id: "ch19", name: "Chapter 19: Chemical Coordination and Integration",    startPage: 239, endPage: 250 }
+            ],
+            "12": [
+                { id: "ch1",  name: "Chapter 1: Sexual Reproduction in Flowering Plants",   startPage: 3,   endPage: 25  },
+                { id: "ch2",  name: "Chapter 2: Human Reproduction",                        startPage: 26,  endPage: 40  },
+                { id: "ch3",  name: "Chapter 3: Reproductive Health",                       startPage: 41,  endPage: 50  },
+                { id: "ch4",  name: "Chapter 4: Principles of Inheritance and Variation",   startPage: 53,  endPage: 78  },
+                { id: "ch5",  name: "Chapter 5: Molecular Basis of Inheritance",            startPage: 79,  endPage: 109 },
+                { id: "ch6",  name: "Chapter 6: Evolution",                                  startPage: 110, endPage: 126 },
+                { id: "ch7",  name: "Chapter 7: Human Health and Disease",                  startPage: 129, endPage: 148 },
+                { id: "ch8",  name: "Chapter 8: Microbes in Human Welfare",                 startPage: 149, endPage: 160 },
+                { id: "ch9",  name: "Chapter 9: Biotechnology: Principles and Processes",   startPage: 163, endPage: 176 },
+                { id: "ch10", name: "Chapter 10: Biotechnology and Its Applications",       startPage: 177, endPage: 187 },
+                { id: "ch11", name: "Chapter 11: Organisms and Populations",                startPage: 190, endPage: 204 },
+                { id: "ch12", name: "Chapter 12: Ecosystem",                                startPage: 205, endPage: 215 },
+                { id: "ch13", name: "Chapter 13: Biodiversity and Conservation",            startPage: 216, endPage: 227 }
+            ]
+        };
 
-  <!-- External JS only; no inline JS to satisfy strict CSP and replicate TurboScribe’s reliable flow -->
-  <script src="app.js" defer></script>
+        const questionsData = {
+            "11": {
+                "ch1": {
+                    "3": {
+                        topics: "Characteristics of life, growth, reproduction, metabolism",
+                        questions: [
+                            {
+                                year: "NEET 2011",
+                                question: "Which aspect is an exclusive characteristic of living things?",
+                                options: [
+                                    "(a) Isolated metabolic reactions in vitro",
+                                    "(b) Increase in mass from inside only",
+                                    "(c) Perception of environmental events and memory",
+                                    "(d) Increase in mass by accumulation"
+                                ],
+                                answer: "(c) Perception of environmental events and memory"
+                            },
+                            {
+                                year: "NEET 2016",
+                                question: "Study the four statements (A-D) and select the two correct ones: (A) Definition of biological species was given by Ernst Mayr (B) Photoperiod does not affect reproduction in plants (C) Binomial nomenclature system was given by R.H. Whittaker (D) In unicellular organisms, reproduction is synonymous with growth",
+                                options: ["(a) B and C","(b) C and D","(c) A and D","(d) A and B"],
+                                answer: "(c) A and D"
+                            }
+                        ]
+                    },
+                    "6": {
+                        topics: "Biodiversity and need for classification",
+                        questions: [
+                            {
+                                year: "NEET 2013",
+                                question: "The common characteristics between tomato and potato will be maximum at the level of their:",
+                                options: ["(a) Division","(b) Class","(c) Family","(d) Genus"],
+                                answer: "(d) Genus"
+                            }
+                        ]
+                    },
+                    "7": {
+                        topics: "Nomenclature and identification",
+                        questions: [
+                            {
+                                year: "NEET 2019",
+                                question: "Select the correctly written scientific name of Mango, which was first described by Carolus Linnaeus:",
+                                options: ["(a) Mangifera Indica","(b) Mangifera Indica Car. Linn","(c) Mangifera indica Linn","(d) None"],
+                                answer: "(c) Mangifera indica Linn"
+                            },
+                            {
+                                year: "AIPMT 2012",
+                                question: "Which organism is correctly named according to international rules?",
+                                options: ["(a) Mangifera indica","(b) mangifera indica","(c) Mangifera Indica","(d) MANGIFERA INDICA"],
+                                answer: "(a) Mangifera indica"
+                            },
+                            {
+                                year: "NEET 2016",
+                                question: "Nomenclature is governed by certain universal rules. Which one is contrary to the rules?",
+                                options: ["(a) Biological names can be written in any language","(b) First word represents genus, second is specific epithet","(c) Names are written in Latin and italicized when printed","(d) When handwritten, names are underlined"],
+                                answer: "(a) Biological names can be written in any language"
+                            },
+                            {
+                                year: "NEET 2019",
+                                question: "Which of the following is against the rules of ICBN?",
+                                options: ["(a) Handwritten scientific names should be underlined","(b) Every species should have a generic name and a specific epithet","(c) Scientific names are in Latin and should be italicized when printed","(d) Generic and specific names should be written starting with small letters"],
+                                answer: "(d) Generic and specific names should be written starting with small letters"
+                            }
+                        ]
+                    }
+                }
+            },
+            "12": {}
+        };
+
+        // Elements
+        const classSelect = document.getElementById('class-select');
+        const chapterSelect = document.getElementById('chapter-select');
+        const pageSelect   = document.getElementById('page-select');
+        const contentArea  = document.getElementById('content-area');
+        const editionNote  = document.getElementById('edition-note');
+
+        // Wire events (no inline handlers; CSP-safe)
+        document.addEventListener('DOMContentLoaded', () => {
+            classSelect.addEventListener('change', loadChapters);
+            chapterSelect.addEventListener('change', loadPages);
+            pageSelect.addEventListener('change', loadQuestions);
+
+            // Delegate clicks inside content area
+            contentArea.addEventListener('click', (e) => {
+                const btn = e.target.closest('button');
+                if (!btn) return;
+
+                if (btn.classList.contains('btn-answer')) {
+                    const answerArea = btn.closest('.question-container')?.querySelector('.answer-area');
+                    if (answerArea) answerArea.style.display = answerArea.style.display === 'block' ? 'none' : 'block';
+                }
+
+                if (btn.classList.contains('btn-copy')) {
+                    const year = btn.dataset.year || '';
+                    const question = btn.dataset.question || '';
+                    let options = [];
+                    try { options = JSON.parse(btn.dataset.options || '[]'); } catch {}
+                    const text = buildPrompt(year, question, options);
+                    copyToClipboard(btn, text);
+                }
+
+                if (btn.classList.contains('btn-explain')) {
+                    openChatGPT();
+                }
+            });
+        });
+
+        function loadChapters() {
+            chapterSelect.innerHTML = '<option value="">Select Chapter</option>';
+            pageSelect.innerHTML = '<option value="">Select Page</option>';
+            chapterSelect.disabled = true;
+            pageSelect.disabled = true;
+            contentArea.style.display = 'none';
+            editionNote.style.display = classSelect.value ? 'block' : 'none';
+
+            if (classSelect.value) {
+                const chapters = chaptersData[classSelect.value] || [];
+                chapters.forEach(ch => {
+                    const opt = document.createElement('option');
+                    opt.value = ch.id;
+                    opt.textContent = `${ch.name} (p. ${ch.startPage}–${ch.endPage})`;
+                    chapterSelect.appendChild(opt);
+                });
+                chapterSelect.disabled = false;
+            }
+        }
+
+        function loadPages() {
+            pageSelect.innerHTML = '<option value="">Select Page</option>';
+            pageSelect.disabled = true;
+            contentArea.style.display = 'none';
+
+            if (chapterSelect.value) {
+                const selectedClass = classSelect.value;
+                const chapters = chaptersData[selectedClass] || [];
+                const chapter = chapters.find(c => c.id === chapterSelect.value);
+                if (chapter) {
+                    for (let p = chapter.startPage; p <= chapter.endPage; p++) {
+                        const opt = document.createElement('option');
+                        opt.value = String(p);
+                        opt.textContent = `Page ${p}`;
+                        pageSelect.appendChild(opt);
+                    }
+                    pageSelect.disabled = false;
+                }
+            }
+        }
+
+        function loadQuestions() {
+            if (!pageSelect.value) { contentArea.style.display = 'none'; return; }
+
+            const selectedClass = classSelect.value;
+            const selectedChapter = chapterSelect.value;
+            const selectedPage = pageSelect.value;
+
+            contentArea.innerHTML = '';
+            contentArea.style.display = 'block';
+
+            const pageData = questionsData[selectedClass] &&
+                             questionsData[selectedClass][selectedChapter] &&
+                             questionsData[selectedClass][selectedChapter][selectedPage];
+
+            if (pageData) {
+                const pageInfo = document.createElement('div');
+                pageInfo.className = 'page-info';
+                pageInfo.innerHTML = `
+                    <h3>Page ${selectedPage}</h3>
+                    <p><strong>Topics covered:</strong> ${pageData.topics}</p>
+                    <p><strong>No. of questions found:</strong> ${pageData.questions.length}</p>
+                `;
+                contentArea.appendChild(pageInfo);
+
+                pageData.questions.forEach((q, idx) => {
+                    const qId = `answer-${selectedClass}-${selectedChapter}-${selectedPage}-${idx}`;
+                    const div = document.createElement('div');
+                    div.className = 'question-container';
+                    const optionsHTML = q.options.map(opt => `<div class="option">${opt}</div>`).join('');
+                    div.innerHTML = `
+                        <div class="question-year">${q.year}</div>
+                        <div class="question-text">${q.question}</div>
+                        <div class="options">${optionsHTML}</div>
+                        <div class="button-group">
+                            <button class="btn btn-answer" aria-controls="${qId}">Get Answer</button>
+                            <span class="arrow-indicator" aria-hidden="true">→</span>
+                            <button class="btn btn-copy" title="Copy question with choices">Copy Prompt</button>
+                            <span class="arrow-indicator" aria-hidden="true">→</span>
+                            <button class="btn btn-explain" title="Open ChatGPT in a new tab">Open in ChatGPT</button>
+                        </div>
+                        <div id="${qId}" class="answer-area" role="region" aria-label="Answer">
+                            <strong>Answer:</strong> ${q.answer}
+                        </div>
+                    `;
+                    // Attach data for copy
+                    const copyBtn = div.querySelector('.btn-copy');
+                    copyBtn.dataset.year = q.year;
+                    copyBtn.dataset.question = q.question;
+                    copyBtn.dataset.options = JSON.stringify(q.options);
+
+                    contentArea.appendChild(div);
+                });
+            } else {
+                const pageInfo = document.createElement('div');
+                pageInfo.className = 'page-info';
+                pageInfo.innerHTML = `
+                    <h3>Page ${selectedPage}</h3>
+                    <p><strong>Topics covered:</strong> Content analysis pending</p>
+                    <p><strong>No. of questions found:</strong> No questions detected</p>
+                `;
+                contentArea.appendChild(pageInfo);
+
+                const noQ = document.createElement('div');
+                noQ.className = 'no-questions';
+                noQ.innerHTML = '<h3>No questions detected for this page</h3><p>Questions data will be added in future updates.</p>';
+                contentArea.appendChild(noQ);
+            }
+        }
+
+        function buildPrompt(year, question, options) {
+            return [year, `Question: ${question}`, 'Choices:', ...options].join('
+');
+        }
+
+        function copyToClipboard(btn, text) {
+            const original = btn.textContent;
+            const done = () => {
+                btn.textContent = 'Copied!';
+                btn.disabled = true;
+                setTimeout(() => { btn.textContent = original; btn.disabled = false; }, 1500);
+            };
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+            } else {
+                fallbackCopy(text, done);
+            }
+        }
+
+        function fallbackCopy(text, done) {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.top = '-9999px';
+            document.body.appendChild(ta);
+            ta.focus(); ta.select();
+            try { document.execCommand('copy'); done(); }
+            finally { document.body.removeChild(ta); }
+        }
+
+        function openChatGPT() {
+            window.open('https://chat.openai.com/', '_blank', 'noopener');
+        }
+    </script>
+
+    <!-- Notes on alignment to NCERT (Reprint 2025–26) retained -->
 </body>
 </html>
