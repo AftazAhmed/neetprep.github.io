@@ -3,239 +3,373 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NEET Biology Questions</title>
+<title>NEET Biology Questions - NCERT Based</title>
 <style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    min-height: 100vh;
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  color: white;
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.header p {
+  font-size: 1.1em;
+  opacity: 0.95;
+}
+
+.controls {
+  background: white;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  margin-bottom: 30px;
+}
+
+.control-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+  font-size: 0.95em;
+}
+
+select {
+  padding: 12px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 16px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+select:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+select:disabled {
+  background: #f5f5f5;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.button-group {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-primary {
+  background: #667eea;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #5568d3;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+  background: #6c757d;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background: #5a6268;
+}
+
+.content-area {
+  background: white;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  min-height: 500px;
+}
+
+.no-questions {
+  text-align: center;
+  color: #999;
+  padding: 80px 20px;
+  font-size: 1.2em;
+}
+
+.stats-bar {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-label {
+  font-size: 0.9em;
+  opacity: 0.9;
+  margin-bottom: 5px;
+}
+
+.stat-value {
+  font-size: 1.8em;
+  font-weight: bold;
+}
+
+.question-card {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 25px;
+  border-left: 5px solid #667eea;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.question-card:hover {
+  transform: translateX(5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.question-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.question-number {
+  font-weight: bold;
+  color: #667eea;
+  font-size: 1.2em;
+}
+
+.question-year {
+  background: #667eea;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85em;
+  font-weight: 600;
+}
+
+.question-text {
+  font-size: 1.1em;
+  line-height: 1.7;
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.options {
+  list-style: none;
+  margin: 20px 0;
+}
+
+.option-item {
+  padding: 14px 18px;
+  margin: 10px 0;
+  background: white;
+  border-radius: 10px;
+  border: 2px solid #e0e0e0;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 1.05em;
+}
+
+.option-item:hover {
+  border-color: #667eea;
+  background: #f0f4ff;
+  transform: translateX(5px);
+}
+
+.option-item.selected {
+  background: #e3f2fd;
+  border-color: #2196f3;
+}
+
+.option-item.correct {
+  background: #d4edda;
+  border-color: #28a745;
+  font-weight: 600;
+}
+
+.option-item.incorrect {
+  background: #f8d7da;
+  border-color: #dc3545;
+}
+
+.answer-section {
+  margin-top: 20px;
+  padding: 15px 20px;
+  background: #d4edda;
+  border-left: 5px solid #28a745;
+  border-radius: 8px;
+  display: none;
+}
+
+.answer-section.show {
+  display: block;
+}
+
+.answer-label {
+  font-weight: 700;
+  color: #155724;
+  margin-bottom: 5px;
+}
+
+.answer-text {
+  color: #155724;
+  font-size: 1.05em;
+}
+
+.question-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+.btn-small {
+  padding: 8px 16px;
+  font-size: 0.9em;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.btn-show-answer {
+  background: #28a745;
+  color: white;
+}
+
+.btn-show-answer:hover {
+  background: #218838;
+}
+
+.btn-copy {
+  background: #17a2b8;
+  color: white;
+}
+
+.btn-copy:hover {
+  background: #138496;
+}
+
+.btn-chatgpt {
+  background: #10a37f;
+  color: white;
+}
+
+.btn-chatgpt:hover {
+  background: #0d8c6d;
+}
+
+.copy-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #28a745;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  z-index: 1000;
+  display: none;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 2em;
+  }
+  
+  .controls {
     padding: 20px;
   }
-
-  .container {
-    max-width: 900px;
-    margin: 0 auto;
+  
+  .control-row {
+    grid-template-columns: 1fr;
   }
-
-  .header {
-    text-align: center;
-    color: white;
-    margin-bottom: 30px;
-  }
-
-  .header h1 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-  }
-
-  .controls {
-    background: white;
-    border-radius: 15px;
-    padding: 25px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    margin-bottom: 25px;
-  }
-
-  .control-group {
-    margin-bottom: 20px;
-  }
-
-  .control-group:last-child {
-    margin-bottom: 0;
-  }
-
-  label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: #333;
-    font-size: 0.95em;
-  }
-
-  select {
-    width: 100%;
-    padding: 12px;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    font-size: 16px;
-    background: white;
-    cursor: pointer;
-    transition: all 0.3s;
-  }
-
-  select:focus {
-    outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-  }
-
-  select:disabled {
-    background: #f5f5f5;
-    cursor: not-allowed;
-    opacity: 0.6;
-  }
-
+  
   .content-area {
-    background: white;
-    border-radius: 15px;
-    padding: 30px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    min-height: 400px;
+    padding: 20px;
   }
-
-  .no-questions {
-    text-align: center;
-    color: #999;
-    padding: 60px 20px;
-    font-size: 1.1em;
+  
+  .stats-bar {
+    flex-direction: column;
   }
-
-  .question-card {
-    background: #f8f9fa;
-    border-radius: 12px;
-    padding: 25px;
-    margin-bottom: 25px;
-    border-left: 4px solid #667eea;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-
-  .question-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  }
-
-  .question-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .question-number {
-    font-weight: bold;
-    color: #667eea;
-    font-size: 1.1em;
-  }
-
-  .question-year {
-    background: #667eea;
-    color: white;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 0.85em;
-    font-weight: 600;
-  }
-
-  .question-text {
-    font-size: 1.05em;
-    line-height: 1.6;
-    color: #333;
-    margin-bottom: 15px;
-  }
-
-  .options {
-    list-style: none;
-    margin: 15px 0;
-  }
-
-  .options li {
-    padding: 10px 15px;
-    margin: 8px 0;
-    background: white;
-    border-radius: 8px;
-    border: 2px solid #e0e0e0;
-    transition: all 0.2s;
-  }
-
-  .options li:hover {
-    border-color: #667eea;
-    background: #f0f4ff;
-  }
-
-  .answer {
-    margin-top: 15px;
-    padding: 12px 15px;
-    background: #d4edda;
-    border-left: 4px solid #28a745;
-    border-radius: 8px;
-    font-weight: 600;
-    color: #155724;
-  }
-
-  .stats {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    background: #f8f9fa;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-    gap: 15px;
-  }
-
-  .stat-item {
-    font-weight: 600;
-    color: #555;
-  }
-
-  .stat-value {
-    color: #667eea;
-    font-size: 1.2em;
-  }
-
-  .action-buttons {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-
-  .btn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
-    font-size: 0.95em;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-  }
-
-  .btn-primary {
-    background: #667eea;
-    color: white;
-  }
-
-  .btn-primary:hover {
-    background: #5568d3;
-    transform: translateY(-1px);
-  }
-
-  @media (max-width: 768px) {
-    .header h1 {
-      font-size: 1.8em;
-    }
-    
-    .controls {
-      padding: 20px;
-    }
-    
-    .content-area {
-      padding: 20px;
-    }
-    
-    .question-card {
-      padding: 20px;
-    }
-  }
+}
 </style>
 </head>
 <body>
@@ -243,36 +377,41 @@
 <div class="container">
   <div class="header">
     <h1>🎓 NEET Biology Questions</h1>
-    <p>Practice with Past Year Questions</p>
+    <p>NCERT 2025-26 Based Practice Questions</p>
   </div>
 
   <div class="controls">
-    <div class="control-group">
-      <label for="classSelect">Select Class:</label>
-      <select id="classSelect" onchange="populateChapters()">
-        <option value="">-- Select Class --</option>
-        <option value="11">Class 11</option>
-        <option value="12">Class 12</option>
-      </select>
+    <div class="control-row">
+      <div class="control-group">
+        <label for="classSelect">Select Class:</label>
+        <select id="classSelect" onchange="updateChapters()">
+          <option value="">-- Select Class --</option>
+          <option value="11">Class 11</option>
+          <option value="12">Class 12</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="chapterSelect">Select Chapter:</label>
+        <select id="chapterSelect" onchange="updateSections()" disabled>
+          <option value="">-- Select Chapter --</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="sectionSelect">Select Section:</label>
+        <select id="sectionSelect" disabled>
+          <option value="">-- Select Section --</option>
+        </select>
+      </div>
     </div>
 
-    <div class="control-group">
-      <label for="chapterSelect">Select Chapter:</label>
-      <select id="chapterSelect" onchange="populateSections()" disabled>
-        <option value="">-- Select Chapter --</option>
-      </select>
-    </div>
-
-    <div class="control-group">
-      <label for="sectionSelect">Select Section:</label>
-      <select id="sectionSelect" onchange="displayQuestions()" disabled>
-        <option value="">-- Select Section --</option>
-      </select>
-    </div>
-
-    <div class="action-buttons">
-      <button class="btn btn-primary" onclick="displayQuestions()">
-        Show Questions
+    <div class="button-group">
+      <button class="btn btn-primary" onclick="showQuestions()">
+        📚 Show Questions
+      </button>
+      <button class="btn btn-secondary" onclick="resetSelections()">
+        🔄 Reset
       </button>
     </div>
   </div>
@@ -280,6 +419,10 @@
   <main class="content-area" id="contentArea" role="main" tabindex="-1">
     <div class="no-questions">Please select Class, Chapter, and Section to view questions.</div>
   </main>
+</div>
+
+<div class="copy-notification" id="copyNotification">
+  ✓ Copied to clipboard!
 </div>
 
 <script>
@@ -359,11 +502,7 @@
         title: "Anatomy of Flowering Plants",
         sections: [
           {id: "6.1", name: "The Tissue System"},
-          {id: "6.2", name: "Epidermal Tissue System"},
-          {id: "6.3", name: "The Ground Tissue System"},
-          {id: "6.4", name: "The Vascular Tissue System"},
-          {id: "6.5", name: "Anatomy of Dicotyledonous and Monocotyledonous Plants"},
-          {id: "6.6", name: "Secondary Growth"}
+          {id: "6.2", name: "Anatomy of Dicotyledonous and Monocotyledonous Plants"}
         ],
         questions: {}
       },
@@ -418,35 +557,39 @@
       "11": {
         title: "Photosynthesis in Higher Plants",
         sections: [
-          {id: "11.1", name: "Site of Photosynthesis"},
-          {id: "11.2", name: "Pigments Involved in Photosynthesis"},
-          {id: "11.3", name: "Light Reaction"},
-          {id: "11.4", name: "Biosynthetic Phase"},
-          {id: "11.5", name: "Photorespiration"},
-          {id: "11.6", name: "Factors Affecting Photosynthesis"}
+          {id: "11.1", name: "What is Photosynthesis?"},
+          {id: "11.2", name: "Early Experiments"},
+          {id: "11.3", name: "Site of Photosynthesis"},
+          {id: "11.4", name: "Pigments Involved in Photosynthesis"},
+          {id: "11.5", name: "Light Reaction"},
+          {id: "11.6", name: "The Electron Transport"},
+          {id: "11.7", name: "Where are the ATP and NADPH Used?"},
+          {id: "11.8", name: "The C4 Pathway"},
+          {id: "11.9", name: "Photorespiration"},
+          {id: "11.10", name: "Factors Affecting Photosynthesis"}
         ],
         questions: {}
       },
       "12": {
         title: "Respiration in Plants",
         sections: [
-          {id: "12.1", name: "Glycolysis"},
-          {id: "12.2", name: "Fermentation"},
-          {id: "12.3", name: "Aerobic Respiration"},
-          {id: "12.4", name: "Respiratory Balance Sheet"},
-          {id: "12.5", name: "Amphibolic Pathway"},
-          {id: "12.6", name: "Respiratory Quotient"}
+          {id: "12.1", name: "Do Plants Breathe?"},
+          {id: "12.2", name: "Glycolysis"},
+          {id: "12.3", name: "Fermentation"},
+          {id: "12.4", name: "Aerobic Respiration"},
+          {id: "12.5", name: "The Respiratory Balance Sheet"},
+          {id: "12.6", name: "Amphibolic Pathway"},
+          {id: "12.7", name: "Respiratory Quotient"}
         ],
         questions: {}
       },
       "13": {
         title: "Plant Growth and Development",
         sections: [
-          {id: "13.1", name: "Plant Growth"},
+          {id: "13.1", name: "Growth"},
           {id: "13.2", name: "Differentiation, Dedifferentiation and Redifferentiation"},
-          {id: "13.3", name: "Plant Growth Regulators"},
-          {id: "13.4", name: "Photoperiodism"},
-          {id: "13.5", name: "Vernalisation"}
+          {id: "13.3", name: "Development"},
+          {id: "13.4", name: "Plant Growth Regulators"}
         ],
         questions: {}
       },
@@ -466,7 +609,7 @@
         title: "Body Fluids and Circulation",
         sections: [
           {id: "15.1", name: "Blood"},
-          {id: "15.2", name: "Lymph"},
+          {id: "15.2", name: "Lymph (Tissue Fluid)"},
           {id: "15.3", name: "Circulatory Pathways"},
           {id: "15.4", name: "Double Circulation"},
           {id: "15.5", name: "Regulation of Cardiac Activity"},
@@ -479,10 +622,10 @@
         sections: [
           {id: "16.1", name: "Human Excretory System"},
           {id: "16.2", name: "Urine Formation"},
-          {id: "16.3", name: "Function of Tubules"},
-          {id: "16.4", name: "Mechanism of Concentration of Filtrate"},
+          {id: "16.3", name: "Function of the Tubules"},
+          {id: "16.4", name: "Mechanism of Concentration of the Filtrate"},
           {id: "16.5", name: "Regulation of Kidney Function"},
-          {id: "16.6", name: "Disorders of Excretory System"}
+          {id: "16.6", name: "Disorders of the Excretory System"}
         ],
         questions: {}
       },
@@ -492,7 +635,7 @@
           {id: "17.1", name: "Types of Movement"},
           {id: "17.2", name: "Skeletal System"},
           {id: "17.3", name: "Muscular System"},
-          {id: "17.4", name: "Mechanism of Muscle Contraction"},
+          {id: "17.4", name: "Skeletal Muscle Contraction"},
           {id: "17.5", name: "Disorders of Muscular and Skeletal System"}
         ],
         questions: {}
@@ -502,7 +645,7 @@
         sections: [
           {id: "18.1", name: "Neural System"},
           {id: "18.2", name: "Human Neural System"},
-          {id: "18.3", name: "Neuron as Structural and Functional Unit"},
+          {id: "18.3", name: "Neuron as Structural and Functional Unit of Neural System"},
           {id: "18.4", name: "Central Neural System"},
           {id: "18.5", name: "Reflex Action and Reflex Arc"},
           {id: "18.6", name: "Sensory Reception and Processing"}
@@ -643,8 +786,7 @@
       "11": {
         title: "Organisms and Populations",
         sections: [
-          {id: "11.1", name: "Organism and Its Environment"},
-          {id: "11.2", name: "Populations"}
+          {id: "11.1", name: "Populations"}
         ],
         questions: {}
       },
@@ -673,24 +815,26 @@
     }
   };
 
-  function populateChapters() {
-    const classSelect = document.getElementById('classSelect');
+  let currentScore = 0;
+  let totalQuestions = 0;
+  let userAnswers = {};
+
+  function updateChapters() {
+    const classValue = document.getElementById('classSelect').value;
     const chapterSelect = document.getElementById('chapterSelect');
     const sectionSelect = document.getElementById('sectionSelect');
-    const contentArea = document.getElementById('contentArea');
     
     chapterSelect.innerHTML = '<option value="">-- Select Chapter --</option>';
     sectionSelect.innerHTML = '<option value="">-- Select Section --</option>';
     sectionSelect.disabled = true;
-    contentArea.innerHTML = '<div class="no-questions">Please select Class, Chapter, and Section to view questions.</div>';
+    document.getElementById('contentArea').innerHTML = '<div class="no-questions">Please select Class, Chapter, and Section to view questions.</div>';
     
-    const selectedClass = classSelect.value;
-    if (!selectedClass) {
+    if (!classValue) {
       chapterSelect.disabled = true;
       return;
     }
     
-    const chapters = questionData[selectedClass];
+    const chapters = questionData[classValue];
     for (let chapterNum in chapters) {
       const option = document.createElement('option');
       option.value = chapterNum;
@@ -701,72 +845,86 @@
     chapterSelect.disabled = false;
   }
 
-  function populateSections() {
-    const classSelect = document.getElementById('classSelect');
-    const chapterSelect = document.getElementById('chapterSelect');
+  function updateSections() {
+    const classValue = document.getElementById('classSelect').value;
+    const chapterValue = document.getElementById('chapterSelect').value;
     const sectionSelect = document.getElementById('sectionSelect');
-    const contentArea = document.getElementById('contentArea');
     
     sectionSelect.innerHTML = '<option value="">-- Select Section --</option>';
-    contentArea.innerHTML = '<div class="no-questions">Please select Class, Chapter, and Section to view questions.</div>';
+    document.getElementById('contentArea').innerHTML = '<div class="no-questions">Please select Class, Chapter, and Section to view questions.</div>';
     
-    const selectedClass = classSelect.value;
-    const selectedChapter = chapterSelect.value;
-    
-    if (!selectedClass || !selectedChapter) {
+    if (!classValue || !chapterValue) {
       sectionSelect.disabled = true;
       return;
     }
     
-    const sections = questionData[selectedClass][selectedChapter].sections;
+    const sections = questionData[classValue][chapterValue].sections;
     sections.forEach(section => {
       const option = document.createElement('option');
       option.value = section.id;
-      option.textContent = `Section ${section.id}: ${section.name}`;
+      option.textContent = `${section.id} - ${section.name}`;
       sectionSelect.appendChild(option);
     });
     
     sectionSelect.disabled = false;
   }
 
-  function displayQuestions() {
-    const classSelect = document.getElementById('classSelect');
-    const chapterSelect = document.getElementById('chapterSelect');
-    const sectionSelect = document.getElementById('sectionSelect');
+  function showQuestions() {
+    const classValue = document.getElementById('classSelect').value;
+    const chapterValue = document.getElementById('chapterSelect').value;
+    const sectionValue = document.getElementById('sectionSelect').value;
     const contentArea = document.getElementById('contentArea');
     
-    const selectedClass = classSelect.value;
-    const selectedChapter = chapterSelect.value;
-    const selectedSection = sectionSelect.value;
-    
-    if (!selectedClass || !selectedChapter || !selectedSection) {
-      contentArea.innerHTML = '<div class="no-questions">Please select Class, Chapter, and Section to view questions.</div>';
+    if (!classValue || !chapterValue || !sectionValue) {
+      contentArea.innerHTML = '<div class="no-questions">Please select Class, Chapter, and Section first.</div>';
       return;
     }
     
-    const questions = questionData[selectedClass][selectedChapter].questions[selectedSection];
+    const questions = questionData[classValue][chapterValue].questions[sectionValue];
     
     if (!questions || questions.length === 0) {
-      contentArea.innerHTML = '<div class="no-questions">No questions available for this section yet.</div>';
+      contentArea.innerHTML = '<div class="no-questions">📚 No questions available for this section yet.<br><br>Questions will be added soon!</div>';
       return;
     }
     
-    let html = `<div class="stats">
-      <div class="stat-item">Total Questions: <span class="stat-value">${questions.length}</span></div>
-    </div>`;
+    totalQuestions = questions.length;
+    userAnswers = {};
+    
+    let html = `
+      <div class="stats-bar">
+        <div class="stat-item">
+          <div class="stat-label">Total Questions</div>
+          <div class="stat-value">${totalQuestions}</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">Score</div>
+          <div class="stat-value" id="scoreDisplay">0/${totalQuestions}</div>
+        </div>
+      </div>
+    `;
     
     questions.forEach((q, index) => {
       html += `
-        <div class="question-card">
+        <div class="question-card" id="question-${index}">
           <div class="question-header">
             <span class="question-number">Question ${index + 1}</span>
             <span class="question-year">${q.year}</span>
           </div>
           <div class="question-text">${q.question}</div>
-          <ul class="options">
-            ${q.options.map(opt => `<li>${opt}</li>`).join('')}
+          <ul class="options" id="options-${index}">
+            ${q.options.map((opt, optIndex) => `
+              <li class="option-item" onclick="selectOption(${index}, ${optIndex}, '${q.answer}', 'question-${index}')">${opt}</li>
+            `).join('')}
           </ul>
-          <div class="answer">✓ Answer: ${q.answer}</div>
+          <div class="answer-section" id="answer-${index}">
+            <div class="answer-label">✓ Correct Answer:</div>
+            <div class="answer-text">${q.answer}</div>
+          </div>
+          <div class="question-actions">
+            <button class="btn-small btn-show-answer" onclick="showAnswer(${index})">Show Answer</button>
+            <button class="btn-small btn-copy" onclick="copyQuestion(${index})">📋 Copy</button>
+            <button class="btn-small btn-chatgpt" onclick="openChatGPTWithAutopaste(buildChatGPTPrompt(${index}))">🤖 Ask ChatGPT</button>
+          </div>
         </div>
       `;
     });
@@ -774,6 +932,129 @@
     contentArea.innerHTML = html;
     contentArea.focus();
   }
+
+  function selectOption(questionIndex, optionIndex, correctAnswer, questionId) {
+    const optionsContainer = document.getElementById(`options-${questionIndex}`);
+    const options = optionsContainer.getElementsByClassName('option-item');
+    
+    // Clear previous selections
+    Array.from(options).forEach(opt => {
+      opt.classList.remove('selected', 'correct', 'incorrect');
+    });
+    
+    // Mark selected option
+    const selectedOption = options[optionIndex];
+    const selectedText = selectedOption.textContent.trim();
+    
+    if (selectedText === correctAnswer) {
+      selectedOption.classList.add('correct');
+      if (!userAnswers[questionIndex]) {
+        currentScore++;
+        userAnswers[questionIndex] = true;
+      }
+    } else {
+      selectedOption.classList.add('incorrect');
+      // Show correct answer
+      Array.from(options).forEach(opt => {
+        if (opt.textContent.trim() === correctAnswer) {
+          opt.classList.add('correct');
+        }
+      });
+      userAnswers[questionIndex] = false;
+    }
+    
+    updateScoreDisplay();
+  }
+
+  function updateScoreDisplay() {
+    const scoreDisplay = document.getElementById('scoreDisplay');
+    if (scoreDisplay) {
+      scoreDisplay.textContent = `${currentScore}/${totalQuestions}`;
+    }
+  }
+
+  function showAnswer(index) {
+    const answerSection = document.getElementById(`answer-${index}`);
+    answerSection.classList.toggle('show');
+  }
+
+  function copyQuestion(index) {
+    const classValue = document.getElementById('classSelect').value;
+    const chapterValue = document.getElementById('chapterSelect').value;
+    const sectionValue = document.getElementById('sectionSelect').value;
+    const questions = questionData[classValue][chapterValue].questions[sectionValue];
+    const q = questions[index];
+    
+    const text = `${q.question}
+
+${q.options.join('
+')}
+
+Answer: ${q.answer}
+Source: ${q.year}`;
+    
+    copyToClipboard(text);
+  }
+
+  function resetSelections() {
+    document.getElementById('classSelect').value = '';
+    document.getElementById('chapterSelect').innerHTML = '<option value="">-- Select Chapter --</option>';
+    document.getElementById('chapterSelect').disabled = true;
+    document.getElementById('sectionSelect').innerHTML = '<option value="">-- Select Section --</option>';
+    document.getElementById('sectionSelect').disabled = true;
+    document.getElementById('contentArea').innerHTML = '<div class="no-questions">Please select Class, Chapter, and Section to view questions.</div>';
+    currentScore = 0;
+    totalQuestions = 0;
+    userAnswers = {};
+  }
+
+  async function copyToClipboard(text) {
+    try {
+      await navigator.clipboard.writeText(text);
+      showCopyNotification();
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
+  }
+
+  function showCopyNotification() {
+    const notification = document.getElementById('copyNotification');
+    notification.style.display = 'block';
+    setTimeout(() => {
+      notification.style.display = 'none';
+    }, 2000);
+  }
+
+  function buildChatGPTPrompt(questionIndex) {
+    const classValue = document.getElementById('classSelect').value;
+    const chapterValue = document.getElementById('chapterSelect').value;
+    const sectionValue = document.getElementById('sectionSelect').value;
+    const questions = questionData[classValue][chapterValue].questions[sectionValue];
+    const q = questions[questionIndex];
+    
+    return `Please explain this NEET Biology question:
+
+${q.question}
+
+${q.options.join('
+')}
+
+The correct answer is: ${q.answer}
+
+Please explain why this is the correct answer and provide detailed reasoning.`;
+  }
+
+  async function openChatGPTWithAutopaste(prompt) {
+    await copyToClipboard(prompt);
+    window.open('https://chat.openai.com/', '_blank');
+    showCopyNotification();
+  }
+
+  // Load saved data on page load
+  window.addEventListener('DOMContentLoaded', () => {
+    console.log('NEET Biology Questions loaded successfully!');
+    console.log('Total chapters - Class 11: 19, Class 12: 13');
+  });
 </script>
 
 </body>
