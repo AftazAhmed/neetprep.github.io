@@ -451,7 +451,7 @@
 </div>
 
 <div class="note" role="note">
-  <em>Note: Some questions from a particular page may appear in subsequent page because the concept of the question may span multiple page.</em>
+  <em>Note: Some questions from a particular page may appear in subsequent pages because the concept of the question may span multiple pages.</em>
 </div>
 
 <div class="controls" role="region" aria-label="Filtering controls">
@@ -557,28 +557,7 @@
               answer: "d) 1.7 and 1.8 million"
             }
           ],
-          "4": [{
-              year: "AIPMT 2011",
-              question: "Biodiversity of a geographical region represents:",
-              options: [
-                "a) The diversity in the organisms living in the region",
-                "b) Species endemic to the region",
-                "c) Genetic diversity present in the dominant species of the region",
-                "d) Endangered species found in the region"
-              ],
-              answer: "a) The diversity in the organisms living in the region"
-            },
-            {
-              year: "NEET 2016",
-              question: "The number of species that are known and described range between:",
-              options: [
-                "a) 0.8 and 1.0 million",
-                "b) 1.0 and 1.2 million",
-                "c) 1.5 and 1.7 million",
-                "d) 1.7 and 1.8 million"
-              ],
-              answer: "d) 1.7 and 1.8 million"
-            }],
+          "4": [],
           "5": [],
           "6": [],
           "7": [],
@@ -1281,6 +1260,27 @@
   let currentQuestions = [];
   let questionStates = {};
 
+  function loadPersistentData() {
+    try {
+      const saved = localStorage.getItem('neet-pyq-states');
+      if (saved) {
+        questionStates = JSON.parse(saved);
+      }
+    } catch (e) {
+      console.error('Error loading data:', e);
+    }
+  }
+
+  function savePersistentData() {
+    try {
+      localStorage.setItem('neet-pyq-states', JSON.stringify(questionStates));
+    } catch (e) {
+      console.error('Error saving data:', e);
+    }
+  }
+
+  loadPersistentData();
+
   function updateChapters() {
     const classSelect = document.getElementById('classSelect');
     const chapterSelect = document.getElementById('chapterSelect');
@@ -1421,6 +1421,8 @@
       isCorrect: isCorrect
     };
 
+    savePersistentData();
+
     const options = document.querySelectorAll(`.question-item:nth-child(${questionIndex + 2}) .option`);
     options.forEach((option, index) => {
       if (index === optionIndex) {
@@ -1483,20 +1485,17 @@
     }
     
     let correct = 0;
-    let answered = 0;
     
     currentQuestions.forEach((q, index) => {
       const questionId = `${classValue}-${chapterValue}-${pageValue}-${index}`;
       const questionState = questionStates[questionId];
-      if (questionState) {
-        answered++;
-        if (questionState.isCorrect) {
-          correct++;
-        }
+      if (questionState && questionState.isCorrect) {
+        correct++;
       }
     });
     
-    scoreCard.textContent = `Page score: ${correct} / ${answered}`;
+    const totalQuestions = currentQuestions.length;
+    scoreCard.textContent = `Page score: ${correct} / ${totalQuestions}`;
   }
 
   function buildChatGPTPrompt(questionIndex) {
@@ -1640,6 +1639,8 @@ Version 3: Detailed explanation with option analysis`;
       const questionId = `${classValue}-${chapterValue}-${pageValue}-${index}`;
       delete questionStates[questionId];
     });
+    
+    savePersistentData();
     
     showQuestions();
   });
