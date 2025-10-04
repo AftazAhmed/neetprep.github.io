@@ -244,7 +244,6 @@
     background-color: #dceddb;
     border-color: #71b280;
   }
-  /* Modified styles for persistent correct/incorrect options */
   .option.answered-correct {
     background-color: rgba(25, 135, 84, 0.25);
     border: 3px solid #198754;
@@ -258,16 +257,6 @@
     color: #721c24;
     font-weight: 700;
     cursor: default;
-  }
-  .option.correct-temp {
-    background-color: rgba(25, 135, 84, 0.15);
-    border-color: rgba(25, 135, 84, 0.3);
-    color: #2e7d32;
-  }
-  .option.incorrect-temp {
-    background-color: rgba(220, 53, 69, 0.15);
-    border-color: rgba(220, 53, 69, 0.3);
-    color: #b02a37;
   }
   .option.disabled {
     cursor: default;
@@ -332,7 +321,22 @@
   .btn-copy:hover {
     background-color: #084298;
   }
-
+  .chatgpt-btn {
+    padding: 11px 18px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 15px;
+    color: #ffffff;
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    transition: all 0.3s ease;
+  }
+  .chatgpt-btn:hover {
+    background: linear-gradient(135deg, #c0392b, #a93226);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
+  }
   .answer-reveal {
     display: none;
     margin-top: 14px;
@@ -365,6 +369,30 @@
     20% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
     40% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
     100% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
+  }
+  .copy-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #27ae60, #229954);
+    color: white;
+    padding: 16px 24px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+    z-index: 10000;
+    font-weight: 700;
+    font-size: 15px;
+    animation: slideIn 0.3s ease-out;
+  }
+  @keyframes slideIn {
+    from {
+      transform: translateX(400px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
   }
   .no-questions {
     text-align: center;
@@ -419,1638 +447,952 @@
 <body>
 <div class="header" role="banner">
   <h1>NEET-PYQ</h1>
-  <div class="subtitle">NEET/AIPMT Biology Section Wise Analysis (1988-2025)</div>
+  <div class="subtitle">NEET/AIPMT Biology Page Wise Analysis (1988-2025)</div>
 </div>
 
 <div class="note" role="note">
-  <em>Note: Some questions from a particular section may appear in subsequent sections if the concept spans multiple areas.</em>
+  <em>Note: Some questions from a particular page may appear in subsequent page because the concept of the question may span multiple page.</em>
 </div>
 
 <div class="controls" role="region" aria-label="Filtering controls">
   <div class="class-reload-group">
     <div class="class-dropdown-part">
       <label for="classSelect">Class:</label>
-      <select id="classSelect" aria-controls="chapterSelect sectionSelect" onchange="updateChapters()" aria-required="true">
+      <select id="classSelect" onchange="updateChapters()">
         <option value="">Select Class</option>
         <option value="11">Class 11</option>
         <option value="12">Class 12</option>
       </select>
     </div>
-    <button id="reloadBtn" class="reload-btn" onclick="window.location.reload()">
+    <button class="reload-btn" onclick="window.location.reload()">
       ↻ Reload
     </button>
   </div>
   <div class="dropdown-group">
     <label for="chapterSelect">Chapter:</label>
-    <select id="chapterSelect" aria-controls="sectionSelect" onchange="updateSections()" disabled aria-required="true">
+    <select id="chapterSelect" onchange="updatePages()" disabled>
       <option value="">Select Chapter</option>
     </select>
   </div>
   <div class="dropdown-group">
-    <label for="sectionSelect">Section:</label>
-    <select id="sectionSelect" onchange="showQuestions()" disabled aria-required="true">
-      <option value="">Select Section</option>
+    <label for="pageSelect">Page Number:</label>
+    <select id="pageSelect" onchange="showQuestions()" disabled>
+      <option value="">Select Page</option>
     </select>
   </div>
   <div id="scoreWrapper">
-    <div id="scoreCard" class="scoreCard" aria-live="polite" role="region" aria-atomic="true" tabindex="0">
-      Section score: x / y
+    <div id="scoreCard">
+      Page score: 0 / 0
     </div>
-    <button id="refreshChapterBtn" class="refreshBtn" aria-label="Refresh section score">
+    <button class="refreshBtn" id="refreshChapterBtn">
       <span>🔄</span> Refresh
     </button>
   </div>
 </div>
 
-<main class="content-area" id="contentArea" role="main" tabindex="-1">
-  <div class="no-questions">Please select Class, Chapter, and Section to view questions.</div>
+<main class="content-area" id="contentArea">
+  <div class="no-questions">Please select Class, Chapter, and Page Number to view questions.</div>
 </main>
 
 <script>
   const questionData = {
     "11": {
       "1": {
-        title: "The Living World", 
-        sections: [
-         
-          {id: "1.1", name: "Diversity in the Living World"},
-          {id: "1.2", name: "Taxonomic Categories"}
-        ], 
-        questions: {}
+        title: "The Living World",
+        questions: {
+          "3": [
+            {
+              year: "NEET 2020",
+              question: "According to Robert May, the global species diversity is about:",
+              options: [
+                "a) 50 million",
+                "b) 7 million",
+                "c) 1.5 million",
+                "d) 20 million"
+              ],
+              answer: "b) 7 million"
+            },
+            {
+              year: "AIPMT 2012",
+              question: "The highest number of species in the world is represented by:",
+              options: [
+                "a) Fungi",
+                "b) Mosses",
+                "c) Algae",
+                "d) Lichens"
+              ],
+              answer: "a) Fungi"
+            },
+            {
+              year: "NEET 2019",
+              question: "Which of the following term is used to refer to the number of varieties of plants and animals on earth?",
+              options: [
+                "a) Taxonomy",
+                "b) Identification",
+                "c) Biodiversity",
+                "d) Classification"
+              ],
+              answer: "c) Biodiversity"
+            },
+            {
+              year: "AIPMT 2011",
+              question: "Biodiversity of a geographical region represents:",
+              options: [
+                "a) The diversity in the organisms living in the region",
+                "b) Species endemic to the region",
+                "c) Genetic diversity present in the dominant species of the region",
+                "d) Endangered species found in the region"
+              ],
+              answer: "a) The diversity in the organisms living in the region"
+            },
+            {
+              year: "NEET 2016",
+              question: "The number of species that are known and described range between:",
+              options: [
+                "a) 0.8 and 1.0 million",
+                "b) 1.0 and 1.2 million",
+                "c) 1.5 and 1.7 million",
+                "d) 1.7 and 1.8 million"
+              ],
+              answer: "d) 1.7 and 1.8 million"
+            }
+          ],
+          "4": [{
+              year: "AIPMT 2011",
+              question: "Biodiversity of a geographical region represents:",
+              options: [
+                "a) The diversity in the organisms living in the region",
+                "b) Species endemic to the region",
+                "c) Genetic diversity present in the dominant species of the region",
+                "d) Endangered species found in the region"
+              ],
+              answer: "a) The diversity in the organisms living in the region"
+            },
+            {
+              year: "NEET 2016",
+              question: "The number of species that are known and described range between:",
+              options: [
+                "a) 0.8 and 1.0 million",
+                "b) 1.0 and 1.2 million",
+                "c) 1.5 and 1.7 million",
+                "d) 1.7 and 1.8 million"
+              ],
+              answer: "d) 1.7 and 1.8 million"
+            }],
+          "5": [],
+          "6": [],
+          "7": [],
+          "8": [],
+          "9": []
+        }
       },
       "2": {
-        title: "Biological Classification", 
-        sections: [
-            {id: "2.1", name: "Kingdom Monera"},
-          {id: "2.2", name: "Kingdom Protista"},
-          {id: "2.3", name: "Kingdom Fungi"},
-          {id: "2.4", name: "Kingdom Plantae"},
-          {id: "2.5", name: "Kingdom Animalia"},
-          {id: "2.6", name: "Viruses, Viroids, Prions and Lichens"}
-        ], 
+        title: "Biological Classification",
         questions: {
-                    "2.1": [
-            {
-              year: "NEET/AIPMT 2019",
-              question: "Match Column I (groups) with Column II (typical habitats) and choose the correct option:<br><br>Column I: A) Halophiles &nbsp; B) Thermoacidophiles &nbsp; C) Methanogens &nbsp; D) Cyanobacteria<br>Column II: 1) Hot springs &nbsp; 2) Aquatic environment &nbsp; 3) Guts of ruminants &nbsp; 4) Salty area",
-              options: [
-                "a) A-4, B-1, C-3, D-2",
-                "b) A-1, B-2, C-3, D-4",
-                "c) A-3, B-4, C-2, D-1",
-                "d) A-2, B-4, C-3, D-1"
-              ],
-              answer: "a) A-4, B-1, C-3, D-2"
-            },
-            {
-              year: "NEET/AIPMT 2017",
-              question: "Which among the following are the smallest living cells, known without a definite cell wall, pathogenic to plants as well as animals and can survive without oxygen?",
-              options: [
-                "a) Pseudomonas",
-                "b) Mycoplasma",
-                "c) Nostoc",
-                "d) Bacillus"
-              ],
-              answer: "b) Mycoplasma"
-            },
-            {
-              year: "NEET/AIPMT 2017",
-              question: "Which of the following components provides sticky character to the bacterial cell?",
-              options: [
-                "a) Nuclear membrane",
-                "b) Plasma membrane",
-                "c) Glycocalyx",
-                "d) Cell wall"
-              ],
-              answer: "c) Glycocalyx"
-            },
-            {
-              year: "NEET/AIPMT 2017",
-              question: "DNA replication in bacteria occurs:",
-              options: [
-                "a) within nucleus",
-                "b) Prior to fission",
-                "c) just before transcription",
-                "d) during S phase"
-              ],
-              answer: "b) Prior to fission"
-            },
-            {
-              year: "NEET/AIPMT 2016",
-              question: "Methanogens belong to:",
-              options: [
-                "a) eubacteria",
-                "b) archaebacteria",
-                "c) dinoflagellates",
-                "d) slime moulds"
-              ],
-              answer: "b) archaebacteria"
-            },
-            {
-              year: "NEET/AIPMT 2014",
-              question: "Pigment containing membranous extensions in some cyanobacteria are:",
-              options: [
-                "a) pneumatophores",
-                "b) chromatophores",
-                "c) heterocysts",
-                "d) basal bodies"
-              ],
-              answer: "b) chromatophores"
-            },
-            {
-              year: "NEET/AIPMT 2013",
-              question: "Archaebacteria differ from eubacteria in:",
-              options: [
-                "a) cell membrane structure",
-                "b) mode of nutrition",
-                "c) cell shape",
-                "d) mode of reproduction"
-              ],
-              answer: "a) cell membrane structure"
-            },
-            {
-              year: "NEET/AIPMT 2013",
-              question: "Which of the following are likely to be present in deep sea water?",
-              options: [
-                "a) Blue-green algae",
-                "b) Saprophytic fungi",
-                "c) Archaebacteria",
-                "d) Eubacteria"
-              ],
-              answer: "c) Archaebacteria"
-            },
-            {
-              year: "NEET/AIPMT 2012",
-              question: "The most abundant prokaryotes helpful to humans in making curd from milk and in production of antibiotics are the ones categorized as:",
-              options: [
-                "a) cyanobacteria",
-                "b) archaebacteria",
-                "c) chemosynthetic autotrophs",
-                "d) heterotrophic bacteria"
-              ],
-              answer: "d) heterotrophic bacteria"
-            },
-            {
-              year: "NEET/AIPMT 2012",
-              question: "The cyanobacteria are also referred to as:",
-              options: [
-                "a) protists",
-                "b) golden algae",
-                "c) slime moulds",
-                "d) blue green algae"
-              ],
-              answer: "d) blue green algae"
-            },
-            {
-              year: "NEET/AIPMT 2011",
-              question: "In eubacteria, a cellular component that resembles eukaryotic cells is:",
-              options: [
-                "a) plasma membrane",
-                "b) nucleus",
-                "c) ribosomes",
-                "d) cell wall"
-              ],
-              answer: "a) plasma membrane"
-            },
-            {
-              year: "NEET/AIPMT 2010",
-              question: "Some hyperthermophilic organisms that grow in highly acidic (pH₂) habitats belong to the two groups:",
-              options: [
-                "a) eubacteria and archaea",
-                "b) cyanobacteria and diatoms",
-                "c) protists and mosses",
-                "d) liverworts and yeasts"
-              ],
-              answer: "a) eubacteria and archaea"
-            },
-            {
-              year: "NEET/AIPMT 2008",
-              question: "In the light of recent classification of living organisms into three domains of life (bacteria, archaea and eukarya), which one of the following statements is true about archaea?",
-              options: [
-                "a) Archaea completely differ from both prokaryotes and eukaryotes",
-                "b) Archaea completely differ from prokaryotes",
-                "c) Archaea resemble eukarya in all respects",
-                "d) Archaea have some novel features that are absent in other prokaryotes and eukaryotes"
-              ],
-              answer: "d) Archaea have some novel features that are absent in other prokaryotes and eukaryotes"
-            },
-            {
-              year: "NEET/AIPMT 2008",
-              question: "Thermococcus, Methanococcus and Methanobacterium exemplify:",
-              options: [
-                "a) bacteria whose DNA is relaxed or positively supercoiled but which have a cytoskeleton as well as mitochondria",
-                "b) bacteria that contain a cytoskeleton and ribosomes",
-                "c) archaebacteria that contain protein homologous to eukaryotic core histones",
-                "d) archaebacteria that lack any histones resembling those found in eukaryotes but whose DNA is negatively supercoiled"
-              ],
-              answer: "c) archaebacteria that contain protein homologous to eukaryotic core histones"
-            },
-            {
-              year: "NEET/AIPMT 2008",
-              question: "Bacterial leaf blight of rice is caused by species:",
-              options: [
-                "a) Alternaria",
-                "b) Erwinia",
-                "c) Xanthomonas",
-                "d) Pseudomonas"
-              ],
-              answer: "c) Xanthomonas"
-            },
-            {
-              year: "NEET/AIPMT 2006",
-              question: "Curing of tea leaves is brought about by the activity of:",
-              options: [
-                "a) fungi",
-                "b) bacteria",
-                "c) mycorrhiza",
-                "d) viruses"
-              ],
-              answer: "b) bacteria"
-            },
-            {
-              year: "NEET/AIPMT 2005",
-              question: "For retting of jute the fermenting microbe used is:",
-              options: [
-                "a) methanophilic bacteria",
-                "b) butyric acid bacteria",
-                "c) Helicobacter pylori",
-                "d) Streptococcus lactis"
-              ],
-              answer: "b) butyric acid bacteria"
-            },
-            {
-              year: "NEET/AIPMT 2002",
-              question: "Which statement is correct for bacterial transduction?",
-              options: [
-                "a) Transfer of some genes from one bacteria to another bacteria through virus",
-                "b) Transfer of genes from one bacteria to another bacteria by conjugation",
-                "c) Bacteria obtained its DNA directly from mother cell",
-                "d) Bacteria obtained DNA from other external source"
-              ],
-              answer: "a) Transfer of some genes from one bacteria to another bacteria through virus"
-            },
-            {
-              year: "NEET/AIPMT 2001",
-              question: "What is true for archaebacteria?",
-              options: [
-                "a) All halophiles",
-                "b) All photosynthetics",
-                "c) All fossils",
-                "d) Oldest living beings"
-              ],
-              answer: "d) Oldest living beings"
-            },
-            {
-              year: "NEET/AIPMT 2001",
-              question: "Difference in Gram positive and Gram negative bacteria is due to:",
-              options: [
-                "a) cell wall",
-                "b) cell membrane",
-                "c) ribosome",
-                "d) cytoplasm"
-              ],
-              answer: "a) cell wall"
-            },
-            {
-              year: "NEET/AIPMT 1998",
-              question: "Genes for antibiotic resistance are located in:",
-              options: [
-                "a) Chromosome",
-                "b) Nucleus",
-                "c) Cell wall",
-                "d) Plasmid"
-              ],
-              answer: "d) Plasmid"
-            },
-            {
-              year: "NEET/AIPMT 1998",
-              question: "Which one of the following can utilize molecular nitrogen (N₂) as nutrient for growth?",
-              options: [
-                "a) Rhizobium",
-                "b) Spirogyra",
-                "c) Mucor",
-                "d) Methanococcus"
-              ],
-              answer: "d) Methanococcus"
-            },
-            {
-              year: "NEET/AIPMT 1990",
-              question: "Which one belongs to Monera?",
-              options: [
-                "a) Amoeba",
-                "b) Escherichia",
-                "c) Gelidium",
-                "d) Spirogyra"
-              ],
-              answer: "b) Escherichia"
-            },
-            {
-              year: "NEET/AIPMT 1990",
-              question: "The main difference in Gram (+)ve and Gram (-)ve bacteria resides in their:",
-              options: [
-                "a) cell wall",
-                "b) cell membrane",
-                "c) cytoplasm",
-                "d) flagella"
-              ],
-              answer: "a) cell wall"
-            }
-          ], 
-"2.2": [
-  {
-    "year": "PMT/NEET-2016",
-    "question": "Chrysophytes, Euglenoids, Dinoflagellates and Slime moulds are included in the Kingdom:",
-    "options": [
-      "a) Fungi",
-      "b) Animalia",
-      "c) Monera", 
-      "d) Protista"
-    ],
-    "answer": "d) Protista"
-  },
-  {
-    "year": "PMT/NEET-2012",
-    "question": "In the five kingdom classification, Chlamydomonas and Chlorella have been included in:",
-    "options": [
-      "a) protista",
-      "b) algae",
-      "c) plantae",
-      "d) monera"
-    ],
-    "answer": "a) protista"
-  },
-  {
-    "year": "PMT/NEET-2015",
-    "question": "In which group of organisms the cell walls form two thin overlapping shells which fit together?",
-    "options": [
-      "a) Dinoflagellates",
-      "b) Slime moulds", 
-      "c) Chrysophytes",
-      "d) Euglenoids"
-    ],
-    "answer": "c) Chrysophytes"
-  },
-  {
-    "year": "PMT/NEET-2018",
-    "question": "Which of the following organisms are known as chief producers in the oceans?",
-    "options": [
-      "a) Dinoflagellates",
-      "b) Diatoms",
-      "c) Cyanobacteria",
-      "d) Euglenoids"
-    ],
-    "answer": "b) Diatoms"
-  },
-  {
-    "year": "PMT/NEET-2016",
-    "question": "Select the wrong statement:",
-    "options": [
-      "a) The walls of diatoms are easily destructible",
-      "b) 'Diatomaceous earth' is formed by the cell walls of diatoms",
-      "c) Diatoms are chief producers in the oceans",
-      "d) Diatoms are microscopic and float passively in water"
-    ],
-    "answer": "a) The walls of diatoms are easily destructible"
-  },
-  {
-    "year": "PMT/NEET-2005",
-    "question": "Auxospores and hormogonia are formed, respectively, by:",
-    "options": [
-      "a) some diatoms and several cyanobacteria",
-      "b) some cyanobacteria and many diatoms",
-      "c) several cyanobacteria and several diatoms",
-      "d) several diatoms and few cyanobacteria"
-    ],
-    "answer": "a) some diatoms and several cyanobacteria"
-  },
-  {
-    "year": "PMT/NEET-1993",
-    "question": "Transverse groove present in dinoflagellates is:",
-    "options": [
-      "a) Sulcus",
-      "b) Cingulum",
-      "c) Annulus", 
-      "d) Both (b) and (c)"
-    ],
-    "answer": "b) Cingulum"
-  },
-  {
-    "year": "PMT/NEET-1995",
-    "question": "Which of the following organisms possesses characters of both plants and animals?",
-    "options": [
-      "a) Euglena",
-      "b) Paramecium",
-      "c) Bacteria",
-      "d) Mycoplasma"
-    ],
-    "answer": "a) Euglena"
-  },
-  {
-    "year": "PMT/NEET-2007",
-    "question": "Which one of the following is a slime mould?",
-    "options": [
-      "a) Physarum",
-      "b) Thiobacillus", 
-      "c) Anabaena",
-      "d) Rhizopus"
-    ],
-    "answer": "a) Physarum"
-  },
-  {
-    "year": "PMT/NEET-1993",
-    "question": "Spore producing body of a cellular slime mould is:",
-    "options": [
-      "a) Pseudoplasmodium",
-      "b) Plasmodium",
-      "c) Sporangium",
-      "d) Sporophore"
-    ],
-    "answer": "c) Sporangium"
-  },
-  {
-    "year": "PMT/NEET-1989",
-    "question": "Trypanosoma belongs to Class:",
-    "options": [
-      "a) Sarcodina",
-      "b) Zooflagellata",
-      "c) Ciliata",
-      "d) Sporozoa"
-    ],
-    "answer": "b) Zooflagellata"
-  },
-  {
-    "year": "PMT/NEET-1995, 1999, 1999",
-    "question": "Infective stage of Trypanosoma gambiense is:",
-    "options": [
-      "a) Metacyclic",
-      "b) Crithidial",
-      "c) Leptomonas", 
-      "d) Leishmania"
-    ],
-    "answer": "a) Metacyclic"
-  },
-  {
-    "year": "PMT/NEET-1993",
-    "question": "The causal organism of Kala-azar is:",
-    "options": [
-      "a) Plasmodium vivax",
-      "b) Leishmania donovani",
-      "c) Trypanosoma lewsii",
-      "d) Wuchereria bancrofti"
-    ],
-    "answer": "b) Leishmania donovani"
-  },
-  {
-    "year": "PMT/NEET-1991, 1995, 1993",
-    "question": "Amoebic dysentery is caused by:",
-    "options": [
-      "a) Entamoeba histolytica",
-      "b) Entamoeba gingivalis",
-      "c) Entamoeba coli",
-      "d) Amoeba proteus"
-    ],
-    "answer": "a) Entamoeba histolytica"
-  },
-  {
-    "year": "PMT/NEET-1997",
-    "question": "Infective stage of Entamoeba histolytica is:",
-    "options": [
-      "a) Trophozoite",
-      "b) Pre-cyst",
-      "c) Uninucleate cyst", 
-      "d) Tetranucleate cyst"
-    ],
-    "answer": "d) Tetranucleate cyst"
-  },
-  {
-    "year": "PMT/NEET-2003",
-    "question": "The chief advantage of encystment of an Amoeba is:",
-    "options": [
-      "a) the ability to survive during adverse physical conditions",
-      "b) the ability to live for some time without ingesting food",
-      "c) protection from parasites and predators",
-      "d) the chance to get rid of accumulated waste products"
-    ],
-    "answer": "a) the ability to survive during adverse physical conditions"
-  },
-  {
-    "year": "PMT/NEET-1995",
-    "question": "Amoeba touched with needle will:",
-    "options": [
-      "a) Die",
-      "b) Divide quickly",
-      "c) Develop pseudopodia",
-      "d) Move away"
-    ],
-    "answer": "d) Move away"
-  },
-  {
-    "year": "PMT/NEET-2018",
-    "question": "Ciliates differ from all other protozoans in:",
-    "options": [
-      "a) using flagella for locomotion",
-      "b) having a contractile vacuole for removing excess water",
-      "c) using pseudopodia for capturing prey",
-      "d) having two types of nuclei"
-    ],
-    "answer": "d) having two types of nuclei"
-  },
-  {
-    "year": "PMT/NEET-2002",
-    "question": "In which of the following animals dimorphic nucleus is found?",
-    "options": [
-      "a) Amoeba proteus",
-      "b) Trypanosoma gambiense",
-      "c) Plasmodium vivax",
-      "d) Paramecium caudatum"
-    ],
-    "answer": "d) Paramecium caudatum"
-  },
-  {
-    "year": "PMT/NEET-1990",
-    "question": "Genetic information in Paramecium is contained in:",
-    "options": [
-      "a) micronucleus",
-      "b) macronucleus",
-      "c) both micronucleus and macronucleus",
-      "d) mitochondria"
-    ],
-    "answer": "a) micronucleus"
-  },
-  {
-    "year": "PMT/NEET-1991, 1994",
-    "question": "Which protist reproduces both by binary fission and conjugation?",
-    "options": [
-      "a) Amoeba",
-      "b) Paramecium",
-      "c) Euglena",
-      "d) Monocystis"
-    ],
-    "answer": "b) Paramecium"
-  },
-  {
-    "year": "PMT/NEET-1990",
-    "question": "Plasmodium, the malarial parasite, belongs to class:",
-    "options": [
-      "a) sarcodina",
-      "b) ciliata",
-      "c) sporozoa",
-      "d) dinophyceae"
-    ],
-    "answer": "c) sporozoa"
-  },
-  {
-    "year": "PMT/NEET-1992, 2000",
-    "question": "Malarial parasite is:",
-    "options": [
-      "a) Polygenetic", 
-      "b) Digenetic",
-      "c) Monogenetic",
-      "d) Monomorphic"
-    ],
-    "answer": "b) Digenetic"
-  },
-  {
-    "year": "PMT/NEET-1992",
-    "question": "The part of life cycle of malarial parasite Plasmodium vivax, that is passed in female Anopheles is:",
-    "options": [
-      "a) Sexual cycle",
-      "b) Pre-erythrocytic schizogony",
-      "c) Exoerythrocytic schizogony",
-      "d) Post-erythrocytic schizogony"
-    ],
-    "answer": "a) Sexual cycle"
-  },
-  {
-    "year": "PMT/NEET-1999",
-    "question": "Motile elongate zygote of Plasmodium occurs in:",
-    "options": [
-      "a) Human RBCs",
-      "b) Human liver",
-      "c) Salivary glands of mosquito",
-      "d) Gut of mosquito"
-    ],
-    "answer": "d) Gut of mosquito"
-  },
-  {
-    "year": "PMT/NEET-1989, 2001, 2002",
-    "question": "Malaria fever coincides with liberation of:",
-    "options": [
-      "a) Cryptomerozoites",
-      "b) Metacryptomerozoites",
-      "c) Merozoites",
-      "d) Trophozoites"
-    ],
-    "answer": "c) Merozoites"
-  },
-  {
-    "year": "PMT/NEET-1998",
-    "question": "After how many days could a patient commonly feel malaria from the time of biting of mosquito?",
-    "options": [
-      "a) 2 - 8 days",
-      "b) 8-10 days",
-      "c) 10-20 days",
-      "d) 20 - 30 days"
-    ],
-    "answer": "c) 10-20 days"
-  },
-  {
-    "year": "PMT/NEET-1995, 1996, 2000",
-    "question": "The major function of contractile vacuole is:",
-    "options": [
-      "a) Excretion",
-      "b) Circulation",
-      "c) Osmoregulation",
-      "d) All the above"
-    ],
-    "answer": "c) Osmoregulation"
-  },
-  {
-    "year": "PMT/NEET-2002",
-    "question": "In protozoa like Amoeba and Paramecium, the organ for osmoregulation is:",
-    "options": [
-      "a) contractile vacuole",
-      "b) mitochondria",
-      "c) nucleus",
-      "d) food vacuole"
-    ],
-    "answer": "a) contractile vacuole"
-  },
-  {
-    "year": "PMT/NEET-1991",
-    "question": "In Amoeba and Paramecium osmoregulation occurs through:",
-    "options": [
-      "a) pseudopodia",
-      "b) nucleus",
-      "c) contractile vacuole",
-      "d) dinophyceae"
-    ],
-    "answer": "c) contractile vacuole"
-  },
-  {
-    "year": "PMT/NEET-2004",
-    "question": "When a fresh-water protozoan possessing a contractile vacuole, is placed in a glass containing marine water, the vacuole will:",
-    "options": [
-      "a) increase in number",
-      "b) disappear",
-      "c) increase in size",
-      "d) decrease in size"
-    ],
-    "answer": "b) disappear"
-  },
-  {
-    "year": "PMT/NEET-1993",
-    "question": "Amoeba taken downstream to estuary will show:",
-    "options": [
-      "a) Disappearance of contractile vacuole",
-      "b) Binary fission",
-      "c) Encystment",
-      "d) Stoppage of feeding"
-    ],
-    "answer": "a) Disappearance of contractile vacuole"
-  }
-    ], 
-"2.3": [
-  {
-    "year": "PMT/NEET-2013",
-    "question": "Which one of the following is true for fungi?",
-    "options": [
-      "a) They lack a rigid cell wall",
-      "b) They are heterotrophs",
-      "c) They lack nuclear membrane",
-      "d) They are phagotrophs"
-    ],
-    "answer": "b) They are heterotrophs"
-  },
-  {
-    "year": "PMT/NEET-2016",
-    "question": "One of the major components of cell wall of most fungi is:",
-    "options": [
-      "a) cellulose",
-      "b) hemicellulose",
-      "c) chitin",
-      "d) peptidoglycan"
-    ],
-    "answer": "c) chitin"
-  },
-  {
-    "year": "PMT/NEET-2016",
-    "question": "Which one of the following is wrong for fungi?",
-    "options": [
-      "a) They are eukaryotic",
-      "b) All fungi possess a purely cellulosic cell wall",
-      "c) They are heterotrophic",
-      "d) They are both unicellular and multicellular"
-    ],
-    "answer": "b) All fungi possess a purely cellulosic cell wall"
-  },
-  {
-    "year": "PMT/NEET-2021",
-    "question": "Fusion of protoplasms between two motile or non-motile gametes is called:",
-    "options": [
-      "a) Some of the organisms can fix atmospheric nitrogen in specialised cells called karyogamy",
-      "b) Fusion of two cells is called karyogamy",
-      "c) Fusion of protoplasms between two motile or non-motile gametes is called plasmogamy",
-      "d) Organisms that depend on living plants are called saprophytes"
-    ],
-    "answer": "c) Fusion of protoplasms between two motile or non-motile gametes is called plasmogamy"
-  },
-  {
-    "year": "PMT/NEET-1997",
-    "question": "Algal fungi are placed in:", 
-    "options": [
-      "a) Ascomycetes",
-      "b) Basidiomycetes",
-      "c) Phycomycetes",
-      "d) Deuteromycetes"
-    ],
-    "answer": "c) Phycomycetes"
-  },
-  {
-    "year": "PMT/NEET-1993",
-    "question": "In Mucor, asexual reproduction takes place by:",
-    "options": [
-      "a) Motile zoospores",
-      "b) Spores", 
-      "c) Zoogametes",
-      "d) Zygospores"
-    ],
-    "answer": "a) Motile zoospores"
-  },
-  {
-    "year": "PMT/NEET-1999",
-    "question": "Columella is specialized structure found in the sporangium of:",
-    "options": [
-      "a) Spirogyra",
-      "b) Ulothrix",
-      "c) Rhizopus",
-      "d) none of these"
-    ],
-    "answer": "c) Rhizopus"
-  },
-  {
-    "year": "PMT/NEET-1999",
-    "question": "Coenogametes are formed in:",
-    "options": [
-      "a) Albugo",
-      "b) Saccharomyces", 
-      "c) Rhizopus",
-      "d) Alternaria"
-    ],
-    "answer": "a) Albugo"
-  },
-  {
-    "year": "PMT/NEET-1992, 1989, 1992",
-    "question": "Yeast produces an enzyme complex that is responsible for fermentation. The enzyme complex is:",
-    "options": [
-      "a) Aldolase",
-      "b) Dehydrogenase", 
-      "c) Invertase",
-      "d) Zymase"
-    ],
-    "answer": "d) Zymase"
-  },
-  {
-    "year": "PMT/NEET-2015",
-    "question": "Choose the wrong statement:",
-    "options": [
-      "a) Morels and truffles are poisonous mushrooms",
-      "b) Yeast is unicellular and useful in fermentation",
-      "c) Penicillium is multicellular and produces antibiotics",
-      "d) Neurospora is used in the study of biochemical genetics"
-    ],
-    "answer": "a) Morels and truffles are poisonous mushrooms"
-  },
-  {
-    "year": "PMT/NEET-2019",
-    "question": "Which of the following statement is incorrect?",
-    "options": [
-      "a) Yeasts have filamentous bodies with long thread like hyphae",
-      "b) Morels and truffles are edible delicacies", 
-      "c) Claviceps is a source of many alkaloids and LSD",
-      "d) Conidia are produced exogenously and ascospores endogenously"
-    ],
-    "answer": "a) Yeasts have filamentous bodies with long thread like hyphae"
-  },
-  {
-    "year": "PMT/NEET-2011",
-    "question": "The pathogen Microsporum responsible for ringworm disease in humans belongs to the same kingdom of organisms as that of:",
-    "options": [
-      "a) Taenia, a tapeworm",
-      "b) Wuchereria, a filarial worm",
-      "c) Rhizopus, a mould",
-      "d) Ascaris, a round worm"
-    ],
-    "answer": "c) Rhizopus, a mould"
-  },
-  {
-    "year": "PMT/NEET-2014",
-    "question": "Which one of the following fungi contains hallucinogens?",
-    "options": [
-      "a) Morchella esculenta",
-      "b) Amanita muscaria",
-      "c) Neurospora sp.",
-      "d) Ustilago sp."
-    ],
-    "answer": "b) Amanita muscaria"
-  },
-  {
-    "year": "PMT/NEET-2007",
-    "question": "Which pair of the following belongs to basidiomycetes?",
-    "options": [
-      "a) Puffballs and Claviceps",
-      "b) Peziza and stink horns", 
-      "c) Morchella and Mushrooms",
-      "d) Birds nest fungi and puffballs"
-    ],
-    "answer": "d) Birds nest fungi and puffballs"
-  },
-  {
-    "year": "PMT/NEET-2018",
-    "question": "After karyogamy followed by meiosis, spores are produced exogenously in:",
-    "options": [
-      "a) Neurospora",
-      "b) Alternaria", 
-      "c) Agaricus",
-      "d) Saccharomyces"
-    ],
-    "answer": "c) Agaricus"
-  },
-  {
-    "year": "PMT/NEET-2000",
-    "question": "Black rust of wheat is caused by:",
-    "options": [
-      "a) Puccinia",
-      "b) Ustilago",
-      "c) Albugo", 
-      "d) Phytophthora"
-    ],
-    "answer": "a) Puccinia"
-  },
-  {
-    "year": "PMT/NEET-1995",
-    "question": "The black rust of wheat is fungal disease caused by:",
-    "options": [
-      "a) Albugo candida",
-      "b) Puccinia graminis tritici",
-      "c) Melampsora lini",
-      "d) Claviceps purpurea"
-    ],
-    "answer": "b) Puccinia graminis tritici"
-  },
-  {
-    "year": "PMT/NEET-2015",
-    "question": "The imperfect fungi which are decomposers of litter and help in mineral cycling belong to:",
-    "options": [
-      "a) Phycomycetes",
-      "b) Ascomycetes", 
-      "c) Deuteromycetes",
-      "d) Basidiomycetes"
-    ],
-    "answer": "c) Deuteromycetes"
-  },
-  {
-    "year": "PMT/NEET-2015",
-    "question": "Which one of the following matches is correct?",
-    "options": [
-      "a) Mucor - Reproduction by conjugation - Ascomycetes",
-      "b) Agaricus - Parasitic fungus - Basidiomycetes", 
-      "c) Phytophthora - Aseptate mycelium - Basidiomycetes",
-      "d) Alternaria - Sexual reproduction absent - Deuteromycetes"
-    ],
-    "answer": "d) Alternaria - Sexual reproduction absent - Deuteromycetes"
-  },
-  {
-    "year": "PMT/NEET-1994, 2002",
-    "question": "Mycorrhiza exhibits the phenomenon of:",
-    "options": [
-      "a) Antagonism",
-      "b) Endemism", 
-      "c) Parasitism",
-      "d) Symbiosis"
-    ],
-    "answer": "d) Symbiosis"
-  },
-  {
-    "year": "PMT/NEET-1998, 2002",
-    "question": "Mycorrhiza works as:",
-    "options": [
-      "a) Modified root",
-      "b) An organism for vegetative propagation",
-      "c) A root hair in adverse condition", 
-      "d) Mechanical tissue for support"
-    ],
-    "answer": "c) A root hair in adverse condition"
-  },
-  {
-    "year": "PMT/NEET-2019",
-    "question": "Match column-I with column-II: (A) Saprophyte - 1. Symbiotic association of fungi with plant roots (B) Parasite - 2. Decomposition of dead organic materials (C) Lichens - 3. Living on living plants or animals (D) Mycorrhiza - 4. Symbiotic association of algae and fungi",
-    "options": [
-      "a) A-2, B-3, C-4, D-1",
-      "b) A-1, B-2, C-3, D-4", 
-      "c) A-3, B-2, C-1, D-4",
-      "d) A-2, B-1, C-3, D-4"
-    ],
-    "answer": "a) A-2, B-3, C-4, D-1"
-  },
-  {
-    "year": "PMT/NEET-1997, 2005",
-    "question": "Ergot is caused by:",
-    "options": [
-      "a) Claviceps",
-      "b) Penicillium",
-      "c) Aspergillus", 
-      "d) Rhizobium"
-    ],
-    "answer": "a) Claviceps"
-  },
-  {
-    "year": "PMT/NEET-1997, 2000, 2005",
-    "question": "The disease of potato responsible for famous famine of Europe was caused by or late blight of potato is caused by:",
-    "options": [
-      "a) Colletotrichum falcatum",
-      "b) Phytophthora infestans",
-      "c) Potato mosaic virus", 
-      "d) Alternaria solani"
-    ],
-    "answer": "b) Phytophthora infestans"
-  },
-  {
-    "year": "PMT/NEET-2002",
-    "question": "Which of the following secrets toxins during storage conditions of crop plants?",
-    "options": [
-      "a) Aspergillus",
-      "b) Penicillium",
-      "c) Fusarium", 
-      "d) Colletotrichum"
-    ],
-    "answer": "a) Aspergillus"
-  },
-  {
-    "year": "PMT/NEET-2002",
-    "question": "Which fungal disease spreads by seed and flowers?",
-    "options": [
-      "a) Loose smut of wheat",
-      "b) Corn smut", 
-      "c) Covered smut of barley",
-      "d) Soft rot of potato"
-    ],
-    "answer": "a) Loose smut of wheat"
-  },
-  {
-    "year": "PMT/NEET-2006",
-    "question": "Curing of tea leaves is brought about by the activity of:",
-    "options": [
-      "a) fungi",
-      "b) bacteria",
-      "c) mycorrhiza", 
-      "d) viruses"
-    ],
-    "answer": "a) fungi"
-  },
-  {
-    "year": "PMT/NEET-2006",
-    "question": "Which of the following environmental conditions are essential for optimum growth of Mucor on a piece of bread? A. Temperature of about 25°C B. Temperature of about 5°C C. Relative humidity of about 5% D. Relative humidity of about 95% E. A shady place F. A brightly illuminated place",
-    "options": [
-      "a) B, C and F only",
-      "b) A, C and E only", 
-      "c) A, D and E only",
-      "d) B, D and E only"
-    ],
-    "answer": "c) A, D and E only"
-  }
-], 
-
-"2.4": [
-  {
-    "year": "PMT/NEET-2012",
-    "question": "Nuclear membrane is absent in:",
-    "options": [
-      "a) Penicillium",
-      "b) Agaricus",
-      "c) Volvox",
-      "d) Nostoc"
-    ],
-    "answer": "d) Nostoc"
-  },
-  {
-    "year": "PMT/NEET-2015",
-    "question": "True nucleus is absent in:",
-    "options": [
-      "a) Vaucheria",
-      "b) Volvox",
-      "c) Anabaena",
-      "d) Mucor"
-    ],
-    "answer": "c) Anabaena"
-  },
-  {
-    "year": "PMT/NEET-2015",
-    "question": "Cell wall is absent in:",
-    "options": [
-      "a) Mycoplasma",
-      "b) Nostoc",
-      "c) Aspergillus",
-      "d) Funaria"
-    ],
-    "answer": "a) Mycoplasma"
-  },
-  {
-    "year": "PMT/NEET-2018",
-    "question": "Select the wrong statement:",
-    "options": [
-      "a) Cell wall is present in members of fungi and plantae",
-      "b) Mushrooms belong to basidiomycetes",
-      "c) Pseudopodia are locomotory and feeding structure in sporozoans",
-      "d) Mitochondria are the power house of the cell in all kingdom except monera"
-    ],
-    "answer": "c) Pseudopodia are locomotory and feeding structure in sporozoans"
-  },
-  {
-    "year": "PMT/NEET-2015",
-    "question": "Pick up the wrong statement:",
-    "options": [
-      "a) Some fungi are edible",
-      "b) Nuclear membrane is present in Monera",
-      "c) Cell wall is absent in Animalia",
-      "d) Protists have photosynthetic and heterotrophic modes of nutrition"
-    ],
-    "answer": "b) Nuclear membrane is present in Monera"
-  }
-], 
-
-"2.5": [
-  {
-    "year": "PMT/NEET-2014",
-    "question": "Which one of the following living organisms completely lacks a cell wall?",
-    "options": [
-      "a) Cyanobacteria",
-      "b) Sea-fan (Gorgonia)",
-      "c) Saccharomyces",
-      "d) Blue-green algae"
-    ],
-    "answer": "b) Sea-fan (Gorgonia)"
-  },
-  {
-    "year": "PMT/NEET-1988",
-    "question": "Peripatus is connecting link between:",
-    "options": [
-      "a) Annelida and Arthropoda",
-      "b) Mollusca and Arthropoda",
-      "c) Annelida and Mollusca",
-      "d) Coelenterata and Platyhelminthes"
-    ],
-    "answer": "a) Annelida and Arthropoda"
-  },
-  {
-    "year": "PMT/NEET-1988",
-    "question": "Platyhelminthes are called as:",
-    "options": [
-      "a) Round worms",
-      "b) Flat worms",
-      "c) Blind worms",
-      "d) Tubicolous worms"
-    ],
-    "answer": "b) Flat worms"
-  }
-]
-
- }
+          "10": [],
+          "11": [],
+          "12": [],
+          "13": [],
+          "14": [],
+          "15": [],
+          "16": [],
+          "17": [],
+          "18": [],
+          "19": [],
+          "20": [],
+          "21": [],
+          "22": []
+        }
       },
-      // Continue with other chapters...
       "3": {
-        title: "Plant Kingdom", 
-        sections: [
-                    {id: "3.1", name: "Algae"},
-          {id: "3.2", name: "Bryophytes"},
-          {id: "3.3", name: "Pteridophytes"},
-          {id: "3.4", name: "Gymnosperms"},
-          {id: "3.5", name: "Angiosperms"}
-        ], 
-        questions: {}
+        title: "Plant Kingdom",
+        questions: {
+          "23": [],
+          "24": [],
+          "25": [],
+          "26": [],
+          "27": [],
+          "28": [],
+          "29": [],
+          "30": [],
+          "31": [],
+          "32": [],
+          "33": [],
+          "34": [],
+          "35": [],
+          "36": []
+        }
       },
       "4": {
-        title: "Animal Kingdom", 
-        sections: [
-          
-          {id: "4.1", name: "Basis of Classification"},
-          {id: "4.2", name: "Classification of Animals"}, 
-          ], 
+        title: "Animal Kingdom",
         questions: {
-
-          "4.1": [
-  {"year": "PMT/NEET-1989", "question": "Coelom is the cavity between:", "options": ["a) ectoderm and mesoderm", "b) epidermis and gastrodermis", "c) body wall and gut wall", "d) body wall and pericardium"], "answer": "c) body wall and gut wall"},
-  {"year": "PMT/NEET-1990", "question": "Animals having bilateral symmetry:", "options": ["a) are triploblastic", "b) have organ system level of organization", "c) have three germ layers", "d) all of the above"], "answer": "d) all of the above"},
-  {"year": "PMT/NEET-1992", "question": "Which one of the following is a matching pair of a body feature and the animal possessing it?", "options": ["a) Post-anal tail - Octopus", "b) Ventral central nervous system - Leech", "c) Pharyngeal gill slits - Silverfish", "d) Ventral heart - Scorpion"], "answer": "b) Ventral central nervous system - Leech"},
-  {"year": "PMT/NEET-1995", "question": "In which one of the following, the genus name, its two characters and its phylum are not correctly matched?", "options": ["a) Genus name: Pila, Two characters: Body segmented, mouth with radula, Phylum: Mollusca", "b) Genus name: Asterias, Two characters: Spiny skinned, water vascular system, Phylum: Echinodermata", "c) Genus name: Sycon, Two characters: Pore bearing, canal system, Phylum: Porifera", "d) Genus name: Periplaneta, Two characters: Jointed appendages, chitinous exoskeleton, Phylum: Arthropoda"], "answer": "a) Genus name: Pila, Two characters: Body segmented, mouth with radula, Phylum: Mollusca"},
-  {"year": "PMT/NEET-1997", "question": "Metagenesis is exhibited by:", "options": ["a) Hydra", "b) Obelia", "c) Aurelia", "d) Physalia"], "answer": "b) Obelia"},
-  {"year": "PMT/NEET-1999", "question": "In which one of the following, the genus name, its two characters and its class/phylum are correctly matched?", "options": ["a) Aurelia - Cnidoblasts, Medusoid - Class: Scyphozoa", "b) Ascaris - Body segmented, males and females distinct - Phylum: Aschelminthes", "c) Salamandra - Tailed, bony endoskeleton - Class: Amphibia", "d) Pteropus - Skin possess hair, oviparous - Class: Mammalia"], "answer": "a) Aurelia - Cnidoblasts, Medusoid - Class: Scyphozoa"},
-  {"year": "PMT/NEET-2003", "question": "Assertion: Deuterostomes are called so because in these animals, the mouth is derived from the blastopore.\nReason: All deuterostomes are chordates.", "options": ["a) Both Assertion and Reason are correct and Reason is the correct explanation of Assertion", "b) Both Assertion and Reason are correct but Reason is not the correct explanation of Assertion", "c) Assertion is correct but Reason is incorrect", "d) Both Assertion and Reason are incorrect"], "answer": "d) Both Assertion and Reason are incorrect"},
-  {"year": "PMT/NEET-2005", "question": "Epithelium which has thin flat cells, arranged edge to edge is called as:", "options": ["a) columnar epithelium", "b) ciliated epithelium", "c) squamous epithelium", "d) cuboidal epithelium"], "answer": "c) squamous epithelium"},
-  {"year": "PMT/NEET-2007", "question": "Which one of the following categories of animals, is correctly described with no single exception in it?", "options": ["a) All mammals are viviparous", "b) All echinoderms have organ system level of organisation", "c) Flatworms have an incomplete gut", "d) All chordates are vertebrates"], "answer": "b) All echinoderms have organ system level of organisation"},
-  {"year": "PMT/NEET-2008", "question": "Which one of the following statements is incorrect?", "options": ["a) Mesoglea is present in between ectoderm and endoderm in Obelia", "b) Typhlosole increases the effective area of absorption in the intestine of earthworm", "c) Nephridia are basically similar to flame cells", "d) Body cavity is the cavity between body wall and gut wall lined by mesoderm"], "answer": "c) Nephridia are basically similar to flame cells"},
-  {"year": "PMT/NEET-2011", "question": "Which one of the following is the true description about an animal concerned?", "options": ["a) Cockroach - 10 pairs of spiracles (2 pairs on thorax and 8 pairs on abdomen)", "b) Earthworm - The alimentary canal consists of a sequence of pharynx, oesophagus, stomach, gizzard and intestine", "c) Frog - Body divisible into three regions - head, neck and trunk", "d) Rat - Left kidney is slightly higher in position than the right one"], "answer": "a) Cockroach - 10 pairs of spiracles (2 pairs on thorax and 8 pairs on abdomen)"},
-  {"year": "PMT/NEET-2012", "question": "One of the representatives of phylum Arthropoda is:", "options": ["a) silverfish", "b) pufferfish", "c) flying fish", "d) cuttlefish"], "answer": "a) silverfish"},
-  {"year": "PMT/NEET-2014", "question": "Which one of the following statements is incorrect?", "options": ["a) The body cavity in Porifera is spongocoel", "b) Crocodiles have a four-chambered heart", "c) Earthworms are hermaphrodites and yet cross-fertilization takes place in them", "d) Ctenophores are diploblastic animals"], "answer": "d) Ctenophores are diploblastic animals"},
-  {"year": "NEET-2016", "question": "Which of the following characteristic features always holds true for the corresponding group of animals?", "options": ["a) Viviparous - Mammalia", "b) Possess a mouth with an upper and lower jaw - Chordata", "c) 3-chambered heart with one incompletely divided ventricle - Reptilia", "d) Cartilaginous endoskeleton - Chondrichthyes"], "answer": "d) Cartilaginous endoskeleton - Chondrichthyes"},
-  {"year": "NEET-2017", "question": "Match the following columns and select the correct option.\nColumn I\t\t\tColumn II\n(a) Porifera\t\t(i) Coelenterata\n(b) Ctenophora\t\t(ii) Comb plates\n(c) Cnidaria\t\t(iii) Choanocytes\n(d) Platyhelminthes\t(iv) Flame cells", "options": ["a) (a)-(iii), (b)-(ii), (c)-(i), (d)-(iv)", "b) (a)-(iii), (b)-(iv), (c)-(ii), (d)-(i)", "c) (a)-(i), (b)-(iii), (c)-(ii), (d)-(iv)", "d) (a)-(i), (b)-(ii), (c)-(iii), (d)-(iv)"], "answer": "a) (a)-(iii), (b)-(ii), (c)-(i), (d)-(iv)"},
-  {"year": "NEET-2019", "question": "Which of the following represents the action of insulin?", "options": ["a) Increases blood glucose levels by hydrolysis of glycogen", "b) Decreases blood glucose levels by forming glycogen", "c) Increases blood glucose levels by promoting cellular uptake of glucose", "d) Increases blood glucose level by stimulating glucagon production"], "answer": "b) Decreases blood glucose levels by forming glycogen"},
-  {"year": "NEET-2021", "question": "Identify the incorrect statement:", "options": ["a) In Urochordata notochord extends from head to tail and it is present throughout their life", "b) In Vertebrata notochord is present during the embryonic period only", "c) Central nervous system is dorsal and hollow", "d) Chordata is divided into 3 subphyla: Hemichordata, Tunicata and Cephalochordata"], "answer": "d) Chordata is divided into 3 subphyla: Hemichordata, Tunicata and Cephalochordata"}
-], 
-          "4.2": [
-  {"year": "PMT/NEET-1992", "question": "Canal system is a characteristic feature of:", "options": ["a) echinoderms", "b) sponges", "c) coelenterates", "d) hemichordates"], "answer": "b) sponges"},
-  {"year": "PMT/NEET-2000", "question": "Which of the following animals have scattered cells with cell tissue grade organisation?", "options": ["a) Sponge", "b) Hydra", "c) Liver fluke", "d) Ascaris"], "answer": "a) Sponge"},
-  {"year": "NEET-2017", "question": "In case of poriferans, the spongocoel is lined with flagellated cells called:", "options": ["a) oscula", "b) choanocytes", "c) mesenchymal cells", "d) ostia"], "answer": "b) choanocytes"},
-  {"year": "PMT/NEET-1990", "question": "Nematocysts are found in:", "options": ["a) Flatworms", "b) Roundworms", "c) Coelenterates", "d) Insects"], "answer": "c) Coelenterates"},
-  {"year": "PMT/NEET-1994", "question": "One of the special characters of coelenterata only is the occurrence of:", "options": ["a) polymorphism", "b) flame cells", "c) hermaphroditism", "d) nematocysts"], "answer": "d) nematocysts"},
-  {"year": "PMT/NEET-1997", "question": "Metagenesis is exhibited by:", "options": ["a) Hydra", "b) Obelia", "c) Aurelia", "d) Physalia"], "answer": "b) Obelia"},
-  {"year": "PMT/NEET-1998", "question": "Most appropriate term to describe the life cycle of Obelia is:", "options": ["a) metamorphosis", "b) neoteny", "c) metagenesis", "d) all of these"], "answer": "c) metagenesis"},
-  {"year": "PMT/NEET-2001", "question": "Cnidaria is characterized by:", "options": ["a) Nematocysts", "b) Colloblasts", "c) Cnidoblasts", "d) Both (a) and (c)"], "answer": "d) Both (a) and (c)"},
-  {"year": "NEET-2019", "question": "Polyp form is found in:", "options": ["a) Hydra", "b) Adamsia", "c) Pennatula", "d) All of these"], "answer": "d) All of these"},
-  {"year": "PMT/NEET-2006", "question": "Biradial symmetry and lack of cnidoblasts are the characteristics of:", "options": ["a) Hydra and starfish", "b) Starfish and sea anemone", "c) Ctenoplana and Beroe", "d) Aurelia and Paramecium"], "answer": "c) Ctenoplana and Beroe"},
-  {"year": "PMT/NEET-1988", "question": "The embryo of Taenia present in ripe proglottids is:", "options": ["a) Tetracanth", "b) Hexacanth", "c) Miracidium", "d) Bladderworm"], "answer": "b) Hexacanth"},
-  {"year": "PMT/NEET-1991", "question": "The excretory structures of flatworm/planaria are:", "options": ["a) Malpighian tubules", "b) protonephridia", "c) green glands", "d) nephridia"], "answer": "b) protonephridia"},
-  {"year": "NEET-2020", "question": "Bilaterally symmetrical and acoelomate animals are exemplified by:", "options": ["a) ctenophore", "b) platyhelminthes", "c) aschelminthes", "d) annelida"], "answer": "b) platyhelminthes"},
-  {"year": "PMT/NEET-1988", "question": "Male Ascaris is differentiable from female Ascaris in:", "options": ["a) Presence of post-anal papillae", "b) Presence of pre-anal papillae", "c) Presence of penial setae", "d) All the above"], "answer": "d) All the above"},
-  {"year": "PMT/NEET-1998", "question": "Roundworm is:", "options": ["a) Coelomate", "b) Acoelomate", "c) Pseudocoelomate", "d) None of these"], "answer": "c) Pseudocoelomate"},
-  {"year": "PMT/NEET-2008", "question": "Ascaris is characterized by:", "options": ["a) presence of true coelom but absence of metamerism", "b) presence of true coelom and metamerism", "c) absence of true coelom but presence of metamerism", "d) presence of neither true coelom nor metamerism"], "answer": "d) presence of neither true coelom nor metamerism"},
-  {"year": "NEET-2024", "question": "Consider the following statements:\nA. Annelids are true coelomates\nB. Poriferans are pseudocoelomates\nC. Aschelminthes are acoelomates\nD. Platyhelminthes are pseudocoelomates", "options": ["a) B only", "b) A only", "c) C only", "d) D only"], "answer": "b) A only"},
-  {"year": "PMT/NEET-1988", "question": "In Pheretima oxygen carrying haemoglobin occurs in:", "options": ["a) plasma only", "b) corpuscles", "c) coelomic fluid", "d) both plasma and corpuscles"], "answer": "a) plasma only"},
-  {"year": "PMT/NEET-1992", "question": "Metamerism is characteristic of:", "options": ["a) Platyhelminthes", "b) Echinodermata", "c) Annelida", "d) Mollusca"], "answer": "c) Annelida"},
-  {"year": "PMT/NEET-2006", "question": "Metameric segmentation is the characteristic of:", "options": ["a) Mollusca and chordata", "b) Platyhelminthes and arthropoda", "c) Echinodermata and annelida", "d) Annelida and arthropoda"], "answer": "d) Annelida and arthropoda"},
-  {"year": "PMT/NEET-2008", "question": "Which one of the following is not a characteristic of Phylum Annelida?", "options": ["a) Pseudocoelom", "b) Ventral nerve cord", "c) Closed circulatory system", "d) Segmentation"], "answer": "a) Pseudocoelom"},
-  {"year": "NEET-2019", "question": "Consider following features.\n(A) Organ system level of organisation\n(B) Bilateral symmetry\n(C) True coelomates with segmentation of body\nSelect the correct option of animal groups which possess all the above characteristics.", "options": ["a) Annelida, Mollusca and Chordata", "b) Annelida, Arthropoda and Chordata", "c) Annelid, Arthropoda and Mollusca", "d) Arthropoda, Mollusca and Chordata"], "answer": "b) Annelida, Arthropoda and Chordata"},
-  {"year": "PMT/NEET-1990", "question": "Malpighian tubules are:", "options": ["a) excretory organs of insects", "b) excretory organs of annelids", "c) respiratory organs of insects", "d) respiratory organs of annelids"], "answer": "a) excretory organs of insects"},
-  {"year": "PMT/NEET-1992", "question": "Adult Culex and Anopheles can be distinguished with the help of:", "options": ["a) wings/antennae", "b) sitting posture", "c) antennae/wings", "d) feeding habits"], "answer": "b) sitting posture"},
-  {"year": "PMT/NEET-2003", "question": "Ommatidia serve the purpose of photoreception in:", "options": ["a) cockroach", "b) frog", "c) humans", "d) sunflower"], "answer": "a) cockroach"},
-  {"year": "PMT/NEET-2004", "question": "In arthropoda, head and thorax are often used to form cephalothorax, but in which one of the following classes, is the body divided into head thorax and abdomen?", "options": ["a) Insecta", "b) Myriapoda", "c) Crustacea", "d) Arachnida and crustacea"], "answer": "a) Insecta"},
-  {"year": "PMT/NEET-2006", "question": "Two common characters found in centipede, cockroach and crab are:", "options": ["a) book lungs and antennae", "b) compound eyes and anal cerci", "c) jointed legs and chitinous exoskeleton", "d) green gland and tracheae"], "answer": "c) jointed legs and chitinous exoskeleton"},
-  {"year": "PMT/NEET-2008", "question": "Which one of the following groups of three animals each is correctly matched with their one characteristic morphological feature?", "options": ["a) Scorpion, spider, cockroach - Ventral solid central nervous system", "b) Cockroach, locust, Taenia - Metameric segmentation", "c) Liver fluke, sea anemone, sea cucumber - Bilateral symmetry", "d) Centipede, prawn, sea urchin - Jointed appendages"], "answer": "a) Scorpion, spider, cockroach - Ventral solid central nervous system"},
-  {"year": "PMT/NEET-2009", "question": "Which one the following pairs of animals comprises 'jawless fishes'?", "options": ["a) Mackerals and rohu", "b) lampreys and hag fishes", "c) Guppies and hag fishes", "d) Lampreys and eels"], "answer": "b) lampreys and hag fishes"},
-  {"year": "PMT/NEET-2013", "question": "One of the representatives of Phylum Arthropoda is:", "options": ["a) puffer fish", "b) flying fish", "c) cuttle fish", "d) silver fish"], "answer": "d) silver fish"},
-  {"year": "NEET-2015", "question": "Which of the following characteristics is mainly responsible for diversification of insects on land?", "options": ["a) Exoskeleton", "b) Eyes", "c) Segmentation", "d) Bilateral symmetry"], "answer": "a) Exoskeleton"},
-  {"year": "NEET-2022", "question": "Exoskeleton of arthropods is composed of:", "options": ["a) cutin", "b) cellulose", "c) chitin", "d) glucosamine"], "answer": "c) chitin"},
-  {"year": "PMT/NEET-1988", "question": "A wood boring mollusc/shipworm is:", "options": ["a) Chiton", "b) Teredo", "c) Limax", "d) Patella"], "answer": "b) Teredo"},
-  {"year": "PMT/NEET-1992", "question": "Eye of the molluscan group that resembles vertebrate eye is:", "options": ["a) bivalvia", "b) pelecypoda", "c) gastropoda", "d) cephalopoda"], "answer": "d) cephalopoda"},
-  {"year": "NEET-2024", "question": "Match Column I with Column II:\n(A) Pleurobrachia - (1) Mollusca\n(B) Radula - (2) Ctenophora\n(C) Stomochord - (3) Osteichthyes\n(D) Air bladder - (4) Hemichordata", "options": ["a) A-4, B-2, C-3, D-1", "b) A-2, B-1, C-4, D-3", "c) A-2, B-4, C-1, D-3", "d) A-4, B-3, C-2, D-1"], "answer": "b) A-2, B-1, C-4, D-3"},
-  {"year": "PMT/NEET-1991", "question": "Which one occurs in Echinodermata?", "options": ["a) Bilateral symmetry", "b) Radial symmetry", "c) Porous body", "d) Soft skin"], "answer": "b) Radial symmetry"},
-  {"year": "PMT/NEET-2004", "question": "The animal with bilateral symmetry in young stage and radial pentamerous symmetry in the adult stage, belong to the Phylum:", "options": ["a) Annelida", "b) Mollusca", "c) Cnidaria", "d) Echinodermata"], "answer": "d) Echinodermata"},
-  {"year": "PMT/NEET-2007", "question": "Which of the following pairs are correctly matched?\n(i) Crocodile - 4-chambered heart\n(ii) Sea urchin - Parapodia\n(iii) Obelia - Metagenesis\n(iv) Lemur - Thecodont", "options": ["a) (ii), (iii) and (iv)", "b) only (i) and (iv)", "c) only (i) and (ii)", "d) (i), (iii) and (iv)"], "answer": "d) (i), (iii) and (iv)"},
-  {"year": "NEET-2017", "question": "Important characteristic that hemichordates share with chordates is:", "options": ["a) ventral tubular nerve cord", "b) pharynx with gill slits", "c) pharynx without gill slits", "d) absence of notochord"], "answer": "b) pharynx with gill slits"},
-  {"year": "PMT/NEET-1988", "question": "The vertebrae of birds are characteristically:", "options": ["a) Heterocoelous", "b) Acoelous", "c) Opisthocoelous", "d) Amphicoelous"], "answer": "a) Heterocoelous"},
-  {"year": "PMT/NEET-1992", "question": "An egg laying mammal is:", "options": ["a) kangaroo", "b) platypus", "c) koala", "d) whale"], "answer": "b) platypus"},
-  {"year": "PMT/NEET-2005", "question": "Match the animal with their respective class:\n(a) Scoliodon - (i) Cyclostomata\n(b) Petromyzon - (ii) Aves\n(c) Pteropus - (iii) Chondrichthyes\n(d) Columba - (iv) Mammalia", "options": ["a) (a)-(iii), (b)-(i), (c)-(iv), (d)-(ii)", "b) (a)-(i), (b)-(iii), (c)-(ii), (d)-(iv)", "c) (a)-(iv), (b)-(ii), (c)-(i), (d)-(iii)", "d) (a)-(ii), (b)-(iv), (c)-(iii), (d)-(i)"], "answer": "a) (a)-(iii), (b)-(i), (c)-(iv), (d)-(ii)"},
-  {"year": "PMT/NEET-2011", "question": "Which one of the following groups of animals is correctly matched with its characteristic feature without any exception?", "options": ["a) Reptilia: possess 3-chambered heart with an incompletely divided ventricle", "b) Chordata: possess a mouth with an upper and a lower jaw", "c) Chondrichthyes: possess cartilaginous endoskeleton", "d) Mammalia: give birth to young ones"], "answer": "c) Chondrichthyes: possess cartilaginous endoskeleton"},
-  {"year": "PMT/NEET-2013", "question": "The characteristics of Class Reptilia are:", "options": ["a) body covered with moist skin which is devoid of scales", "b) fresh water animals with bony endoskeleton, air-bladder to regulate buoyancy", "c) marine animals with cartilaginous endoskeleton, body covered with placoid scales", "d) body covered with dry and cornified skin, scales over the body are epidermal, they do not have external ears"], "answer": "d) body covered with dry and cornified skin, scales over the body are epidermal, they do not have external ears"},
-  {"year": "NEET-2014", "question": "A marine cartilaginous fish that can produce electric current is:", "options": ["a) Pristis", "b) Torpedo", "c) Trygon", "d) Scoliodon"], "answer": "b) Torpedo"},
-  {"year": "NEET-2016", "question": "Which of the following characteristic features always holds true for the corresponding group of animals?", "options": ["a) Viviparous - Mammalia", "b) Possess a mouth with an upper and lower jaw - Chordata", "c) 3-chambered heart with one incompletely divided ventricle - Reptilia", "d) Cartilaginous endoskeleton - Chondrichthyes"], "answer": "d) Cartilaginous endoskeleton - Chondrichthyes"},
-  {"year": "NEET-2018", "question": "Identify the vertebrate group of animals characterised by crop and gizzard in its digestive system.", "options": ["a) Amphibia", "b) Reptilia", "c) Aves", "d) Osteichthyes"], "answer": "c) Aves"},
-  {"year": "NEET-2020", "question": "Which of the following statements are true for the phylum Chordata?\n(A) In Urochordata, notochord extends from head to tail\n(B) In Vertebrata, notochord is present during the embryonic period only\n(C) Central nervous system is dorsal and hollow\n(D) Chordata is divided into 3 subphyla: Hemichordata, Tunicata and Cephalochordata", "options": ["a) (D) and (C)", "b) (C) and (A)", "c) (A) and (B)", "d) (B) and (C)"], "answer": "d) (B) and (C)"},
-  {"year": "NEET-2021", "question": "Which one of the following organisms bears hollow and pneumatic long bones?", "options": ["a) Ornithorhynchus", "b) Neophron", "c) Hemidactylus", "d) Macropus"], "answer": "b) Neophron"},
-  {"year": "NEET-2023", "question": "The unique mammalian characteristics are:", "options": ["a) hairs, pinna and mammary glands", "b) hairs, pinna and indirect development", "c) pinna, monocondylic skull and mammary glands", "d) hairs, tympanic membrane and mammary glands"], "answer": "a) hairs, pinna and mammary glands"}
-]
-    }
+          "37": [],
+          "38": [],
+          "39": [],
+          "40": [],
+          "41": [],
+          "42": [],
+          "43": [],
+          "44": [],
+          "45": [],
+          "46": [],
+          "47": [],
+          "48": [],
+          "49": [],
+          "50": [],
+          "51": [],
+          "52": [],
+          "53": [],
+          "54": []
+        }
       },
       "5": {
-        title: "Morphology of Flowering Plants", 
-        sections: [
-          {id: "5.1", name: "The Root"},
-          {id: "5.2", name: "The Stem"},
-          {id: "5.3", name: "The Leaf"},
-          {id: "5.4", name: "The Inflorescence"},
-          {id: "5.5", name: "The Flower"},
-          {id: "5.6", name: "The Fruit"},
-          {id: "5.7", name: "The Seed"},
-          {id: "5.8", name: "Semi-technical Description of a Typical Flowering Plant"},
-          {id: "5.9", name: "Description of Some Important Families"}
-        ], 
-        questions: {}
+        title: "Morphology of Flowering Plants",
+        questions: {
+          "57": [],
+          "58": [],
+          "59": [],
+          "60": [],
+          "61": [],
+          "62": [],
+          "63": [],
+          "64": [],
+          "65": [],
+          "66": [],
+          "67": [],
+          "68": [],
+          "69": [],
+          "70": []
+        }
       },
       "6": {
-        title: "Anatomy of Flowering Plants", 
-        sections: [
-          
-          {id: "6.1", name: "The Tissue System"},
-          {id: "6.2", name: "Anatomy of Dicotyledonous and Monocotyledonous Plants"}
-        ], 
-        questions: {}
+        title: "Anatomy of Flowering Plants",
+        questions: {
+          "71": [],
+          "72": [],
+          "73": [],
+          "74": [],
+          "75": [],
+          "76": [],
+          "77": [],
+          "78": [],
+          "79": [],
+          "80": [],
+          "81": [],
+          "82": [],
+          "83": []
+        }
       },
       "7": {
-        title: "Structural Organisation in Animals", 
-        sections: [
-          
-          {id: "7.1", name: "Organ and Organ System"},
-          {id: "7.2", name: "Frogs"}
-        ], 
-        questions: {}
+        title: "Structural Organisation in Animals",
+        questions: {
+          "84": [],
+          "85": [],
+          "86": [],
+          "87": [],
+          "88": [],
+          "89": [],
+          "90": [],
+          "91": [],
+          "92": [],
+          "93": [],
+          "94": [],
+          "95": [],
+          "96": []
+        }
       },
       "8": {
-        title: "Cell - The Unit of Life", 
-        sections: [
-          {id: "8.1", name: "What is a Cell?"},
-          {id: "8.2", name: "Cell Theory"},
-          {id: "8.3", name: "An Overview of Cell"},
-          {id: "8.4", name: "Prokaryotic Cells"},
-          {id: "8.5", name: "Eukaryotic Cells"}
-        ], 
-        questions: {}
+        title: "Cell: The Unit of Life",
+        questions: {
+          "99": [],
+          "100": [],
+          "101": [],
+          "102": [],
+          "103": [],
+          "104": [],
+          "105": [],
+          "106": [],
+          "107": [],
+          "108": [],
+          "109": [],
+          "110": [],
+          "111": [],
+          "112": [],
+          "113": [],
+          "114": [],
+          "115": []
+        }
       },
       "9": {
-        title: "Biomolecules", 
-        sections: [
-          
-          {id: "9.1", name: "How to Analyse Chemical Composition?"},
-          {id: "9.2", name: "Primary and Secondary Metabolites"},
-          {id: "9.3", name: "Biomacromolecules"},
-          {id: "9.4", name: "Proteins"},
-          {id: "9.5", name: "Polysaccharides"},
-          {id: "9.6", name: "Nucleic Acids"},
-          {id: "9.7", name: "Structure of Proteins"},
-          {id: "9.8", name: "Enzymes"}
-        ], 
-        questions: {}
+        title: "Biomolecules",
+        questions: {
+          "116": [],
+          "117": [],
+          "118": [],
+          "119": [],
+          "120": [],
+          "121": [],
+          "122": [],
+          "123": [],
+          "124": [],
+          "125": [],
+          "126": [],
+          "127": [],
+          "128": [],
+          "129": [],
+          "130": [],
+          "131": [],
+          "132": [],
+          "133": [],
+          "134": []
+        }
       },
       "10": {
-        title: "Cell Cycle and Cell Division", 
-        sections: [
-          
-          {id: "10.1", name: "Cell Cycle"},
-          {id: "10.2", name: "M Phase"},
-          {id: "10.3", name: "Significance of Mitosis"},
-          {id: "10.4", name: "Meiosis"},
-          {id: "10.5", name: "Significance of Meiosis"}
-        ], 
-        questions: {}
+        title: "Cell Cycle and Cell Division",
+        questions: {
+          "135": [],
+          "136": [],
+          "137": [],
+          "138": [],
+          "139": [],
+          "140": [],
+          "141": [],
+          "142": [],
+          "143": [],
+          "144": [],
+          "145": [],
+          "146": [],
+          "147": []
+        }
       },
       "11": {
-        title: "Photosynthesis in Higher Plants", 
-        sections: [
-         {id: "11.1", name: "What do we Know?"},
-          {id: "11.2", name: "Early Experiments"},
-          {id: "11.3", name: "Where does Photosynthesis take place?"},
-          {id: "11.4", name: "How many Pigments are involved in Photosynthesis?"},
-          {id: "11.5", name: "What is Light Reaction?"},
-          {id: "11.6", name: "The Electron Transport"},
-          {id: "11.7", name: "Where are the ATP and NADPH Used?"},
-          {id: "11.8", name: "The C₄ Pathway"},
-          {id: "11.9", name: "Photorespiration"},
-          {id: "11.10", name: "Factors affecting Photosynthesis"}
-        ], 
-        questions: {}
+        title: "Photosynthesis in Higher Plants",
+        questions: {
+          "151": [],
+          "152": [],
+          "153": [],
+          "154": [],
+          "155": [],
+          "156": [],
+          "157": [],
+          "158": [],
+          "159": [],
+          "160": [],
+          "161": [],
+          "162": [],
+          "163": [],
+          "164": [],
+          "165": []
+        }
       },
       "12": {
-        title: "Respiration in Plants", 
-        sections: [
-          {id: "12.1", name: "Do Plants Breathe?"},
-          {id: "12.2", name: "Glycolysis"},
-          {id: "12.3", name: "Fermentation"},
-          {id: "12.4", name: "Aerobic Respiration"},
-          {id: "12.5", name: "The Respiratory Balance Sheet"},
-          {id: "12.6", name: "Amphibolic Pathway"},
-          {id: "12.7", name: "Respiratory Quotient"}
-        ], 
-        questions: {}
+        title: "Respiration in Plants",
+        questions: {
+          "166": [],
+          "167": [],
+          "168": [],
+          "169": [],
+          "170": [],
+          "171": [],
+          "172": [],
+          "173": [],
+          "174": [],
+          "175": [],
+          "176": [],
+          "177": []
+        }
       },
       "13": {
-        title: "Plant Growth and Development", 
-        sections: [
-          {id: "13.1", name: "Growth"},
-          {id: "13.2", name: "Differentiation, Dedifferentiation and Redifferentiation"},
-          {id: "13.3", name: "Development"},
-          {id: "13.4", name: "Plant Growth Regulators"}
-        ], 
-        questions: {}
+        title: "Plant Growth and Development",
+        questions: {
+          "178": [],
+          "179": [],
+          "180": [],
+          "181": [],
+          "182": [],
+          "183": [],
+          "184": [],
+          "185": [],
+          "186": [],
+          "187": [],
+          "188": [],
+          "189": [],
+          "190": [],
+          "191": [],
+          "192": [],
+          "193": [],
+          "194": [],
+          "195": [],
+          "196": [],
+          "197": [],
+          "198": []
+        }
       },
       "14": {
-        title: "Breathing and Exchange of Gases", 
-        sections: [
-         
-          {id: "14.1", name: "Respiratory Organs"},
-          {id: "14.2", name: "Mechanism of Breathing"},
-          {id: "14.3", name: "Exchange of Gases"},
-          {id: "14.4", name: "Transport of Gases"},
-          {id: "14.5", name: "Regulation of Respiration"},
-          {id: "14.6", name: "Disorders of Respiratory System"}
-        ], 
-        questions: {}
+        title: "Breathing and Exchange of Gases",
+        questions: {
+          "201": [],
+          "202": [],
+          "203": [],
+          "204": [],
+          "205": [],
+          "206": [],
+          "207": [],
+          "208": [],
+          "209": [],
+          "210": [],
+          "211": [],
+          "212": [],
+          "213": []
+        }
       },
       "15": {
-        title: "Body Fluids and Circulation", 
-        sections: [
-          {id: "15.1", name: "Blood"},
-          {id: "15.2", name: "Lymph (Tissue Fluid)"},
-          {id: "15.3", name: "Circulatory Pathways"},
-          {id: "15.4", name: "Double Circulation"},
-          {id: "15.5", name: "Regulation of Cardiac Activity"},
-          {id: "15.6", name: "Disorders of Circulatory System"}
-        ], 
-        questions: {}
+        title: "Body Fluids and Circulation",
+        questions: {
+          "214": [],
+          "215": [],
+          "216": [],
+          "217": [],
+          "218": [],
+          "219": [],
+          "220": [],
+          "221": [],
+          "222": [],
+          "223": [],
+          "224": [],
+          "225": [],
+          "226": []
+        }
       },
       "16": {
-        title: "Excretory Products and their Elimination", 
-        sections: [
-           {id: "16.1", name: "Human Excretory System"},
-          {id: "16.2", name: "Urine Formation"},
-          {id: "16.3", name: "Function of the Tubules"},
-          {id: "16.4", name: "Mechanism of Concentration of the Filtrate"},
-          {id: "16.5", name: "Regulation of Kidney Function"},
-          {id: "16.6", name: "Micturition"},
-          {id: "16.7", name: "Role of other Organs in Excretion"},
-          {id: "16.8", name: "Disorders of the Excretory System"}
-        ], 
-        questions: {}
+        title: "Excretory Products and their Elimination",
+        questions: {
+          "227": [],
+          "228": [],
+          "229": [],
+          "230": [],
+          "231": [],
+          "232": [],
+          "233": [],
+          "234": [],
+          "235": [],
+          "236": [],
+          "237": []
+        }
       },
       "17": {
-        title: "Locomotion and Movement", 
-        sections: [
-          
-          {id: "17.1", name: "Types of Movement"},
-          {id: "17.2", name: "Muscle"},
-          {id: "17.3", name: "Skeletal System"},
-          {id: "17.4", name: "Joints"},
-          {id: "17.5", name: "Disorders of Muscular and Skeletal System"}
-        ], 
-        questions: {}
+        title: "Locomotion and Movement",
+        questions: {
+          "238": [],
+          "239": [],
+          "240": [],
+          "241": [],
+          "242": [],
+          "243": [],
+          "244": [],
+          "245": [],
+          "246": [],
+          "247": [],
+          "248": [],
+          "249": [],
+          "250": [],
+          "251": []
+        }
       },
       "18": {
-        title: "Neural Control and Coordination", 
-        sections: [
-         
-          {id: "18.1", name: "Neural System"},
-          {id: "18.2", name: "Human Neural System"},
-          {id: "18.3", name: "Neuron as Structural and Functional Unit of Neural System"},
-          {id: "18.4", name: "Central Neural System"}
-        ], 
-        questions: {}
+        title: "Neural Control and Coordination",
+        questions: {
+          "252": [],
+          "253": [],
+          "254": [],
+          "255": [],
+          "256": [],
+          "257": [],
+          "258": [],
+          "259": [],
+          "260": [],
+          "261": [],
+          "262": [],
+          "263": [],
+          "264": [],
+          "265": [],
+          "266": [],
+          "267": [],
+          "268": [],
+          "269": [],
+          "270": []
+        }
       },
       "19": {
-        title: "Chemical Coordination and Integration", 
-        sections: [
-          {id: "19.1", name: "Endocrine Glands and Hormones"},
-          {id: "19.2", name: "Human Endocrine System"},
-          {id: "19.3", name: "Hormones of Heart, Kidney and Gastrointestinal Tract"},
-          {id: "19.4", name: "Mechanism of Hormone Action"}
-        ], 
-        questions: {}
+        title: "Chemical Coordination and Integration",
+        questions: {
+          "271": [],
+          "272": [],
+          "273": [],
+          "274": [],
+          "275": [],
+          "276": [],
+          "277": [],
+          "278": [],
+          "279": [],
+          "280": [],
+          "281": [],
+          "282": [],
+          "283": [],
+          "284": [],
+          "285": [],
+          "286": [],
+          "287": [],
+          "288": [],
+          "289": []
+        }
       }
     },
     "12": {
       "1": {
-        title: "Sexual Reproduction in Flowering Plants", 
-        sections: [
-          
-          {id: "1.1", name: "Flower - A Fascinating Organ of Angiosperms"},
-          {id: "1.2", name: "Pre-fertilisation: Structures and Events"},
-          {id: "1.3", name: "Double Fertilisation"},
-          {id: "1.4", name: "Post-fertilisation: Structures and Events"},
-          {id: "1.5", name: "Apomixis and Polyembryony"}
-        ], 
-        questions: {}
+        title: "Sexual Reproduction in Flowering Plants",
+        questions: {
+          "3": [],
+          "4": [],
+          "5": [],
+          "6": [],
+          "7": [],
+          "8": [],
+          "9": [],
+          "10": [],
+          "11": [],
+          "12": [],
+          "13": [],
+          "14": [],
+          "15": [],
+          "16": [],
+          "17": [],
+          "18": [],
+          "19": [],
+          "20": [],
+          "21": [],
+          "22": [],
+          "23": [],
+          "24": [],
+          "25": []
+        }
       },
       "2": {
-        title: "Human Reproduction", 
-        sections: [
-         
-          {id: "2.1", name: "The Male Reproductive System"},
-          {id: "2.2", name: "The Female Reproductive System"},
-          {id: "2.3", name: "Gametogenesis"},
-          {id: "2.4", name: "Menstrual Cycle"},
-          {id: "2.5", name: "Fertilisation and Implantation"},
-          {id: "2.6", name: "Pregnancy and Embryonic Development"},
-          {id: "2.7", name: "Parturition and Lactation"}
-        ], 
-        questions: {}
+        title: "Human Reproduction",
+        questions: {
+          "26": [],
+          "27": [],
+          "28": [],
+          "29": [],
+          "30": [],
+          "31": [],
+          "32": [],
+          "33": [],
+          "34": [],
+          "35": [],
+          "36": [],
+          "37": [],
+          "38": [],
+          "39": [],
+          "40": []
+        }
       },
       "3": {
-        title: "Reproductive Health", 
-        sections: [
-          
-          {id: "3.1", name: "Reproductive Health – Problems and Strategies"},
-          {id: "3.2", name: "Population Stabilisation and Birth Control"},
-          {id: "3.3", name: "Medical Termination of Pregnancy"},
-          {id: "3.4", name: "Sexually Transmitted Infections (STIs)"},
-          {id: "3.5", name: "Infertility"}
-        ], 
-        questions: {}
+        title: "Reproductive Health",
+        questions: {
+          "41": [],
+          "42": [],
+          "43": [],
+          "44": [],
+          "45": [],
+          "46": [],
+          "47": [],
+          "48": [],
+          "49": [],
+          "50": []
+        }
       },
       "4": {
-        title: "Principles of Inheritance and Variation", 
-        sections: [
-          {id: "4.1", name: "Mendel's Laws of Inheritance"},
-          {id: "4.2", name: "Inheritance of One Gene"},
-          {id: "4.3", name: "Inheritance of Two Genes"},
-           {id: "4.4", name: "Sex Determination"},
-          {id: "4.5", name: "Mutation"},
-          {id: "4.6", name: "Genetic Disorders"}
-        ], 
-        questions: {}
+        title: "Principles of Inheritance and Variation",
+        questions: {
+          "53": [],
+          "54": [],
+          "55": [],
+          "56": [],
+          "57": [],
+          "58": [],
+          "59": [],
+          "60": [],
+          "61": [],
+          "62": [],
+          "63": [],
+          "64": [],
+          "65": [],
+          "66": [],
+          "67": [],
+          "68": [],
+          "69": [],
+          "70": []
+        }
       },
       "5": {
-        title: "Molecular Basis of Inheritance", 
-        sections: [
-          {id: "5.1", name: "The DNA"},
-          {id: "5.2", name: "The Search for Genetic Material"},
-          {id: "5.3", name: "RNA World"},
-          {id: "5.4", name: "Replication"},
-          {id: "5.5", name: "Transcription"},
-          {id: "5.6", name: "Genetic Code"},
-          {id: "5.7", name: "Translation"},
-          {id: "5.8", name: "Regulation of Gene Expression"},
-          {id: "5.9", name: "Human Genome Project"},
-          {id: "5.10", name: "DNA Fingerprinting"}
-        ], 
-        questions: {}
+        title: "Molecular Basis of Inheritance",
+        questions: {
+          "71": [],
+          "72": [],
+          "73": [],
+          "74": [],
+          "75": [],
+          "76": [],
+          "77": [],
+          "78": [],
+          "79": [],
+          "80": [],
+          "81": [],
+          "82": [],
+          "83": [],
+          "84": [],
+          "85": [],
+          "86": [],
+          "87": [],
+          "88": [],
+          "89": [],
+          "90": [],
+          "91": [],
+          "92": [],
+          "93": [],
+          "94": [],
+          "95": [],
+          "96": [],
+          "97": [],
+          "98": []
+        }
       },
       "6": {
-        title: "Evolution", 
-        sections: [
-          {id: "6.1", name: "Origin of Life"},
-          {id: "6.2", name: "Evolution of Life Forms - A Theory"},
-          {id: "6.3", name: "What are the Evidences for Evolution?"},
-          {id: "6.4", name: "What is Adaptive Radiation?"},
-          {id: "6.5", name: "Biological Evolution"},
-          {id: "6.6", name: "Mechanism of Evolution"},
-          {id: "6.7", name: "Hardy-Weinberg Principle"},
-          {id: "6.8", name: "A Brief Account of Evolution"},
-          {id: "6.9", name: "Origin and Evolution of Man"}
-        ], 
-        questions: {}
+        title: "Evolution",
+        questions: {
+          "99": [],
+          "100": [],
+          "101": [],
+          "102": [],
+          "103": [],
+          "104": [],
+          "105": [],
+          "106": [],
+          "107": [],
+          "108": [],
+          "109": [],
+          "110": [],
+          "111": [],
+          "112": [],
+          "113": []
+        }
       },
       "7": {
-        title: "Human Health and Disease", 
-        sections: [
-          {id: "7.1", name: "Common Diseases in Humans"},
-          {id: "7.2", name: "Immunity"},
-          {id: "7.3", name: "AIDS"},
-          {id: "7.4", name: "Cancer"},
-          {id: "7.5", name: "Drugs and Alcohol Abuse"}
-        ], 
-        questions: {}
+        title: "Human Health and Disease",
+        questions: {
+          "117": [],
+          "118": [],
+          "119": [],
+          "120": [],
+          "121": [],
+          "122": [],
+          "123": [],
+          "124": [],
+          "125": [],
+          "126": [],
+          "127": [],
+          "128": [],
+          "129": [],
+          "130": [],
+          "131": [],
+          "132": [],
+          "133": [],
+          "134": [],
+          "135": [],
+          "136": [],
+          "137": []
+        }
       },
       "8": {
-        title: "Microbes in Human Welfare", 
-        sections: [
-          {id: "8.1", name: "Microbes in Household Products"},
-          {id: "8.2", name: "Microbes in Industrial Products"},
-          {id: "8.3", name: "Microbes in Sewage Treatment"},
-          {id: "8.4", name: "Microbes in Production of Biogas"},
-          {id: "8.5", name: "Microbes as Biocontrol Agents"},
-          {id: "8.6", name: "Microbes as Biofertilizers"}
-        ], 
-        questions: {}
+        title: "Strategies for Enhancement in Food Production",
+        questions: {
+          "138": [],
+          "139": [],
+          "140": [],
+          "141": [],
+          "142": [],
+          "143": [],
+          "144": [],
+          "145": [],
+          "146": [],
+          "147": [],
+          "148": []
+        }
       },
       "9": {
-        title: "Biotechnology - Principles and Processes", 
-        sections: [
-          {id: "9.1", name: "Principles of Biotechnology"},
-          {id: "9.2", name: "Tools of Recombinant DNA Technology"},
-          {id: "9.3", name: "Processes of Recombinant DNA Technology"}
-        ], 
-        questions: {}
+        title: "Microbes in Human Welfare",
+        questions: {
+          "149": [],
+          "150": [],
+          "151": [],
+          "152": [],
+          "153": [],
+          "154": [],
+          "155": [],
+          "156": [],
+          "157": [],
+          "158": [],
+          "159": [],
+          "160": [],
+          "161": [],
+          "162": [],
+          "163": []
+        }
       },
       "10": {
-        title: "Biotechnology and its Applications", 
-        sections: [
-          {id: "10.1", name: "Biotechnological Applications in Agriculture"},
-          {id: "10.2", name: "Biotechnological Applications in Medicine"},
-          {id: "10.3", name: "Transgenic Animals"},
-          {id: "10.4", name: "Ethical Issues"}
-        ], 
-        questions: {}
+        title: "Biotechnology: Principles and Processes",
+        questions: {
+          "167": [],
+          "168": [],
+          "169": [],
+          "170": [],
+          "171": [],
+          "172": [],
+          "173": [],
+          "174": [],
+          "175": [],
+          "176": [],
+          "177": [],
+          "178": []
+        }
       },
       "11": {
-        title: "Organisms and Populations", 
-        sections: [
-           {id: "11.1", name: "Populations"}
-        ], 
-        questions: {}
+        title: "Biotechnology and its Applications",
+        questions: {
+          "179": [],
+          "180": [],
+          "181": [],
+          "182": [],
+          "183": [],
+          "184": [],
+          "185": [],
+          "186": [],
+          "187": [],
+          "188": [],
+          "189": [],
+          "190": [],
+          "191": [],
+          "192": []
+        }
       },
       "12": {
-        title: "Ecosystem", 
-        sections: [
-          {id: "12.1", name: "Ecosystem - Structure and Function"},
-          {id: "12.2", name: "Productivity"},
-          {id: "12.3", name: "Decomposition"},
-          {id: "12.4", name: "Energy Flow"},
-          {id: "12.5", name: "Ecological Pyramids"}
-                ], 
-        questions: {}
+        title: "Organisms and Populations",
+        questions: {
+          "196": [],
+          "197": [],
+          "198": [],
+          "199": [],
+          "200": [],
+          "201": [],
+          "202": [],
+          "203": [],
+          "204": [],
+          "205": [],
+          "206": [],
+          "207": [],
+          "208": [],
+          "209": [],
+          "210": [],
+          "211": []
+        }
       },
       "13": {
-        title: "Biodiversity and Conservation", 
-        sections: [
-          {id: "13.1", name: "Biodiversity"},
-          {id: "13.2", name: "Biodiversity Conservation"}
-        
-        ], 
-        questions: {}
+        title: "Ecosystem",
+        questions: {
+          "212": [],
+          "213": [],
+          "214": [],
+          "215": [],
+          "216": [],
+          "217": [],
+          "218": [],
+          "219": [],
+          "220": [],
+          "221": [],
+          "222": [],
+          "223": [],
+          "224": [],
+          "225": [],
+          "226": [],
+          "227": []
+        }
+      },
+      "14": {
+        title: "Biodiversity and Conservation",
+        questions: {
+          "228": [],
+          "229": [],
+          "230": [],
+          "231": [],
+          "232": [],
+          "233": [],
+          "234": [],
+          "235": [],
+          "236": [],
+          "237": [],
+          "238": [],
+          "239": [],
+          "240": [],
+          "241": [],
+          "242": [],
+          "243": [],
+          "244": [],
+          "245": []
+        }
+      },
+      "15": {
+        title: "Environmental Issues",
+        questions: {
+          "246": [],
+          "247": [],
+          "248": [],
+          "249": [],
+          "250": [],
+          "251": [],
+          "252": [],
+          "253": [],
+          "254": [],
+          "255": [],
+          "256": [],
+          "257": [],
+          "258": [],
+          "259": [],
+          "260": [],
+          "261": [],
+          "262": [],
+          "263": [],
+          "264": []
+        }
       }
     }
   };
 
   let currentQuestions = [];
-  let sectionScores = {};
-  let questionStates = {}; // Store persistent clicked states
+  let questionStates = {};
 
   function updateChapters() {
-    const classValue = document.getElementById('classSelect').value;
+    const classSelect = document.getElementById('classSelect');
     const chapterSelect = document.getElementById('chapterSelect');
-    const sectionSelect = document.getElementById('sectionSelect');
+    const pageSelect = document.getElementById('pageSelect');
+    
+    const classValue = classSelect.value;
     
     chapterSelect.innerHTML = '<option value="">Select Chapter</option>';
-    sectionSelect.innerHTML = '<option value="">Select Section</option>';
+    pageSelect.innerHTML = '<option value="">Select Page</option>';
+    chapterSelect.disabled = true;
+    pageSelect.disabled = true;
+    
+    document.getElementById('contentArea').innerHTML = '<div class="no-questions">Please select Class, Chapter, and Page Number to view questions.</div>';
     
     if (classValue && questionData[classValue]) {
-      chapterSelect.disabled = false;
-      Object.keys(questionData[classValue]).forEach(chapterKey => {
+      const chapters = questionData[classValue];
+      Object.keys(chapters).forEach(chapterNum => {
         const option = document.createElement('option');
-        option.value = chapterKey;
-        option.textContent = `Chapter ${chapterKey}: ${questionData[classValue][chapterKey].title}`;
+        option.value = chapterNum;
+        option.textContent = `Chapter ${chapterNum}: ${chapters[chapterNum].title}`;
         chapterSelect.appendChild(option);
       });
-    } else {
-      chapterSelect.disabled = true;
-      sectionSelect.disabled = true;
+      chapterSelect.disabled = false;
     }
     
-    document.getElementById('contentArea').innerHTML = '<div class="no-questions">Please select Class, Chapter, and Section to view questions.</div>';
     updateScoreDisplay();
   }
 
-  function updateSections() {
-    const classValue = document.getElementById('classSelect').value;
-    const chapterValue = document.getElementById('chapterSelect').value;
-    const sectionSelect = document.getElementById('sectionSelect');
+  function updatePages() {
+    const classSelect = document.getElementById('classSelect');
+    const chapterSelect = document.getElementById('chapterSelect');
+    const pageSelect = document.getElementById('pageSelect');
     
-    sectionSelect.innerHTML = '<option value="">Select Section</option>';
+    const classValue = classSelect.value;
+    const chapterValue = chapterSelect.value;
     
-    if (classValue && chapterValue && questionData[classValue][chapterValue]) {
-      sectionSelect.disabled = false;
-      questionData[classValue][chapterValue].sections.forEach(section => {
-        const option = document.createElement('option');
-        option.value = section.id;
-        option.textContent = `Section ${section.id}: ${section.name}`;
-        sectionSelect.appendChild(option);
-      });
-    } else {
-      sectionSelect.disabled = true;
+    pageSelect.innerHTML = '<option value="">Select Page</option>';
+    pageSelect.disabled = true;
+    
+    document.getElementById('contentArea').innerHTML = '<div class="no-questions">Please select a Page Number to view questions.</div>';
+    
+    if (classValue && chapterValue) {
+      const chapter = questionData[classValue][chapterValue];
+      if (chapter && chapter.questions) {
+        const pages = Object.keys(chapter.questions).sort((a, b) => parseInt(a) - parseInt(b));
+        
+        if (pages.length > 0) {
+          pages.forEach(pageNum => {
+            const questionCount = chapter.questions[pageNum].length;
+            const option = document.createElement('option');
+            option.value = pageNum;
+            option.textContent = `Page ${pageNum} (${questionCount} question${questionCount !== 1 ? 's' : ''})`;
+            pageSelect.appendChild(option);
+          });
+          pageSelect.disabled = false;
+        }
+      }
     }
     
-    document.getElementById('contentArea').innerHTML = '<div class="no-questions">Please select Class, Chapter, and Section to view questions.</div>';
     updateScoreDisplay();
   }
 
   function showQuestions() {
-    const classValue = document.getElementById('classSelect').value;
-    const chapterValue = document.getElementById('chapterSelect').value;
-    const sectionValue = document.getElementById('sectionSelect').value;
+    const classSelect = document.getElementById('classSelect');
+    const chapterSelect = document.getElementById('chapterSelect');
+    const pageSelect = document.getElementById('pageSelect');
+    const contentArea = document.getElementById('contentArea');
     
-    if (!classValue || !chapterValue || !sectionValue) {
-      document.getElementById('contentArea').innerHTML = '<div class="no-questions">Please select Class, Chapter, and Section to view questions.</div>';
+    const classValue = classSelect.value;
+    const chapterValue = chapterSelect.value;
+    const pageValue = pageSelect.value;
+    
+    if (!classValue || !chapterValue || !pageValue) {
       return;
     }
-
-    const questions = questionData[classValue]?.[chapterValue]?.questions?.[sectionValue] || [];
-    currentQuestions = questions;
     
-    if (questions.length === 0) {
-      document.getElementById('contentArea').innerHTML = '<div class="no-questions">No questions available for this section yet.</div>';
+    currentQuestions = questionData[classValue][chapterValue].questions[pageValue] || [];
+    
+    if (currentQuestions.length === 0) {
+      contentArea.innerHTML = '<div class="no-questions">No questions available for this page yet. Add questions to see them here.</div>';
       updateScoreDisplay();
       return;
     }
-
-    let html = `<div class="question-count">Questions found: ${questions.length}</div>`;
     
-    questions.forEach((q, index) => {
-      const questionId = `${classValue}-${chapterValue}-${sectionValue}-${index}`;
+    let html = `<div class="question-count">Total Questions: ${currentQuestions.length}</div>`;
+    
+    currentQuestions.forEach((q, index) => {
+      const questionId = `${classValue}-${chapterValue}-${pageValue}-${index}`;
       const questionState = questionStates[questionId];
       
       html += `
         <div class="question-item">
           <div class="question-header">
-            <div class="question-number">Q${index + 1}.</div>
-            <div class="question-year">${q.year}</div>
+            <span class="question-number">Question ${index + 1}</span>
+            <span class="question-year">${q.year} | Page ${pageValue}</span>
           </div>
           <div class="question-text">${q.question}</div>
           <div class="options">
-            ${q.options.map((option, optIndex) => {
+            ${q.options.map((opt, optIndex) => {
               let optionClass = 'option';
-              
-              // Apply persistent styling based on stored state
               if (questionState) {
+                optionClass += ' disabled';
                 if (questionState.selectedIndex === optIndex) {
                   optionClass += questionState.isCorrect ? ' answered-correct' : ' answered-incorrect';
-                } else if (questionState.selectedIndex !== null) {
-                  optionClass += ' disabled';
                 }
               }
-              
-              return `<div class="${optionClass}" onclick="selectOption(${index}, ${optIndex}, '${q.answer}', '${questionId}')">${option}</div>`;
+              return `<div class="${optionClass}" onclick="selectOption(${index}, ${optIndex}, '${q.answer.replace(/'/g, "\\'")}', '${questionId}')">${opt}</div>`;
             }).join('')}
           </div>
           <div class="button-group">
             <button class="btn btn-answer" onclick="showAnswer(${index})">Show Answer</button>
-            <button class="btn btn-copy" onclick="copyQuestion(${index})">Copy Question</button>
-            
+            <button class="btn btn-copy" onclick="copyQuestion(${index}, '${pageValue}')">Copy Question</button>
           </div>
           <div class="answer-reveal" id="answer-${index}">
             <strong>Correct Answer:</strong> ${q.answer}
@@ -2059,38 +1401,35 @@
       `;
     });
     
-    document.getElementById('contentArea').innerHTML = html;
+    contentArea.innerHTML = html;
+    
+    setTimeout(addChatGPTButtons, 100);
+    
     updateScoreDisplay();
   }
 
   function selectOption(questionIndex, optionIndex, correctAnswer, questionId) {
-    // Check if already answered
     if (questionStates[questionId]) {
-      return; // Already answered, do nothing
+      return;
     }
 
     const selectedOption = currentQuestions[questionIndex].options[optionIndex];
     const isCorrect = selectedOption === correctAnswer;
     
-    // Store the persistent state
     questionStates[questionId] = {
       selectedIndex: optionIndex,
       isCorrect: isCorrect
     };
 
-    // Update the visual state
     const options = document.querySelectorAll(`.question-item:nth-child(${questionIndex + 2}) .option`);
     options.forEach((option, index) => {
       if (index === optionIndex) {
         option.classList.add(isCorrect ? 'answered-correct' : 'answered-incorrect');
-        option.classList.remove('correct-temp', 'incorrect-temp');
       } else {
         option.classList.add('disabled');
-        option.classList.remove('correct-temp', 'incorrect-temp');
       }
     });
 
-    // Show answer popup on the clicked option exactly
     const clickedOption = options[optionIndex];
     const popup = document.createElement('div');
     popup.className = `answer-popup ${isCorrect ? 'correct' : 'incorrect'}`;
@@ -2103,30 +1442,51 @@
       }
     }, 1200);
 
-    // Show tick/cross popup
     const tickCrossPopup = document.createElement('div');
     tickCrossPopup.className = `tick-cross-popup ${isCorrect ? 'correct' : 'incorrect'}`;
     tickCrossPopup.textContent = isCorrect ? '✓' : '✗';
     document.body.appendChild(tickCrossPopup);
     setTimeout(() => document.body.removeChild(tickCrossPopup), 1500);
 
-    updateScoreForSection();
     updateScoreDisplay();
   }
 
-  function updateScoreForSection() {
-    const classValue = document.getElementById('classSelect').value;
-    const chapterValue = document.getElementById('chapterSelect').value;
-    const sectionValue = document.getElementById('sectionSelect').value;
-    
-    if (!classValue || !chapterValue || !sectionValue) return;
+  function showAnswer(index) {
+    const answerDiv = document.getElementById(`answer-${index}`);
+    answerDiv.style.display = answerDiv.style.display === 'block' ? 'none' : 'block';
+  }
 
-    const sectionKey = `${classValue}-${chapterValue}-${sectionValue}`;
+  function copyQuestion(index, pageNum) {
+    const q = currentQuestions[index];
+    const text = `${q.year}\nPage ${pageNum}\n\n${q.question}\n\n${q.options.join('\n')}\n\nAnswer: ${q.answer}`;
+    
+    navigator.clipboard.writeText(text).then(() => {
+      alert('Question copied to clipboard!');
+    }).catch(() => {
+      alert('Failed to copy question');
+    });
+  }
+
+  function updateScoreDisplay() {
+    const classSelect = document.getElementById('classSelect');
+    const chapterSelect = document.getElementById('chapterSelect');
+    const pageSelect = document.getElementById('pageSelect');
+    const scoreCard = document.getElementById('scoreCard');
+    
+    const classValue = classSelect.value;
+    const chapterValue = chapterSelect.value;
+    const pageValue = pageSelect.value;
+    
+    if (!classValue || !chapterValue || !pageValue || currentQuestions.length === 0) {
+      scoreCard.textContent = 'Page score: 0 / 0';
+      return;
+    }
+    
     let correct = 0;
     let answered = 0;
-
+    
     currentQuestions.forEach((q, index) => {
-      const questionId = `${classValue}-${chapterValue}-${sectionValue}-${index}`;
+      const questionId = `${classValue}-${chapterValue}-${pageValue}-${index}`;
       const questionState = questionStates[questionId];
       if (questionState) {
         answered++;
@@ -2135,365 +1495,154 @@
         }
       }
     });
-
-    sectionScores[sectionKey] = { correct, answered, total: currentQuestions.length };
+    
+    scoreCard.textContent = `Page score: ${correct} / ${answered}`;
   }
 
-  function updateScoreDisplay() {
-    const classValue = document.getElementById('classSelect').value;
-    const chapterValue = document.getElementById('chapterSelect').value;
-    const sectionValue = document.getElementById('sectionSelect').value;
+  function buildChatGPTPrompt(questionIndex) {
+    if (!currentQuestions[questionIndex]) return null;
     
-    if (!classValue || !chapterValue || !sectionValue) {
-      document.getElementById('scoreCard').textContent = 'Section score: x / y';
+    const q = currentQuestions[questionIndex];
+    
+    return `Question:
+${q.question}
+
+Options:
+${q.options.join('\n')}
+
+Answer this question in 3 versions:
+
+Version 1: Brief explanation
+
+Version 2: Quote exact reference from NCERT textbook and explain accordingly
+
+Version 3: Detailed explanation with option analysis`;
+  }
+
+  async function copyToClipboard(text) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch (err) {
+      return false;
+    }
+  }
+
+  async function openChatGPTWithAutopaste(prompt) {
+    await copyToClipboard(prompt);
+    
+    try {
+      const encodedPrompt = encodeURIComponent(prompt);
+      const chatGPTUrl = `https://chat.openai.com/?q=${encodedPrompt}`;
+      
+      const newWindow = window.open(chatGPTUrl, '_blank');
+      
+      if (newWindow) {
+        setTimeout(() => {
+          try {
+            newWindow.focus();
+          } catch (e) {
+            // Ignore
+          }
+        }, 1000);
+      }
+      
+      return true;
+    } catch (e) {
+      window.open('https://chat.openai.com/', '_blank');
+      return true;
+    }
+  }
+
+  function showCopyNotification() {
+    const notification = document.createElement('div');
+    notification.className = 'copy-notification';
+    notification.textContent = '✓ Copied! Opening ChatGPT...';
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+      notification.remove();
+    }, 3000);
+  }
+
+  function addChatGPTButtons() {
+    const questionItems = document.querySelectorAll('.question-item');
+    
+    questionItems.forEach((questionElement, index) => {
+      const buttonGroup = questionElement.querySelector('.button-group');
+      if (!buttonGroup) return;
+      if (buttonGroup.querySelector('.chatgpt-btn')) return;
+
+      const btn = document.createElement('button');
+      btn.className = 'chatgpt-btn';
+      btn.textContent = 'ChatGPT';
+
+      btn.addEventListener('click', async () => {
+        const prompt = buildChatGPTPrompt(index);
+        if (!prompt) {
+          alert('Could not extract question content.');
+          return;
+        }
+        
+        const originalText = btn.textContent;
+        btn.textContent = 'Opening...';
+        btn.style.background = '#f39c12';
+        
+        const success = await openChatGPTWithAutopaste(prompt);
+        
+        if (success) {
+          showCopyNotification();
+          
+          btn.textContent = 'Opened!';
+          btn.style.background = '#27ae60';
+          
+          setTimeout(() => {
+            btn.textContent = originalText;
+            btn.style.background = 'linear-gradient(135deg, #e74c3c, #c0392b)';
+          }, 2000);
+        } else {
+          btn.textContent = 'Error';
+          btn.style.background = '#e74c3c';
+          
+          setTimeout(() => {
+            btn.textContent = originalText;
+            btn.style.background = 'linear-gradient(135deg, #e74c3c, #c0392b)';
+          }, 2000);
+        }
+      });
+
+      buttonGroup.appendChild(btn);
+    });
+  }
+
+  document.getElementById('refreshChapterBtn').addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    const classSelect = document.getElementById('classSelect');
+    const chapterSelect = document.getElementById('chapterSelect');
+    const pageSelect = document.getElementById('pageSelect');
+    
+    const classValue = classSelect.value;
+    const chapterValue = chapterSelect.value;
+    const pageValue = pageSelect.value;
+    
+    if (!classValue || !chapterValue || !pageValue) {
+      alert('Please select a page first');
       return;
     }
-
-    const sectionKey = `${classValue}-${chapterValue}-${sectionValue}`;
-    const score = sectionScores[sectionKey] || { correct: 0, answered: 0, total: currentQuestions.length || 0 };
     
-    document.getElementById('scoreCard').textContent = `Section score: ${score.correct} / ${score.total}`;
-  }
-
-  function showAnswer(index) {
-    const answerDiv = document.getElementById(`answer-${index}`);
-    answerDiv.style.display = answerDiv.style.display === 'block' ? 'none' : 'block';
-  }
-
-  function copyQuestion(index) {
-    const question = currentQuestions[index];
-    const text = `${question.question}\n\n${question.options.join('\n')}\n\nAnswer: ${question.answer}`;
-    navigator.clipboard.writeText(text).then(() => {
-      alert('Question copied to clipboard!');
-    });
-  }
-
-  // Refresh button functionality
-  document.getElementById('refreshChapterBtn').addEventListener('click', function() {
-    const classValue = document.getElementById('classSelect').value;
-    const chapterValue = document.getElementById('chapterSelect').value;
-    const sectionValue = document.getElementById('sectionSelect').value;
+    if (!confirm('Are you sure you want to reset the score for this page?')) {
+      return;
+    }
     
-    if (!classValue || !chapterValue || !sectionValue) return;
-
-    // Clear persistent states for current section
-    const sectionKey = `${classValue}-${chapterValue}-${sectionValue}`;
-    Object.keys(questionStates).forEach(key => {
-      if (key.startsWith(`${classValue}-${chapterValue}-${sectionValue}-`)) {
-        delete questionStates[key];
-      }
+    currentQuestions.forEach((q, index) => {
+      const questionId = `${classValue}-${chapterValue}-${pageValue}-${index}`;
+      delete questionStates[questionId];
     });
     
-    // Clear section score
-    delete sectionScores[sectionKey];
-    
-    // Refresh the display
     showQuestions();
-    updateScoreDisplay();
   });
-
-  // Initialize
-  updateChapters();
 </script>
-
-<style>
-.chatgpt-btn {
-  background: linear-gradient(135deg, #e74c3c, #c0392b);
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 8px;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  margin-left: 8px;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3);
-}
-
-.chatgpt-btn:hover {
-  background: linear-gradient(135deg, #c0392b, #e74c3c);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4);
-}
-
-.copy-notification {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: #27ae60;
-  color: white;
-  padding: 12px 20px;
-  border-radius: 8px;
-  font-weight: 600;
-  z-index: 10000;
-  transform: translateX(100%);
-  transition: transform 0.3s ease;
-}
-
-.copy-notification.show {
-  transform: translateX(0);
-}
-</style>
-
-<script>
-// FIXED: Add localStorage persistence for section scores and question states
-function loadPersistentData() {
-  try {
-    const savedScores = localStorage.getItem('neet-section-scores');
-    const savedStates = localStorage.getItem('neet-question-states');
-    
-    if (savedScores) {
-      sectionScores = JSON.parse(savedScores);
-    } else {
-      sectionScores = {};
-    }
-    
-    if (savedStates) {
-      questionStates = JSON.parse(savedStates);
-    } else {
-      questionStates = {};
-    }
-  } catch (e) {
-    console.log('Error loading persistent data:', e);
-    sectionScores = {};
-    questionStates = {};
-  }
-}
-
-function savePersistentData() {
-  try {
-    localStorage.setItem('neet-section-scores', JSON.stringify(sectionScores));
-    localStorage.setItem('neet-question-states', JSON.stringify(questionStates));
-  } catch (e) {
-    console.log('Error saving persistent data:', e);
-  }
-}
-
-// Copy to clipboard function
-async function copyToClipboard(text) {
-  try {
-    await navigator.clipboard.writeText(text);
-    return true;
-  } catch (err) {
-    const textArea = document.createElement('textarea');
-    textArea.value = text;
-    textArea.style.position = 'fixed';
-    textArea.style.left = '-999999px';
-    document.body.appendChild(textArea);
-    textArea.select();
-    const successful = document.execCommand('copy');
-    document.body.removeChild(textArea);
-    return successful;
-  }
-}
-
-// Show copy notification
-function showCopyNotification() {
-  const existingNotification = document.querySelector('.copy-notification');
-  if (existingNotification) existingNotification.remove();
-  
-  const notification = document.createElement('div');
-  notification.className = 'copy-notification';
-  notification.textContent = '✓ Question copied & ChatGPT opened!';
-  document.body.appendChild(notification);
-  
-  setTimeout(() => notification.classList.add('show'), 100);
-  setTimeout(() => {
-    notification.classList.remove('show');
-    setTimeout(() => notification.remove(), 300);
-  }, 3000);
-}
-
-// Build ChatGPT prompt using currentQuestions array
-function buildChatGPTPrompt(questionIndex) {
-  if (!currentQuestions || !currentQuestions[questionIndex]) {
-    return '';
-  }
-
-  const question = currentQuestions[questionIndex];
-  let prompt = '';
-  
-  // Add question text (strip HTML tags and clean formatting)
-  prompt += question.question.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').trim() + '\n\n';
-  
-  // Add options A, B, C, D
-  question.options.forEach((option, idx) => {
-    const optionLetter = String.fromCharCode(65 + idx); // A, B, C, D
-    prompt += optionLetter + ') ' + option.replace(/^[a-d]\)\s*/, '').trim() + '\n';
-  });
-
-  // Add your 3-version instruction
-  prompt += '\n\nAnswer and Explain this question in 3 versions:\n';
-  prompt += 'Version 1: brief explanation\n';
-  prompt += 'Version 2: quote exact reference from NCERT biology text latest reprint and answer it accordingly\n';
-  prompt += 'Version 3: detailed explanation with option analysis';
-
-  return prompt;
-}
-
-// FIXED: Enhanced autopaste feature for ChatGPT
-async function openChatGPTWithAutopaste(prompt) {
-  // First, copy to clipboard
-  await copyToClipboard(prompt);
-  
-  try {
-    // Method 1: Try URL parameter approach for autopaste
-    const encodedPrompt = encodeURIComponent(prompt);
-    const chatGPTUrl = `https://chat.openai.com/?q=${encodedPrompt}`;
-    
-    // Open ChatGPT with potential autopaste
-    const newWindow = window.open(chatGPTUrl, '_blank');
-    
-    if (newWindow) {
-      // Try to focus and simulate paste after delay
-      setTimeout(() => {
-        try {
-          newWindow.focus();
-        } catch (e) {
-          // Ignore focus errors
-        }
-      }, 1000);
-    }
-    
-    return true;
-  } catch (e) {
-    // Fallback: just open regular ChatGPT
-    window.open('https://chat.openai.com/', '_blank');
-    return true;
-  }
-}
-
-// Add ChatGPT buttons to each question
-function addChatGPTButtons() {
-  const questionItems = document.querySelectorAll('.question-item');
-  
-  questionItems.forEach((questionElement, index) => {
-    const buttonGroup = questionElement.querySelector('.button-group');
-    if (!buttonGroup) return;
-    if (buttonGroup.querySelector('.chatgpt-btn')) return;
-
-    const btn = document.createElement('button');
-    btn.className = 'chatgpt-btn';
-    btn.textContent = 'ChatGPT';
-
-    btn.addEventListener('click', async () => {
-      // Get FRESH prompt data using the question index from currentQuestions array
-      const prompt = buildChatGPTPrompt(index);
-      if (!prompt) {
-        alert('Could not extract question content.');
-        return;
-      }
-      
-      // Visual feedback - show processing
-      const originalText = btn.textContent;
-      btn.textContent = 'Opening...';
-      btn.style.background = '#f39c12';
-      
-      // Open ChatGPT with autopaste attempt
-      const success = await openChatGPTWithAutopaste(prompt);
-      
-      if (success) {
-        showCopyNotification();
-        
-        // Show success feedback
-        btn.textContent = 'Opened!';
-        btn.style.background = '#27ae60';
-        
-        setTimeout(() => {
-          btn.textContent = originalText;
-          btn.style.background = 'linear-gradient(135deg, #e74c3c, #c0392b)';
-        }, 2000);
-      } else {
-        btn.textContent = 'Error';
-        btn.style.background = '#e74c3c';
-        
-        setTimeout(() => {
-          btn.textContent = originalText;
-          btn.style.background = 'linear-gradient(135deg, #e74c3c, #c0392b)';
-        }, 2000);
-      }
-    });
-
-    buttonGroup.appendChild(btn);
-  });
-}
-
-// FIXED: Override selectOption to save persistent data after each selection
-const originalSelectOption = selectOption;
-selectOption = function(questionIndex, optionIndex, correctAnswer, questionId) {
-  // Call original function
-  originalSelectOption(questionIndex, optionIndex, correctAnswer, questionId);
-  
-  // Save persistent data after each selection
-  savePersistentData();
-};
-
-// FIXED: Override showQuestions to load persistent data and add ChatGPT buttons
-const originalShowQuestions = showQuestions;
-showQuestions = function() {
-  // Load persistent data first
-  loadPersistentData();
-  
-  // Call original function
-  originalShowQuestions();
-  
-  // Add ChatGPT buttons after questions load
-  setTimeout(addChatGPTButtons, 100);
-};
-
-// FIXED: Override refresh button to only clear when explicitly clicked
-document.getElementById('refreshChapterBtn').addEventListener('click', function(e) {
-  e.preventDefault();
-  e.stopPropagation();
-  
-  const classValue = document.getElementById('classSelect').value;
-  const chapterValue = document.getElementById('chapterSelect').value;
-  const sectionValue = document.getElementById('sectionSelect').value;
-  
-  if (!classValue || !chapterValue || !sectionValue) return;
-  
-  // Only clear when refresh button is explicitly clicked
-  const sectionKey = `${classValue}-${chapterValue}-${sectionValue}`;
-  
-  // Clear persistent states for current section
-  Object.keys(questionStates).forEach(key => {
-    if (key.startsWith(`${classValue}-${chapterValue}-${sectionValue}-`)) {
-      delete questionStates[key];
-    }
-  });
-  
-  // Clear section score
-  delete sectionScores[sectionKey];
-  
-  // Save the cleared data
-  savePersistentData();
-  
-  // Refresh the display
-  showQuestions();
-  updateScoreDisplay();
-});
-
-// FIXED: Initialize persistent data on page load
-document.addEventListener('DOMContentLoaded', () => {
-  // Load persistent data first
-  loadPersistentData();
-  
-  // Update display with loaded data
-  setTimeout(() => {
-    updateScoreDisplay();
-    addChatGPTButtons();
-  }, 1000);
-});
-
-// Save data before page unload
-window.addEventListener('beforeunload', savePersistentData);
-
-// Auto-save data every 30 seconds
-setInterval(savePersistentData, 30000);
-</script>
-
 </body>
 </html>
-
-
