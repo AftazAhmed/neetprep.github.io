@@ -946,10 +946,27 @@
       const questionState = questionStates[questionId];
       
       html += `
-        <div class="question-item">
-          <div class="question-header">
-            <span class="question-number">Question ${index + 1}</span>
-          </div>
+  <div class="question-item">
+    <div class="question-header">
+      <span class="question-number">Question ${index + 1}</span>
+      <span class="question-year" style="cursor: pointer;" onclick="copyQuestion(${index}, '${pageValue}')">📋 Copy</span>
+    </div>
+    <div class="question-text">${q.question}</div>
+    <div class="options">
+      ${q.options.map((opt, optIndex) => {
+        let optionClass = 'option';
+        if (questionState) {
+          optionClass += ' disabled';
+          if (questionState.selectedIndex === optIndex) {
+            optionClass += questionState.isCorrect ? ' answered-correct' : ' answered-incorrect';
+          }
+        }
+        return `<div class="${optionClass}" onclick="selectOption(${index}, ${optIndex}, '${q.answer.replace(/'/g, "\\'")}', '${questionId}')">${opt}</div>`;
+      }).join('')}
+    </div>
+    <div class="button-group">
+      <button class="btn btn-answer" onclick="showAnswer(${index})">Show Answer</button>
+    </div>
           <div class="question-text">${q.question}</div>
           <div class="options">
             ${q.options.map((opt, optIndex) => {
