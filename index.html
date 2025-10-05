@@ -442,6 +442,42 @@
       font-size: 15px;
     }
   }
+
+  .summary-toggle-btn {
+    background: linear-gradient(135deg, #d2691e, #a0522d);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-weight: 800;
+    font-size: 16px;
+    margin-bottom: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(210, 105, 30, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .summary-toggle-btn:hover {
+    background: linear-gradient(135deg, #cd5c2e, #8b4513);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(210, 105, 30, 0.5);
+  }
+  .summary-content {
+    display: none;
+    background-color: #fff8f0;
+    border-left: 6px solid #d2691e;
+    border-radius: 10px;
+    padding: 18px 22px;
+    color: #1f2937;
+    margin-bottom: 20px;
+    font-size: 15px;
+    line-height: 1.7;
+    box-shadow: 0 2px 8px rgba(210, 105, 30, 0.15);
+  }
+  .summary-content.show {
+    display: block;
+  }
 </style>
 </head>
 <body>
@@ -493,149 +529,148 @@
 <main class="content-area" id="contentArea">
   <div class="no-questions">Please select Class, Chapter, and Page Number to view questions.</div>
 </main>
-
 <script>
   const questionData = {
     "11": {
       "1": {
         title: "The Living World",
         questions: {
-          "3": [],
-          "4": [],
-          "5": [],
-          "6": [],
-          "7": [],
-          "8": [],
-          "9": []
+          "3": [[], ""],
+          "4": [[], ""],
+          "5": [[], ""],
+          "6": [[], ""],
+          "7": [[], ""],
+          "8": [[], ""],
+          "9": [[], ""]
         }
       },
       "2": {
         title: "Biological Classification",
         questions: {
-          "10": [], "11": [], "12": [], "13": [], "14": [], "15": [],
-          "16": [], "17": [], "18": [], "19": [], "20": [], "21": [], "22": []
+          "10": [[], ""], "11": [[], ""], "12": [[], ""], "13": [[], ""], "14": [[], ""], "15": [[], ""],
+          "16": [[], ""], "17": [[], ""], "18": [[], ""], "19": [[], ""], "20": [[], ""], "21": [[], ""], "22": [[], ""]
         }
       },
       "3": {
         title: "Plant Kingdom",
         questions: {
-          "23": [], "24": [], "25": [], "26": [], "27": [], "28": [], "29": [],
-          "30": [], "31": [], "32": [], "33": [], "34": [], "35": [], "36": []
+          "23": [[], ""], "24": [[], ""], "25": [[], ""], "26": [[], ""], "27": [[], ""], "28": [[], ""], "29": [[], ""],
+          "30": [[], ""], "31": [[], ""], "32": [[], ""], "33": [[], ""], "34": [[], ""], "35": [[], ""], "36": [[], ""]
         }
       },
       "4": {
         title: "Animal Kingdom",
         questions: {
-          "37": [], "38": [], "39": [], "40": [], "41": [], "42": [], "43": [],
-          "44": [], "45": [], "46": [], "47": [], "48": [], "49": [], "50": [],
-          "51": [], "52": [], "53": [], "54": []
+          "37": [[], ""], "38": [[], ""], "39": [[], ""], "40": [[], ""], "41": [[], ""], "42": [[], ""], "43": [[], ""],
+          "44": [[], ""], "45": [[], ""], "46": [[], ""], "47": [[], ""], "48": [[], ""], "49": [[], ""], "50": [[], ""],
+          "51": [[], ""], "52": [[], ""], "53": [[], ""], "54": [[], ""]
         }
       },
       "5": {
         title: "Morphology of Flowering Plants",
         questions: {
-          "57": [], "58": [], "59": [], "60": [], "61": [], "62": [], "63": [],
-          "64": [], "65": [], "66": [], "67": [], "68": [], "69": [], "70": []
+          "57": [[], ""], "58": [[], ""], "59": [[], ""], "60": [[], ""], "61": [[], ""], "62": [[], ""], "63": [[], ""],
+          "64": [[], ""], "65": [[], ""], "66": [[], ""], "67": [[], ""], "68": [[], ""], "69": [[], ""], "70": [[], ""]
         }
       },
       "6": {
         title: "Anatomy of Flowering Plants",
         questions: {
-          "71": [], "72": [], "73": [], "74": [], "75": [], "76": [], "77": [],
-          "78": [], "79": [], "80": [], "81": [], "82": [], "83": []
+          "71": [[], ""], "72": [[], ""], "73": [[], ""], "74": [[], ""], "75": [[], ""], "76": [[], ""], "77": [[], ""],
+          "78": [[], ""], "79": [[], ""], "80": [[], ""], "81": [[], ""], "82": [[], ""], "83": [[], ""]
         }
       },
       "7": {
         title: "Structural Organisation in Animals",
         questions: {
-          "79": [], "80": [], "81": [], "82": [], "83": [], "84": []
+          "79": [[], ""], "80": [[], ""], "81": [[], ""], "82": [[], ""], "83": [[], ""], "84": [[], ""]
         }
       },
       "8": {
         title: "Cell: The Unit of Life",
         questions: {
-          "87": [], "88": [], "89": [], "90": [], "91": [], "92": [], "93": [],
-          "94": [], "95": [], "96": [], "97": [], "98": [], "99": [], "100": [],
-          "101": [], "102": [], "103": []
+          "87": [[], ""], "88": [[], ""], "89": [[], ""], "90": [[], ""], "91": [[], ""], "92": [[], ""], "93": [[], ""],
+          "94": [[], ""], "95": [[], ""], "96": [[], ""], "97": [[], ""], "98": [[], ""], "99": [[], ""], "100": [[], ""],
+          "101": [[], ""], "102": [[], ""], "103": [[], ""]
         }
       },
       "9": {
         title: "Biomolecules",
         questions: {
-          "104": [], "105": [], "106": [], "107": [], "108": [], "109": [], "110": [],
-          "111": [], "112": [], "113": [], "114": [], "115": [], "116": [], "117": [],
-          "118": [], "119": []
+          "104": [[], ""], "105": [[], ""], "106": [[], ""], "107": [[], ""], "108": [[], ""], "109": [[], ""], "110": [[], ""],
+          "111": [[], ""], "112": [[], ""], "113": [[], ""], "114": [[], ""], "115": [[], ""], "116": [[], ""], "117": [[], ""],
+          "118": [[], ""], "119": [[], ""]
         }
       },
       "10": {
         title: "Cell Cycle and Cell Division",
         questions: {
-          "120": [], "121": [], "122": [], "123": [], "124": [], "125": [], "126": [],
-          "127": [], "128": [], "129": [], "130": []
+          "120": [[], ""], "121": [[], ""], "122": [[], ""], "123": [[], ""], "124": [[], ""], "125": [[], ""], "126": [[], ""],
+          "127": [[], ""], "128": [[], ""], "129": [[], ""], "130": [[], ""]
         }
       },
       "11": {
         title: "Photosynthesis in Higher Plants",
         questions: {
-          "133": [], "134": [], "135": [], "136": [], "137": [], "138": [], "139": [],
-          "140": [], "141": [], "142": [], "143": [], "144": [], "145": [], "146": [],
-          "147": [], "148": [], "149": [], "150": [], "151": [], "152": []
+          "133": [[], ""], "134": [[], ""], "135": [[], ""], "136": [[], ""], "137": [[], ""], "138": [[], ""], "139": [[], ""],
+          "140": [[], ""], "141": [[], ""], "142": [[], ""], "143": [[], ""], "144": [[], ""], "145": [[], ""], "146": [[], ""],
+          "147": [[], ""], "148": [[], ""], "149": [[], ""], "150": [[], ""], "151": [[], ""], "152": [[], ""]
         }
       },
       "12": {
         title: "Respiration in Plants",
         questions: {
-          "153": [], "154": [], "155": [], "156": [], "157": [], "158": [], "159": [],
-          "160": [], "161": [], "162": [], "163": [], "164": [], "165": [], "166": []
+          "153": [[], ""], "154": [[], ""], "155": [[], ""], "156": [[], ""], "157": [[], ""], "158": [[], ""], "159": [[], ""],
+          "160": [[], ""], "161": [[], ""], "162": [[], ""], "163": [[], ""], "164": [[], ""], "165": [[], ""], "166": [[], ""]
         }
       },
       "13": {
         title: "Plant Growth and Development",
         questions: {
-          "167": [], "168": [], "169": [], "170": [], "171": [], "172": [], "173": [],
-          "174": [], "175": [], "176": [], "177": [], "178": [], "179": [], "180": []
+          "167": [[], ""], "168": [[], ""], "169": [[], ""], "170": [[], ""], "171": [[], ""], "172": [[], ""], "173": [[], ""],
+          "174": [[], ""], "175": [[], ""], "176": [[], ""], "177": [[], ""], "178": [[], ""], "179": [[], ""], "180": [[], ""]
         }
       },
       "14": {
         title: "Breathing and Exchange of Gases",
         questions: {
-          "183": [], "184": [], "185": [], "186": [], "187": [], "188": [], "189": [],
-          "190": [], "191": [], "192": []
+          "183": [[], ""], "184": [[], ""], "185": [[], ""], "186": [[], ""], "187": [[], ""], "188": [[], ""], "189": [[], ""],
+          "190": [[], ""], "191": [[], ""], "192": [[], ""]
         }
       },
       "15": {
         title: "Body Fluids and Circulation",
         questions: {
-          "193": [], "194": [], "195": [], "196": [], "197": [], "198": [], "199": [],
-          "200": [], "201": [], "202": [], "203": [], "204": []
+          "193": [[], ""], "194": [[], ""], "195": [[], ""], "196": [[], ""], "197": [[], ""], "198": [[], ""], "199": [[], ""],
+          "200": [[], ""], "201": [[], ""], "202": [[], ""], "203": [[], ""], "204": [[], ""]
         }
       },
       "16": {
         title: "Excretory Products and their Elimination",
         questions: {
-          "205": [], "206": [], "207": [], "208": [], "209": [], "210": [], "211": [],
-          "212": [], "213": [], "214": [], "215": [], "216": []
+          "205": [[], ""], "206": [[], ""], "207": [[], ""], "208": [[], ""], "209": [[], ""], "210": [[], ""], "211": [[], ""],
+          "212": [[], ""], "213": [[], ""], "214": [[], ""], "215": [[], ""], "216": [[], ""]
         }
       },
       "17": {
         title: "Locomotion and Movement",
         questions: {
-          "217": [], "218": [], "219": [], "220": [], "221": [], "222": [], "223": [],
-          "224": [], "225": [], "226": [], "227": [], "228": [], "229": []
+          "217": [[], ""], "218": [[], ""], "219": [[], ""], "220": [[], ""], "221": [[], ""], "222": [[], ""], "223": [[], ""],
+          "224": [[], ""], "225": [[], ""], "226": [[], ""], "227": [[], ""], "228": [[], ""], "229": [[], ""]
         }
       },
       "18": {
         title: "Neural Control and Coordination",
         questions: {
-          "230": [], "231": [], "232": [], "233": [], "234": [], "235": [], "236": [],
-          "237": [], "238": []
+          "230": [[], ""], "231": [[], ""], "232": [[], ""], "233": [[], ""], "234": [[], ""], "235": [[], ""], "236": [[], ""],
+          "237": [[], ""], "238": [[], ""]
         }
       },
       "19": {
         title: "Chemical Coordination and Integration",
         questions: {
-          "239": [], "240": [], "241": [], "242": [], "243": [], "244": [], "245": [],
-          "246": [], "247": [], "248": [], "249": [], "250": []
+          "239": [[], ""], "240": [[], ""], "241": [[], ""], "242": [[], ""], "243": [[], ""], "244": [[], ""], "245": [[], ""],
+          "246": [[], ""], "247": [[], ""], "248": [[], ""], "249": [[], ""], "250": [[], ""]
         }
       }
     },
@@ -643,900 +678,910 @@
       "1": {
         title: "Sexual Reproduction in Flowering Plants",
         questions: {
-          "3": [], "4": [], "5": [], "6": [], "7": [], "8": [], "9": [], "10": [],
-          "11": [], "12": [], "13": [], "14": [], "15": [], "16": [], "17": [],
-          "18": [], "19": [], "20": [], "21": [], "22": [], "23": [], "24": [], "25": []
+          "3": [[], ""], "4": [[], ""], "5": [[], ""], "6": [[], ""], "7": [[], ""], "8": [[], ""], "9": [[], ""], "10": [[], ""],
+          "11": [[], ""], "12": [[], ""], "13": [[], ""], "14": [[], ""], "15": [[], ""], "16": [[], ""], "17": [[], ""],
+          "18": [[], ""], "19": [[], ""], "20": [[], ""], "21": [[], ""], "22": [[], ""], "23": [[], ""], "24": [[], ""], "25": [[], ""]
         }
       },
       "2": {
         title: "Human Reproduction",
         questions: {
-          "26": [], "27": [], "28": [], "29": [], "30": [], "31": [], "32": [],
-          "33": [], "34": [], "35": [], "36": [], "37": [], "38": [], "39": [], "40": []
+          "26": [[], ""], "27": [[], ""], "28": [[], ""], "29": [[], ""], "30": [[], ""], "31": [[], ""], "32": [[], ""],
+          "33": [[], ""], "34": [[], ""], "35": [[], ""], "36": [[], ""], "37": [[], ""], "38": [[], ""], "39": [[], ""], "40": [[], ""]
         }
       },
       "3": {
         title: "Reproductive Health",
         questions: {
-          "41": [], "42": [], "43": [], "44": [], "45": [], "46": [], "47": [],
-          "48": [], "49": [], "50": []
+          "41": [[], ""], "42": [[], ""], "43": [[], ""], "44": [[], ""], "45": [[], ""], "46": [[], ""], "47": [[], ""],
+          "48": [[], ""], "49": [[], ""], "50": [[], ""]
         }
       },
       "4": {
         title: "Principles of Inheritance and Variation",
         questions: {
-          "53": [], "54": [], "55": [], "56": [], "57": [], "58": [], "59": [],
-          "60": [], "61": [], "62": [], "63": [], "64": [], "65": [], "66": [],
-          "67": [], "68": [], "69": [], "70": [], "71": [], "72": [], "73": [],
-          "74": [], "75": [], "76": [], "77": [], "78": []
+          "53": [[], ""], "54": [[], ""], "55": [[], ""], "56": [[], ""], "57": [[], ""], "58": [[], ""], "59": [[], ""],
+          "60": [[], ""], "61": [[], ""], "62": [[], ""], "63": [[], ""], "64": [[], ""], "65": [[], ""], "66": [[], ""],
+          "67": [[], ""], "68": [[], ""], "69": [[], ""], "70": [[], ""], "71": [[], ""], "72": [[], ""], "73": [[], ""],
+          "74": [[], ""], "75": [[], ""], "76": [[], ""], "77": [[], ""], "78": [[], ""]
         }
       },
       "5": {
         title: "Molecular Basis of Inheritance",
         questions: {
-          "79": [], "80": [], "81": [], "82": [], "83": [], "84": [], "85": [],
-          "86": [], "87": [], "88": [], "89": [], "90": [], "91": [], "92": [],
-          "93": [], "94": [], "95": [], "96": [], "97": [], "98": [], "99": [],
-          "100": [], "101": [], "102": [], "103": [], "104": [], "105": [], "106": [],
-          "107": [], "108": [], "109": []
+          "79": [[], ""], "80": [[], ""], "81": [[], ""], "82": [[], ""], "83": [[], ""], "84": [[], ""], "85": [[], ""],
+          "86": [[], ""], "87": [[], ""], "88": [[], ""], "89": [[], ""], "90": [[], ""], "91": [[], ""], "92": [[], ""],
+          "93": [[], ""], "94": [[], ""], "95": [[], ""], "96": [[], ""], "97": [[], ""], "98": [[], ""], "99": [[], ""],
+          "100": [[], ""], "101": [[], ""], "102": [[], ""], "103": [[], ""], "104": [[], ""], "105": [[], ""], "106": [[], ""],
+          "107": [[], ""], "108": [[], ""], "109": [[], ""]
         }
       },
       "6": {
         title: "Evolution",
         questions: {
-          "110": [], "111": [], "112": [], "113": [], "114": [], "115": [], "116": [],
-          "117": [], "118": [], "119": [], "120": [], "121": [], "122": [], "123": [],
-          "124": [], "125": [], "126": []
+          "110": [[], ""], "111": [[], ""], "112": [[], ""], "113": [[], ""], "114": [[], ""], "115": [[], ""], "116": [[], ""],
+          "117": [[], ""], "118": [[], ""], "119": [[], ""], "120": [[], ""], "121": [[], ""], "122": [[], ""], "123": [[], ""],
+          "124": [[], ""], "125": [[], ""], "126": [[], ""]
         }
       },
       "7": {
         title: "Human Health and Disease",
         questions: {
-          "129": [], "130": [], "131": [], "132": [], "133": [], "134": [], "135": [],
-          "136": [], "137": [], "138": [], "139": [], "140": [], "141": [], "142": [],
-          "143": [], "144": [], "145": [], "146": [], "147": [], "148": []
+          "129": [[], ""], "130": [[], ""], "131": [[], ""], "132": [[], ""], "133": [[], ""], "134": [[], ""], "135": [[], ""],
+          "136": [[], ""], "137": [[], ""], "138": [[], ""], "139": [[], ""], "140": [[], ""], "141": [[], ""], "142": [[], ""],
+          "143": [[], ""], "144": [[], ""], "145": [[], ""], "146": [[], ""], "147": [[], ""], "148": [[], ""]
         }
       },
       "8": {
         title: "Microbes in Human Welfare",
         questions: {
-          "149": [], "150": [], "151": [], "152": [], "153": [], "154": [], "155": [],
-          "156": [], "157": [], "158": [], "159": [], "160": []
+          "149": [[], ""], "150": [[], ""], "151": [[], ""], "152": [[], ""], "153": [[], ""], "154": [[], ""], "155": [[], ""],
+          "156": [[], ""], "157": [[], ""], "158": [[], ""], "159": [[], ""], "160": [[], ""]
         }
       },
       "9": {
         title: "Biotechnology: Principles and Processes",
         questions: {
-          "163": [], "164": [], "165": [], "166": [], "167": [], "168": [], "169": [],
-          "170": [], "171": [], "172": [], "173": [], "174": [], "175": [], "176": []
+          "163": [[], ""], "164": [[], ""], "165": [[], ""], "166": [[], ""], "167": [[], ""], "168": [[], ""], "169": [[], ""],
+          "170": [[], ""], "171": [[], ""], "172": [[], ""], "173": [[], ""], "174": [[], ""], "175": [[], ""], "176": [[], ""]
         }
       },
       "10": {
         title: "Biotechnology and its Applications",
         questions: {
-          "177": [], "178": [], "179": [], "180": [], "181": [], "182": [], "183": [],
-          "184": [], "185": [], "186": [], "187": []
+          "177": [[], ""], "178": [[], ""], "179": [[], ""], "180": [[], ""], "181": [[], ""], "182": [[], ""], "183": [[], ""],
+          "184": [[], ""], "185": [[], ""], "186": [[], ""], "187": [[], ""]
         }
       },
       "11": {
         title: "Organisms and Populations",
         questions: {
-          "190": [], "191": [], "192": [], "193": [], "194": [], "195": [], "196": [],
-          "197": [], "198": [], "199": [], "200": [], "201": [], "202": [], "203": [], "204": []
+          "190": [[], ""], "191": [[], ""], "192": [[], ""], "193": [[], ""], "194": [[], ""], "195": [[], ""], "196": [[], ""],
+          "197": [[], ""], "198": [[], ""], "199": [[], ""], "200": [[], ""], "201": [[], ""], "202": [[], ""], "203": [[], ""], "204": [[], ""]
         }
       },
       "12": {
         title: "Ecosystem",
         questions: {
-          "205": [], "206": [], "207": [], "208": [], "209": [], "210": [], "211": [],
-          "212": [], "213": [], "214": [], "215": []
+          "205": [[], ""], "206": [[], ""], "207": [[], ""], "208": [[], ""], "209": [[], ""], "210": [[], ""], "211": [[], ""],
+          "212": [[], ""], "213": [[], ""], "214": [[], ""], "215": [[], ""]
         }
       },
       "13": {
         title: "Biodiversity and Conservation",
         questions: {
-          "216": [{
-  question: "There are more than ____ species of ants:",
+          "216": [[{
+  question: "How many ant species exist worldwide?",
   options: [
-    "a) 10,000",
-    "b) 20,000",
     "c) 30,000",
+    "b) 20,000",
+    "a) 10,000",
     "d) 40,000"
   ],
   answer: "b) 20,000"
 },
 {
-  question: "There are approximately ____ species of beetles:",
+  question: "Biodiversity exists at various levels of biological organization from:",
   options: [
-    "a) 1,00,000",
-    "b) 2,00,000",
-    "c) 3,00,000",
-    "d) 4,00,000"
+    "c) Atoms to molecules",
+    "a) Cells to tissues",
+    "b) Macromolecules within cells to biomes",
+    "d) Organs to organisms"
   ],
-  answer: "c) 3,00,000"
+  answer: "b) Macromolecules within cells to biomes"
 },
 {
-  question: "Nearly ____ species of orchids have been recorded:",
+  question: "The term 'biodiversity' was made popular by which scientist?",
   options: [
-    "a) 10,000",
-    "b) 15,000",
-    "c) 20,000",
-    "d) 25,000"
-  ],
-  answer: "c) 20,000"
-},
-{
-  question: "The term 'biodiversity' was popularized by:",
-  options: [
-    "a) Charles Darwin",
-    "b) Edward Wilson",
     "c) Paul Ehrlich",
-    "d) R.H. Whittaker"
+    "a) Charles Darwin",
+    "d) R.H. Whittaker",
+    "b) Edward Wilson"
   ],
   answer: "b) Edward Wilson"
 },
 {
-  question: "Edward Wilson was a:",
+  question: "Approximately how many beetle species have been identified?",
   options: [
-    "a) Ecologist",
-    "b) Taxonomist",
+    "b) 2,00,000",
+    "c) 3,00,000",
+    "d) 4,00,000",
+    "a) 1,00,000"
+  ],
+  answer: "c) 3,00,000"
+},
+{
+  question: "What was Edward Wilson's field of expertise?",
+  options: [
+    "d) Geneticist",
     "c) Sociobiologist",
-    "d) Geneticist"
+    "a) Ecologist",
+    "b) Taxonomist"
   ],
   answer: "c) Sociobiologist"
 },
 {
-  question: "Biodiversity exists at all levels of biological organization ranging from:",
-  options: [
-    "a) Cells to tissues",
-    "b) Macromolecules within cells to biomes",
-    "c) Atoms to molecules",
-    "d) Organs to organisms"
-  ],
-  answer: "b) Macromolecules within cells to biomes"
-  }], "217": [{
-  question: "India has more than ____ genetically different strains of rice:",
+  question: "How many orchid species have been documented?",
   options: [
     "a) 10,000",
-    "b) 30,000",
+    "c) 20,000",
+    "d) 25,000",
+    "b) 15,000"
+  ],
+  answer: "c) 20,000"
+}], "This page introduces biodiversity, discussing species diversity across different groups (ants, beetles, orchids) and introduces Edward Wilson's role in popularizing the term 'biodiversity'. It emphasizes that biodiversity exists at all levels of biological organization."],
+"217": [[{
+  question: "How many genetically distinct rice strains are found in India?",
+  options: [
+    "d) 70,000",
+    "a) 10,000",
     "c) 50,000",
-    "d) 70,000"
+    "b) 30,000"
   ],
   answer: "c) 50,000"
 },
 {
-  question: "India has ____ varieties of mango:",
+  question: "What does the presence of deserts, rainforests, mangroves, coral reefs, wetlands, estuaries, and alpine meadows indicate about India compared to Norway?",
   options: [
-    "a) 500",
-    "b) 1,000",
-    "c) 1,500",
-    "d) 2,000"
+    "b) Deserts, rain forests, mangroves, coral reefs, wetlands, estuaries, alpine meadows",
+    "d) Only wetlands",
+    "a) Only deserts",
+    "c) Only rain forests"
   ],
-  answer: "b) 1,000"
+  answer: "b) Deserts, rain forests, mangroves, coral reefs, wetlands, estuaries, alpine meadows"
 },
 {
-  question: "According to IUCN (2004), approximately how many species were described:",
+  question: "According to Robert May, global species diversity is estimated at:",
+  options: [
+    "c) 20 million",
+    "b) 7 million",
+    "d) 50 million",
+    "a) 1.5 million"
+  ],
+  answer: "b) 7 million"
+},
+{
+  question: "The variation in amphibian species between Western Ghats and Eastern Ghats is an example of:",
+  options: [
+    "d) Functional diversity",
+    "c) Ecological diversity",
+    "b) Species diversity",
+    "a) Genetic diversity"
+  ],
+  answer: "b) Species diversity"
+},
+{
+  question: "According to IUCN data from 2004, how many species had been documented?",
   options: [
     "a) 1.5 million",
-    "b) 3 million",
     "c) 7 million",
+    "b) 3 million",
     "d) 20 million"
   ],
   answer: "a) 1.5 million"
 },
 {
-  question: "According to Robert May, the global species diversity is about:",
+  question: "How many mango varieties exist in India?",
   options: [
-    "a) 1.5 million",
-    "b) 7 million",
-    "c) 20 million",
-    "d) 50 million"
+    "c) 1,500",
+    "a) 500",
+    "b) 1,000",
+    "d) 2,000"
   ],
-  answer: "b) 7 million"
+  answer: "b) 1,000"
 },
 {
-  question: "Western Ghats have a greater amphibian species diversity than the Eastern Ghats. This represents:",
+  question: "The diversity represented by 50,000 rice strains and 1,000 mango varieties in India is:",
   options: [
-    "a) Genetic diversity",
-    "b) Species diversity",
-    "c) Ecological diversity",
-    "d) Functional diversity"
-  ],
-  answer: "b) Species diversity"
-},
-{
-  question: "More than 50,000 different strains of rice and 1,000 varieties of mango in India represent:",
-  options: [
-    "a) Species diversity",
-    "b) Ecological diversity",
+    "d) Community diversity",
     "c) Genetic diversity",
-    "d) Community diversity"
+    "b) Ecological diversity",
+    "a) Species diversity"
   ],
   answer: "c) Genetic diversity"
-},
-{
-  question: "India has greater ecosystem diversity than Norway due to the presence of:",
+}], ""],
+"218": [[{
+  question: "What proportion of all documented species are animals?",
   options: [
-    "a) Only deserts",
-    "b) Deserts, rain forests, mangroves, coral reefs, wetlands, estuaries, alpine meadows",
-    "c) Only rain forests",
-    "d) Only wetlands"
-  ],
-  answer: "b) Deserts, rain forests, mangroves, coral reefs, wetlands, estuaries, alpine meadows"
-        }], "218": [{
-  question: "More than ____ percent of all recorded species are animals:",
-  options: [
-    "a) 50",
     "b) 60",
     "c) 70",
+    "a) 50",
     "d) 80"
   ],
   answer: "c) 70"
 },
 {
-  question: "Plants (including algae, fungi, bryophytes, gymnosperms and angiosperms) comprise no more than ____ percent of total species:",
+  question: "Which vertebrate group shows maximum species diversity?",
   options: [
-    "a) 12",
-    "b) 22",
+    "b) Birds",
+    "c) Fishes",
+    "a) Mammals",
+    "d) Reptiles"
+  ],
+  answer: "c) Fishes"
+},
+{
+  question: "Among animals, insects make up more than what percentage?",
+  options: [
+    "c) 70",
+    "d) 80",
+    "a) 50",
+    "b) 60"
+  ],
+  answer: "c) 70"
+},
+{
+  question: "If molecular and biochemical methods are used to classify prokaryotes, their diversity could reach:",
+  options: [
+    "a) Thousands",
+    "c) Millions",
+    "d) Billions",
+    "b) Hundreds of thousands"
+  ],
+  answer: "c) Millions"
+},
+{
+  question: "Plants including algae, fungi, bryophytes, gymnosperms and angiosperms make up approximately what percent of species?",
+  options: [
     "c) 32",
-    "d) 42"
+    "d) 42",
+    "a) 12",
+    "b) 22"
   ],
   answer: "b) 22"
 },
 {
-  question: "Among animals, insects are the most species-rich taxonomic group, making up more than ____ percent:",
+  question: "Out of 10 animals on Earth, how many are insects?",
   options: [
-    "a) 50",
-    "b) 60",
-    "c) 70",
-    "d) 80"
-  ],
-  answer: "c) 70"
-},
-{
-  question: "Out of every 10 animals on this planet, ____ are insects:",
-  options: [
-    "a) 5",
-    "b) 6",
+    "d) 8",
     "c) 7",
-    "d) 8"
+    "b) 6",
+    "a) 5"
   ],
   answer: "c) 7"
 },
 {
-  question: "The number of fungi species in the world is more than the combined total of:",
-  options: [
-    "a) All invertebrates",
-    "b) Fishes, amphibians, reptiles and mammals",
-    "c) All plants",
-    "d) All microbes"
-  ],
-  answer: "b) Fishes, amphibians, reptiles and mammals"
-},
-{
-  question: "Conventional taxonomic methods are not suitable for identifying:",
+  question: "Traditional taxonomic approaches are inadequate for identifying:",
   options: [
     "a) Plant species",
-    "b) Animal species",
     "c) Microbial species",
+    "b) Animal species",
     "d) Fungal species"
   ],
   answer: "c) Microbial species"
 },
 {
-  question: "If biochemical or molecular criteria are accepted for delineating prokaryotic species, their diversity might run into:",
+  question: "Fungi species worldwide outnumber the combined total of:",
   options: [
-    "a) Thousands",
-    "b) Hundreds of thousands",
-    "c) Millions",
-    "d) Billions"
+    "d) All microbes",
+    "b) Fishes, amphibians, reptiles and mammals",
+    "c) All plants",
+    "a) All invertebrates"
   ],
-  answer: "c) Millions"
-},
-{
-  question: "Which taxonomic group has the highest species diversity among vertebrates:",
+  answer: "b) Fishes, amphibians, reptiles and mammals"
+}], ""],
+"219": [[{
+  question: "Though India covers only 2.4% of Earth's land, what is its share of global species diversity?",
   options: [
-    "a) Mammals",
-    "b) Birds",
-    "c) Fishes",
-    "d) Reptiles"
-  ],
-  answer: "c) Fishes"
-  }], "219": [{
-  question: "India has only 2.4% of the world's land area, its share of the global species diversity is:",
-  options: [
-    "a) 2.4%",
     "b) 4.8%",
+    "d) 12.5%",
     "c) 8.1%",
-    "d) 12.5%"
+    "a) 2.4%"
   ],
   answer: "c) 8.1%"
 },
 {
-  question: "Latitudinal gradient in diversity says that:",
+  question: "The latitudinal gradient in diversity indicates that:",
   options: [
-    "a) Species diversity decreases as we move away from the equator towards the poles",
-    "b) Species diversity increases as we move away from the equator towards the poles",
     "c) Species diversity remains constant throughout latitudes",
+    "b) Species diversity increases as we move away from the equator towards the poles",
+    "a) Species diversity decreases as we move away from the equator towards the poles",
     "d) There is no relationship between latitude and species diversity"
   ],
   answer: "a) Species diversity decreases as we move away from the equator towards the poles"
 },
 {
-  question: "Colombia located near the equator has nearly ____ species of birds:",
+  question: "How many plant species have been recorded in India?",
   options: [
-    "a) 105",
+    "d) 55,000",
+    "a) 25,000",
+    "c) 45,000",
+    "b) 35,000"
+  ],
+  answer: "c) 45,000"
+},
+{
+  question: "How many bird species does Colombia, near the equator, have?",
+  options: [
+    "d) 1,200",
     "b) 1,400",
-    "c) 56",
-    "d) 1,200"
+    "a) 105",
+    "c) 56"
   ],
   answer: "b) 1,400"
 },
 {
-  question: "Greenland at 71°N has only ____ species of birds:",
+  question: "At 41°N latitude, how many bird species are found in New York?",
   options: [
-    "a) 56",
-    "b) 105",
     "c) 150",
-    "d) 200"
-  ],
-  answer: "a) 56"
-},
-{
-  question: "India has more than ____ species of birds:",
-  options: [
-    "a) 500",
-    "b) 800",
-    "c) 1,200",
-    "d) 1,500"
-  ],
-  answer: "c) 1,200"
-},
-{
-  question: "New York at 41°N has ____ species of birds:",
-  options: [
-    "a) 56",
     "b) 105",
-    "c) 150",
+    "a) 56",
     "d) 200"
   ],
   answer: "b) 105"
 },
 {
-  question: "Tropics (latitudinal range of 23.5°N to 23.5°S):",
+  question: "How many bird species does India have?",
   options: [
+    "a) 500",
+    "c) 1,200",
+    "b) 800",
+    "d) 1,500"
+  ],
+  answer: "c) 1,200"
+},
+{
+  question: "At 71°N latitude, how many bird species does Greenland have?",
+  options: [
+    "c) 150",
+    "a) 56",
+    "b) 105",
+    "d) 200"
+  ],
+  answer: "a) 56"
+},
+{
+  question: "The tropical belt (23.5°N to 23.5°S) in terms of species:",
+  options: [
+    "d) Have no significant species diversity",
     "a) Harbor less species than temperate or polar areas",
-    "b) Harbor same species as temperate areas",
     "c) Harbor more species than temperate or polar areas",
-    "d) Have no significant species diversity"
+    "b) Harbor same species as temperate areas"
   ],
   answer: "c) Harbor more species than temperate or polar areas"
 },
 {
-  question: "A tropical region like Ecuador has up to ____ times as many species of vascular plants as a forest of equal area in temperate regions:",
+  question: "A tropical forest like Ecuador has how many times more vascular plant species than a temperate forest of similar size?",
   options: [
-    "a) 5",
     "b) 10",
     "c) 15",
-    "d) 20"
+    "d) 20",
+    "a) 5"
   ],
   answer: "b) 10"
-},
-{
-  question: "India has recorded nearly ____ species of plants:",
+}], ""],
+"220": [[{
+  question: "Who first observed the species-area relationship?",
   options: [
-    "a) 25,000",
-    "b) 35,000",
-    "c) 45,000",
-    "d) 55,000"
-  ],
-  answer: "c) 45,000"
-          }], "220": [{
-  question: "The species-area relationship was observed by:",
-  options: [
-    "a) Charles Darwin",
+    "d) Edward Wilson",
     "b) Alexander von Humboldt",
-    "c) Robert May",
-    "d) Edward Wilson"
+    "a) Charles Darwin",
+    "c) Robert May"
   ],
   answer: "b) Alexander von Humboldt"
 },
 {
-  question: "On a logarithmic scale, the species-area relationship is represented by the equation:",
+  question: "The species-area relationship on a logarithmic scale is expressed as:",
   options: [
+    "c) S = C + ZA",
     "a) S = CA^Z",
     "b) Log S = Log C + Z Log A",
-    "c) S = C + ZA",
     "d) Log S = C + Z Log A"
   ],
   answer: "b) Log S = Log C + Z Log A"
 },
 {
-  question: "In the species-area relationship equation, Z represents:",
+  question: "For very large areas like continents, the Z value ranges between:",
   options: [
-    "a) Species richness",
-    "b) Area",
-    "c) Slope of the line (regression coefficient)",
-    "d) Y-intercept"
-  ],
-  answer: "c) Slope of the line (regression coefficient)"
-},
-{
-  question: "Ecologists have discovered that the value of Z lies in the range of:",
-  options: [
-    "a) 0.01 to 0.1",
-    "b) 0.1 to 0.2",
-    "c) 0.5 to 1.0",
-    "d) 1.0 to 2.0"
-  ],
-  answer: "b) 0.1 to 0.2"
-},
-{
-  question: "For very large areas like entire continents, the Z value lies in the range of:",
-  options: [
-    "a) 0.1 to 0.2",
     "b) 0.6 to 1.2",
     "c) 1.5 to 2.0",
+    "a) 0.1 to 0.2",
     "d) 2.0 to 3.0"
   ],
   answer: "b) 0.6 to 1.2"
 },
 {
-  question: "For mammals in the tropical forests of different continents, the slope (Z value) is:",
+  question: "What does Z represent in the species-area equation?",
   options: [
-    "a) 0.2",
-    "b) 0.6",
+    "b) Area",
+    "d) Y-intercept",
+    "c) Slope of the line (regression coefficient)",
+    "a) Species richness"
+  ],
+  answer: "c) Slope of the line (regression coefficient)"
+},
+{
+  question: "For mammals across tropical forests in different continents, the Z value is:",
+  options: [
     "c) 1.15",
-    "d) 1.5"
+    "a) 0.2",
+    "d) 1.5",
+    "b) 0.6"
   ],
   answer: "c) 1.15"
 },
 {
-  question: "According to Alexander von Humboldt, within a region, species richness:",
+  question: "Ecologists found that Z value typically falls in the range of:",
   options: [
-    "a) Decreases with increasing explored area",
-    "b) Increases with increasing explored area, but only up to a limit",
+    "a) 0.01 to 0.1",
+    "c) 0.5 to 1.0",
+    "b) 0.1 to 0.2",
+    "d) 1.0 to 2.0"
+  ],
+  answer: "b) 0.1 to 0.2"
+},
+{
+  question: "According to von Humboldt, within a region, species richness:",
+  options: [
     "c) Remains constant with area",
-    "d) Increases indefinitely with area"
+    "d) Increases indefinitely with area",
+    "b) Increases with increasing explored area, but only up to a limit",
+    "a) Decreases with increasing explored area"
   ],
   answer: "b) Increases with increasing explored area, but only up to a limit"
-  }], "221": [{
-  question: "David Tilman's long-term ecosystem experiments using outdoor plots showed that:",
+}], ""],
+"221": [[{
+  question: "David Tilman's outdoor plot experiments demonstrated that:",
   options: [
     "a) Plots with more species showed more year-to-year variation in total biomass",
     "b) Plots with more species showed less year-to-year variation in total biomass",
-    "c) Increased diversity led to lower productivity",
-    "d) Diversity has no effect on ecosystem stability"
+    "d) Diversity has no effect on ecosystem stability",
+    "c) Increased diversity led to lower productivity"
   ],
   answer: "b) Plots with more species showed less year-to-year variation in total biomass"
 },
 {
-  question: "David Tilman's experiments also showed that:",
+  question: "In Paul Ehrlich's 'Rivet Popper Hypothesis', what comparison was made?",
   options: [
-    "a) Decreased diversity contributed to higher productivity",
-    "b) Increased diversity contributed to higher productivity",
-    "c) Diversity has no relation with productivity",
-    "d) Only genetic diversity affects productivity"
-  ],
-  answer: "b) Increased diversity contributed to higher productivity"
-},
-{
-  question: "In the 'Rivet Popper Hypothesis', Paul Ehrlich compared:",
-  options: [
-    "a) Ecosystem to a ship and species to anchors",
     "b) Ecosystem to an airplane and species to rivets",
+    "d) Ecosystem to a car and species to wheels",
     "c) Ecosystem to a building and species to bricks",
-    "d) Ecosystem to a car and species to wheels"
+    "a) Ecosystem to a ship and species to anchors"
   ],
   answer: "b) Ecosystem to an airplane and species to rivets"
 },
 {
-  question: "According to the Rivet Popper Hypothesis, the loss of species:",
+  question: "Tilman's experiments also revealed that:",
   options: [
+    "b) Increased diversity contributed to higher productivity",
+    "a) Decreased diversity contributed to higher productivity",
+    "d) Only genetic diversity affects productivity",
+    "c) Diversity has no relation with productivity"
+  ],
+  answer: "b) Increased diversity contributed to higher productivity"
+},
+{
+  question: "What does a stable community demonstrate?",
+  options: [
+    "d) Have very low species richness",
+    "b) Not be resistant to disturbances",
+    "c) Not show too much variation in productivity and be resistant to disturbances",
+    "a) Show high variation in productivity year to year"
+  ],
+  answer: "c) Not show too much variation in productivity and be resistant to disturbances"
+},
+{
+  question: "The Rivet Popper Hypothesis suggests that species loss:",
+  options: [
+    "c) Never affects ecosystem functioning",
     "a) Has immediate drastic effects on ecosystem",
     "b) May initially have no effect but becomes critical as more species are lost",
-    "c) Never affects ecosystem functioning",
     "d) Only affects genetic diversity"
   ],
   answer: "b) May initially have no effect but becomes critical as more species are lost"
 },
 {
-  question: "IUCN Red List (2004) documents the extinction of ____ species in the last 500 years:",
+  question: "How many species extinctions in the last 500 years are documented by IUCN Red List (2004)?",
   options: [
+    "d) 1000",
     "a) 500",
-    "b) 650",
     "c) 784",
-    "d) 1000"
+    "b) 650"
   ],
   answer: "c) 784"
 },
 {
-  question: "Out of 784 extinct species documented by IUCN Red List (2004), ____ were vertebrates:",
+  question: "Of the 784 extinct species, how many were invertebrates?",
   options: [
-    "a) 87",
-    "b) 338",
     "c) 359",
-    "d) 400"
-  ],
-  answer: "b) 338"
-},
-{
-  question: "Out of 784 extinct species, ____ were invertebrates:",
-  options: [
-    "a) 87",
     "b) 338",
-    "c) 359",
+    "a) 87",
     "d) 400"
   ],
   answer: "c) 359"
 },
 {
-  question: "Out of 784 extinct species, ____ were plants:",
+  question: "Of the 784 extinct species, how many were vertebrates?",
   options: [
     "a) 87",
+    "d) 400",
+    "b) 338",
+    "c) 359"
+  ],
+  answer: "b) 338"
+},
+{
+  question: "Of the 784 extinct species, how many were plants?",
+  options: [
     "b) 100",
+    "a) 87",
     "c) 150",
     "d) 200"
   ],
   answer: "a) 87"
-},
-{
-  question: "A stable community should:",
+}], ""],
+"222": [[{
+  question: "How many species globally are currently threatened with extinction?",
   options: [
-    "a) Show high variation in productivity year to year",
-    "b) Not be resistant to disturbances",
-    "c) Not show too much variation in productivity and be resistant to disturbances",
-    "d) Have very low species richness"
-  ],
-  answer: "c) Not show too much variation in productivity and be resistant to disturbances"
-  }], "222": [{
-  question: "More than ____ species worldwide are currently facing the threat of extinction:",
-  options: [
-    "a) 10,000",
-    "b) 12,500",
     "c) 15,500",
-    "d) 20,000"
+    "a) 10,000",
+    "d) 20,000",
+    "b) 12,500"
   ],
   answer: "c) 15,500"
 },
 {
-  question: "Presently, ____ percent of all bird species face the threat of extinction:",
+  question: "What percentage of bird species currently face extinction threat?",
   options: [
     "a) 12",
-    "b) 23",
     "c) 32",
-    "d) 31"
+    "d) 31",
+    "b) 23"
   ],
   answer: "a) 12"
 },
 {
-  question: "Presently, ____ percent of all mammal species face the threat of extinction:",
+  question: "The primary driver of species extinction is:",
   options: [
-    "a) 12",
+    "d) Co-extinction",
+    "c) Alien species invasion",
+    "b) Habitat loss and fragmentation",
+    "a) Over-exploitation"
+  ],
+  answer: "b) Habitat loss and fragmentation"
+},
+{
+  question: "What percentage of mammal species face extinction currently?",
+  options: [
     "b) 23",
-    "c) 32",
-    "d) 31"
+    "a) 12",
+    "d) 31",
+    "c) 32"
   ],
   answer: "b) 23"
 },
 {
-  question: "Presently, ____ percent of all amphibian species face the threat of extinction:",
+  question: "Which animal group is most vulnerable to extinction?",
   options: [
-    "a) 12",
-    "b) 23",
-    "c) 32",
-    "d) 31"
-  ],
-  answer: "c) 32"
-},
-{
-  question: "Which animal group appears to be more vulnerable to extinction:",
-  options: [
-    "a) Birds",
-    "b) Mammals",
+    "d) Reptiles",
     "c) Amphibians",
-    "d) Reptiles"
+    "a) Birds",
+    "b) Mammals"
   ],
   answer: "c) Amphibians"
 },
 {
-  question: "The current species extinction rates (Sixth Extinction) are estimated to be ____ times faster than in pre-human times:",
+  question: "Current extinction rates (Sixth Extinction) are how many times faster than pre-human times?",
   options: [
     "a) 10 to 50",
-    "b) 50 to 100",
     "c) 100 to 1,000",
+    "b) 50 to 100",
     "d) 1,000 to 10,000"
   ],
   answer: "c) 100 to 1,000"
 },
 {
-  question: "Tropical rain forests once covered more than ____ percent of the Earth's land surface:",
+  question: "What percentage of amphibian species currently face extinction?",
   options: [
+    "d) 31",
+    "a) 12",
+    "c) 32",
+    "b) 23"
+  ],
+  answer: "c) 32"
+},
+{
+  question: "Tropical rainforests now cover what percentage of Earth's land?",
+  options: [
+    "a) 2",
+    "c) 6",
+    "d) 8",
+    "b) 4"
+  ],
+  answer: "c) 6"
+},
+{
+  question: "Tropical rainforests once covered more than what percent of Earth's land?",
+  options: [
+    "c) 14",
     "a) 6",
     "b) 10",
-    "c) 14",
     "d) 20"
   ],
   answer: "c) 14"
 },
 {
-  question: "Tropical rain forests now cover no more than ____ percent of Earth's land surface:",
+  question: "The four major biodiversity loss causes are called:",
   options: [
-    "a) 2",
-    "b) 4",
-    "c) 6",
-    "d) 8"
-  ],
-  answer: "c) 6"
-},
-{
-  question: "The four major causes of biodiversity loss are collectively known as:",
-  options: [
+    "d) The Major Threats",
     "a) The Evil Quartet",
-    "b) The Big Four",
     "c) The Fatal Four",
-    "d) The Major Threats"
+    "b) The Big Four"
   ],
   answer: "a) The Evil Quartet"
-},
-{
-  question: "The most important cause driving animals and plants to extinction is:",
+}], ""],
+"223": [[{
+  question: "Which species went extinct due to human over-exploitation?",
   options: [
-    "a) Over-exploitation",
-    "b) Habitat loss and fragmentation",
-    "c) Alien species invasion",
-    "d) Co-extinction"
-  ],
-  answer: "b) Habitat loss and fragmentation"
-  }],
-          "223": [{
-  question: "Which of the following species became extinct due to over-exploitation by humans:",
-  options: [
-    "a) Dodo and African catfish",
+    "d) None of the above",
     "b) Steller's sea cow and passenger pigeon",
-    "c) Nile perch and cichlid fish",
-    "d) None of the above"
+    "a) Dodo and African catfish",
+    "c) Nile perch and cichlid fish"
   ],
   answer: "b) Steller's sea cow and passenger pigeon"
 },
 {
-  question: "The introduction of Nile perch into Lake Victoria in East Africa led to the extinction of:",
+  question: "Co-extinction means:",
   options: [
-    "a) More than 100 species of cichlid fish",
-    "b) More than 150 species of cichlid fish",
-    "c) More than 200 species of cichlid fish",
-    "d) More than 300 species of cichlid fish"
-  ],
-  answer: "c) More than 200 species of cichlid fish"
-},
-{
-  question: "The introduction of Nile perch into Lake Victoria is an example of:",
-  options: [
-    "a) Over-exploitation",
-    "b) Habitat loss and fragmentation",
-    "c) Alien species invasion",
-    "d) Co-extinction"
-  ],
-  answer: "c) Alien species invasion"
-},
-{
-  question: "Co-extinction refers to:",
-  options: [
+    "d) Extinction due to pollution",
     "a) Extinction of two unrelated species at the same time",
     "b) Extinction of species associated with extinct host in an obligatory way",
-    "c) Extinction due to climate change",
-    "d) Extinction due to pollution"
+    "c) Extinction due to climate change"
   ],
   answer: "b) Extinction of species associated with extinct host in an obligatory way"
 },
 {
-  question: "When a host fish species becomes extinct, which of the following also becomes extinct:",
+  question: "Introduction of Nile perch to Lake Victoria is an example of:",
   options: [
-    "a) Its predators",
-    "b) Its prey",
-    "c) Its unique assemblage of parasites",
-    "d) All competing species"
+    "a) Over-exploitation",
+    "c) Alien species invasion",
+    "d) Co-extinction",
+    "b) Habitat loss and fragmentation"
   ],
-  answer: "c) Its unique assemblage of parasites"
+  answer: "c) Alien species invasion"
 },
 {
-  question: "The illegal introduction of which fish species poses a threat to indigenous catfishes in Indian rivers:",
+  question: "How many cichlid fish species went extinct due to Nile perch in Lake Victoria?",
   options: [
-    "a) Nile perch",
-    "b) African catfish (Clarias gariepinus)",
-    "c) Cichlid fish",
-    "d) Steller's sea cow"
+    "d) More than 300 species of cichlid fish",
+    "c) More than 200 species of cichlid fish",
+    "b) More than 150 species of cichlid fish",
+    "a) More than 100 species of cichlid fish"
   ],
-  answer: "b) African catfish (Clarias gariepinus)"
+  answer: "c) More than 200 species of cichlid fish"
 },
 {
-  question: "More than ____ percent of drugs currently sold in the market worldwide are derived from plants:",
+  question: "What percentage of drugs in the global market come from plants?",
   options: [
-    "a) 15",
+    "d) 45",
     "b) 25",
-    "c) 35",
-    "d) 45"
+    "a) 15",
+    "c) 35"
   ],
   answer: "b) 25"
 },
 {
-  question: "The three broad categories of biodiversity conservation arguments include all EXCEPT:",
+  question: "When a host fish goes extinct, what also becomes extinct?",
+  options: [
+    "d) All competing species",
+    "a) Its predators",
+    "c) Its unique assemblage of parasites",
+    "b) Its prey"
+  ],
+  answer: "c) Its unique assemblage of parasites"
+},
+{
+  question: "Which fish poses a threat to native Indian river catfish?",
+  options: [
+    "d) Steller's sea cow",
+    "a) Nile perch",
+    "b) African catfish (Clarias gariepinus)",
+    "c) Cichlid fish"
+  ],
+  answer: "b) African catfish (Clarias gariepinus)"
+},
+{
+  question: "Biodiversity conservation arguments include all EXCEPT:",
   options: [
     "a) Narrowly utilitarian",
-    "b) Broadly utilitarian",
     "c) Ethical",
-    "d) Political"
+    "d) Political",
+    "b) Broadly utilitarian"
   ],
   answer: "d) Political"
-  }], "224": [{
-  question: "The Amazon forest is estimated to produce through photosynthesis, ____ of the total oxygen in the earth's atmosphere:",
+}], ""],
+"224": [[{
+  question: "Through photosynthesis, the Amazon forest produces what percentage of Earth's atmospheric oxygen?",
   options: [
+    "d) 40%",
     "a) 10%",
     "b) 20%",
-    "c) 30%",
-    "d) 40%"
+    "c) 30%"
   ],
   answer: "b) 20%"
 },
 {
-  question: "India has ____ biodiversity hotspots:",
+  question: "The fourth Indian biodiversity hotspot is:",
   options: [
-    "a) 2",
-    "b) 3",
+    "d) Arabian Sea",
+    "a) Eastern Ghats",
+    "b) Sundaland",
+    "c) Deccan Peninsula"
+  ],
+  answer: "b) Sundaland"
+},
+{
+  question: "How many biodiversity hotspots does India have?",
+  options: [
     "c) 4",
-    "d) 5"
+    "d) 5",
+    "a) 2",
+    "b) 3"
   ],
   answer: "c) 4"
 },
 {
-  question: "Which of the following are biodiversity hotspots of India:",
+  question: "India's biodiversity hotspots include:",
   options: [
-    "a) Western Ghats, Eastern Ghats, Himalayas",
+    "d) Indo-Burma, Eastern Himalayas, Arabian Sea",
     "b) Western Ghats & Sri Lanka, Indo-Burma, Himalayas",
-    "c) Eastern Ghats, Sundaland, Western Ghats",
-    "d) Indo-Burma, Eastern Himalayas, Arabian Sea"
+    "a) Western Ghats, Eastern Ghats, Himalayas",
+    "c) Eastern Ghats, Sundaland, Western Ghats"
   ],
   answer: "b) Western Ghats & Sri Lanka, Indo-Burma, Himalayas"
 },
 {
-  question: "India has approximately ____ biosphere reserves:",
+  question: "How many national parks does India have?",
   options: [
-    "a) 8",
-    "b) 10",
-    "c) 14",
-    "d) 18"
-  ],
-  answer: "c) 14"
-},
-{
-  question: "India has more than ____ national parks:",
-  options: [
-    "a) 50",
     "b) 70",
     "c) 90",
+    "a) 50",
     "d) 110"
   ],
   answer: "c) 90"
 },
 {
-  question: "India has more than ____ wildlife sanctuaries:",
+  question: "In-situ conservation means:",
   options: [
-    "a) 300",
-    "b) 350",
-    "c) 400",
-    "d) 448"
-  ],
-  answer: "d) 448"
-},
-{
-  question: "In-situ conservation refers to:",
-  options: [
+    "d) Conservation in seed banks",
     "a) Conservation in botanical gardens",
-    "b) Conservation in zoos",
     "c) Conservation in natural habitats like national parks",
-    "d) Conservation in seed banks"
+    "b) Conservation in zoos"
   ],
   answer: "c) Conservation in natural habitats like national parks"
 },
 {
-  question: "Which of the following is NOT an example of in-situ conservation:",
+  question: "How many biosphere reserves does India have approximately?",
   options: [
-    "a) National parks",
-    "b) Wildlife sanctuaries",
-    "c) Biosphere reserves",
-    "d) Botanical gardens"
+    "c) 14",
+    "a) 8",
+    "b) 10",
+    "d) 18"
   ],
-  answer: "d) Botanical gardens"
+  answer: "c) 14"
 },
 {
-  question: "The fourth biodiversity hotspot of India is:",
+  question: "How many wildlife sanctuaries exist in India?",
   options: [
-    "a) Eastern Ghats",
-    "b) Sundaland",
-    "c) Deccan Peninsula",
-    "d) Arabian Sea"
+    "b) 350",
+    "d) 448",
+    "c) 400",
+    "a) 300"
   ],
-  answer: "b) Sundaland"
-          }], "225": [{
-  question: "Sacred groves are found in Khasi and Jaintia Hills of:",
+  answer: "d) 448"
+},
+{
+  question: "Which is NOT an example of in-situ conservation?",
   options: [
-    "a) Arunachal Pradesh",
-    "b) Meghalaya",
+    "d) Botanical gardens",
+    "c) Biosphere reserves",
+    "a) National parks",
+    "b) Wildlife sanctuaries"
+  ],
+  answer: "d) Botanical gardens"
+}], ""],
+"225": [[{
+  question: "Sacred groves in Khasi and Jaintia Hills are found in which state?",
+  options: [
+    "d) Manipur",
     "c) Nagaland",
-    "d) Manipur"
+    "b) Meghalaya",
+    "a) Arunachal Pradesh"
   ],
   answer: "b) Meghalaya"
 },
 {
-  question: "In Meghalaya, there are ____ sacred forests:",
-  options: [
-    "a) 40",
-    "b) 55",
-    "c) 79",
-    "d) 100"
-  ],
-  answer: "c) 79"
-},
-{
-  question: "Which of the following is an example of ex-situ conservation:",
-  options: [
-    "a) National Park",
-    "b) Wildlife Sanctuary",
-    "c) Botanical Garden",
-    "d) Sacred Grove"
-  ],
-  answer: "c) Botanical Garden"
-},
-{
-  question: "All of the following are included in ex-situ conservation EXCEPT:",
+  question: "Ex-situ conservation includes all EXCEPT:",
   options: [
     "a) Zoological parks",
-    "b) Botanical gardens",
+    "d) Sacred groves",
     "c) Seed banks",
-    "d) Sacred groves"
+    "b) Botanical gardens"
   ],
   answer: "d) Sacred groves"
 },
 {
-  question: "The Convention on Biological Diversity was held in:",
+  question: "How many sacred forests are there in Meghalaya?",
   options: [
-    "a) 1990",
-    "b) 1992",
-    "c) 1994",
-    "d) 1996"
+    "a) 40",
+    "c) 79",
+    "d) 100",
+    "b) 55"
   ],
-  answer: "b) 1992"
+  answer: "c) 79"
 },
 {
-  question: "The Convention on Biological Diversity (Earth Summit) was held at:",
+  question: "An example of ex-situ conservation is:",
   options: [
-    "a) Paris",
-    "b) New York",
-    "c) Rio de Janeiro",
-    "d) Stockholm"
+    "d) Sacred Grove",
+    "a) National Park",
+    "c) Botanical Garden",
+    "b) Wildlife Sanctuary"
   ],
-  answer: "c) Rio de Janeiro"
+  answer: "c) Botanical Garden"
 },
 {
-  question: "Gametes can be preserved in ex-situ conservation through:",
+  question: "In ex-situ conservation, gametes can be preserved through:",
   options: [
-    "a) Tissue culture",
-    "b) Cryopreservation techniques",
     "c) Micropropagation",
-    "d) DNA barcoding"
+    "d) DNA barcoding",
+    "b) Cryopreservation techniques",
+    "a) Tissue culture"
   ],
   answer: "b) Cryopreservation techniques"
 },
 {
-  question: "Which community in Rajasthan is known for conservation of black buck:",
+  question: "When was the Convention on Biological Diversity held?",
   options: [
+    "d) 1996",
+    "b) 1992",
+    "a) 1990",
+    "c) 1994"
+  ],
+  answer: "b) 1992"
+},
+{
+  question: "The Convention on Biological Diversity (Earth Summit) took place in:",
+  options: [
+    "a) Paris",
+    "c) Rio de Janeiro",
+    "d) Stockholm",
+    "b) New York"
+  ],
+  answer: "c) Rio de Janeiro"
+},
+{
+  question: "Which community in Rajasthan is famous for black buck conservation?",
+  options: [
+    "d) Bhil",
     "a) Gujjar",
     "b) Bishnoi",
-    "c) Meena",
-    "d) Bhil"
+    "c) Meena"
   ],
   answer: "b) Bishnoi"
-}], "226": [], "227": []
+}], ""],
+"226": [[], ""],
+"227": [[], ""]
         }
       }
     }
@@ -1614,7 +1659,16 @@
         
         if (pages.length > 0) {
           pages.forEach(pageNum => {
-            const questionCount = chapter.questions[pageNum].length;
+            const pageData = chapter.questions[pageNum];
+            let questionCount = 0;
+            
+            // Extract actual question count (not counting summary)
+            if (Array.isArray(pageData) && pageData.length === 2 && Array.isArray(pageData[0])) {
+              questionCount = pageData[0].length;
+            } else if (Array.isArray(pageData)) {
+              questionCount = pageData.length;
+            }
+            
             const option = document.createElement('option');
             option.value = pageNum;
             option.textContent = `Page ${pageNum} (${questionCount} question${questionCount !== 1 ? 's' : ''})`;
@@ -1627,69 +1681,90 @@
     
     updateScoreDisplay();
   }
-function showQuestions() {
-  const classSelect = document.getElementById('classSelect');
-  const chapterSelect = document.getElementById('chapterSelect');
-  const pageSelect = document.getElementById('pageSelect');
-  const contentArea = document.getElementById('contentArea');
-  
-  const classValue = classSelect.value;
-  const chapterValue = chapterSelect.value;
-  const pageValue = pageSelect.value;
-  
-  if (!classValue || !chapterValue || !pageValue) {
-    return;
-  }
-  
-  currentQuestions = questionData[classValue][chapterValue].questions[pageValue] || [];
-  
-  if (currentQuestions.length === 0) {
-    contentArea.innerHTML = '<div class="no-questions">No questions available for this page yet. Add questions to see them here.</div>';
-    updateScoreDisplay();
-    return;
-  }
-  
-  let html = `<div class="question-count">Total Questions: ${currentQuestions.length}</div>`;
-  
-  currentQuestions.forEach((q, index) => {
-    const questionId = `${classValue}-${chapterValue}-${pageValue}-${index}`;
-    const questionState = questionStates[questionId];
+
+  function showQuestions() {
+    const classSelect = document.getElementById('classSelect');
+    const chapterSelect = document.getElementById('chapterSelect');
+    const pageSelect = document.getElementById('pageSelect');
+    const contentArea = document.getElementById('contentArea');
     
-    html += `
-      <div class="question-item">
-        <div class="question-header">
-          <span class="question-number">Question ${index + 1}</span>
-          <span class="question-year" style="cursor: pointer;" onclick="copyQuestion(${index}, '${pageValue}')">📋 Copy</span>
-        </div>
-        <div class="question-text">${q.question}</div>
-        <div class="options">
-          ${q.options.map((opt, optIndex) => {
-            let optionClass = 'option';
-            if (questionState) {
-              optionClass += ' disabled';
-              if (questionState.selectedIndex === optIndex) {
-                optionClass += questionState.isCorrect ? ' answered-correct' : ' answered-incorrect';
+    const classValue = classSelect.value;
+    const chapterValue = chapterSelect.value;
+    const pageValue = pageSelect.value;
+    
+    if (!classValue || !chapterValue || !pageValue) {
+      return;
+    }
+    
+    currentQuestions = questionData[classValue][chapterValue].questions[pageValue] || [];
+
+    // Extract summary from nested structure
+    let questionsArr = currentQuestions;
+    let summaryStr = "";
+    if(Array.isArray(currentQuestions) && currentQuestions.length === 2 && Array.isArray(currentQuestions[0])) {
+      questionsArr = currentQuestions[0];
+      summaryStr = currentQuestions[1] || "";
+      currentQuestions = questionsArr; // Update for compatibility
+    }
+
+    
+    if (currentQuestions.length === 0) {
+      contentArea.innerHTML = '<div class="no-questions">No questions available for this page yet. Add questions to see them here.</div>';
+      updateScoreDisplay();
+      return;
+    }
+    
+    let html = '';
+
+    // Add summary if exists
+    if (summaryStr && summaryStr.trim().length > 0) {
+      html += `
+        <button id="summaryBtn" class="summary-toggle-btn" onclick="toggleSummary()">📚 View Summary</button>
+        <div id="summaryContent" class="summary-content">${summaryStr}</div>
+      `;
+    }
+
+    html += `<div class="question-count">Total Questions: ${currentQuestions.length}</div>`;
+    
+    currentQuestions.forEach((q, index) => {
+      const questionId = `${classValue}-${chapterValue}-${pageValue}-${index}`;
+      const questionState = questionStates[questionId];
+      
+      html += `
+        <div class="question-item">
+          <div class="question-header">
+            <span class="question-number">Question ${index + 1}</span>
+            <span class="question-year" style="cursor: pointer;" onclick="copyQuestion(${index}, '${pageValue}')">📋 Copy</span>
+          </div>
+          <div class="question-text">${q.question}</div>
+          <div class="options">
+            ${q.options.map((opt, optIndex) => {
+              let optionClass = 'option';
+              if (questionState) {
+                optionClass += ' disabled';
+                if (questionState.selectedIndex === optIndex) {
+                  optionClass += questionState.isCorrect ? ' answered-correct' : ' answered-incorrect';
+                }
               }
-            }
-            return `<div class="${optionClass}" onclick="selectOption(${index}, ${optIndex}, '${q.answer.replace(/'/g, "\\'")}', '${questionId}')">${opt}</div>`;
-          }).join('')}
+              return `<div class="${optionClass}" onclick="selectOption(${index}, ${optIndex}, '${q.answer.replace(/'/g, "\\'")}', '${questionId}')">${opt}</div>`;
+            }).join('')}
+          </div>
+          <div class="button-group">
+            <button class="btn btn-answer" onclick="showAnswer(${index})">Show Answer</button>
+          </div>
+          <div class="answer-reveal" id="answer-${index}">
+            <strong>Correct Answer:</strong> ${q.answer}
+          </div>
         </div>
-        <div class="button-group">
-          <button class="btn btn-answer" onclick="showAnswer(${index})">Show Answer</button>
-        </div>
-        <div class="answer-reveal" id="answer-${index}">
-          <strong>Correct Answer:</strong> ${q.answer}
-        </div>
-      </div>
-    `;
-  });
-  
-  contentArea.innerHTML = html;
-  
-  setTimeout(addChatGPTButtons, 100);
-  
-  updateScoreDisplay();
-}
+      `;
+    });
+    
+    contentArea.innerHTML = html;
+    
+    setTimeout(addChatGPTButtons, 100);
+    
+    updateScoreDisplay();
+  }
  
   function selectOption(questionIndex, optionIndex, correctAnswer, questionId) {
     if (questionStates[questionId]) {
@@ -1927,6 +2002,14 @@ Version 3: Detailed explanation with option analysis`;
     
     showQuestions();
   });
+
+  function toggleSummary() {
+    const summaryDiv = document.getElementById('summaryContent');
+    const btn = document.getElementById('summaryBtn');
+    if (!summaryDiv || !btn) return;
+    const showing = summaryDiv.classList.toggle('show');
+    btn.textContent = showing ? '📕 Hide Summary' : '📚 View Summary';
+  }
 </script>
 </body>
 </html>
