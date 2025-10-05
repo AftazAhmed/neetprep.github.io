@@ -729,9 +729,7 @@
         title: "Ecosystem",
         questions: {
           "205": [], "206": [], "207": [], "208": [], "209": [], "210": [], "211": [],
-          "212": [], "213": [], "214": [// ============================================
-// PAGE 214 - QUESTIONS (Countable)
-// ============================================
+          "212": [], "213": [], "214": [
 {
   question: "Which of the following is a limitation of ecological pyramids:",
   options: [
@@ -791,16 +789,13 @@
     "d) Herbivores are represented"
   ],
   answer: "d) Herbivores are represented"
-}
-
-// ============================================
-// PAGE 214 - SUMMARY BOX (Non-countable)
-// ============================================
-// Note: Frontend should filter this out using the "isSummary: true" flag
+},
 {
-  isSummary: true,
-  content: "📝 PAGE 214 KEY POINTS | LIMITATIONS OF ECOLOGICAL PYRAMIDS: ① Does NOT account for same species at multiple trophic levels (e.g., sparrow can be herbivore & carnivore) ② Assumes SIMPLE food chain - almost never exists in nature ③ Does NOT accommodate FOOD WEBS ④ Saprophytes/Decomposers NOT given place despite vital ecosystem role | ⚠️ NEET ALERT: Questions on 'food web not accommodated' and 'saprophytes excluded' are frequently asked!"
-  }], "215": []
+  summary: true,
+  content: "📝 <b>PAGE 214 SUMMARY - LIMITATIONS OF ECOLOGICAL PYRAMIDS:</b><br><br>① Does NOT account for same species at multiple trophic levels (Example: Sparrow = herbivore + carnivore)<br><br>② Assumes SIMPLE food chain - almost never exists in nature<br><br>③ Does NOT accommodate FOOD WEBS<br><br>④ Saprophytes/Decomposers NOT given place despite vital role<br><br>⚠️ <b>NEET ALERT:</b> 'Food web not accommodated' and 'saprophytes excluded' are FREQUENTLY ASKED!"
+  }
+            
+          ], "215": []
         }
       },
       "13": {
@@ -1998,6 +1993,48 @@ Version 3: Detailed explanation with option analysis`;
     
     showQuestions();
   });
+</script>
+
+<script>
+// Summary detection and filtering - Add this ONCE in your HTML
+(function() {
+  // Override the question counter to exclude summaries
+  const originalCountQuestions = window.countQuestions || function(items) {
+    return items.length;
+  };
+  
+  window.countQuestions = function(items) {
+    return items.filter(item => !item.summary).length;
+  };
+  
+  // Override question renderer to handle summaries
+  const originalRenderQuestion = window.renderQuestion || function() {};
+  
+  window.renderQuestion = function(item, index, allItems) {
+    if (item.summary) {
+      // Render summary box (no number, special style)
+      return `
+        <div class="summary-box" style="
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          color: white;
+          padding: 20px;
+          margin: 25px 0;
+          border-radius: 12px;
+          box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+          border-left: 5px solid #ffd700;
+          font-family: 'Segoe UI', sans-serif;
+          line-height: 1.8;
+        ">
+          ${item.content}
+        </div>
+      `;
+    } else {
+      // Calculate question number (excluding summaries)
+      const questionNumber = allItems.slice(0, index).filter(q => !q.summary).length + 1;
+      return originalRenderQuestion(item, questionNumber, allItems);
+    }
+  };
+})();
 </script>
 </body>
 </html>
