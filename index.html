@@ -729,73 +729,7 @@
         title: "Ecosystem",
         questions: {
           "205": [], "206": [], "207": [], "208": [], "209": [], "210": [], "211": [],
-          "212": [], "213": [], "214": [[
-  {
-    question: "Which of the following is a limitation of ecological pyramids:",
-    options: [
-      "a) It accommodates food webs",
-      "b) It does not take into account the same species belonging to two or more trophic levels",
-      "c) It gives place to saprophytes",
-      "d) It represents complex food chains"
-    ],
-    answer: "b) It does not take into account the same species belonging to two or more trophic levels"
-  },
-  {
-    question: "Ecological pyramids assume:",
-    options: [
-      "a) A complex food web",
-      "b) A simple food chain, something that almost never exists in nature",
-      "c) Multiple species at same trophic level",
-      "d) Inclusion of decomposers"
-    ],
-    answer: "b) A simple food chain, something that almost never exists in nature"
-  },
-  {
-    question: "Ecological pyramids do NOT accommodate:",
-    options: [
-      "a) Food chain",
-      "b) Trophic levels",
-      "c) Food web",
-      "d) Herbivores"
-    ],
-    answer: "c) Food web"
-  },
-  {
-    question: "Which organisms are not given any place in ecological pyramids even though they play a vital role:",
-    options: [
-      "a) Producers",
-      "b) Herbivores",
-      "c) Carnivores",
-      "d) Saprophytes/Decomposers"
-    ],
-    answer: "d) Saprophytes/Decomposers"
-  },
-  {
-    question: "Which of the following is NOT a limitation of ecological pyramids:",
-    options: [
-      "a) Does not account for species belonging to multiple trophic levels",
-      "b) Assumes a simple food chain",
-      "c) Does not accommodate food web",
-      "d) Always shows upright pyramid of energy"
-    ],
-    answer: "d) Always shows upright pyramid of energy"
-  },
-  {
-    question: "All of the following are limitations of ecological pyramids EXCEPT:",
-    options: [
-      "a) Saprophytes not given place",
-      "b) Does not accommodate food web",
-      "c) Assumes simple food chain",
-      "d) Herbivores are represented"
-    ],
-    answer: "d) Herbivores are represented"
-  },
-  {
-    type: "summary",
-    isCountable: false,
-    content: "📝 <b>PAGE 214 SUMMARY - LIMITATIONS OF ECOLOGICAL PYRAMIDS:</b><br><br>① Does NOT account for same species at multiple trophic levels (Example: Sparrow = herbivore when eating seeds + carnivore when eating insects)<br><br>② Assumes SIMPLE food chain - something that almost never exists in nature<br><br>③ Does NOT accommodate FOOD WEBS (only shows linear relationships)<br><br>④ Saprophytes/Decomposers NOT given any place in pyramids despite playing vital role in ecosystem"
-  }
-]], "215": []
+          "212": [], "213": [], "214": [], "215": []
         }
       },
       "13": {
@@ -1994,26 +1928,5 @@ Version 3: Detailed explanation with option analysis`;
     showQuestions();
   });
 </script>
-<script>
-// Summary Filter - Add this ONCE in your HTML file before </body>
-(function() {
-  // Store original question counter if it exists
-  const originalCounter = window.countPageQuestions || function(items) {
-    return items.length;
-  };
-  
-  // Override question counter to exclude summaries
-  window.countPageQuestions = function(items) {
-    if (!Array.isArray(items)) return 0;
-    return items.filter(item => 
-      item.type !== "summary" && item.isCountable !== false
-    ).length;
-  };
-  
-  console.log("✅ Summary filter installed");
-})();
-</script>
-
-
 </body>
 </html>
