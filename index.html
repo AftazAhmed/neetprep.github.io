@@ -444,36 +444,33 @@
   }
 
   .summary-toggle-btn {
-    background: linear-gradient(135deg, #d2691e, #a0522d);
+    background: linear-gradient(135deg, #a0522d, #8b4513);
     color: #fff;
     border: none;
-    border-radius: 8px;
-    padding: 12px 24px;
-    font-weight: 800;
-    font-size: 16px;
+    border-radius: 7px;
+    padding: 9px 18px;
+    font-weight: 700;
+    font-size: 14px;
     margin-bottom: 16px;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 3px 10px rgba(210, 105, 30, 0.4);
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
   .summary-toggle-btn:hover {
-    background: linear-gradient(135deg, #cd5c2e, #8b4513);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(210, 105, 30, 0.5);
+    background: linear-gradient(135deg, #8b4513, #704214);
+    transform: translateY(-1px);
   }
   .summary-content {
     display: none;
     background-color: #fff8f0;
-    border-left: 6px solid #d2691e;
+    border-left: 6px solid #a0522d;
     border-radius: 10px;
     padding: 18px 22px;
     color: #1f2937;
     margin-bottom: 20px;
     font-size: 15px;
     line-height: 1.7;
-    box-shadow: 0 2px 8px rgba(210, 105, 30, 0.15);
   }
   .summary-content.show {
     display: block;
@@ -1731,7 +1728,7 @@
       const questionState = questionStates[questionId];
       
       html += `
-        <div class="question-item">
+        <div class="question-item" data-question-index="${index}">
           <div class="question-header">
             <span class="question-number">Question ${index + 1}</span>
             <span class="question-year" style="cursor: pointer;" onclick="copyQuestion(${index}, '${pageValue}')">📋 Copy</span>
@@ -1781,7 +1778,11 @@
 
     savePersistentData();
 
-    const options = document.querySelectorAll(`.question-item:nth-child(${questionIndex + 2}) .option`);
+    // Fixed: Use data attribute to find the correct question item
+    const questionItem = document.querySelector(`.question-item[data-question-index="${questionIndex}"]`);
+    if (!questionItem) return;
+    
+    const options = questionItem.querySelectorAll('.option');
     options.forEach((option, index) => {
       if (index === optionIndex) {
         option.classList.add(isCorrect ? 'answered-correct' : 'answered-incorrect');
@@ -2013,4 +2014,3 @@ Version 3: Detailed explanation with option analysis`;
 </script>
 </body>
 </html>
-
