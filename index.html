@@ -916,88 +916,70 @@
     
     updateScoreDisplay();
   }
-
-  function showQuestions() {
-    const classSelect = document.getElementById('classSelect');
-    const chapterSelect = document.getElementById('chapterSelect');
-    const pageSelect = document.getElementById('pageSelect');
-    const contentArea = document.getElementById('contentArea');
-    
-    const classValue = classSelect.value;
-    const chapterValue = chapterSelect.value;
-    const pageValue = pageSelect.value;
-    
-    if (!classValue || !chapterValue || !pageValue) {
-      return;
-    }
-    
-    currentQuestions = questionData[classValue][chapterValue].questions[pageValue] || [];
-    
-    if (currentQuestions.length === 0) {
-      contentArea.innerHTML = '<div class="no-questions">No questions available for this page yet. Add questions to see them here.</div>';
-      updateScoreDisplay();
-      return;
-    }
-    
-    let html = `<div class="question-count">Total Questions: ${currentQuestions.length}</div>`;
-    
-    currentQuestions.forEach((q, index) => {
-      const questionId = `${classValue}-${chapterValue}-${pageValue}-${index}`;
-      const questionState = questionStates[questionId];
-      
-      html += `
-  <div class="question-item">
-    <div class="question-header">
-      <span class="question-number">Question ${index + 1}</span>
-      <span class="question-year" style="cursor: pointer;" onclick="copyQuestion(${index}, '${pageValue}')">📋 Copy</span>
-    </div>
-    <div class="question-text">${q.question}</div>
-    <div class="options">
-      ${q.options.map((opt, optIndex) => {
-        let optionClass = 'option';
-        if (questionState) {
-          optionClass += ' disabled';
-          if (questionState.selectedIndex === optIndex) {
-            optionClass += questionState.isCorrect ? ' answered-correct' : ' answered-incorrect';
-          }
-        }
-        return `<div class="${optionClass}" onclick="selectOption(${index}, ${optIndex}, '${q.answer.replace(/'/g, "\\'")}', '${questionId}')">${opt}</div>`;
-      }).join('')}
-    </div>
-    <div class="button-group">
-      <button class="btn btn-answer" onclick="showAnswer(${index})">Show Answer</button>
-    </div>
-          <div class="question-text">${q.question}</div>
-          <div class="options">
-            ${q.options.map((opt, optIndex) => {
-              let optionClass = 'option';
-              if (questionState) {
-                optionClass += ' disabled';
-                if (questionState.selectedIndex === optIndex) {
-                  optionClass += questionState.isCorrect ? ' answered-correct' : ' answered-incorrect';
-                }
-              }
-              return `<div class="${optionClass}" onclick="selectOption(${index}, ${optIndex}, '${q.answer.replace(/'/g, "\\'")}', '${questionId}')">${opt}</div>`;
-            }).join('')}
-          </div>
-          <div class="button-group">
-            <button class="btn btn-answer" onclick="showAnswer(${index})">Show Answer</button>
-            <button class="btn btn-copy" onclick="copyQuestion(${index}, '${pageValue}')">Copy Question</button>
-          </div>
-          <div class="answer-reveal" id="answer-${index}">
-            <strong>Correct Answer:</strong> ${q.answer}
-          </div>
-        </div>
-      `;
-    });
-    
-    contentArea.innerHTML = html;
-    
-    setTimeout(addChatGPTButtons, 100);
-    
-    updateScoreDisplay();
+function showQuestions() {
+  const classSelect = document.getElementById('classSelect');
+  const chapterSelect = document.getElementById('chapterSelect');
+  const pageSelect = document.getElementById('pageSelect');
+  const contentArea = document.getElementById('contentArea');
+  
+  const classValue = classSelect.value;
+  const chapterValue = chapterSelect.value;
+  const pageValue = pageSelect.value;
+  
+  if (!classValue || !chapterValue || !pageValue) {
+    return;
   }
-
+  
+  currentQuestions = questionData[classValue][chapterValue].questions[pageValue] || [];
+  
+  if (currentQuestions.length === 0) {
+    contentArea.innerHTML = '<div class="no-questions">No questions available for this page yet. Add questions to see them here.</div>';
+    updateScoreDisplay();
+    return;
+  }
+  
+  let html = `<div class="question-count">Total Questions: ${currentQuestions.length}</div>`;
+  
+  currentQuestions.forEach((q, index) => {
+    const questionId = `${classValue}-${chapterValue}-${pageValue}-${index}`;
+    const questionState = questionStates[questionId];
+    
+    html += `
+      <div class="question-item">
+        <div class="question-header">
+          <span class="question-number">Question ${index + 1}</span>
+          <span class="question-year" style="cursor: pointer;" onclick="copyQuestion(${index}, '${pageValue}')">📋 Copy</span>
+        </div>
+        <div class="question-text">${q.question}</div>
+        <div class="options">
+          ${q.options.map((opt, optIndex) => {
+            let optionClass = 'option';
+            if (questionState) {
+              optionClass += ' disabled';
+              if (questionState.selectedIndex === optIndex) {
+                optionClass += questionState.isCorrect ? ' answered-correct' : ' answered-incorrect';
+              }
+            }
+            return `<div class="${optionClass}" onclick="selectOption(${index}, ${optIndex}, '${q.answer.replace(/'/g, "\\'")}', '${questionId}')">${opt}</div>`;
+          }).join('')}
+        </div>
+        <div class="button-group">
+          <button class="btn btn-answer" onclick="showAnswer(${index})">Show Answer</button>
+        </div>
+        <div class="answer-reveal" id="answer-${index}">
+          <strong>Correct Answer:</strong> ${q.answer}
+        </div>
+      </div>
+    `;
+  });
+  
+  contentArea.innerHTML = html;
+  
+  setTimeout(addChatGPTButtons, 100);
+  
+  updateScoreDisplay();
+}
+ 
   function selectOption(questionIndex, optionIndex, correctAnswer, questionId) {
     if (questionStates[questionId]) {
       return;
