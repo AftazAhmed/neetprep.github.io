@@ -1,1 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NEET-PYQ</title>
+<style>
+  body {
+    font-family: 'Montserrat', Arial, sans-serif;
+    margin: 0;
+    padding: 20px 24px;
+    background-color: #f9fafb;
+    color: #1f2937;
+    overflow-x: hidden;
+  }
+  .header {
+    text-align: left;
+    background-color: #023047;
+    color: #ffb347;
+    padding: 48px 24px 32px 24px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, #4f59b0 0%, transparent 70%);
+    opacity: 0.3;
+    pointer-events: none;
+  }
+  .header h1 {
+    position: relative;
+    margin: 0 0 12px 0;
+    font-size: 3rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    line-height: 1.1;
+    transform: none !important;
+    color: #ffa726;
+    max-width: 100%;
+    white-space: nowrap;
+  }
+  .header .subtitle {
+    position: relative;
+    font-size: 18px;
+    font-weight: 600;
+    color: #b9fbc0;
+    letter-spacing: 0.6px;
+  }
+  .note {
+    max-width: 720px;
+    margin: 0 auto 24px auto;
+    font-style: italic;
+    font-size: 14px;
+    color: #4b6650;
+    background-color: #d7e7d0;
+    border-left: 6px solid #a8c77a;
+    padding: 12px 20px;
+    border-radius: 8px;
+  }
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-bottom: 16px;
+    justify-content: center;
+    align-items: center;
+  }
+  .class-reload-group {
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+    min-width: 180px;
+    flex: 1;
+  }
+  .dropdown-group {
+    min-width: 180px;
+    flex: 1;
+  }
+  .class-dropdown-part {
+    flex: 1;
+  }
+  label {
+    display: block;
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 6px;
+    color: #344e41;
+  }
+  select {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 2px solid #028090;
+    font-size: 15px;
+    background-color: #ffffff;
+    color: #023047;
+    transition: 0.3s;
+  }
+  select:focus {
+    outline: none;
+    border-color: #023047;
+    background-color: #e0f7f4;
+  }
+  .reload-btn {
+    cursor: pointer;
+    background-color: #8b5cf6;
+    border: none;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 12px;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    height: 36px;
+    white-space: nowrap;
+  }
+  .reload-btn:hover {
+    background-color: #7c3aed;
+  }
+  #scoreWrapper {
+    display: flex;
+    align-items: center;
+    margin-left: 12px;
+  }
+  #scoreCard {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: 18px;
+    color: #116466;
+    border-left: 5px solid #028090;
+    padding-left: 14px;
+    white-space: nowrap;
+  }
+  .refreshBtn {
+    cursor: pointer;
+    background-color: #0d6efd;
+    border: none;
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 7px;
+    font-weight: 700;
+    font-size: 13px;
+    transition: background-color 0.3s ease;
+    margin-left: 8px;
+    height: 32px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .refreshBtn:hover {
+    background-color: #084298;
+  }
+  .content-area {
+    background-color: #fff1e0;
+    padding: 28px 30px;
+    border-radius: 12px;
+    min-height: 300px;
+    color: #1f2937;
+    transition: background-color 0.4s ease;
+    max-width: 900px;
+    margin: 0 auto 30px auto;
+  }
+  .question-count {
+    font-weight: 700;
+    font-size: 18px;
+    color: #116466;
+    margin-bottom: 18px;
+    border-left: 5px solid #028090;
+    padding-left: 14px;
+  }
+  .question-item {
+    background-color: #fff8f0;
+    border-radius: 12px;
+    border: 1.5px solid #f0c49c;
+    margin-bottom: 26px;
+    padding: 20px 24px;
+    font-size: 15px;
+    max-width: 100%;
+    position: relative;
+  }
+  .question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .question-number {
+    font-weight: 700;
+    font-size: 18px;
+    color: #2a6f62;
+  }
+  .question-year {
+    background-color: #116466;
+    color: #e0f7f4;
+    padding: 5px 14px;
+    border-radius: 16px;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.6px;
+    white-space: nowrap;
+  }
+  .question-text {
+    font-weight: 600;
+    font-size: 15px;
+    color: #255c4d;
+    margin-bottom: 14px;
+    max-width: 100%;
+    word-wrap: break-word;
+    word-break: break-word;
+  }
+  .options {
+    margin-bottom: 18px;
+  }
+  .option {
+    background-color: #ffffff;
+    border-radius: 6px;
+    border: 1.8px solid #b5d0c8;
+    padding: 11px 18px;
+    margin: 8px 0;
+    font-weight: 500;
+    font-size: 15px;
+    color: #244636;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+    user-select: none;
+    position: relative;
+    overflow: visible;
+  }
+  .option:hover:not(.disabled):not(.answered-correct):not(.answered-incorrect) {
+    background-color: #dceddb;
+    border-color: #71b280;
+  }
+  .option.answered-correct {
+    background-color: rgba(25, 135, 84, 0.25);
+    border: 3px solid #198754;
+    color: #0d4b21;
+    font-weight: 700;
+    cursor: default;
+  }
+  .option.answered-incorrect {
+    background-color: rgba(220, 53, 69, 0.25);
+    border: 3px solid #dc3545;
+    color: #721c24;
+    font-weight: 700;
+    cursor: default;
+  }
+  .option.disabled {
+    cursor: default;
+    opacity: 0.8;
+  }
+  .answer-popup {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    opacity: 0.95;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 900;
+    border-radius: 6px;
+    z-index: 5;
+    pointer-events: none;
+    animation: popup-fade 1.2s forwards;
+  }
+  .answer-popup.correct {
+    background-color: rgba(25, 135, 84, 0.25);
+    color: #18763b;
+  }
+  .answer-popup.incorrect {
+    background-color: rgba(220, 53, 69, 0.2);
+    color: #b02a37;
+  }
+  @keyframes popup-fade {
+    0% { opacity: 0; }
+    10% { opacity: 1;}
+    80% { opacity: 0.95;}
+    100% { opacity: 0; }
+  }
+  .button-group {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  .btn {
+    padding: 11px 18px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 15px;
+    color: #f0f0f0;
+    transition: background-color 0.3s ease;
+  }
+  .btn-answer {
+    background-color: #198754;
+  }
+  .btn-answer:hover {
+    background-color: #146c43;
+  }
+  .btn-copy {
+    background-color: #0d6efd;
+  }
+  .btn-copy:hover {
+    background-color: #084298;
+  }
+  .chatgpt-btn {
+    padding: 11px 18px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 15px;
+    color: #ffffff;
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    transition: all 0.3s ease;
+  }
+  .chatgpt-btn:hover {
+    background: linear-gradient(135deg, #c0392b, #a93226);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
+  }
+  .answer-reveal {
+    display: none;
+    margin-top: 14px;
+    background: #c7ddfa;
+    border: 2px solid #3b82f6;
+    border-radius: 10px;
+    color: #1e40af;
+    padding: 14px 18px;
+    font-weight: 700;
+  }
+  .tick-cross-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 80px;
+    font-weight: 900;
+    z-index: 1000;
+    pointer-events: none;
+    animation: tick-cross-fade 1.5s forwards;
+  }
+  .tick-cross-popup.correct {
+    color: #198754;
+  }
+  .tick-cross-popup.incorrect {
+    color: #dc3545;
+  }
+  @keyframes tick-cross-fade {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+    20% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+    40% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
+  }
+  .copy-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #27ae60, #229954);
+    color: white;
+    padding: 16px 24px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+    z-index: 10000;
+    font-weight: 700;
+    font-size: 15px;
+    animation: slideIn 0.3s ease-out;
+  }
+  @keyframes slideIn {
+    from {
+      transform: translateX(400px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  .no-questions {
+    text-align: center;
+    font-style: italic;
+    color: #4a5768;
+    font-size: 17px;
+    padding: 48px 10px;
+  }
+  @media (max-width: 900px) {
+    .controls { 
+      flex-direction: column; 
+      align-items: stretch;
+    }
+    .dropdown-group { 
+      min-width: unset; 
+      width: 100%;
+    }
+    .class-reload-group {
+      min-width: unset;
+      width: 100%;
+      flex-direction: row;
+    }
+    .class-dropdown-part {
+      flex: 1;
+    }
+    .reload-btn {
+      margin-left: 8px;
+      flex-shrink: 0;
+    }
+    .header h1 {
+      padding-left: 8px;
+      padding-right: 8px;
+      margin-left: 0;
+      max-width: 320px;
+      white-space: normal;
+    }
+    .content-area {
+      max-width: 100%;
+      padding: 20px 16px;
+      min-height: 300px;
+    }
+    .question-item {
+      max-width: 100%;
+      padding: 18px 12px;
+    }
+    .question-text {
+      font-size: 15px;
+    }
+  }
 
+  .summary-toggle-btn {
+    background: linear-gradient(135deg, #a0522d, #8b4513);
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    padding: 9px 18px;
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .summary-toggle-btn:hover {
+    background: linear-gradient(135deg, #8b4513, #704214);
+    transform: translateY(-1px);
+  }
+  .summary-content {
+    display: none;
+    background-color: #fff8f0;
+    border-left: 6px solid #a0522d;
+    border-radius: 10px;
+    padding: 18px 22px;
+    color: #1f2937;
+    margin-bottom: 20px;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .summary-content.show {
+    display: block;
+  }
+</style>
+</head>
+<body>
+<div class="header" role="banner">
+  <h1>NEET-PYQ</h1>
+  <div class="subtitle">NEET/AIPMT Biology Page Wise Analysis (1988-2025)</div>
+</div>
+
+<div class="note" role="note">
+  <em>Note: Some questions from a particular page may appear in subsequent pages because the concept of the question may span multiple pages.</em>
+</div>
+
+<div class="controls" role="region" aria-label="Filtering controls">
+  <div class="class-reload-group">
+    <div class="class-dropdown-part">
+      <label for="classSelect">Class:</label>
+      <select id="classSelect" onchange="updateChapters()">
+        <option value="">Select Class</option>
+        <option value="11">Class 11</option>
+        <option value="12">Class 12</option>
+      </select>
+    </div>
+    <button class="reload-btn" onclick="window.location.reload()">
+      ↻ Reload
+    </button>
+  </div>
+  <div class="dropdown-group">
+    <label for="chapterSelect">Chapter:</label>
+    <select id="chapterSelect" onchange="updatePages()" disabled>
+      <option value="">Select Chapter</option>
+    </select>
+  </div>
+  <div class="dropdown-group">
+    <label for="pageSelect">Page Number:</label>
+    <select id="pageSelect" onchange="showQuestions()" disabled>
+      <option value="">Select Page</option>
+    </select>
+  </div>
+  <div id="scoreWrapper">
+    <div id="scoreCard">
+      Page score: 0 / 0
+    </div>
+    <button class="refreshBtn" id="refreshChapterBtn">
+      <span>🔄</span> Refresh
+    </button>
+  </div>
+</div>
+
+<main class="content-area" id="contentArea">
+  <div class="no-questions">Please select Class, Chapter, and Page Number to view questions.</div>
+</main>
+<script>
