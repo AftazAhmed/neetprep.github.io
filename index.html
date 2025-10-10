@@ -58,6 +58,9 @@
     top: 24px;
     right: 24px;
     z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 12px;
   }
   .login-btn, .logout-btn {
     background: linear-gradient(135deg, #667eea, #764ba2);
@@ -75,174 +78,10 @@
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
   }
-  .user-info {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+  #userName {
     color: white;
-    font-weight: 600;
-  }
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    animation: fadeIn 0.3s;
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  .modal-content {
-    background-color: #ffffff;
-    margin: 8% auto;
-    padding: 0;
-    border-radius: 16px;
-    width: 90%;
-    max-width: 420px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    animation: slideDown 0.4s;
-  }
-  @keyframes slideDown {
-    from { transform: translateY(-50px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-  }
-  .modal-header {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
-    padding: 24px;
-    border-radius: 16px 16px 0 0;
-    text-align: center;
-  }
-  .modal-header h2 {
-    margin: 0;
-    font-size: 24px;
-    font-weight: 800;
-  }
-  .modal-body {
-    padding: 32px 24px;
-  }
-  .close {
-    color: white;
-    float: right;
-    font-size: 32px;
-    font-weight: bold;
-    cursor: pointer;
-    line-height: 20px;
-  }
-  .close:hover {
-    color: #ffa726;
-  }
-  .form-group {
-    margin-bottom: 20px;
-  }
-  .form-group label {
-    display: block;
     font-weight: 700;
-    font-size: 14px;
-    margin-bottom: 8px;
-    color: #344e41;
-  }
-  .form-group input {
-    width: 100%;
-    padding: 12px 16px;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    font-size: 15px;
-    transition: border-color 0.3s;
-    box-sizing: border-box;
-  }
-  .form-group input:focus {
-    outline: none;
-    border-color: #667eea;
-  }
-  .submit-btn {
-    width: 100%;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
-    border: none;
-    padding: 14px;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  .submit-btn:hover {
-    background: linear-gradient(135deg, #764ba2, #667eea);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
-  }
-  .toggle-form {
-    text-align: center;
-    margin-top: 16px;
-    font-size: 14px;
-    color: #666;
-  }
-  .toggle-form a {
-    color: #667eea;
-    font-weight: 700;
-    cursor: pointer;
-    text-decoration: none;
-  }
-  .toggle-form a:hover {
-    text-decoration: underline;
-  }
-  .payment-options {
-    margin-top: 24px;
-    padding: 20px;
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    border-radius: 12px;
-    color: white;
-  }
-  .payment-options h3 {
-    margin: 0 0 12px 0;
-    font-size: 20px;
-    font-weight: 800;
-  }
-  .payment-options p {
-    margin: 8px 0;
-    font-size: 15px;
-  }
-  .payment-btn {
-    width: 100%;
-    background: white;
-    color: #f5576c;
-    border: none;
-    padding: 14px;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 16px;
-    transition: all 0.3s ease;
-  }
-  .payment-btn:hover {
-    background: #fff5f7;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(245, 87, 108, 0.3);
-  }
-  .subscription-badge {
-    display: inline-block;
-    background: linear-gradient(135deg, #ffd89b, #19547b);
-    color: white;
-    padding: 4px 12px;
-    border-radius: 12px;
-    font-size: 12px;
-    font-weight: 700;
-    margin-left: 8px;
-  }
-  .locked-option {
-    opacity: 0.5;
-    position: relative;
-  }
-  .locked-option::after {
-    content: '🔒';
-    margin-left: 8px;
+    white-space: nowrap;
   }
   .note {
     max-width: 720px;
@@ -431,12 +270,13 @@
     position: relative;
     overflow: visible;
   }
+  /* Instead of subtle green, make it very transparent white on hover/active for options */
   .option:hover:not(.disabled):not(.answered-correct):not(.answered-incorrect) {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.05);
     border-color: #71b280;
   }
   .option:active:not(.disabled):not(.answered-correct):not(.answered-incorrect) {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgba(255, 255, 255, 0.02);
   }
   .option.answered-correct {
     background-color: rgba(25, 135, 84, 0.25);
@@ -641,6 +481,7 @@
       right: auto;
       text-align: center;
       margin-bottom: 16px;
+      justify-content: center;
     }
   }
 
@@ -681,64 +522,16 @@
 <body>
 <div class="header" role="banner">
   <div class="login-section" id="loginSection">
-    <button class="login-btn" onclick="openLoginModal()">Login / Sign Up</button>
+    <div id="gSignInWrapper">
+      <button class="login-btn" id="googleSignInBtn">Sign in with Google</button>
+    </div>
+    <div id="userInfo" style="display:none; align-items:center;">
+      <span id="userName"></span>
+      <button class="logout-btn" onclick="handleLogout()">Logout</button>
+    </div>
   </div>
   <h1>NEET-PbP</h1>
-  <div class="subtitle">NEET/AIPMT Biology Page by Page Analysis (1988-2025)</div>
-</div>
-
-<div id="loginModal" class="modal">
-  <div class="modal-content">
-    <div class="modal-header">
-      <span class="close" onclick="closeLoginModal()">&times;</span>
-      <h2 id="modalTitle">Login to NEET-PbP</h2>
-    </div>
-    <div class="modal-body">
-      <div id="loginForm">
-        <div class="form-group">
-          <label for="loginEmail">Email Address</label>
-          <input type="email" id="loginEmail" placeholder="Enter your email" required>
-        </div>
-        <div class="form-group">
-          <label for="loginPassword">Password</label>
-          <input type="password" id="loginPassword" placeholder="Enter your password" required>
-        </div>
-        <button class="submit-btn" onclick="handleLogin()">Login</button>
-        <div class="toggle-form">
-          Don't have an account? <a onclick="showSignupForm()">Sign Up</a>
-        </div>
-      </div>
-
-      <div id="signupForm" style="display: none;">
-        <div class="form-group">
-          <label for="signupName">Full Name</label>
-          <input type="text" id="signupName" placeholder="Enter your full name" required>
-        </div>
-        <div class="form-group">
-          <label for="signupEmail">Email Address</label>
-          <input type="email" id="signupEmail" placeholder="Enter your email" required>
-        </div>
-        <div class="form-group">
-          <label for="signupPassword">Password</label>
-          <input type="password" id="signupPassword" placeholder="Create a password" required>
-        </div>
-        <div class="form-group">
-          <label for="signupConfirmPassword">Confirm Password</label>
-          <input type="password" id="signupConfirmPassword" placeholder="Confirm your password" required>
-        </div>
-        <button class="submit-btn" onclick="handleSignup()">Sign Up</button>
-        <div class="payment-options">
-          <h3>Subscription Plan</h3>
-          <p><strong>₹200</strong> for 2 Years Access</p>
-          <p>Full access to Class 11 & 12 content</p>
-          <button class="payment-btn" onclick="handlePayment()">Proceed to Payment</button>
-        </div>
-        <div class="toggle-form">
-          Already have an account? <a onclick="showLoginForm()">Login</a>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div class="subtitle">Page by Page Analysis (1988-2025)</div>
 </div>
 
 <div class="note" role="note">
@@ -785,6 +578,8 @@
 <main class="content-area" id="contentArea">
   <div class="no-questions">Please select Class, Chapter, and Page Number to view questions.</div>
 </main>
+
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 <script>
   const questionData = {
     "demo": {
@@ -807,213 +602,8 @@
         }
       }
     },
-    "11": {
-      "1": {
-        title: "The Living World",
-        questions: {
-          "3": [[], ""],
-          "4": [[], ""],
-          "5": [[], ""],
-          "6": [[], ""],
-          "7": [[], ""],
-          "8": [[], ""],
-          "9": [[], ""]
-        }
-      },
-      "2": {
-        title: "Biological Classification",
-        questions: {
-          "10": [[], ""], "11": [[], ""], "12": [[], ""], "13": [[], ""], "14": [[], ""], "15": [[], ""],
-          "16": [[], ""], "17": [[], ""], "18": [[], ""], "19": [[], ""], "20": [[], ""], "21": [[], ""], "22": [[], ""]
-        }
-      },
-      "3": {
-        title: "Plant Kingdom",
-        questions: {
-          "23": [[], ""], "24": [[], ""], "25": [[], ""], "26": [[], ""], "27": [[], ""], "28": [[], ""], "29": [[], ""],
-          "30": [[], ""], "31": [[], ""], "32": [[], ""], "33": [[], ""], "34": [[], ""], "35": [[], ""], "36": [[], ""]
-        }
-      },
-      "4": {
-        title: "Animal Kingdom",
-        questions: {
-          "37": [[], ""], "38": [[], ""], "39": [[], ""], "40": [[], ""], "41": [[], ""], "42": [[], ""], "43": [[], ""],
-          "44": [[], ""], "45": [[], ""], "46": [[], ""], "47": [[], ""], "48": [[], ""], "49": [[], ""], "50": [[], ""],
-          "51": [[], ""], "52": [[], ""], "53": [[], ""], "54": [[], ""]
-        }
-      },
-      "5": {
-        title: "Morphology of Flowering Plants",
-        questions: {
-          "57": [[], ""], "58": [[], ""], "59": [[], ""], "60": [[], ""], "61": [[], ""], "62": [[], ""], "63": [[], ""],
-          "64": [[], ""], "65": [[], ""], "66": [[], ""], "67": [[], ""], "68": [[], ""], "69": [[], ""], "70": [[], ""]
-        }
-      },
-      "6": {
-        title: "Anatomy of Flowering Plants",
-        questions: {
-          "71": [[], ""], "72": [[], ""], "73": [[], ""], "74": [[], ""], "75": [[], ""], "76": [[], ""], "77": [[], ""],
-          "78": [[], ""], "79": [[], ""], "80": [[], ""], "81": [[], ""], "82": [[], ""], "83": [[], ""]
-        }
-      },
-      "7": {
-        title: "Structural Organisation in Animals",
-        questions: {
-          "79": [[], ""], "80": [[], ""], "81": [[], ""], "82": [[], ""], "83": [[], ""], "84": [[], ""]
-        }
-      },
-      "8": {
-        title: "Cell: The Unit of Life",
-        questions: {
-          "87": [[], ""], "88": [[], ""], "89": [[], ""], "90": [[], ""], "91": [[], ""], "92": [[], ""], "93": [[], ""],
-          "94": [[], ""], "95": [[], ""], "96": [[], ""], "97": [[], ""], "98": [[], ""], "99": [[], ""], "100": [[], ""],
-          "101": [[], ""], "102": [[], ""], "103": [[], ""]
-        }
-      },
-      "9": {
-        title: "Biomolecules",
-        questions: {
-          "104": [[], ""], "105": [[], ""], "106": [[], ""], "107": [[], ""], "108": [[], ""], "109": [[], ""], "110": [[], ""],
-          "111": [[], ""], "112": [[], ""], "113": [[], ""], "114": [[], ""], "115": [[], ""], "116": [[], ""], "117": [[], ""],
-          "118": [[], ""], "119": [[], ""]
-        }
-      },
-      "10": {
-        title: "Cell Cycle and Cell Division",
-        questions: {
-          "120": [[], ""], "121": [[], ""], "122": [[], ""], "123": [[], ""], "124": [[], ""], "125": [[], ""], "126": [[], ""],
-          "127": [[], ""], "128": [[], ""], "129": [[], ""], "130": [[], ""]
-        }
-      },
-      "13": {
-        title: "Plant Growth and Development",
-        questions: {
-          "167": [[], ""], "168": [[], ""], "169": [[], ""], "170": [[], ""], "171": [[], ""], "172": [[], ""], "173": [[], ""],
-          "174": [[], ""], "175": [[], ""], "176": [[], ""], "177": [[], ""], "178": [[], ""], "179": [[], ""], "180": [[], ""]
-        }
-      },
-      "14": {
-        title: "Breathing and Exchange of Gases",
-        questions: {
-          "183": [[], ""], "184": [[], ""], "185": [[], ""], "186": [[], ""], "187": [[], ""], "188": [[], ""], "189": [[], ""],
-          "190": [[], ""], "191": [[], ""], "192": [[], ""]
-        }
-      },
-      "15": {
-        title: "Body Fluids and Circulation",
-        questions: {
-          "193": [[], ""], "194": [[], ""], "195": [[], ""], "196": [[], ""], "197": [[], ""], "198": [[], ""], "199": [[], ""],
-          "200": [[], ""], "201": [[], ""], "202": [[], ""], "203": [[], ""], "204": [[], ""]
-        }
-      },
-      "16": {
-        title: "Excretory Products and their Elimination",
-        questions: {
-          "205": [[], ""], "206": [[], ""], "207": [[], ""], "208": [[], ""], "209": [[], ""], "210": [[], ""], "211": [[], ""],
-          "212": [[], ""], "213": [[], ""], "214": [[], ""], "215": [[], ""], "216": [[], ""]
-        }
-      },
-      "17": {
-        title: "Locomotion and Movement",
-        questions: {
-          "217": [[], ""], "218": [[], ""], "219": [[], ""], "220": [[], ""], "221": [[], ""], "222": [[], ""], "223": [[], ""],
-          "224": [[], ""], "225": [[], ""], "226": [[], ""], "227": [[], ""], "228": [[], ""], "229": [[], ""]
-        }
-      },
-      "18": {
-        title: "Neural Control and Coordination",
-        questions: {
-          "230": [[], ""], "231": [[], ""], "232": [[], ""], "233": [[], ""], "234": [[], ""], "235": [[], ""], "236": [[], ""],
-          "237": [[], ""], "238": [[], ""]
-        }
-      },
-      "19": {
-        title: "Chemical Coordination and Integration",
-        questions: {
-          "239": [[], ""], "240": [[], ""], "241": [[], ""], "242": [[], ""], "243": [[], ""], "244": [[], ""], "245": [[], ""],
-          "246": [[], ""], "247": [[], ""], "248": [[], ""], "249": [[], ""], "250": [[], ""]
-        }
-      }
-    },
+    "11": {}, // Future locked content, shown locked
     "12": {
-      "1": {
-        title: "Sexual Reproduction in Flowering Plants",
-        questions: {
-          "3": [[], ""], "4": [[], ""], "5": [[], ""], "6": [[], ""], "7": [[], ""], "8": [[], ""], "9": [[], ""], "10": [[], ""],
-          "11": [[], ""], "12": [[], ""], "13": [[], ""], "14": [[], ""], "15": [[], ""], "16": [[], ""], "17": [[], ""],
-          "18": [[], ""], "19": [[], ""], "20": [[], ""], "21": [[], ""], "22": [[], ""], "23": [[], ""], "24": [[], ""], "25": [[], ""]
-        }
-      },
-      "2": {
-        title: "Human Reproduction",
-        questions: {
-          "26": [[], ""], "27": [[], ""], "28": [[], ""], "29": [[], ""], "30": [[], ""], "31": [[], ""], "32": [[], ""],
-          "33": [[], ""], "34": [[], ""], "35": [[], ""], "36": [[], ""], "37": [[], ""], "38": [[], ""], "39": [[], ""], "40": [[], ""]
-        }
-      },
-      "3": {
-        title: "Reproductive Health",
-        questions: {
-          "41": [[], ""], "42": [[], ""], "43": [[], ""], "44": [[], ""], "45": [[], ""], "46": [[], ""], "47": [[], ""],
-          "48": [[], ""], "49": [[], ""], "50": [[], ""]
-        }
-      },
-      "4": {
-        title: "Principles of Inheritance and Variation",
-        questions: {
-          "53": [[], ""], "54": [[], ""], "55": [[], ""], "56": [[], ""], "57": [[], ""], "58": [[], ""], "59": [[], ""],
-          "60": [[], ""], "61": [[], ""], "62": [[], ""], "63": [[], ""], "64": [[], ""], "65": [[], ""], "66": [[], ""],
-          "67": [[], ""], "68": [[], ""], "69": [[], ""], "70": [[], ""], "71": [[], ""], "72": [[], ""], "73": [[], ""],
-          "74": [[], ""], "75": [[], ""], "76": [[], ""], "77": [[], ""], "78": [[], ""]
-        }
-      },
-      "5": {
-        title: "Molecular Basis of Inheritance",
-        questions: {
-          "79": [[], ""], "80": [[], ""], "81": [[], ""], "82": [[], ""], "83": [[], ""], "84": [[], ""], "85": [[], ""],
-          "86": [[], ""], "87": [[], ""], "88": [[], ""], "89": [[], ""], "90": [[], ""], "91": [[], ""], "92": [[], ""],
-          "93": [[], ""], "94": [[], ""], "95": [[], ""], "96": [[], ""], "97": [[], ""], "98": [[], ""], "99": [[], ""],
-          "100": [[], ""], "101": [[], ""], "102": [[], ""], "103": [[], ""], "104": [[], ""], "105": [[], ""], "106": [[], ""],
-          "107": [[], ""], "108": [[], ""], "109": [[], ""]
-        }
-      },
-      "6": {
-        title: "Evolution",
-        questions: {
-          "110": [[], ""], "111": [[], ""], "112": [[], ""], "113": [[], ""], "114": [[], ""], "115": [[], ""], "116": [[], ""],
-          "117": [[], ""], "118": [[], ""], "119": [[], ""], "120": [[], ""], "121": [[], ""], "122": [[], ""], "123": [[], ""],
-          "124": [[], ""], "125": [[], ""], "126": [[], ""]
-        }
-      },
-      "7": {
-        title: "Human Health and Disease",
-        questions: {
-          "129": [[], ""], "130": [[], ""], "131": [[], ""], "132": [[], ""], "133": [[], ""], "134": [[], ""], "135": [[], ""],
-          "136": [[], ""], "137": [[], ""], "138": [[], ""], "139": [[], ""], "140": [[], ""], "141": [[], ""], "142": [[], ""],
-          "143": [[], ""], "144": [[], ""], "145": [[], ""], "146": [[], ""], "147": [[], ""], "148": [[], ""]
-        }
-      },
-      "8": {
-        title: "Microbes in Human Welfare",
-        questions: {
-          "149": [[], ""], "150": [[], ""], "151": [[], ""], "152": [[], ""], "153": [[], ""], "154": [[], ""], "155": [[], ""],
-          "156": [[], ""], "157": [[], ""], "158": [[], ""], "159": [[], ""], "160": [[], ""]
-        }
-      },
-      "9": {
-        title: "Biotechnology: Principles and Processes",
-        questions: {
-          "163": [[], ""], "164": [[], ""], "165": [[], ""], "166": [[], ""], "167": [[], ""], "168": [[], ""], "169": [[], ""],
-          "170": [[], ""], "171": [[], ""], "172": [[], ""], "173": [[], ""], "174": [[], ""], "175": [[], ""], "176": [[], ""]
-        }
-      },
-      "10": {
-        title: "Biotechnology and its Applications",
-        questions: {
-          "177": [[], ""], "178": [[], ""], "179": [[], ""], "180": [[], ""], "181": [[], ""], "182": [[], ""], "183": [[], ""],
-          "184": [[], ""], "185": [[], ""], "186": [[], ""], "187": [[], ""]
-        }
-      },
       "13": {
         title: "Biodiversity and Conservation",
         questions: {
@@ -1089,136 +679,20 @@
   let currentUser = null;
   let isSubscribed = false;
 
-  function loadPersistentData() {
-    try {
-      const saved = localStorage.getItem('neet-pbp-states');
-      if (saved) {
-        questionStates = JSON.parse(saved);
-      }
-      const user = localStorage.getItem('neet-pbp-user');
-      if (user) {
-        currentUser = JSON.parse(user);
-        updateLoginUI();
-      }
-      const subscription = localStorage.getItem('neet-pbp-subscription');
-      if (subscription) {
-        isSubscribed = JSON.parse(subscription);
-      }
-    } catch (e) {
-      console.error('Error loading data:', e);
-    }
-  }
+  function updateLoginUI() {
+    const loginSection = document.getElementById('loginSection');
+    const userInfo = document.getElementById('userInfo');
+    const gSignInWrapper = document.getElementById('gSignInWrapper');
+    const userNameSpan = document.getElementById('userName');
 
-  function savePersistentData() {
-    try {
-      localStorage.setItem('neet-pbp-states', JSON.stringify(questionStates));
-    } catch (e) {
-      console.error('Error saving data:', e);
-    }
-  }
-
-  function openLoginModal() {
-    document.getElementById('loginModal').style.display = 'block';
-  }
-
-  function closeLoginModal() {
-    document.getElementById('loginModal').style.display = 'none';
-  }
-
-  function showSignupForm() {
-    document.getElementById('loginForm').style.display = 'none';
-    document.getElementById('signupForm').style.display = 'block';
-    document.getElementById('modalTitle').textContent = 'Sign Up for NEET-PbP';
-  }
-
-  function showLoginForm() {
-    document.getElementById('signupForm').style.display = 'none';
-    document.getElementById('loginForm').style.display = 'block';
-    document.getElementById('modalTitle').textContent = 'Login to NEET-PbP';
-  }
-
-  function handleLogin() {
-    const email = document.getElementById('loginEmail').value;
-    const password = document.getElementById('loginPassword').value;
-    
-    if (!email || !password) {
-      alert('Please fill in all fields');
-      return;
-    }
-    
-    const storedUser = localStorage.getItem('neet-pbp-user-' + email);
-    if (storedUser) {
-      const userData = JSON.parse(storedUser);
-      if (userData.password === password) {
-        currentUser = { name: userData.name, email: email };
-        localStorage.setItem('neet-pbp-user', JSON.stringify(currentUser));
-        isSubscribed = userData.subscribed || false;
-        localStorage.setItem('neet-pbp-subscription', JSON.stringify(isSubscribed));
-        updateLoginUI();
-        closeLoginModal();
-        alert('Login successful!');
-      } else {
-        alert('Invalid password');
-      }
+    if (currentUser) {
+      userNameSpan.textContent = `Welcome, ${currentUser.name}`;
+      userInfo.style.display = 'flex';
+      gSignInWrapper.style.display = 'none';
     } else {
-      alert('User not found. Please sign up first.');
+      userInfo.style.display = 'none';
+      gSignInWrapper.style.display = 'block';
     }
-  }
-
-  function handleSignup() {
-    const name = document.getElementById('signupName').value;
-    const email = document.getElementById('signupEmail').value;
-    const password = document.getElementById('signupPassword').value;
-    const confirmPassword = document.getElementById('signupConfirmPassword').value;
-    
-    if (!name || !email || !password || !confirmPassword) {
-      alert('Please fill in all fields');
-      return;
-    }
-    
-    if (password !== confirmPassword) {
-      alert('Passwords do not match');
-      return;
-    }
-    
-    const existingUser = localStorage.getItem('neet-pbp-user-' + email);
-    if (existingUser) {
-      alert('User already exists. Please login.');
-      return;
-    }
-    
-    alert('Please proceed to payment to complete registration');
-  }
-
-  function handlePayment() {
-    const name = document.getElementById('signupName').value;
-    const email = document.getElementById('signupEmail').value;
-    const password = document.getElementById('signupPassword').value;
-    
-    if (!name || !email || !password) {
-      alert('Please fill in all fields before payment');
-      return;
-    }
-    
-    alert('Payment gateway integration pending. For demo purposes, account created successfully!');
-    
-    const userData = {
-      name: name,
-      password: password,
-      subscribed: true,
-      subscriptionDate: new Date().toISOString(),
-      expiryDate: new Date(Date.now() + 2 * 365 * 24 * 60 * 60 * 1000).toISOString()
-    };
-    
-    localStorage.setItem('neet-pbp-user-' + email, JSON.stringify(userData));
-    currentUser = { name: name, email: email };
-    localStorage.setItem('neet-pbp-user', JSON.stringify(currentUser));
-    isSubscribed = true;
-    localStorage.setItem('neet-pbp-subscription', JSON.stringify(isSubscribed));
-    
-    updateLoginUI();
-    closeLoginModal();
-    showLoginForm();
   }
 
   function handleLogout() {
@@ -1227,49 +701,96 @@
     localStorage.removeItem('neet-pbp-user');
     localStorage.removeItem('neet-pbp-subscription');
     updateLoginUI();
-    alert('Logged out successfully');
   }
 
-  function updateLoginUI() {
-    const loginSection = document.getElementById('loginSection');
-    if (currentUser) {
-      const subscriptionBadge = isSubscribed ? '<span class="subscription-badge">Premium</span>' : '';
-      loginSection.innerHTML = `
-        <div class="user-info">
-          <span>Welcome, ${currentUser.name}${subscriptionBadge}</span>
-          <button class="logout-btn" onclick="handleLogout()">Logout</button>
-        </div>
-      `;
-    } else {
-      loginSection.innerHTML = `
-        <button class="login-btn" onclick="openLoginModal()">Login / Sign Up</button>
-      `;
+  function loadPersistentData() {
+    try {
+      const user = localStorage.getItem('neet-pbp-user');
+      if (user) {
+        currentUser = JSON.parse(user);
+        const subscription = localStorage.getItem('neet-pbp-subscription');
+        isSubscribed = subscription ? JSON.parse(subscription) : false;
+        updateLoginUI();
+      }
+      const saved = localStorage.getItem('neet-pbp-states');
+      if (saved) {
+        questionStates = JSON.parse(saved);
+      }
+    } catch (e) {
+      console.error('Error loading data:', e);
     }
   }
 
-  window.onclick = function(event) {
-    const modal = document.getElementById('loginModal');
-    if (event.target == modal) {
-      closeLoginModal();
-    }
+  function initializeGoogleSignIn() {
+    google.accounts.id.initialize({
+      client_id: 'YOUR_GOOGLE_CLIENT_ID', // Replace with your Google client ID
+      callback: handleGoogleCredentialResponse,
+      auto_select: false,
+      ux_mode: 'popup'
+    });
+    document.getElementById('googleSignInBtn').addEventListener('click', () => {
+      google.accounts.id.prompt();
+    });
   }
 
-  loadPersistentData();
+  function handleGoogleCredentialResponse(response) {
+    const credential = response.credential;
+    const userObject = parseJwt(credential);
+    currentUser = {
+      name: userObject.name,
+      email: userObject.email,
+      picture: userObject.picture
+    };
+    // For demo, auto subscribe on login
+    isSubscribed = true;
+    localStorage.setItem('neet-pbp-user', JSON.stringify(currentUser));
+    localStorage.setItem('neet-pbp-subscription', JSON.stringify(isSubscribed));
+    updateLoginUI();
+  }
+
+  function parseJwt(token) {
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+    return JSON.parse(jsonPayload);
+  }
+
+  window.onload = function() {
+    loadPersistentData();
+    initializeGoogleSignIn();
+  };
 
   function updateChapters() {
     const classSelect = document.getElementById('classSelect');
     const chapterSelect = document.getElementById('chapterSelect');
     const pageSelect = document.getElementById('pageSelect');
-    
+
     const classValue = classSelect.value;
-    
     chapterSelect.innerHTML = '<option value="">Select Chapter</option>';
     pageSelect.innerHTML = '<option value="">Select Page</option>';
     chapterSelect.disabled = true;
     pageSelect.disabled = true;
-    
     document.getElementById('contentArea').innerHTML = '<div class="no-questions">Please select Class, Chapter, and Page Number to view questions.</div>';
-    
+
+    if (!currentUser || !isSubscribed) {
+      if (classValue === 'demo') {
+        const chapters = questionData[classValue];
+        Object.keys(chapters).forEach(chapterNum => {
+          const option = document.createElement('option');
+          option.value = chapterNum;
+          option.textContent = `Chapter ${chapterNum}: ${chapters[chapterNum].title}`;
+          chapterSelect.appendChild(option);
+        });
+        chapterSelect.disabled = false;
+      } else {
+        chapterSelect.disabled = true;
+        document.getElementById('contentArea').innerHTML = '<div class="no-questions">Please login and subscribe to unlock Class 11 and Class 12 content.</div>';
+      }
+      updateScoreDisplay();
+      return;
+    }
     if (classValue && questionData[classValue]) {
       const chapters = questionData[classValue];
       Object.keys(chapters).forEach(chapterNum => {
@@ -1280,7 +801,6 @@
       });
       chapterSelect.disabled = false;
     }
-    
     updateScoreDisplay();
   }
 
@@ -1288,31 +808,25 @@
     const classSelect = document.getElementById('classSelect');
     const chapterSelect = document.getElementById('chapterSelect');
     const pageSelect = document.getElementById('pageSelect');
-    
     const classValue = classSelect.value;
     const chapterValue = chapterSelect.value;
-    
     pageSelect.innerHTML = '<option value="">Select Page</option>';
     pageSelect.disabled = true;
-    
     document.getElementById('contentArea').innerHTML = '<div class="no-questions">Please select a Page Number to view questions.</div>';
-    
+
     if (classValue && chapterValue) {
       const chapter = questionData[classValue][chapterValue];
       if (chapter && chapter.questions) {
         const pages = Object.keys(chapter.questions).sort((a, b) => parseInt(a) - parseInt(b));
-        
         if (pages.length > 0) {
           pages.forEach(pageNum => {
             const pageData = chapter.questions[pageNum];
             let questionCount = 0;
-            
             if (Array.isArray(pageData) && pageData.length === 2 && Array.isArray(pageData[0])) {
               questionCount = pageData[0].length;
             } else if (Array.isArray(pageData)) {
               questionCount = pageData.length;
             }
-            
             const option = document.createElement('option');
             option.value = pageNum;
             option.textContent = `Page ${pageNum} (${questionCount} question${questionCount !== 1 ? 's' : ''})`;
@@ -1322,7 +836,6 @@
         }
       }
     }
-    
     updateScoreDisplay();
   }
 
@@ -1331,32 +844,29 @@
     const chapterSelect = document.getElementById('chapterSelect');
     const pageSelect = document.getElementById('pageSelect');
     const contentArea = document.getElementById('contentArea');
-    
+
     const classValue = classSelect.value;
     const chapterValue = chapterSelect.value;
     const pageValue = pageSelect.value;
-    
-    if (!classValue || !chapterValue || !pageValue) {
-      return;
-    }
-    
+
+    if (!classValue || !chapterValue || !pageValue) { return; }
+
     currentQuestions = questionData[classValue][chapterValue].questions[pageValue] || [];
 
     let questionsArr = currentQuestions;
     let summaryStr = "";
-    if(Array.isArray(currentQuestions) && currentQuestions.length === 2 && Array.isArray(currentQuestions[0])) {
+    if (Array.isArray(currentQuestions) && currentQuestions.length === 2 && Array.isArray(currentQuestions[0])) {
       questionsArr = currentQuestions[0];
       summaryStr = currentQuestions[1] || "";
       currentQuestions = questionsArr;
     }
 
-    
     if (currentQuestions.length === 0) {
       contentArea.innerHTML = '<div class="no-questions">No questions available for this page yet. Add questions to see them here.</div>';
       updateScoreDisplay();
       return;
     }
-    
+
     let html = '';
 
     if (summaryStr && summaryStr.trim().length > 0) {
@@ -1367,11 +877,10 @@
     }
 
     html += `<div class="question-count">Total Questions: ${currentQuestions.length}</div>`;
-    
     currentQuestions.forEach((q, index) => {
       const questionId = `${classValue}-${chapterValue}-${pageValue}-${index}`;
       const questionState = questionStates[questionId];
-      
+
       html += `
         <div class="question-item" data-question-index="${index}">
           <div class="question-header">
@@ -1400,22 +909,17 @@
         </div>
       `;
     });
-    
     contentArea.innerHTML = html;
-    
     setTimeout(addChatGPTButtons, 100);
-    
     updateScoreDisplay();
   }
- 
+
   function selectOption(questionIndex, optionIndex, correctAnswer, questionId) {
-    if (questionStates[questionId]) {
-      return;
-    }
+    if (questionStates[questionId]) { return; }
 
     const selectedOption = currentQuestions[questionIndex].options[optionIndex];
     const isCorrect = selectedOption === correctAnswer;
-    
+
     questionStates[questionId] = {
       selectedIndex: optionIndex,
       isCorrect: isCorrect
@@ -1425,34 +929,28 @@
 
     const questionItem = document.querySelector(`.question-item[data-question-index="${questionIndex}"]`);
     if (!questionItem) return;
-    
+
     const options = questionItem.querySelectorAll('.option');
     options.forEach((option, index) => {
-      if (index === optionIndex) {
-        option.classList.add(isCorrect ? 'answered-correct' : 'answered-incorrect');
+      if (index === questionStates[questionId].selectedIndex) {
+        option.classList.toggle('answered-correct', isCorrect);
+        option.classList.toggle('answered-incorrect', !isCorrect);
       } else {
         option.classList.add('disabled');
       }
     });
 
-    const clickedOption = options[optionIndex];
+    const clickedOption = options[questionStates[questionId].selectedIndex];
     const popup = document.createElement('div');
     popup.className = `answer-popup ${isCorrect ? 'correct' : 'incorrect'}`;
     popup.textContent = isCorrect ? '✓' : '✗';
     clickedOption.appendChild(popup);
-    
-    setTimeout(() => {
-      if (clickedOption.contains(popup)) {
-        clickedOption.removeChild(popup);
-      }
-    }, 1200);
-
+    setTimeout(() => { if (clickedOption.contains(popup)) clickedOption.removeChild(popup); }, 1200);
     const tickCrossPopup = document.createElement('div');
     tickCrossPopup.className = `tick-cross-popup ${isCorrect ? 'correct' : 'incorrect'}`;
     tickCrossPopup.textContent = isCorrect ? '✓' : '✗';
     document.body.appendChild(tickCrossPopup);
     setTimeout(() => document.body.removeChild(tickCrossPopup), 1500);
-
     updateScoreDisplay();
   }
 
@@ -1464,7 +962,6 @@
   function copyQuestion(index, pageNum) {
     const q = currentQuestions[index];
     const text = `Page ${pageNum}\n\n${q.question}\n\n${q.options.join('\n')}\n\nAnswer: ${q.answer}`;
-    
     navigator.clipboard.writeText(text).then(() => {
       alert('Question copied to clipboard!');
     }).catch(() => {
@@ -1477,18 +974,17 @@
     const chapterSelect = document.getElementById('chapterSelect');
     const pageSelect = document.getElementById('pageSelect');
     const scoreCard = document.getElementById('scoreCard');
-    
+
     const classValue = classSelect.value;
     const chapterValue = chapterSelect.value;
     const pageValue = pageSelect.value;
-    
+
     if (!classValue || !chapterValue || !pageValue || currentQuestions.length === 0) {
       scoreCard.textContent = 'Page score: 0 / 0';
       return;
     }
-    
+
     let correct = 0;
-    
     currentQuestions.forEach((q, index) => {
       const questionId = `${classValue}-${chapterValue}-${pageValue}-${index}`;
       const questionState = questionStates[questionId];
@@ -1496,16 +992,13 @@
         correct++;
       }
     });
-    
     const totalQuestions = currentQuestions.length;
     scoreCard.textContent = `Page score: ${correct} / ${totalQuestions}`;
   }
 
   function buildChatGPTPrompt(questionIndex) {
     if (!currentQuestions[questionIndex]) return null;
-    
     const q = currentQuestions[questionIndex];
-    
     return `Question:
 ${q.question}
 
@@ -1532,22 +1025,15 @@ Version 3: Detailed explanation with option analysis`;
 
   async function openChatGPTWithAutopaste(prompt) {
     await copyToClipboard(prompt);
-    
     try {
       const encodedPrompt = encodeURIComponent(prompt);
       const chatGPTUrl = `https://chat.openai.com/?q=${encodedPrompt}`;
-      
       const newWindow = window.open(chatGPTUrl, '_blank');
-      
       if (newWindow) {
         setTimeout(() => {
-          try {
-            newWindow.focus();
-          } catch (e) {
-          }
+          try { newWindow.focus(); } catch (e) {}
         }, 1000);
       }
-      
       return true;
     } catch (e) {
       window.open('https://chat.openai.com/', '_blank');
@@ -1560,43 +1046,32 @@ Version 3: Detailed explanation with option analysis`;
     notification.className = 'copy-notification';
     notification.textContent = '✓ Copied! Opening ChatGPT...';
     document.body.appendChild(notification);
-    
-    setTimeout(() => {
-      notification.remove();
-    }, 3000);
+    setTimeout(() => { notification.remove(); }, 3000);
   }
 
   function addChatGPTButtons() {
     const questionItems = document.querySelectorAll('.question-item');
-    
     questionItems.forEach((questionElement, index) => {
       const buttonGroup = questionElement.querySelector('.button-group');
       if (!buttonGroup) return;
       if (buttonGroup.querySelector('.chatgpt-btn')) return;
-
       const btn = document.createElement('button');
       btn.className = 'chatgpt-btn';
       btn.textContent = 'ChatGPT';
-
       btn.addEventListener('click', async () => {
         const prompt = buildChatGPTPrompt(index);
         if (!prompt) {
           alert('Could not extract question content.');
           return;
         }
-        
         const originalText = btn.textContent;
         btn.textContent = 'Opening...';
         btn.style.background = '#f39c12';
-        
         const success = await openChatGPTWithAutopaste(prompt);
-        
         if (success) {
           showCopyNotification();
-          
           btn.textContent = 'Opened!';
           btn.style.background = '#27ae60';
-          
           setTimeout(() => {
             btn.textContent = originalText;
             btn.style.background = 'linear-gradient(135deg, #e74c3c, #c0392b)';
@@ -1604,14 +1079,12 @@ Version 3: Detailed explanation with option analysis`;
         } else {
           btn.textContent = 'Error';
           btn.style.background = '#e74c3c';
-          
           setTimeout(() => {
             btn.textContent = originalText;
             btn.style.background = 'linear-gradient(135deg, #e74c3c, #c0392b)';
           }, 2000);
         }
       });
-
       buttonGroup.appendChild(btn);
     });
   }
@@ -1619,31 +1092,438 @@ Version 3: Detailed explanation with option analysis`;
   document.getElementById('refreshChapterBtn').addEventListener('click', function(e) {
     e.preventDefault();
     e.stopPropagation();
-    
     const classSelect = document.getElementById('classSelect');
     const chapterSelect = document.getElementById('chapterSelect');
     const pageSelect = document.getElementById('pageSelect');
-    
     const classValue = classSelect.value;
     const chapterValue = chapterSelect.value;
     const pageValue = pageSelect.value;
-    
     if (!classValue || !chapterValue || !pageValue) {
       alert('Please select a page first');
       return;
     }
-    
     if (!confirm('Are you sure you want to reset the score for this page?')) {
       return;
     }
-    
     currentQuestions.forEach((q, index) => {
       const questionId = `${classValue}-${chapterValue}-${pageValue}-${index}`;
       delete questionStates[questionId];
     });
-    
     savePersistentData();
-    
+    showQuestions();
+  });
+
+  function toggleSummary() {
+    const summaryDiv = document.getElementById('summaryContent');
+    const btn = document.getElementById('summaryBtn');
+    if (!summaryDiv || !btn) return;
+    const showing = summaryDiv.classList.toggle('show');
+    btn.textContent = showing ? '📕 Hide Summary' : '📚 View Summary';
+  }
+
+  // Initialize Google Sign-In
+  function initializeGoogleSignIn() {
+    google.accounts.id.initialize({
+      client_id: 'YOUR_GOOGLE_CLIENT_ID', // <-- Replace with actual Client ID
+      callback: handleGoogleCredentialResponse,
+      auto_select: false,
+      ux_mode: 'popup'
+    });
+    document.getElementById('googleSignInBtn').addEventListener('click', () => {
+      google.accounts.id.prompt();
+    });
+  }
+
+  function handleGoogleCredentialResponse(response) {
+    const credential = response.credential;
+    const userObject = parseJwt(credential);
+    currentUser = {
+      name: userObject.name,
+      email: userObject.email,
+      picture: userObject.picture
+    };
+    // Grant subscription upon login
+    isSubscribed = true;
+    localStorage.setItem('neet-pbp-user', JSON.stringify(currentUser));
+    localStorage.setItem('neet-pbp-subscription', JSON.stringify(isSubscribed));
+    updateLoginUI();
+  }
+
+  function parseJwt(token) {
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+    return JSON.parse(jsonPayload);
+  }
+
+  function handleLogout() {
+    currentUser = null;
+    isSubscribed = false;
+    localStorage.removeItem('neet-pbp-user');
+    localStorage.removeItem('neet-pbp-subscription');
+    updateLoginUI();
+  }
+
+  function loadPersistentData() {
+    try {
+      const user = localStorage.getItem('neet-pbp-user');
+      if (user) {
+        currentUser = JSON.parse(user);
+        const sub = localStorage.getItem('neet-pbp-subscription');
+        isSubscribed = sub ? JSON.parse(sub) : false;
+        updateLoginUI();
+      }
+      const saved = localStorage.getItem('neet-pbp-states');
+      if (saved) {
+        questionStates = JSON.parse(saved);
+      }
+    } catch(e) {
+      console.error('Error loading data:', e);
+    }
+  }
+
+  window.onload = () => {
+    loadPersistentData();
+    initializeGoogleSignIn();
+  };
+
+  function updateChapters() {
+    const classSelect = document.getElementById('classSelect');
+    const chapterSelect = document.getElementById('chapterSelect');
+    const pageSelect = document.getElementById('pageSelect');
+    const classValue = classSelect.value;
+    chapterSelect.innerHTML = '<option value="">Select Chapter</option>';
+    pageSelect.innerHTML = '<option value="">Select Page</option>';
+    chapterSelect.disabled = true;
+    pageSelect.disabled = true;
+    document.getElementById('contentArea').innerHTML = '<div class="no-questions">Please select Class, Chapter, and Page Number to view questions.</div>';
+
+    if (!currentUser || !isSubscribed) {
+      if (classValue === 'demo') {
+        const chapters = questionData[classValue];
+        Object.keys(chapters).forEach(chapterNum => {
+          const option = document.createElement('option');
+          option.value = chapterNum;
+          option.textContent = `Chapter ${chapterNum}: ${chapters[chapterNum].title}`;
+          chapterSelect.appendChild(option);
+        });
+        chapterSelect.disabled = false;
+      } else {
+        chapterSelect.disabled = true;
+        document.getElementById('contentArea').innerHTML = '<div class="no-questions">Please login and subscribe to unlock Class 11 and Class 12 content.</div>';
+      }
+      updateScoreDisplay();
+      return;
+    }
+
+    if (classValue && questionData[classValue]) {
+      const chapters = questionData[classValue];
+      Object.keys(chapters).forEach(chapterNum => {
+        const option = document.createElement('option');
+        option.value = chapterNum;
+        option.textContent = `Chapter ${chapterNum}: ${chapters[chapterNum].title}`;
+        chapterSelect.appendChild(option);
+      });
+      chapterSelect.disabled = false;
+    }
+    updateScoreDisplay();
+  }
+
+  function updatePages() {
+    const classSelect = document.getElementById('classSelect');
+    const chapterSelect = document.getElementById('chapterSelect');
+    const pageSelect = document.getElementById('pageSelect');
+    const classValue = classSelect.value;
+    const chapterValue = chapterSelect.value;
+    pageSelect.innerHTML = '<option value="">Select Page</option>';
+    pageSelect.disabled = true;
+    document.getElementById('contentArea').innerHTML = '<div class="no-questions">Please select a Page Number to view questions.</div>';
+
+    if (classValue && chapterValue) {
+      const chapter = questionData[classValue][chapterValue];
+      if (chapter && chapter.questions) {
+        const pages = Object.keys(chapter.questions).sort((a, b) => parseInt(a) - parseInt(b));
+        if (pages.length > 0) {
+          pages.forEach(pageNum => {
+            const pageData = chapter.questions[pageNum];
+            let questionCount = 0;
+            if (Array.isArray(pageData) && pageData.length === 2 && Array.isArray(pageData[0])) {
+              questionCount = pageData[0].length;
+            } else if (Array.isArray(pageData)) {
+              questionCount = pageData.length;
+            }
+            const option = document.createElement('option');
+            option.value = pageNum;
+            option.textContent = `Page ${pageNum} (${questionCount} question${questionCount !== 1 ? 's' : ''})`;
+            pageSelect.appendChild(option);
+          });
+          pageSelect.disabled = false;
+        }
+      }
+    }
+    updateScoreDisplay();
+  }
+
+  function showQuestions() {
+    const classSelect = document.getElementById('classSelect');
+    const chapterSelect = document.getElementById('chapterSelect');
+    const pageSelect = document.getElementById('pageSelect');
+    const contentArea = document.getElementById('contentArea');
+
+    const classValue = classSelect.value;
+    const chapterValue = chapterSelect.value;
+    const pageValue = pageSelect.value;
+
+    if (!classValue || !chapterValue || !pageValue) return;
+
+    currentQuestions = questionData[classValue][chapterValue].questions[pageValue] || [];
+
+    let questionsArr = currentQuestions;
+    let summaryStr = "";
+    if (Array.isArray(currentQuestions) && currentQuestions.length === 2 && Array.isArray(currentQuestions[0])) {
+      questionsArr = currentQuestions[0];
+      summaryStr = currentQuestions[1] || "";
+      currentQuestions = questionsArr;
+    }
+
+    if (currentQuestions.length === 0) {
+      contentArea.innerHTML = '<div class="no-questions">No questions available for this page yet. Add questions to see them here.</div>';
+      updateScoreDisplay();
+      return;
+    }
+
+    let html = '';
+
+    if (summaryStr && summaryStr.trim().length > 0) {
+      html += `
+        <button id="summaryBtn" class="summary-toggle-btn" onclick="toggleSummary()">📚 View Summary</button>
+        <div id="summaryContent" class="summary-content">${summaryStr}</div>
+      `;
+    }
+
+    html += `<div class="question-count">Total Questions: ${currentQuestions.length}</div>`;
+    currentQuestions.forEach((q, index) => {
+      const questionId = `${classValue}-${chapterValue}-${pageValue}-${index}`;
+      const questionState = questionStates[questionId];
+
+      html += `
+        <div class="question-item" data-question-index="${index}">
+          <div class="question-header">
+            <span class="question-number">Question ${index + 1}</span>
+            <span class="question-year" style="cursor: pointer;" onclick="copyQuestion(${index}, '${pageValue}')">📋 Copy</span>
+          </div>
+          <div class="question-text">${q.question}</div>
+          <div class="options">
+            ${q.options.map((opt, optIndex) => {
+              let optionClass = 'option';
+              if (questionState) {
+                optionClass += ' disabled';
+                if (questionState.selectedIndex === optIndex) {
+                  optionClass += questionState.isCorrect ? ' answered-correct' : ' answered-incorrect';
+                }
+              }
+              return `<div class="${optionClass}" onclick="selectOption(${index}, ${optIndex}, '${q.answer.replace(/'/g, "\\'")}', '${questionId}')">${opt}</div>`;
+            }).join('')}
+          </div>
+          <div class="button-group">
+            <button class="btn btn-answer" onclick="showAnswer(${index})">Show Answer</button>
+          </div>
+          <div class="answer-reveal" id="answer-${index}">
+            <strong>Correct Answer:</strong> ${q.answer}
+          </div>
+        </div>
+      `;
+    });
+    contentArea.innerHTML = html;
+    setTimeout(addChatGPTButtons, 100);
+    updateScoreDisplay();
+  }
+
+  function selectOption(questionIndex, optionIndex, correctAnswer, questionId) {
+    if (questionStates[questionId]) return;
+    const selectedOption = currentQuestions[questionIndex].options[optionIndex];
+    const isCorrect = selectedOption === correctAnswer;
+    questionStates[questionId] = {
+      selectedIndex: optionIndex,
+      isCorrect: isCorrect
+    };
+    savePersistentData();
+    const questionItem = document.querySelector(`.question-item[data-question-index="${questionIndex}"]`);
+    if (!questionItem) return;
+    const options = questionItem.querySelectorAll('.option');
+    options.forEach((option, index) => {
+      if (index === questionStates[questionId].selectedIndex) {
+        option.classList.toggle('answered-correct', isCorrect);
+        option.classList.toggle('answered-incorrect', !isCorrect);
+      } else {
+        option.classList.add('disabled');
+      }
+    });
+    const clickedOption = options[questionStates[questionId].selectedIndex];
+    const popup = document.createElement('div');
+    popup.className = `answer-popup ${isCorrect ? 'correct' : 'incorrect'}`;
+    popup.textContent = isCorrect ? '✓' : '✗';
+    clickedOption.appendChild(popup);
+    setTimeout(() => { if (clickedOption.contains(popup)) clickedOption.removeChild(popup); }, 1200);
+    const tickCrossPopup = document.createElement('div');
+    tickCrossPopup.className = `tick-cross-popup ${isCorrect ? 'correct' : 'incorrect'}`;
+    tickCrossPopup.textContent = isCorrect ? '✓' : '✗';
+    document.body.appendChild(tickCrossPopup);
+    setTimeout(() => document.body.removeChild(tickCrossPopup), 1500);
+    updateScoreDisplay();
+  }
+
+  function showAnswer(index) {
+    const answerDiv = document.getElementById(`answer-${index}`);
+    answerDiv.style.display = answerDiv.style.display === 'block' ? 'none' : 'block';
+  }
+
+  function copyQuestion(index, pageNum) {
+    const q = currentQuestions[index];
+    const text = `Page ${pageNum}\n\n${q.question}\n\n${q.options.join('\n')}\n\nAnswer: ${q.answer}`;
+    navigator.clipboard.writeText(text).then(() => {
+      alert('Question copied to clipboard!');
+    }).catch(() => {
+      alert('Failed to copy question');
+    });
+  }
+
+  function updateScoreDisplay() {
+    const classSelect = document.getElementById('classSelect');
+    const chapterSelect = document.getElementById('chapterSelect');
+    const pageSelect = document.getElementById('pageSelect');
+    const scoreCard = document.getElementById('scoreCard');
+    const classValue = classSelect.value;
+    const chapterValue = chapterSelect.value;
+    const pageValue = pageSelect.value;
+    if (!classValue || !chapterValue || !pageValue || currentQuestions.length === 0) {
+      scoreCard.textContent = 'Page score: 0 / 0';
+      return;
+    }
+    let correct = 0;
+    currentQuestions.forEach((q, index) => {
+      const questionId = `${classValue}-${chapterValue}-${pageValue}-${index}`;
+      const questionState = questionStates[questionId];
+      if (questionState && questionState.isCorrect) correct++;
+    });
+    const totalQuestions = currentQuestions.length;
+    scoreCard.textContent = `Page score: ${correct} / ${totalQuestions}`;
+  }
+
+  function buildChatGPTPrompt(questionIndex) {
+    if (!currentQuestions[questionIndex]) return null;
+    const q = currentQuestions[questionIndex];
+    return `Question:
+${q.question}
+
+Options:
+${q.options.join('\n')}
+
+Answer this question in 3 versions:
+
+Version 1: Brief explanation
+
+Version 2: Quote exact reference from NCERT textbook and explain accordingly
+
+Version 3: Detailed explanation with option analysis`;
+  }
+
+  async function copyToClipboard(text) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch (err) {
+      return false;
+    }
+  }
+
+  async function openChatGPTWithAutopaste(prompt) {
+    await copyToClipboard(prompt);
+    try {
+      const encodedPrompt = encodeURIComponent(prompt);
+      const chatGPTUrl = `https://chat.openai.com/?q=${encodedPrompt}`;
+      const newWindow = window.open(chatGPTUrl, '_blank');
+      if (newWindow) {
+        setTimeout(() => { try { newWindow.focus(); } catch (e) {} }, 1000);
+      }
+      return true;
+    } catch (e) {
+      window.open('https://chat.openai.com/', '_blank');
+      return true;
+    }
+  }
+
+  function showCopyNotification() {
+    const notification = document.createElement('div');
+    notification.className = 'copy-notification';
+    notification.textContent = '✓ Copied! Opening ChatGPT...';
+    document.body.appendChild(notification);
+    setTimeout(() => { notification.remove(); }, 3000);
+  }
+
+  function addChatGPTButtons() {
+    const questionItems = document.querySelectorAll('.question-item');
+    questionItems.forEach((questionElement, index) => {
+      const buttonGroup = questionElement.querySelector('.button-group');
+      if (!buttonGroup) return;
+      if (buttonGroup.querySelector('.chatgpt-btn')) return;
+      const btn = document.createElement('button');
+      btn.className = 'chatgpt-btn';
+      btn.textContent = 'ChatGPT';
+      btn.addEventListener('click', async () => {
+        const prompt = buildChatGPTPrompt(index);
+        if (!prompt) {
+          alert('Could not extract question content.');
+          return;
+        }
+        const originalText = btn.textContent;
+        btn.textContent = 'Opening...';
+        btn.style.background = '#f39c12';
+        const success = await openChatGPTWithAutopaste(prompt);
+        if (success) {
+          showCopyNotification();
+          btn.textContent = 'Opened!';
+          btn.style.background = '#27ae60';
+          setTimeout(() => {
+            btn.textContent = originalText;
+            btn.style.background = 'linear-gradient(135deg, #e74c3c, #c0392b)';
+          }, 2000);
+        } else {
+          btn.textContent = 'Error';
+          btn.style.background = '#e74c3c';
+          setTimeout(() => {
+            btn.textContent = originalText;
+            btn.style.background = 'linear-gradient(135deg, #e74c3c, #c0392b)';
+          }, 2000);
+        }
+      });
+      buttonGroup.appendChild(btn);
+    });
+  }
+
+  document.getElementById('refreshChapterBtn').addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    const classSelect = document.getElementById('classSelect');
+    const chapterSelect = document.getElementById('chapterSelect');
+    const pageSelect = document.getElementById('pageSelect');
+    const classValue = classSelect.value;
+    const chapterValue = chapterSelect.value;
+    const pageValue = pageSelect.value;
+    if (!classValue || !chapterValue || !pageValue) {
+      alert('Please select a page first');
+      return;
+    }
+    if (!confirm('Are you sure you want to reset the score for this page?')) {
+      return;
+    }
+    currentQuestions.forEach((q, index) => {
+      const questionId = `${classValue}-${chapterValue}-${pageValue}-${index}`;
+      delete questionStates[questionId];
+    });
+    savePersistentData();
     showQuestions();
   });
 
