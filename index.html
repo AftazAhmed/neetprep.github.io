@@ -753,8 +753,7 @@
       "11": {
         title: "Organisms and Populations",
         questions: {
-          
-       "196": [[], ""],
+          "196": [[], ""],
           "197": [[], ""], 
           "198": [[], ""],
           "199": [[], ""], 
@@ -765,11 +764,9 @@
           "204": [[], ""]
         }
       },
-      
-"12": {
+      "12": {
         title: "Ecosystem",
         questions: {
-          
           "214": [[], ""],
           "215": [[], ""]
         }
@@ -778,68 +775,67 @@
         title: "Biodiversity and Conservation",
         questions: {
           "216": [[{
-  question: "How many species of ants exist globally?",
-  options: [
-    "a) 10,000",
-    "b) 20,000",
-    "c) 30,000",
-    "d) 40,000"
-  ],
-  answer: "b) 20,000"
-},
-{
-  question: "What is the approximate number of beetle species?",
-  options: [
-    "a) 1,00,000",
-    "b) 2,00,000",
-    "c) 3,00,000",
-    "d) 4,00,000"
-  ],
-  answer: "c) 3,00,000"
-},
-{
-  question: "How many orchid species have been recorded worldwide?",
-  options: [
-    "a) 10,000",
-    "b) 15,000",
-    "c) 20,000",
-    "d) 25,000"
-  ],
-  answer: "c) 20,000"
-},
-{
-  question: "Who popularized the term 'biodiversity'?",
-  options: [
-    "a) Charles Darwin",
-    "b) Edward Wilson",
-    "c) Paul Ehrlich",
-    "d) R.H. Whittaker"
-  ],
-  answer: "b) Edward Wilson"
-},
-{
-  question: "Edward Wilson was known as a:",
-  options: [
-    "a) Ecologist",
-    "b) Taxonomist",
-    "c) Sociobiologist",
-    "d) Geneticist"
-  ],
-  answer: "c) Sociobiologist"
-},
-{
-  question: "At what levels does biodiversity exist in biological organization?",
-  options: [
-    "a) Cells to tissues",
-    "b) Macromolecules within cells to biomes",
-    "c) Atoms to molecules",
-    "d) Organs to organisms"
-  ],
-  answer: "b) Macromolecules within cells to biomes"
-}], "This page introduces biodiversity, discussing species diversity across different groups (ants, beetles, orchids) and introduces Edward Wilson's role in popularizing the term 'biodiversity'. It emphasizes that biodiversity exists at all levels of biological organization."],
-  
-             ""226": [[], ""],
-"227": [[], ""]
+            question: "How many species of ants exist globally?",
+            options: [
+              "a) 10,000",
+              "b) 20,000",
+              "c) 30,000",
+              "d) 40,000"
+            ],
+            answer: "b) 20,000"
+          },
+          {
+            question: "What is the approximate number of beetle species?",
+            options: [
+              "a) 1,00,000",
+              "b) 2,00,000",
+              "c) 3,00,000",
+              "d) 4,00,000"
+            ],
+            answer: "c) 3,00,000"
+          },
+          {
+            question: "How many orchid species have been recorded worldwide?",
+            options: [
+              "a) 10,000",
+              "b) 15,000",
+              "c) 20,000",
+              "d) 25,000"
+            ],
+            answer: "c) 20,000"
+          },
+          {
+            question: "Who popularized the term 'biodiversity'?",
+            options: [
+              "a) Charles Darwin",
+              "b) Edward Wilson",
+              "c) Paul Ehrlich",
+              "d) R.H. Whittaker"
+            ],
+            answer: "b) Edward Wilson"
+          },
+          {
+            question: "Edward Wilson was known as a:",
+            options: [
+              "a) Ecologist",
+              "b) Taxonomist",
+              "c) Sociobiologist",
+              "d) Geneticist"
+            ],
+            answer: "c) Sociobiologist"
+          },
+          {
+            question: "At what levels does biodiversity exist in biological organization?",
+            options: [
+              "a) Cells to tissues",
+              "b) Macromolecules within cells to biomes",
+              "c) Atoms to molecules",
+              "d) Organs to organisms"
+            ],
+            answer: "b) Macromolecules within cells to biomes"
+          }], "This page introduces biodiversity, discussing species diversity across different groups (ants, beetles, orchids) and introduces Edward Wilson's role in popularizing the term 'biodiversity'. It emphasizes that biodiversity exists at all levels of biological organization."],
+          "226": [[], ""],
+          "227": [[], ""]
         }
       }
     }
@@ -1080,7 +1076,14 @@
 
   function copyQuestion(index, pageNum) {
     const q = currentQuestions[index];
-    const text = `${q.year}\nPage ${pageNum}\n\n${q.question}\n\n${q.options.join('\n')}\n\nAnswer: ${q.answer}`;
+    const text = `Page ${pageNum}
+
+${q.question}
+
+${q.options.join('
+')}
+
+Answer: ${q.answer}`;
     
     navigator.clipboard.writeText(text).then(() => {
       alert('Question copied to clipboard!');
@@ -1127,7 +1130,8 @@
 ${q.question}
 
 Options:
-${q.options.join('\n')}
+${q.options.join('
+')}
 
 Answer this question in 3 versions:
 
@@ -1275,5 +1279,3 @@ Version 3: Detailed explanation with option analysis`;
 </script>
 </body>
 </html>
-
-
