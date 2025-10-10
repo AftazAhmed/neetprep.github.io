@@ -1,1 +1,1279 @@
-hhhh
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NEET-PYQ</title>
+<style>
+  body {
+    font-family: 'Montserrat', Arial, sans-serif;
+    margin: 0;
+    padding: 20px 24px;
+    background-color: #f9fafb;
+    color: #1f2937;
+    overflow-x: hidden;
+  }
+  .header {
+    text-align: left;
+    background-color: #023047;
+    color: #ffb347;
+    padding: 48px 24px 32px 24px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, #4f59b0 0%, transparent 70%);
+    opacity: 0.3;
+    pointer-events: none;
+  }
+  .header h1 {
+    position: relative;
+    margin: 0 0 12px 0;
+    font-size: 3rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    line-height: 1.1;
+    transform: none !important;
+    color: #ffa726;
+    max-width: 100%;
+    white-space: nowrap;
+  }
+  .header .subtitle {
+    position: relative;
+    font-size: 18px;
+    font-weight: 600;
+    color: #b9fbc0;
+    letter-spacing: 0.6px;
+  }
+  .note {
+    max-width: 720px;
+    margin: 0 auto 24px auto;
+    font-style: italic;
+    font-size: 14px;
+    color: #4b6650;
+    background-color: #d7e7d0;
+    border-left: 6px solid #a8c77a;
+    padding: 12px 20px;
+    border-radius: 8px;
+  }
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-bottom: 16px;
+    justify-content: center;
+    align-items: center;
+  }
+  .class-reload-group {
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+    min-width: 180px;
+    flex: 1;
+  }
+  .dropdown-group {
+    min-width: 180px;
+    flex: 1;
+  }
+  .class-dropdown-part {
+    flex: 1;
+  }
+  label {
+    display: block;
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 6px;
+    color: #344e41;
+  }
+  select {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 2px solid #028090;
+    font-size: 15px;
+    background-color: #ffffff;
+    color: #023047;
+    transition: 0.3s;
+  }
+  select:focus {
+    outline: none;
+    border-color: #023047;
+    background-color: #e0f7f4;
+  }
+  .reload-btn {
+    cursor: pointer;
+    background-color: #8b5cf6;
+    border: none;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 12px;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    height: 36px;
+    white-space: nowrap;
+  }
+  .reload-btn:hover {
+    background-color: #7c3aed;
+  }
+  #scoreWrapper {
+    display: flex;
+    align-items: center;
+    margin-left: 12px;
+  }
+  #scoreCard {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: 18px;
+    color: #116466;
+    border-left: 5px solid #028090;
+    padding-left: 14px;
+    white-space: nowrap;
+  }
+  .refreshBtn {
+    cursor: pointer;
+    background-color: #0d6efd;
+    border: none;
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 7px;
+    font-weight: 700;
+    font-size: 13px;
+    transition: background-color 0.3s ease;
+    margin-left: 8px;
+    height: 32px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .refreshBtn:hover {
+    background-color: #084298;
+  }
+  .content-area {
+    background-color: #fff1e0;
+    padding: 28px 30px;
+    border-radius: 12px;
+    min-height: 300px;
+    color: #1f2937;
+    transition: background-color 0.4s ease;
+    max-width: 900px;
+    margin: 0 auto 30px auto;
+  }
+  .question-count {
+    font-weight: 700;
+    font-size: 18px;
+    color: #116466;
+    margin-bottom: 18px;
+    border-left: 5px solid #028090;
+    padding-left: 14px;
+  }
+  .question-item {
+    background-color: #fff8f0;
+    border-radius: 12px;
+    border: 1.5px solid #f0c49c;
+    margin-bottom: 26px;
+    padding: 20px 24px;
+    font-size: 15px;
+    max-width: 100%;
+    position: relative;
+  }
+  .question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .question-number {
+    font-weight: 700;
+    font-size: 18px;
+    color: #2a6f62;
+  }
+  .question-year {
+    background-color: #116466;
+    color: #e0f7f4;
+    padding: 5px 14px;
+    border-radius: 16px;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.6px;
+    white-space: nowrap;
+  }
+  .question-text {
+    font-weight: 600;
+    font-size: 15px;
+    color: #255c4d;
+    margin-bottom: 14px;
+    max-width: 100%;
+    word-wrap: break-word;
+    word-break: break-word;
+  }
+  .options {
+    margin-bottom: 18px;
+  }
+  .option {
+    background-color: #ffffff;
+    border-radius: 6px;
+    border: 1.8px solid #b5d0c8;
+    padding: 11px 18px;
+    margin: 8px 0;
+    font-weight: 500;
+    font-size: 15px;
+    color: #244636;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+    user-select: none;
+    position: relative;
+    overflow: visible;
+  }
+  .option:hover:not(.disabled):not(.answered-correct):not(.answered-incorrect) {
+    background-color: #dceddb;
+    border-color: #71b280;
+  }
+  .option.answered-correct {
+    background-color: rgba(25, 135, 84, 0.25);
+    border: 3px solid #198754;
+    color: #0d4b21;
+    font-weight: 700;
+    cursor: default;
+  }
+  .option.answered-incorrect {
+    background-color: rgba(220, 53, 69, 0.25);
+    border: 3px solid #dc3545;
+    color: #721c24;
+    font-weight: 700;
+    cursor: default;
+  }
+  .option.disabled {
+    cursor: default;
+    opacity: 0.8;
+  }
+  .answer-popup {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    opacity: 0.95;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 900;
+    border-radius: 6px;
+    z-index: 5;
+    pointer-events: none;
+    animation: popup-fade 1.2s forwards;
+  }
+  .answer-popup.correct {
+    background-color: rgba(25, 135, 84, 0.25);
+    color: #18763b;
+  }
+  .answer-popup.incorrect {
+    background-color: rgba(220, 53, 69, 0.2);
+    color: #b02a37;
+  }
+  @keyframes popup-fade {
+    0% { opacity: 0; }
+    10% { opacity: 1;}
+    80% { opacity: 0.95;}
+    100% { opacity: 0; }
+  }
+  .button-group {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  .btn {
+    padding: 11px 18px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 15px;
+    color: #f0f0f0;
+    transition: background-color 0.3s ease;
+  }
+  .btn-answer {
+    background-color: #198754;
+  }
+  .btn-answer:hover {
+    background-color: #146c43;
+  }
+  .btn-copy {
+    background-color: #0d6efd;
+  }
+  .btn-copy:hover {
+    background-color: #084298;
+  }
+  .chatgpt-btn {
+    padding: 11px 18px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 15px;
+    color: #ffffff;
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    transition: all 0.3s ease;
+  }
+  .chatgpt-btn:hover {
+    background: linear-gradient(135deg, #c0392b, #a93226);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
+  }
+  .answer-reveal {
+    display: none;
+    margin-top: 14px;
+    background: #c7ddfa;
+    border: 2px solid #3b82f6;
+    border-radius: 10px;
+    color: #1e40af;
+    padding: 14px 18px;
+    font-weight: 700;
+  }
+  .tick-cross-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 80px;
+    font-weight: 900;
+    z-index: 1000;
+    pointer-events: none;
+    animation: tick-cross-fade 1.5s forwards;
+  }
+  .tick-cross-popup.correct {
+    color: #198754;
+  }
+  .tick-cross-popup.incorrect {
+    color: #dc3545;
+  }
+  @keyframes tick-cross-fade {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+    20% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+    40% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
+  }
+  .copy-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #27ae60, #229954);
+    color: white;
+    padding: 16px 24px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+    z-index: 10000;
+    font-weight: 700;
+    font-size: 15px;
+    animation: slideIn 0.3s ease-out;
+  }
+  @keyframes slideIn {
+    from {
+      transform: translateX(400px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  .no-questions {
+    text-align: center;
+    font-style: italic;
+    color: #4a5768;
+    font-size: 17px;
+    padding: 48px 10px;
+  }
+  @media (max-width: 900px) {
+    .controls { 
+      flex-direction: column; 
+      align-items: stretch;
+    }
+    .dropdown-group { 
+      min-width: unset; 
+      width: 100%;
+    }
+    .class-reload-group {
+      min-width: unset;
+      width: 100%;
+      flex-direction: row;
+    }
+    .class-dropdown-part {
+      flex: 1;
+    }
+    .reload-btn {
+      margin-left: 8px;
+      flex-shrink: 0;
+    }
+    .header h1 {
+      padding-left: 8px;
+      padding-right: 8px;
+      margin-left: 0;
+      max-width: 320px;
+      white-space: normal;
+    }
+    .content-area {
+      max-width: 100%;
+      padding: 20px 16px;
+      min-height: 300px;
+    }
+    .question-item {
+      max-width: 100%;
+      padding: 18px 12px;
+    }
+    .question-text {
+      font-size: 15px;
+    }
+  }
+
+  .summary-toggle-btn {
+    background: linear-gradient(135deg, #a0522d, #8b4513);
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    padding: 9px 18px;
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .summary-toggle-btn:hover {
+    background: linear-gradient(135deg, #8b4513, #704214);
+    transform: translateY(-1px);
+  }
+  .summary-content {
+    display: none;
+    background-color: #fff8f0;
+    border-left: 6px solid #a0522d;
+    border-radius: 10px;
+    padding: 18px 22px;
+    color: #1f2937;
+    margin-bottom: 20px;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .summary-content.show {
+    display: block;
+  }
+</style>
+</head>
+<body>
+<div class="header" role="banner">
+  <h1>NEET-PYQ</h1>
+  <div class="subtitle">NEET/AIPMT Biology Page Wise Analysis (1988-2025)</div>
+</div>
+
+<div class="note" role="note">
+  <em>Note: Some questions from a particular page may appear in subsequent pages because the concept of the question may span multiple pages.</em>
+</div>
+
+<div class="controls" role="region" aria-label="Filtering controls">
+  <div class="class-reload-group">
+    <div class="class-dropdown-part">
+      <label for="classSelect">Class:</label>
+      <select id="classSelect" onchange="updateChapters()">
+        <option value="">Select Class</option>
+        <option value="11">Class 11</option>
+        <option value="12">Class 12</option>
+      </select>
+    </div>
+    <button class="reload-btn" onclick="window.location.reload()">
+      ↻ Reload
+    </button>
+  </div>
+  <div class="dropdown-group">
+    <label for="chapterSelect">Chapter:</label>
+    <select id="chapterSelect" onchange="updatePages()" disabled>
+      <option value="">Select Chapter</option>
+    </select>
+  </div>
+  <div class="dropdown-group">
+    <label for="pageSelect">Page Number:</label>
+    <select id="pageSelect" onchange="showQuestions()" disabled>
+      <option value="">Select Page</option>
+    </select>
+  </div>
+  <div id="scoreWrapper">
+    <div id="scoreCard">
+      Page score: 0 / 0
+    </div>
+    <button class="refreshBtn" id="refreshChapterBtn">
+      <span>🔄</span> Refresh
+    </button>
+  </div>
+</div>
+
+<main class="content-area" id="contentArea">
+  <div class="no-questions">Please select Class, Chapter, and Page Number to view questions.</div>
+</main>
+<script>
+  const questionData = {
+    "11": {
+      "1": {
+        title: "The Living World",
+        questions: {
+          "3": [[], ""],
+          "4": [[], ""],
+          "5": [[], ""],
+          "6": [[], ""],
+          "7": [[], ""],
+          "8": [[], ""],
+          "9": [[], ""]
+        }
+      },
+      "2": {
+        title: "Biological Classification",
+        questions: {
+          "10": [[], ""], "11": [[], ""], "12": [[], ""], "13": [[], ""], "14": [[], ""], "15": [[], ""],
+          "16": [[], ""], "17": [[], ""], "18": [[], ""], "19": [[], ""], "20": [[], ""], "21": [[], ""], "22": [[], ""]
+        }
+      },
+      "3": {
+        title: "Plant Kingdom",
+        questions: {
+          "23": [[], ""], "24": [[], ""], "25": [[], ""], "26": [[], ""], "27": [[], ""], "28": [[], ""], "29": [[], ""],
+          "30": [[], ""], "31": [[], ""], "32": [[], ""], "33": [[], ""], "34": [[], ""], "35": [[], ""], "36": [[], ""]
+        }
+      },
+      "4": {
+        title: "Animal Kingdom",
+        questions: {
+          "37": [[], ""], "38": [[], ""], "39": [[], ""], "40": [[], ""], "41": [[], ""], "42": [[], ""], "43": [[], ""],
+          "44": [[], ""], "45": [[], ""], "46": [[], ""], "47": [[], ""], "48": [[], ""], "49": [[], ""], "50": [[], ""],
+          "51": [[], ""], "52": [[], ""], "53": [[], ""], "54": [[], ""]
+        }
+      },
+      "5": {
+        title: "Morphology of Flowering Plants",
+        questions: {
+          "57": [[], ""], "58": [[], ""], "59": [[], ""], "60": [[], ""], "61": [[], ""], "62": [[], ""], "63": [[], ""],
+          "64": [[], ""], "65": [[], ""], "66": [[], ""], "67": [[], ""], "68": [[], ""], "69": [[], ""], "70": [[], ""]
+        }
+      },
+      "6": {
+        title: "Anatomy of Flowering Plants",
+        questions: {
+          "71": [[], ""], "72": [[], ""], "73": [[], ""], "74": [[], ""], "75": [[], ""], "76": [[], ""], "77": [[], ""],
+          "78": [[], ""], "79": [[], ""], "80": [[], ""], "81": [[], ""], "82": [[], ""], "83": [[], ""]
+        }
+      },
+      "7": {
+        title: "Structural Organisation in Animals",
+        questions: {
+          "79": [[], ""], "80": [[], ""], "81": [[], ""], "82": [[], ""], "83": [[], ""], "84": [[], ""]
+        }
+      },
+      "8": {
+        title: "Cell: The Unit of Life",
+        questions: {
+          "87": [[], ""], "88": [[], ""], "89": [[], ""], "90": [[], ""], "91": [[], ""], "92": [[], ""], "93": [[], ""],
+          "94": [[], ""], "95": [[], ""], "96": [[], ""], "97": [[], ""], "98": [[], ""], "99": [[], ""], "100": [[], ""],
+          "101": [[], ""], "102": [[], ""], "103": [[], ""]
+        }
+      },
+      "9": {
+        title: "Biomolecules",
+        questions: {
+          "104": [[], ""], "105": [[], ""], "106": [[], ""], "107": [[], ""], "108": [[], ""], "109": [[], ""], "110": [[], ""],
+          "111": [[], ""], "112": [[], ""], "113": [[], ""], "114": [[], ""], "115": [[], ""], "116": [[], ""], "117": [[], ""],
+          "118": [[], ""], "119": [[], ""]
+        }
+      },
+      "10": {
+        title: "Cell Cycle and Cell Division",
+        questions: {
+          "120": [[], ""], "121": [[], ""], "122": [[], ""], "123": [[], ""], "124": [[], ""], "125": [[], ""], "126": [[], ""],
+          "127": [[], ""], "128": [[], ""], "129": [[], ""], "130": [[], ""]
+        }
+      },
+      "11": {
+        title: "Photosynthesis in Higher Plants",
+        questions: {
+          "133": [[], ""], "134": [[], ""], "135": [[], ""], "136": [[], ""], "137": [[], ""], "138": [[], ""], "139": [[], ""],
+          "140": [[], ""], "141": [[], ""], "142": [[], ""], "143": [[], ""], "144": [[], ""], "145": [[], ""], "146": [[], ""],
+          "147": [[], ""], "148": [[], ""], "149": [[], ""], "150": [[], ""], "151": [[], ""], "152": [[], ""]
+        }
+      },
+      "12": {
+        title: "Respiration in Plants",
+        questions: {
+          "153": [[], ""], "154": [[], ""], "155": [[], ""], "156": [[], ""], "157": [[], ""], "158": [[], ""], "159": [[], ""],
+          "160": [[], ""], "161": [[], ""], "162": [[], ""], "163": [[], ""], "164": [[], ""], "165": [[], ""], "166": [[], ""]
+        }
+      },
+      "13": {
+        title: "Plant Growth and Development",
+        questions: {
+          "167": [[], ""], "168": [[], ""], "169": [[], ""], "170": [[], ""], "171": [[], ""], "172": [[], ""], "173": [[], ""],
+          "174": [[], ""], "175": [[], ""], "176": [[], ""], "177": [[], ""], "178": [[], ""], "179": [[], ""], "180": [[], ""]
+        }
+      },
+      "14": {
+        title: "Breathing and Exchange of Gases",
+        questions: {
+          "183": [[], ""], "184": [[], ""], "185": [[], ""], "186": [[], ""], "187": [[], ""], "188": [[], ""], "189": [[], ""],
+          "190": [[], ""], "191": [[], ""], "192": [[], ""]
+        }
+      },
+      "15": {
+        title: "Body Fluids and Circulation",
+        questions: {
+          "193": [[], ""], "194": [[], ""], "195": [[], ""], "196": [[], ""], "197": [[], ""], "198": [[], ""], "199": [[], ""],
+          "200": [[], ""], "201": [[], ""], "202": [[], ""], "203": [[], ""], "204": [[], ""]
+        }
+      },
+      "16": {
+        title: "Excretory Products and their Elimination",
+        questions: {
+          "205": [[], ""], "206": [[], ""], "207": [[], ""], "208": [[], ""], "209": [[], ""], "210": [[], ""], "211": [[], ""],
+          "212": [[], ""], "213": [[], ""], "214": [[], ""], "215": [[], ""], "216": [[], ""]
+        }
+      },
+      "17": {
+        title: "Locomotion and Movement",
+        questions: {
+          "217": [[], ""], "218": [[], ""], "219": [[], ""], "220": [[], ""], "221": [[], ""], "222": [[], ""], "223": [[], ""],
+          "224": [[], ""], "225": [[], ""], "226": [[], ""], "227": [[], ""], "228": [[], ""], "229": [[], ""]
+        }
+      },
+      "18": {
+        title: "Neural Control and Coordination",
+        questions: {
+          "230": [[], ""], "231": [[], ""], "232": [[], ""], "233": [[], ""], "234": [[], ""], "235": [[], ""], "236": [[], ""],
+          "237": [[], ""], "238": [[], ""]
+        }
+      },
+      "19": {
+        title: "Chemical Coordination and Integration",
+        questions: {
+          "239": [[], ""], "240": [[], ""], "241": [[], ""], "242": [[], ""], "243": [[], ""], "244": [[], ""], "245": [[], ""],
+          "246": [[], ""], "247": [[], ""], "248": [[], ""], "249": [[], ""], "250": [[], ""]
+        }
+      }
+    },
+    "12": {
+      "1": {
+        title: "Sexual Reproduction in Flowering Plants",
+        questions: {
+          "3": [[], ""], "4": [[], ""], "5": [[], ""], "6": [[], ""], "7": [[], ""], "8": [[], ""], "9": [[], ""], "10": [[], ""],
+          "11": [[], ""], "12": [[], ""], "13": [[], ""], "14": [[], ""], "15": [[], ""], "16": [[], ""], "17": [[], ""],
+          "18": [[], ""], "19": [[], ""], "20": [[], ""], "21": [[], ""], "22": [[], ""], "23": [[], ""], "24": [[], ""], "25": [[], ""]
+        }
+      },
+      "2": {
+        title: "Human Reproduction",
+        questions: {
+          "26": [[], ""], "27": [[], ""], "28": [[], ""], "29": [[], ""], "30": [[], ""], "31": [[], ""], "32": [[], ""],
+          "33": [[], ""], "34": [[], ""], "35": [[], ""], "36": [[], ""], "37": [[], ""], "38": [[], ""], "39": [[], ""], "40": [[], ""]
+        }
+      },
+      "3": {
+        title: "Reproductive Health",
+        questions: {
+          "41": [[], ""], "42": [[], ""], "43": [[], ""], "44": [[], ""], "45": [[], ""], "46": [[], ""], "47": [[], ""],
+          "48": [[], ""], "49": [[], ""], "50": [[], ""]
+        }
+      },
+      "4": {
+        title: "Principles of Inheritance and Variation",
+        questions: {
+          "53": [[], ""], "54": [[], ""], "55": [[], ""], "56": [[], ""], "57": [[], ""], "58": [[], ""], "59": [[], ""],
+          "60": [[], ""], "61": [[], ""], "62": [[], ""], "63": [[], ""], "64": [[], ""], "65": [[], ""], "66": [[], ""],
+          "67": [[], ""], "68": [[], ""], "69": [[], ""], "70": [[], ""], "71": [[], ""], "72": [[], ""], "73": [[], ""],
+          "74": [[], ""], "75": [[], ""], "76": [[], ""], "77": [[], ""], "78": [[], ""]
+        }
+      },
+      "5": {
+        title: "Molecular Basis of Inheritance",
+        questions: {
+          "79": [[], ""], "80": [[], ""], "81": [[], ""], "82": [[], ""], "83": [[], ""], "84": [[], ""], "85": [[], ""],
+          "86": [[], ""], "87": [[], ""], "88": [[], ""], "89": [[], ""], "90": [[], ""], "91": [[], ""], "92": [[], ""],
+          "93": [[], ""], "94": [[], ""], "95": [[], ""], "96": [[], ""], "97": [[], ""], "98": [[], ""], "99": [[], ""],
+          "100": [[], ""], "101": [[], ""], "102": [[], ""], "103": [[], ""], "104": [[], ""], "105": [[], ""], "106": [[], ""],
+          "107": [[], ""], "108": [[], ""], "109": [[], ""]
+        }
+      },
+      "6": {
+        title: "Evolution",
+        questions: {
+          "110": [[], ""], "111": [[], ""], "112": [[], ""], "113": [[], ""], "114": [[], ""], "115": [[], ""], "116": [[], ""],
+          "117": [[], ""], "118": [[], ""], "119": [[], ""], "120": [[], ""], "121": [[], ""], "122": [[], ""], "123": [[], ""],
+          "124": [[], ""], "125": [[], ""], "126": [[], ""]
+        }
+      },
+      "7": {
+        title: "Human Health and Disease",
+        questions: {
+          "129": [[], ""], "130": [[], ""], "131": [[], ""], "132": [[], ""], "133": [[], ""], "134": [[], ""], "135": [[], ""],
+          "136": [[], ""], "137": [[], ""], "138": [[], ""], "139": [[], ""], "140": [[], ""], "141": [[], ""], "142": [[], ""],
+          "143": [[], ""], "144": [[], ""], "145": [[], ""], "146": [[], ""], "147": [[], ""], "148": [[], ""]
+        }
+      },
+      "8": {
+        title: "Microbes in Human Welfare",
+        questions: {
+          "149": [[], ""], "150": [[], ""], "151": [[], ""], "152": [[], ""], "153": [[], ""], "154": [[], ""], "155": [[], ""],
+          "156": [[], ""], "157": [[], ""], "158": [[], ""], "159": [[], ""], "160": [[], ""]
+        }
+      },
+      "9": {
+        title: "Biotechnology: Principles and Processes",
+        questions: {
+          "163": [[], ""], "164": [[], ""], "165": [[], ""], "166": [[], ""], "167": [[], ""], "168": [[], ""], "169": [[], ""],
+          "170": [[], ""], "171": [[], ""], "172": [[], ""], "173": [[], ""], "174": [[], ""], "175": [[], ""], "176": [[], ""]
+        }
+      },
+      "10": {
+        title: "Biotechnology and its Applications",
+        questions: {
+          "177": [[], ""], "178": [[], ""], "179": [[], ""], "180": [[], ""], "181": [[], ""], "182": [[], ""], "183": [[], ""],
+          "184": [[], ""], "185": [[], ""], "186": [[], ""], "187": [[], ""]
+        }
+      },
+      "11": {
+        title: "Organisms and Populations",
+        questions: {
+          
+       "196": [[], ""],
+          "197": [[], ""], 
+          "198": [[], ""],
+          "199": [[], ""], 
+          "200": [[], ""],
+          "201": [[], ""],
+          "202": [[], ""], 
+          "203": [[], ""], 
+          "204": [[], ""]
+        }
+      },
+      
+"12": {
+        title: "Ecosystem",
+        questions: {
+          
+          "214": [[], ""],
+          "215": [[], ""]
+        }
+      },
+      "13": {
+        title: "Biodiversity and Conservation",
+        questions: {
+          "216": [[{
+  question: "How many species of ants exist globally?",
+  options: [
+    "a) 10,000",
+    "b) 20,000",
+    "c) 30,000",
+    "d) 40,000"
+  ],
+  answer: "b) 20,000"
+},
+{
+  question: "What is the approximate number of beetle species?",
+  options: [
+    "a) 1,00,000",
+    "b) 2,00,000",
+    "c) 3,00,000",
+    "d) 4,00,000"
+  ],
+  answer: "c) 3,00,000"
+},
+{
+  question: "How many orchid species have been recorded worldwide?",
+  options: [
+    "a) 10,000",
+    "b) 15,000",
+    "c) 20,000",
+    "d) 25,000"
+  ],
+  answer: "c) 20,000"
+},
+{
+  question: "Who popularized the term 'biodiversity'?",
+  options: [
+    "a) Charles Darwin",
+    "b) Edward Wilson",
+    "c) Paul Ehrlich",
+    "d) R.H. Whittaker"
+  ],
+  answer: "b) Edward Wilson"
+},
+{
+  question: "Edward Wilson was known as a:",
+  options: [
+    "a) Ecologist",
+    "b) Taxonomist",
+    "c) Sociobiologist",
+    "d) Geneticist"
+  ],
+  answer: "c) Sociobiologist"
+},
+{
+  question: "At what levels does biodiversity exist in biological organization?",
+  options: [
+    "a) Cells to tissues",
+    "b) Macromolecules within cells to biomes",
+    "c) Atoms to molecules",
+    "d) Organs to organisms"
+  ],
+  answer: "b) Macromolecules within cells to biomes"
+}], "This page introduces biodiversity, discussing species diversity across different groups (ants, beetles, orchids) and introduces Edward Wilson's role in popularizing the term 'biodiversity'. It emphasizes that biodiversity exists at all levels of biological organization."],
+  
+             ""226": [[], ""],
+"227": [[], ""]
+        }
+      }
+    }
+  };
+
+  let currentQuestions = [];
+  let questionStates = {};
+
+  function loadPersistentData() {
+    try {
+      const saved = localStorage.getItem('neet-pyq-states');
+      if (saved) {
+        questionStates = JSON.parse(saved);
+      }
+    } catch (e) {
+      console.error('Error loading data:', e);
+    }
+  }
+
+  function savePersistentData() {
+    try {
+      localStorage.setItem('neet-pyq-states', JSON.stringify(questionStates));
+    } catch (e) {
+      console.error('Error saving data:', e);
+    }
+  }
+
+  loadPersistentData();
+
+  function updateChapters() {
+    const classSelect = document.getElementById('classSelect');
+    const chapterSelect = document.getElementById('chapterSelect');
+    const pageSelect = document.getElementById('pageSelect');
+    
+    const classValue = classSelect.value;
+    
+    chapterSelect.innerHTML = '<option value="">Select Chapter</option>';
+    pageSelect.innerHTML = '<option value="">Select Page</option>';
+    chapterSelect.disabled = true;
+    pageSelect.disabled = true;
+    
+    document.getElementById('contentArea').innerHTML = '<div class="no-questions">Please select Class, Chapter, and Page Number to view questions.</div>';
+    
+    if (classValue && questionData[classValue]) {
+      const chapters = questionData[classValue];
+      Object.keys(chapters).forEach(chapterNum => {
+        const option = document.createElement('option');
+        option.value = chapterNum;
+        option.textContent = `Chapter ${chapterNum}: ${chapters[chapterNum].title}`;
+        chapterSelect.appendChild(option);
+      });
+      chapterSelect.disabled = false;
+    }
+    
+    updateScoreDisplay();
+  }
+
+  function updatePages() {
+    const classSelect = document.getElementById('classSelect');
+    const chapterSelect = document.getElementById('chapterSelect');
+    const pageSelect = document.getElementById('pageSelect');
+    
+    const classValue = classSelect.value;
+    const chapterValue = chapterSelect.value;
+    
+    pageSelect.innerHTML = '<option value="">Select Page</option>';
+    pageSelect.disabled = true;
+    
+    document.getElementById('contentArea').innerHTML = '<div class="no-questions">Please select a Page Number to view questions.</div>';
+    
+    if (classValue && chapterValue) {
+      const chapter = questionData[classValue][chapterValue];
+      if (chapter && chapter.questions) {
+        const pages = Object.keys(chapter.questions).sort((a, b) => parseInt(a) - parseInt(b));
+        
+        if (pages.length > 0) {
+          pages.forEach(pageNum => {
+            const pageData = chapter.questions[pageNum];
+            let questionCount = 0;
+            
+            // Extract actual question count (not counting summary)
+            if (Array.isArray(pageData) && pageData.length === 2 && Array.isArray(pageData[0])) {
+              questionCount = pageData[0].length;
+            } else if (Array.isArray(pageData)) {
+              questionCount = pageData.length;
+            }
+            
+            const option = document.createElement('option');
+            option.value = pageNum;
+            option.textContent = `Page ${pageNum} (${questionCount} question${questionCount !== 1 ? 's' : ''})`;
+            pageSelect.appendChild(option);
+          });
+          pageSelect.disabled = false;
+        }
+      }
+    }
+    
+    updateScoreDisplay();
+  }
+
+  function showQuestions() {
+    const classSelect = document.getElementById('classSelect');
+    const chapterSelect = document.getElementById('chapterSelect');
+    const pageSelect = document.getElementById('pageSelect');
+    const contentArea = document.getElementById('contentArea');
+    
+    const classValue = classSelect.value;
+    const chapterValue = chapterSelect.value;
+    const pageValue = pageSelect.value;
+    
+    if (!classValue || !chapterValue || !pageValue) {
+      return;
+    }
+    
+    currentQuestions = questionData[classValue][chapterValue].questions[pageValue] || [];
+
+    // Extract summary from nested structure
+    let questionsArr = currentQuestions;
+    let summaryStr = "";
+    if(Array.isArray(currentQuestions) && currentQuestions.length === 2 && Array.isArray(currentQuestions[0])) {
+      questionsArr = currentQuestions[0];
+      summaryStr = currentQuestions[1] || "";
+      currentQuestions = questionsArr; // Update for compatibility
+    }
+
+    
+    if (currentQuestions.length === 0) {
+      contentArea.innerHTML = '<div class="no-questions">No questions available for this page yet. Add questions to see them here.</div>';
+      updateScoreDisplay();
+      return;
+    }
+    
+    let html = '';
+
+    // Add summary if exists
+    if (summaryStr && summaryStr.trim().length > 0) {
+      html += `
+        <button id="summaryBtn" class="summary-toggle-btn" onclick="toggleSummary()">📚 View Summary</button>
+        <div id="summaryContent" class="summary-content">${summaryStr}</div>
+      `;
+    }
+
+    html += `<div class="question-count">Total Questions: ${currentQuestions.length}</div>`;
+    
+    currentQuestions.forEach((q, index) => {
+      const questionId = `${classValue}-${chapterValue}-${pageValue}-${index}`;
+      const questionState = questionStates[questionId];
+      
+      html += `
+        <div class="question-item" data-question-index="${index}">
+          <div class="question-header">
+            <span class="question-number">Question ${index + 1}</span>
+            <span class="question-year" style="cursor: pointer;" onclick="copyQuestion(${index}, '${pageValue}')">📋 Copy</span>
+          </div>
+          <div class="question-text">${q.question}</div>
+          <div class="options">
+            ${q.options.map((opt, optIndex) => {
+              let optionClass = 'option';
+              if (questionState) {
+                optionClass += ' disabled';
+                if (questionState.selectedIndex === optIndex) {
+                  optionClass += questionState.isCorrect ? ' answered-correct' : ' answered-incorrect';
+                }
+              }
+              return `<div class="${optionClass}" onclick="selectOption(${index}, ${optIndex}, '${q.answer.replace(/'/g, "\\'")}', '${questionId}')">${opt}</div>`;
+            }).join('')}
+          </div>
+          <div class="button-group">
+            <button class="btn btn-answer" onclick="showAnswer(${index})">Show Answer</button>
+          </div>
+          <div class="answer-reveal" id="answer-${index}">
+            <strong>Correct Answer:</strong> ${q.answer}
+          </div>
+        </div>
+      `;
+    });
+    
+    contentArea.innerHTML = html;
+    
+    setTimeout(addChatGPTButtons, 100);
+    
+    updateScoreDisplay();
+  }
+ 
+  function selectOption(questionIndex, optionIndex, correctAnswer, questionId) {
+    if (questionStates[questionId]) {
+      return;
+    }
+
+    const selectedOption = currentQuestions[questionIndex].options[optionIndex];
+    const isCorrect = selectedOption === correctAnswer;
+    
+    questionStates[questionId] = {
+      selectedIndex: optionIndex,
+      isCorrect: isCorrect
+    };
+
+    savePersistentData();
+
+    // Fixed: Use data attribute to find the correct question item
+    const questionItem = document.querySelector(`.question-item[data-question-index="${questionIndex}"]`);
+    if (!questionItem) return;
+    
+    const options = questionItem.querySelectorAll('.option');
+    options.forEach((option, index) => {
+      if (index === optionIndex) {
+        option.classList.add(isCorrect ? 'answered-correct' : 'answered-incorrect');
+      } else {
+        option.classList.add('disabled');
+      }
+    });
+
+    const clickedOption = options[optionIndex];
+    const popup = document.createElement('div');
+    popup.className = `answer-popup ${isCorrect ? 'correct' : 'incorrect'}`;
+    popup.textContent = isCorrect ? '✓' : '✗';
+    clickedOption.appendChild(popup);
+    
+    setTimeout(() => {
+      if (clickedOption.contains(popup)) {
+        clickedOption.removeChild(popup);
+      }
+    }, 1200);
+
+    const tickCrossPopup = document.createElement('div');
+    tickCrossPopup.className = `tick-cross-popup ${isCorrect ? 'correct' : 'incorrect'}`;
+    tickCrossPopup.textContent = isCorrect ? '✓' : '✗';
+    document.body.appendChild(tickCrossPopup);
+    setTimeout(() => document.body.removeChild(tickCrossPopup), 1500);
+
+    updateScoreDisplay();
+  }
+
+  function showAnswer(index) {
+    const answerDiv = document.getElementById(`answer-${index}`);
+    answerDiv.style.display = answerDiv.style.display === 'block' ? 'none' : 'block';
+  }
+
+  function copyQuestion(index, pageNum) {
+    const q = currentQuestions[index];
+    const text = `${q.year}\nPage ${pageNum}\n\n${q.question}\n\n${q.options.join('\n')}\n\nAnswer: ${q.answer}`;
+    
+    navigator.clipboard.writeText(text).then(() => {
+      alert('Question copied to clipboard!');
+    }).catch(() => {
+      alert('Failed to copy question');
+    });
+  }
+
+  function updateScoreDisplay() {
+    const classSelect = document.getElementById('classSelect');
+    const chapterSelect = document.getElementById('chapterSelect');
+    const pageSelect = document.getElementById('pageSelect');
+    const scoreCard = document.getElementById('scoreCard');
+    
+    const classValue = classSelect.value;
+    const chapterValue = chapterSelect.value;
+    const pageValue = pageSelect.value;
+    
+    if (!classValue || !chapterValue || !pageValue || currentQuestions.length === 0) {
+      scoreCard.textContent = 'Page score: 0 / 0';
+      return;
+    }
+    
+    let correct = 0;
+    
+    currentQuestions.forEach((q, index) => {
+      const questionId = `${classValue}-${chapterValue}-${pageValue}-${index}`;
+      const questionState = questionStates[questionId];
+      if (questionState && questionState.isCorrect) {
+        correct++;
+      }
+    });
+    
+    const totalQuestions = currentQuestions.length;
+    scoreCard.textContent = `Page score: ${correct} / ${totalQuestions}`;
+  }
+
+  function buildChatGPTPrompt(questionIndex) {
+    if (!currentQuestions[questionIndex]) return null;
+    
+    const q = currentQuestions[questionIndex];
+    
+    return `Question:
+${q.question}
+
+Options:
+${q.options.join('\n')}
+
+Answer this question in 3 versions:
+
+Version 1: Brief explanation
+
+Version 2: Quote exact reference from NCERT textbook and explain accordingly
+
+Version 3: Detailed explanation with option analysis`;
+  }
+
+  async function copyToClipboard(text) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch (err) {
+      return false;
+    }
+  }
+
+  async function openChatGPTWithAutopaste(prompt) {
+    await copyToClipboard(prompt);
+    
+    try {
+      const encodedPrompt = encodeURIComponent(prompt);
+      const chatGPTUrl = `https://chat.openai.com/?q=${encodedPrompt}`;
+      
+      const newWindow = window.open(chatGPTUrl, '_blank');
+      
+      if (newWindow) {
+        setTimeout(() => {
+          try {
+            newWindow.focus();
+          } catch (e) {
+            // Ignore
+          }
+        }, 1000);
+      }
+      
+      return true;
+    } catch (e) {
+      window.open('https://chat.openai.com/', '_blank');
+      return true;
+    }
+  }
+
+  function showCopyNotification() {
+    const notification = document.createElement('div');
+    notification.className = 'copy-notification';
+    notification.textContent = '✓ Copied! Opening ChatGPT...';
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+      notification.remove();
+    }, 3000);
+  }
+
+  function addChatGPTButtons() {
+    const questionItems = document.querySelectorAll('.question-item');
+    
+    questionItems.forEach((questionElement, index) => {
+      const buttonGroup = questionElement.querySelector('.button-group');
+      if (!buttonGroup) return;
+      if (buttonGroup.querySelector('.chatgpt-btn')) return;
+
+      const btn = document.createElement('button');
+      btn.className = 'chatgpt-btn';
+      btn.textContent = 'ChatGPT';
+
+      btn.addEventListener('click', async () => {
+        const prompt = buildChatGPTPrompt(index);
+        if (!prompt) {
+          alert('Could not extract question content.');
+          return;
+        }
+        
+        const originalText = btn.textContent;
+        btn.textContent = 'Opening...';
+        btn.style.background = '#f39c12';
+        
+        const success = await openChatGPTWithAutopaste(prompt);
+        
+        if (success) {
+          showCopyNotification();
+          
+          btn.textContent = 'Opened!';
+          btn.style.background = '#27ae60';
+          
+          setTimeout(() => {
+            btn.textContent = originalText;
+            btn.style.background = 'linear-gradient(135deg, #e74c3c, #c0392b)';
+          }, 2000);
+        } else {
+          btn.textContent = 'Error';
+          btn.style.background = '#e74c3c';
+          
+          setTimeout(() => {
+            btn.textContent = originalText;
+            btn.style.background = 'linear-gradient(135deg, #e74c3c, #c0392b)';
+          }, 2000);
+        }
+      });
+
+      buttonGroup.appendChild(btn);
+    });
+  }
+
+  document.getElementById('refreshChapterBtn').addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    const classSelect = document.getElementById('classSelect');
+    const chapterSelect = document.getElementById('chapterSelect');
+    const pageSelect = document.getElementById('pageSelect');
+    
+    const classValue = classSelect.value;
+    const chapterValue = chapterSelect.value;
+    const pageValue = pageSelect.value;
+    
+    if (!classValue || !chapterValue || !pageValue) {
+      alert('Please select a page first');
+      return;
+    }
+    
+    if (!confirm('Are you sure you want to reset the score for this page?')) {
+      return;
+    }
+    
+    currentQuestions.forEach((q, index) => {
+      const questionId = `${classValue}-${chapterValue}-${pageValue}-${index}`;
+      delete questionStates[questionId];
+    });
+    
+    savePersistentData();
+    
+    showQuestions();
+  });
+
+  function toggleSummary() {
+    const summaryDiv = document.getElementById('summaryContent');
+    const btn = document.getElementById('summaryBtn');
+    if (!summaryDiv || !btn) return;
+    const showing = summaryDiv.classList.toggle('show');
+    btn.textContent = showing ? '📕 Hide Summary' : '📚 View Summary';
+  }
+</script>
+</body>
+</html>
+
+
