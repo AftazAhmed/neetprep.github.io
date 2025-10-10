@@ -1076,14 +1076,7 @@
 
   function copyQuestion(index, pageNum) {
     const q = currentQuestions[index];
-    const text = `Page ${pageNum}
-
-${q.question}
-
-${q.options.join('
-')}
-
-Answer: ${q.answer}`;
+    const text = `Page ${pageNum}\n\n${q.question}\n\n${q.options.join('\n')}\n\nAnswer: ${q.answer}`;
     
     navigator.clipboard.writeText(text).then(() => {
       alert('Question copied to clipboard!');
@@ -1130,8 +1123,7 @@ Answer: ${q.answer}`;
 ${q.question}
 
 Options:
-${q.options.join('
-')}
+${q.options.join('\n')}
 
 Answer this question in 3 versions:
 
