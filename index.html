@@ -1,564 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>NEET-PbP</title>
-<style>
-  body {
-    font-family: 'Montserrat', Arial, sans-serif;
-    margin: 0;
-    padding: 20px 24px;
-    background-color: #f9fafb;
-    color: #1f2937;
-    overflow-x: hidden;
-  }
-  .header {
-    text-align: left;
-    background-color: #023047;
-    color: #ffb347;
-    padding: 48px 24px 32px 24px;
-    border-radius: 10px;
-    margin-bottom: 32px;
-    position: relative;
-    overflow: hidden;
-  }
-  .header::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle at center, #4f59b0 0%, transparent 70%);
-    opacity: 0.3;
-    pointer-events: none;
-  }
-  .header h1 {
-    position: relative;
-    margin: 0 0 12px 0;
-    font-size: 3rem;
-    font-weight: 900;
-    letter-spacing: 2px;
-    line-height: 1.1;
-    color: #ffa726;
-    max-width: 100%;
-    white-space: nowrap;
-  }
-  .header .subtitle {
-    position: relative;
-    font-size: 18px;
-    font-weight: 600;
-    color: #b9fbc0;
-    letter-spacing: 0.6px;
-  }
-  .login-section {
-    position: absolute;
-    top: 24px;
-    right: 24px;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .login-btn, .logout-btn {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 14px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  .login-btn:hover, .logout-btn:hover {
-    background: linear-gradient(135deg, #764ba2, #667eea);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
-  }
-  #userName {
-    color: white;
-    font-weight: 700;
-    white-space: nowrap;
-  }
-  .note {
-    max-width: 720px;
-    margin: 0 auto 24px auto;
-    font-style: italic;
-    font-size: 14px;
-    color: #4b6650;
-    background-color: #d7e7d0;
-    border-left: 6px solid #a8c77a;
-    padding: 12px 20px;
-    border-radius: 8px;
-  }
-  .controls {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 18px;
-    margin-bottom: 16px;
-    justify-content: center;
-    align-items: center;
-  }
-  .class-reload-group {
-    display: flex;
-    gap: 8px;
-    align-items: flex-end;
-    min-width: 180px;
-    flex: 1;
-  }
-  .dropdown-group {
-    min-width: 180px;
-    flex: 1;
-  }
-  .class-dropdown-part {
-    flex: 1;
-  }
-  label {
-    display: block;
-    font-weight: 700;
-    font-size: 15px;
-    margin-bottom: 6px;
-    color: #344e41;
-  }
-  select {
-    width: 100%;
-    padding: 10px 14px;
-    border-radius: 8px;
-    border: 2px solid #028090;
-    font-size: 15px;
-    background-color: #ffffff;
-    color: #023047;
-    transition: 0.3s;
-  }
-  select:focus {
-    outline: none;
-    border-color: #023047;
-    background-color: #e0f7f4;
-  }
-  .reload-btn {
-    cursor: pointer;
-    background-color: #8b5cf6;
-    border: none;
-    color: #fff;
-    padding: 8px 12px;
-    border-radius: 6px;
-    font-weight: 700;
-    font-size: 12px;
-    transition: background-color 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    height: 36px;
-    white-space: nowrap;
-  }
-  .reload-btn:hover {
-    background-color: #7c3aed;
-  }
-  #scoreWrapper {
-    display: flex;
-    align-items: center;
-    margin-left: 12px;
-  }
-  #scoreCard {
-    display: flex;
-    align-items: center;
-    font-weight: 700;
-    font-size: 18px;
-    color: #116466;
-    border-left: 5px solid #028090;
-    padding-left: 14px;
-    white-space: nowrap;
-  }
-  .refreshBtn {
-    cursor: pointer;
-    background-color: #0d6efd;
-    border: none;
-    color: #fff;
-    padding: 4px 10px;
-    border-radius: 7px;
-    font-weight: 700;
-    font-size: 13px;
-    transition: background-color 0.3s ease;
-    margin-left: 8px;
-    height: 32px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-  }
-  .refreshBtn:hover {
-    background-color: #084298;
-  }
-  .content-area {
-    background-color: #fff1e0;
-    padding: 28px 30px;
-    border-radius: 12px;
-    min-height: 300px;
-    color: #1f2937;
-    transition: background-color 0.4s ease;
-    max-width: 900px;
-    margin: 0 auto 30px auto;
-    position: relative;
-    overflow: visible;
-  }
-  .blurred {
-    filter: blur(6px);
-    pointer-events: none;
-    user-select: none;
-  }
-  .curtain-overlay {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.50);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 110;
-    border-radius: 12px;
-    color: white;
-    text-align: center;
-    pointer-events: auto;
-    font-weight: 700;
-    font-size: 21px;
-    padding: 25px 15px 0 15px;
-    backdrop-filter: blur(2px);
-  }
-  .curtain-message {
-    font-size: 22px;
-    font-weight: 800;
-    margin-bottom: 10px;
-  }
-  .curtain-subtext {
-    font-size: 16px;
-    color: #b9fbc0;
-    margin-bottom: 20px;
-  }
-  .question-count {
-    font-weight: 700;
-    font-size: 18px;
-    color: #116466;
-    margin-bottom: 18px;
-    border-left: 5px solid #028090;
-    padding-left: 14px;
-  }
-  .question-item {
-    background-color: #fff8f0;
-    border-radius: 12px;
-    border: 1.5px solid #f0c49c;
-    margin-bottom: 26px;
-    padding: 20px 24px;
-    font-size: 15px;
-    max-width: 100%;
-    position: relative;
-  }
-  .question-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 14px;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-  .question-number {
-    font-weight: 700;
-    font-size: 18px;
-    color: #2a6f62;
-  }
-  .question-year {
-    background-color: #116466;
-    color: #e0f7f4;
-    padding: 5px 14px;
-    border-radius: 16px;
-    font-weight: 600;
-    font-size: 13px;
-    letter-spacing: 0.6px;
-    white-space: nowrap;
-  }
-  .question-text {
-    font-weight: 600;
-    font-size: 15px;
-    color: #255c4d;
-    margin-bottom: 14px;
-    max-width: 100%;
-    word-wrap: break-word;
-    word-break: break-word;
-  }
-  .options {
-    margin-bottom: 18px;
-  }
-  .option {
-    background-color: #ffffff;
-    border-radius: 6px;
-    border: 1.8px solid #b5d0c8;
-    padding: 11px 18px;
-    margin: 8px 0;
-    font-weight: 500;
-    font-size: 15px;
-    color: #244636;
-    cursor: pointer;
-    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
-    user-select: none;
-    position: relative;
-    overflow: visible;
-  }
-  .option:hover:not(.disabled):not(.answered-correct):not(.answered-incorrect) {
-    background-color: rgba(255, 255, 255, 0.05);
-    border-color: #71b280;
-  }
-  .option:active:not(.disabled):not(.answered-correct):not(.answered-incorrect) {
-    background-color: rgba(255, 255, 255, 0.02);
-  }
-  .option.answered-correct {
-    background-color: rgba(25, 135, 84, 0.25);
-    border: 3px solid #198754;
-    color: #0d4b21;
-    font-weight: 700;
-    cursor: default;
-  }
-  .option.answered-incorrect {
-    background-color: rgba(220, 53, 69, 0.25);
-    border: 3px solid #dc3545;
-    color: #721c24;
-    font-weight: 700;
-    cursor: default;
-  }
-  .option.disabled {
-    cursor: default;
-    opacity: 0.8;
-  }
-  .answer-popup {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    opacity: 0.95;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    font-weight: 900;
-    border-radius: 6px;
-    z-index: 5;
-    pointer-events: none;
-    animation: popup-fade 1.2s forwards;
-  }
-  .answer-popup.correct {
-    background-color: rgba(25, 135, 84, 0.25);
-    color: #18763b;
-  }
-  .answer-popup.incorrect {
-    background-color: rgba(220, 53, 69, 0.2);
-    color: #b02a37;
-  }
-  @keyframes popup-fade {
-    0% { opacity: 0; }
-    10% { opacity: 1;}
-    80% { opacity: 0.95;}
-    100% { opacity: 0; }
-  }
-  .button-group {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-    margin-bottom: 8px;
-  }
-  .btn {
-    padding: 11px 18px;
-    border: none;
-    border-radius: 7px;
-    cursor: pointer;
-    font-weight: 700;
-    font-size: 15px;
-    color: #f0f0f0;
-    transition: background-color 0.3s ease;
-  }
-  .btn-answer {
-    background-color: #198754;
-  }
-  .btn-answer:hover {
-    background-color: #146c43;
-  }
-  .btn-copy {
-    background-color: #0d6efd;
-  }
-  .btn-copy:hover {
-    background-color: #084298;
-  }
-  .chatgpt-btn {
-    padding: 11px 18px;
-    border: none;
-    border-radius: 7px;
-    cursor: pointer;
-    font-weight: 700;
-    font-size: 15px;
-    color: #ffffff;
-    background: linear-gradient(135deg, #e74c3c, #c0392b);
-    transition: all 0.3s ease;
-  }
-  .chatgpt-btn:hover {
-    background: linear-gradient(135deg, #c0392b, #a93226);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
-  }
-  .answer-reveal {
-    display: none;
-    margin-top: 14px;
-    background: #c7ddfa;
-    border: 2px solid #3b82f6;
-    border-radius: 10px;
-    color: #1e40af;
-    padding: 14px 18px;
-    font-weight: 700;
-  }
-  .tick-cross-popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 80px;
-    font-weight: 900;
-    z-index: 1000;
-    pointer-events: none;
-    animation: tick-cross-fade 1.5s forwards;
-  }
-  .tick-cross-popup.correct {
-    color: #198754;
-  }
-  .tick-cross-popup.incorrect {
-    color: #dc3545;
-  }
-  @keyframes tick-cross-fade {
-    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
-    20% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
-    40% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-    100% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
-  }
-  .copy-notification {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: linear-gradient(135deg, #27ae60, #229954);
-    color: white;
-    padding: 16px 24px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
-    z-index: 10000;
-    font-weight: 700;
-    font-size: 15px;
-    animation: slideIn 0.3s ease-out;
-  }
-  @keyframes slideIn {
-    from {
-      transform: translateX(400px);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-  .no-questions {
-    text-align: center;
-    font-style: italic;
-    color: #4a5768;
-    font-size: 17px;
-    padding: 48px 10px;
-  }
-  @media (max-width: 900px) {
-    .controls { 
-      flex-direction: column; 
-      align-items: stretch;
-    }
-    .dropdown-group { 
-      min-width: unset; 
-      width: 100%;
-    }
-    .class-reload-group {
-      min-width: unset;
-      width: 100%;
-      flex-direction: row;
-    }
-    .class-dropdown-part {
-      flex: 1;
-    }
-    .reload-btn {
-      margin-left: 8px;
-      flex-shrink: 0;
-    }
-    .header h1 {
-      padding-left: 8px;
-      padding-right: 8px;
-      margin-left: 0;
-      max-width: 320px;
-      white-space: normal;
-    }
-    .content-area {
-      max-width: 100%;
-      padding: 20px 16px;
-      min-height: 300px;
-    }
-    .question-item {
-      max-width: 100%;
-      padding: 18px 12px;
-    }
-    .question-text {
-      font-size: 15px;
-    }
-    .login-section {
-      position: relative;
-      top: auto;
-      right: auto;
-      text-align: center;
-      margin-bottom: 16px;
-      justify-content: center;
-    }
-  }
-  .summary-toggle-btn {
-    background: linear-gradient(135deg, #a0522d, #8b4513);
-    color: #fff;
-    border: none;
-    border-radius: 7px;
-    padding: 9px 18px;
-    font-weight: 700;
-    font-size: 14px;
-    margin-bottom: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  .summary-toggle-btn:hover {
-    background: linear-gradient(135deg, #8b4513, #704214);
-    transform: translateY(-1px);
-  }
-  .summary-content {
-    display: none;
-    background-color: #fff8f0;
-    border-left: 6px solid #a0522d;
-    border-radius: 10px;
-    padding: 18px 22px;
-    color: #1f2937;
-    margin-bottom: 20px;
-    font-size: 15px;
-    line-height: 1.7;
-  }
-  .summary-content.show {
-    display: block;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NEET-PbP</title>
+  <style>
+    body { font-family: Montserrat,Arial,sans-serif; background: #f9fafb; color: #1f2937; margin:0; }
+    .header { background: #023047; color: #ffb347; padding: 48px 24px 32px 24px; border-radius: 10px; margin-bottom: 32px; position:relative; }
+    .header h1 { color: #ffa726; margin: 0 0 12px 0; font-size: 2.4rem; }
+    .header .subtitle { color: #b9fbc0; font-size: 18px; }
+    .login-section { position: absolute; top: 24px; right: 24px; z-index: 10; display: flex; gap: 12px; }
+    .login-btn, .logout-btn, .sub-btn { background: linear-gradient(135deg, #667eea, #764ba2); color: #fff; border:none; padding:10px 20px;
+      border-radius:8px; font-weight:700; font-size:14px; cursor:pointer; }
+    .login-btn:hover, .logout-btn:hover, .sub-btn:hover { background: linear-gradient(135deg, #764ba2, #667eea);}
+    .controls {display:flex;flex-wrap:wrap;gap:18px;margin-bottom:16px;justify-content:center;}
+    .dropdown-group, .class-reload-group { min-width:170px; flex:1;}
+    select {width:100%;padding:10px 14px;border-radius:8px;border:2px solid #028090;}
+    .content-area { background: #fff1e0; padding: 28px 30px; border-radius: 12px; min-height: 300px; max-width: 900px; margin: 0 auto 30px auto; position: relative;}
+    #questionsWrapper.blurred { filter: blur(6px); opacity:.7; pointer-events: none; user-select: none; }
+    .curtain-overlay { position: absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.48);
+      display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 15; border-radius: 12px; pointer-events: auto; }
+    .curtain-message { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 8px; }
+    .curtain-subtext { font-size: 16px; color:#cafac3; margin-bottom: 24px; }
+    .sub-btn { font-size:16px; margin-bottom: 8px; }
+    .question-count { font-weight: 700; font-size: 18px; color: #116466; margin-bottom: 18px; border-left: 5px solid #028090; padding-left: 14px; }
+    .question-item { background-color: #fff8f0; border-radius: 12px; border: 1.5px solid #f0c49c; margin-bottom: 26px; padding: 20px 24px;}
+    .question-number { font-weight:700; font-size:18px; color:#2a6f62;}
+    .question-text { font-weight:600; font-size:15px; color:#255c4d; margin-bottom:14px;}
+    .option { border-radius: 6px; border: 1.8px solid #b5d0c8; padding: 11px 18px; margin: 8px 0; font-weight: 500; background: #fff; color: #244636;
+      transition: background-color 0.3s, border-color 0.3s, color 0.3s; cursor: pointer;}
+    .no-questions {text-align:center;font-style:italic;color:#4a5768;font-size:17px;padding:48px 10px;}
+    @media (max-width: 900px) { .controls { flex-direction:column;} .dropdown-group, .class-reload-group { min-width:unset;} }
+  </style>
 </head>
 <body>
-<div class="header" role="banner">
+<div class="header">
   <div class="login-section" id="loginSection">
     <div id="gSignInWrapper">
       <button class="login-btn" id="googleSignInBtn">Sign in with Google</button>
     </div>
-    <div id="userInfo" style="display:none; align-items:center;">
+    <div id="userInfo" style="display:none;align-items:center;">
       <span id="userName"></span>
       <button class="logout-btn" onclick="handleLogout()">Logout</button>
     </div>
@@ -566,12 +47,7 @@
   <h1>NEET-PbP</h1>
   <div class="subtitle">Page by Page Analysis (1988-2025)</div>
 </div>
-
-<div class="note" role="note">
-  <em>Note: Some questions from a particular page may appear in subsequent pages because the concept of the question may span multiple pages.</em>
-</div>
-
-<div class="controls" role="region" aria-label="Filtering controls">
+<div class="controls">
   <div class="class-reload-group">
     <div class="class-dropdown-part">
       <label for="classSelect">Class:</label>
@@ -582,9 +58,7 @@
         <option value="12">Class 12</option>
       </select>
     </div>
-    <button class="reload-btn" onclick="window.location.reload()">
-      ↻ Reload
-    </button>
+    <button class="reload-btn" onclick="window.location.reload()">↻ Reload</button>
   </div>
   <div class="dropdown-group">
     <label for="chapterSelect">Chapter:</label>
@@ -598,461 +72,128 @@
       <option value="">Select Page</option>
     </select>
   </div>
-  <div id="scoreWrapper">
-    <div id="scoreCard">
-      Page score: 0 / 0
-    </div>
-    <button class="refreshBtn" id="refreshChapterBtn">
-      <span>🔄</span> Refresh
-    </button>
-  </div>
 </div>
-
 <main class="content-area" id="contentArea">
-  <div class="no-questions">Please select Class, Chapter, and Page Number to view questions.</div>
+  <div id="questionsWrapper"></div>
   <div class="curtain-overlay" id="curtainOverlay" style="display:none;">
     <div class="curtain-message">Subscribe to unlock content</div>
-    <div class="curtain-subtext">Login and subscribe to view and interact with all questions and pointers. Demo is always fully available.</div>
+    <div class="curtain-subtext">Login and subscribe to view and interact with all NEET questions and pointers. Demo is always fully available.</div>
+    <button class="sub-btn" id="subscribeBtn" style="display:none;">Subscribe (INR 200)</button>
   </div>
 </main>
-
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <script>
-// ... JavaScript as in the previous answer, but with these modifications:
-let currentQuestions = [];
-let questionStates = {};
-let currentUser = null;
-let isSubscribed = false;
+const questionData = {
+  "demo": { "2": { title: "Biological Classification", questions: {
+    "10": [[{question:"Demo sample question?",options:["A", "B", "C", "D"],answer:"B"}], ""]
+  }}},
+  "11": { "1": { title: "The Living World", questions: {
+    "3": [[{question:"Class 11 question, should be blurred till subscription",options:["One", "Two", "Three", "Four"],answer:"Three"}],"Summary for Class 11."]
+  }}},
+  "12": { "13": { title: "Biodiversity and Conservation", questions: {
+    "216": [[{question:"Class 12 question, should be blurred till subscription",options:["X","Y","Z","W"],answer:"Z"}], "Summary for Class 12"]
+  }}}
+};
+let currentUser = null, isSubscribed = false;
 
 function updateLoginUI() {
-  const userInfo = document.getElementById('userInfo');
-  const gSignInWrapper = document.getElementById('gSignInWrapper');
-  const userNameSpan = document.getElementById('userName');
-  if (currentUser) {
-    userNameSpan.textContent = `Welcome, ${currentUser.name}`;
-    userInfo.style.display = 'flex';
-    gSignInWrapper.style.display = 'none';
-  } else {
-    userInfo.style.display = 'none';
-    gSignInWrapper.style.display = 'block';
-  }
+  document.getElementById('userInfo').style.display = currentUser ? 'flex' : 'none';
+  document.getElementById('gSignInWrapper').style.display = currentUser ? 'none' : 'block';
+  document.getElementById('userName').textContent = currentUser ? `Welcome, ${currentUser.name}` : '';
 }
-
-function handleLogout() {
-  currentUser = null;
-  isSubscribed = false;
-  localStorage.removeItem('neet-pbp-user');
-  localStorage.removeItem('neet-pbp-subscription');
-  updateLoginUI();
-  showQuestions();
-}
-
+function handleLogout() { currentUser = null; isSubscribed = false; localStorage.clear(); updateLoginUI(); showQuestions(); }
 function loadPersistentData() {
-  try {
-    const user = localStorage.getItem('neet-pbp-user');
-    if (user) {
-      currentUser = JSON.parse(user);
-      const sub = localStorage.getItem('neet-pbp-subscription');
-      isSubscribed = sub ? JSON.parse(sub) : false;
-      updateLoginUI();
-    }
-    const saved = localStorage.getItem('neet-pbp-states');
-    if (saved) {
-      questionStates = JSON.parse(saved);
-    }
-  } catch(e) {
-    console.error('Error loading data:', e);
-  }
+  const user = localStorage.getItem('neet-pbp-user');
+  if (user) currentUser = JSON.parse(user);
+  const sub = localStorage.getItem('neet-pbp-subscription');
+  isSubscribed = sub ? JSON.parse(sub) : false;
+  updateLoginUI();
 }
-
-function savePersistentData() {
-  try {
-    localStorage.setItem('neet-pbp-states', JSON.stringify(questionStates));
-  } catch (e) {
-    console.error('Error saving data:', e);
-  }
-}
-
 function initializeGoogleSignIn() {
   google.accounts.id.initialize({
-    client_id: 'YOUR_GOOGLE_CLIENT_ID', // Replace with your Google client ID
+    client_id: 'YOUR_GOOGLE_CLIENT_ID',
     callback: handleGoogleCredentialResponse,
-    auto_select: false,
-    ux_mode: 'popup'
+    auto_select: false, ux_mode: 'popup'
   });
-  document.getElementById('googleSignInBtn').addEventListener('click', () => {
-    google.accounts.id.prompt();
-  });
+  document.getElementById('googleSignInBtn').onclick = () => google.accounts.id.prompt();
 }
-
 function handleGoogleCredentialResponse(response) {
-  const credential = response.credential;
-  const userObject = parseJwt(credential);
-  currentUser = {
-    name: userObject.name,
-    email: userObject.email,
-    picture: userObject.picture
-  };
-  isSubscribed = true; // In real app, check subscription
+  const userObj = parseJwt(response.credential);
+  currentUser = { name: userObj.name, email: userObj.email, picture: userObj.picture };
   localStorage.setItem('neet-pbp-user', JSON.stringify(currentUser));
-  localStorage.setItem('neet-pbp-subscription', JSON.stringify(isSubscribed));
   updateLoginUI();
   showQuestions();
 }
-
 function parseJwt(token) {
   const base64Url = token.split('.')[1];
   const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-  const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-  }).join(''));
-  return JSON.parse(jsonPayload);
+  return JSON.parse(decodeURIComponent(atob(base64).split('').map(c=>'%'+('00'+c.charCodeAt(0).toString(16)).slice(-2)).join('')));
 }
 
-window.onload = () => {
-  loadPersistentData();
-  initializeGoogleSignIn();
-};
+window.onload = function() { loadPersistentData(); initializeGoogleSignIn(); };
 
 function updateChapters() {
-  const classSelect = document.getElementById('classSelect');
-  const chapterSelect = document.getElementById('chapterSelect');
-  const pageSelect = document.getElementById('pageSelect');
+  const classSelect = document.getElementById('classSelect'), chapterSelect = document.getElementById('chapterSelect'), pageSelect = document.getElementById('pageSelect');
   const classValue = classSelect.value;
-  chapterSelect.innerHTML = '<option value="">Select Chapter</option>';
-  pageSelect.innerHTML = '<option value="">Select Page</option>';
-  chapterSelect.disabled = true;
-  pageSelect.disabled = true;
-  document.getElementById('contentArea').innerHTML = '<div class="no-questions">Please select Class, Chapter, and Page Number to view questions.</div>';
-
+  chapterSelect.innerHTML = '<option value="">Select Chapter</option>'; chapterSelect.disabled = false;
+  pageSelect.innerHTML = '<option value="">Select Page</option>'; pageSelect.disabled = true;
   if (classValue && questionData[classValue]) {
-    const chapters = questionData[classValue];
-    Object.keys(chapters).forEach(chapterNum => {
-      const option = document.createElement('option');
-      option.value = chapterNum;
-      option.textContent = `Chapter ${chapterNum}: ${chapters[chapterNum].title}`;
-      chapterSelect.appendChild(option);
-    });
-    chapterSelect.disabled = false;
+    for (const chapterNum in questionData[classValue]) {
+      chapterSelect.innerHTML += `<option value="${chapterNum}">Chapter ${chapterNum}: ${questionData[classValue][chapterNum].title}</option>`;
+    }
   }
-  updateScoreDisplay();
 }
-
 function updatePages() {
-  const classSelect = document.getElementById('classSelect');
-  const chapterSelect = document.getElementById('chapterSelect');
-  const pageSelect = document.getElementById('pageSelect');
-  const classValue = classSelect.value;
-  const chapterValue = chapterSelect.value;
-  pageSelect.innerHTML = '<option value="">Select Page</option>';
-  pageSelect.disabled = true;
-  document.getElementById('contentArea').innerHTML = '<div class="no-questions">Please select a Page Number to view questions.</div>';
-
-  if (classValue && chapterValue) {
-    const chapter = questionData[classValue][chapterValue];
-    if (chapter && chapter.questions) {
-      const pages = Object.keys(chapter.questions).sort((a, b) => parseInt(a) - parseInt(b));
-      if (pages.length > 0) {
-        pages.forEach(pageNum => {
-          const pageData = chapter.questions[pageNum];
-          let questionCount = 0;
-          if (Array.isArray(pageData) && pageData.length === 2 && Array.isArray(pageData[0])) {
-            questionCount = pageData[0].length;
-          } else if (Array.isArray(pageData)) {
-            questionCount = pageData.length;
-          }
-          const option = document.createElement('option');
-          option.value = pageNum;
-          option.textContent = `Page ${pageNum} (${questionCount} question${questionCount !== 1 ? 's' : ''})`;
-          pageSelect.appendChild(option);
-        });
-        pageSelect.disabled = false;
-      }
+  const classSelect = document.getElementById('classSelect'), chapterSelect = document.getElementById('chapterSelect'), pageSelect = document.getElementById('pageSelect');
+  const classValue = classSelect.value, chapterValue = chapterSelect.value;
+  pageSelect.innerHTML = '<option value="">Select Page</option>'; pageSelect.disabled = false;
+  if (classValue && chapterValue && questionData[classValue][chapterValue]) {
+    for (const pageNum in questionData[classValue][chapterValue].questions) {
+      const len = questionData[classValue][chapterValue].questions[pageNum][0].length;
+      pageSelect.innerHTML += `<option value="${pageNum}">Page ${pageNum} (${len} questions)</option>`;
     }
   }
-  updateScoreDisplay();
 }
-
 function showQuestions() {
-  const classSelect = document.getElementById('classSelect');
-  const chapterSelect = document.getElementById('chapterSelect');
-  const pageSelect = document.getElementById('pageSelect');
-  const contentArea = document.getElementById('contentArea');
-  const curtainOverlay = document.getElementById('curtainOverlay');
-
-  const classValue = classSelect.value;
-  const chapterValue = chapterSelect.value;
-  const pageValue = pageSelect.value;
-
-  if (!classValue || !chapterValue || !pageValue) {
-    curtainOverlay.style.display = 'none';
-    contentArea.innerHTML = '<div class="no-questions">Please select Class, Chapter, and Page Number to view questions.</div>';
-    return;
-  }
-  currentQuestions = questionData[classValue][chapterValue].questions[pageValue] || [];
-
-  let questionsArr = currentQuestions;
-  let summaryStr = "";
-  if (Array.isArray(currentQuestions) && currentQuestions.length === 2 && Array.isArray(currentQuestions[0])) {
-    questionsArr = currentQuestions[0];
-    summaryStr = currentQuestions[1] || "";
-    currentQuestions = questionsArr;
-  }
-
-  // Render question HTML for ALL classes
-  renderQuestions(currentQuestions, summaryStr);
-
-  // Show curtain and blur for 11/12 if not active subscription.
-  if (classValue !== 'demo' && (!currentUser || !isSubscribed)) {
-    document.getElementById('curtainOverlay').style.display = 'flex';
-    document.getElementById('contentArea').classList.add('blurred');
-  } else {
-    document.getElementById('curtainOverlay').style.display = 'none';
-    document.getElementById('contentArea').classList.remove('blurred');
-  }
-}
-
-
-// (All helper JS functions from earlier for rendering/questions/answers etc, unchanged)
-function renderQuestions(currentQuestions, summaryStr) {
-  const contentArea = document.getElementById('contentArea');
+  const classValue = document.getElementById('classSelect').value;
+  const chapterValue = document.getElementById('chapterSelect').value;
+  const pageValue = document.getElementById('pageSelect').value;
+  const questionsWrapper = document.getElementById('questionsWrapper');
+  const curtain = document.getElementById('curtainOverlay');
+  const subscribeBtn = document.getElementById('subscribeBtn');
+  questionsWrapper.classList.remove("blurred"); curtain.style.display = "none"; subscribeBtn.style.display = "none";
+  if (!classValue || !chapterValue || !pageValue) { questionsWrapper.innerHTML = ''; return; }
+  let questionsData = questionData[classValue][chapterValue].questions[pageValue];
+  let questionsArr = questionsData && questionsData.length && Array.isArray(questionsData[0]) ? questionsData[0] : [];
+  let summaryStr = questionsData && questionsData.length && typeof questionsData[1]=="string" ? questionsData[1] : "";
   let html = '';
-
-  if (summaryStr && summaryStr.trim().length > 0) {
-    html += `
-      <button id="summaryBtn" class="summary-toggle-btn" onclick="toggleSummary()">📚 View Summary</button>
-      <div id="summaryContent" class="summary-content">${summaryStr}</div>
-    `;
-  }
-
-  html += `<div class="question-count">Total Questions: ${currentQuestions.length}</div>`;
-
-  currentQuestions.forEach((q, index) => {
-    const classSelect = document.getElementById('classSelect').value;
-    const chapterSelect = document.getElementById('chapterSelect').value;
-    const pageSelect = document.getElementById('pageSelect').value;
-    const questionId = `${classSelect}-${chapterSelect}-${pageSelect}-${index}`;
-    const questionState = questionStates[questionId];
-
-    html += `
-      <div class="question-item" data-question-index="${index}">
-        <div class="question-header">
-          <span class="question-number">Question ${index + 1}</span>
-          <span class="question-year" style="cursor: pointer;" onclick="copyQuestion(${index}, '${pageSelect}')">📋 Copy</span>
-        </div>
-        <div class="question-text">${q.question}</div>
-        <div class="options">
-          ${q.options.map((opt, optIndex) => {
-            let optionClass = 'option';
-            if (questionState) {
-              optionClass += ' disabled';
-              if (questionState.selectedIndex === optIndex) {
-                optionClass += questionState.isCorrect ? ' answered-correct' : ' answered-incorrect';
-              }
-            }
-            return `<div class="${optionClass}" onclick="selectOption(${index}, ${optIndex}, '${q.answer.replace(/'/g, "\\'")}', '${questionId}')">${opt}</div>`;
-          }).join('')}
-        </div>
-        <div class="button-group">
-          <button class="btn btn-answer" onclick="showAnswer(${index})">Show Answer</button>
-        </div>
-        <div class="answer-reveal" id="answer-${index}">
-          <strong>Correct Answer:</strong> ${q.answer}
-        </div>
-      </div>
-    `;
+  if (summaryStr) html += `<div class="question-count">${summaryStr}</div>`;
+  html += `<div class="question-count">Total Questions: ${questionsArr.length}</div>`;
+  questionsArr.forEach((q, i) => {
+    html += `<div class="question-item"><div class="question-header"><span class="question-number">Q${i+1}</span></div>
+      <div class="question-text">${q.question}</div>
+      <div class="options">${q.options.map(opt=>`<div class="option">${opt}</div>`).join('')}</div>
+      <div><span style="font-size:13px;font-style:italic;color:#999;">Answer: ${q.answer}</span></div></div>`;
   });
+  questionsWrapper.innerHTML = html;
 
-  contentArea.innerHTML = html + contentArea.querySelector('.curtain-overlay')?.outerHTML || '';
-  setTimeout(addChatGPTButtons, 100);
-  updateScoreDisplay();
-}
-
-function selectOption(questionIndex, optionIndex, correctAnswer, questionId) {
-  if (questionStates[questionId]) return;
-  const selectedOption = currentQuestions[questionIndex].options[optionIndex];
-  const isCorrect = selectedOption === correctAnswer;
-  questionStates[questionId] = { selectedIndex: optionIndex, isCorrect: isCorrect };
-  savePersistentData();
-  const questionItem = document.querySelector(`.question-item[data-question-index="${questionIndex}"]`);
-  if (!questionItem) return;
-  const options = questionItem.querySelectorAll('.option');
-  options.forEach((option, index) => {
-    if (index === questionStates[questionId].selectedIndex) {
-      option.classList.toggle('answered-correct', isCorrect);
-      option.classList.toggle('answered-incorrect', !isCorrect);
-    } else {
-      option.classList.add('disabled');
-    }
-  });
-  const clickedOption = options[questionStates[questionId].selectedIndex];
-  const popup = document.createElement('div');
-  popup.className = `answer-popup ${isCorrect ? 'correct' : 'incorrect'}`;
-  popup.textContent = isCorrect ? '✓' : '✗';
-  clickedOption.appendChild(popup);
-  setTimeout(() => { if (clickedOption.contains(popup)) clickedOption.removeChild(popup); }, 1200);
-  const tickCrossPopup = document.createElement('div');
-  tickCrossPopup.className = `tick-cross-popup ${isCorrect ? 'correct' : 'incorrect'}`;
-  tickCrossPopup.textContent = isCorrect ? '✓' : '✗';
-  document.body.appendChild(tickCrossPopup);
-  setTimeout(() => document.body.removeChild(tickCrossPopup), 1500);
-  updateScoreDisplay();
-}
-
-function showAnswer(index) {
-  const answerDiv = document.getElementById(`answer-${index}`);
-  answerDiv.style.display = answerDiv.style.display === 'block' ? 'none' : 'block';
-}
-
-function copyQuestion(index, pageNum) {
-  const q = currentQuestions[index];
-  const text = `Page ${pageNum}\n\n${q.question}\n\n${q.options.join('\n')}\n\nAnswer: ${q.answer}`;
-  navigator.clipboard.writeText(text).then(() => { alert('Question copied to clipboard!'); }).catch(() => { alert('Failed to copy question'); });
-}
-
-function updateScoreDisplay() {
-  const classSelect = document.getElementById('classSelect');
-  const chapterSelect = document.getElementById('chapterSelect');
-  const pageSelect = document.getElementById('pageSelect');
-  const scoreCard = document.getElementById('scoreCard');
-  const classValue = classSelect.value;
-  const chapterValue = chapterSelect.value;
-  const pageValue = pageSelect.value;
-  if (!classValue || !chapterValue || !pageValue || currentQuestions.length === 0) {
-    scoreCard.textContent = 'Page score: 0 / 0';
-    return;
-  }
-  let correct = 0;
-  currentQuestions.forEach((q, index) => {
-    const questionId = `${classValue}-${chapterValue}-${pageValue}-${index}`;
-    const questionState = questionStates[questionId];
-    if (questionState && questionState.isCorrect) correct++;
-  });
-  scoreCard.textContent = `Page score: ${correct} / ${currentQuestions.length}`;
-}
-
-function buildChatGPTPrompt(questionIndex) {
-  if (!currentQuestions[questionIndex]) return null;
-  const q = currentQuestions[questionIndex];
-  return `Question:
-${q.question}
-
-Options:
-${q.options.join('\n')}
-
-Answer this question in 3 versions:
-
-Version 1: Brief explanation
-
-Version 2: Quote exact reference from NCERT textbook and explain accordingly
-
-Version 3: Detailed explanation with option analysis`;
-}
-
-async function copyToClipboard(text) {
-  try {
-    await navigator.clipboard.writeText(text);
-    return true;
-  } catch (err) {
-    return false;
+  // Curtain on 11/12 only if not subscribed
+  if (classValue !== "demo" && (!currentUser || !isSubscribed)) {
+    questionsWrapper.classList.add("blurred");
+    curtain.style.display = "flex";
+    if (currentUser && !isSubscribed) subscribeBtn.style.display = "inline-block";
+    else subscribeBtn.style.display = "none";
+  } else {
+    questionsWrapper.classList.remove("blurred");
+    curtain.style.display = "none";
+    subscribeBtn.style.display = "none";
   }
 }
-
-async function openChatGPTWithAutopaste(prompt) {
-  await copyToClipboard(prompt);
-  try {
-    const encodedPrompt = encodeURIComponent(prompt);
-    const chatGPTUrl = `https://chat.openai.com/?q=${encodedPrompt}`;
-    const newWindow = window.open(chatGPTUrl, '_blank');
-    if (newWindow) {
-      setTimeout(() => { try { newWindow.focus(); } catch (e) {} }, 1000);
-    }
-    return true;
-  } catch (e) {
-    window.open('https://chat.openai.com/', '_blank');
-    return true;
-  }
-}
-
-function showCopyNotification() {
-  const notification = document.createElement('div');
-  notification.className = 'copy-notification';
-  notification.textContent = '✓ Copied! Opening ChatGPT...';
-  document.body.appendChild(notification);
-  setTimeout(() => { notification.remove(); }, 3000);
-}
-
-function addChatGPTButtons() {
-  const questionItems = document.querySelectorAll('.question-item');
-  questionItems.forEach((questionElement, index) => {
-    const buttonGroup = questionElement.querySelector('.button-group');
-    if (!buttonGroup) return;
-    if (buttonGroup.querySelector('.chatgpt-btn')) return;
-    const btn = document.createElement('button');
-    btn.className = 'chatgpt-btn';
-    btn.textContent = 'ChatGPT';
-    btn.addEventListener('click', async () => {
-      const prompt = buildChatGPTPrompt(index);
-      if (!prompt) {
-        alert('Could not extract question content.');
-        return;
-      }
-      const originalText = btn.textContent;
-      btn.textContent = 'Opening...';
-      btn.style.background = '#f39c12';
-      const success = await openChatGPTWithAutopaste(prompt);
-      if (success) {
-        showCopyNotification();
-        btn.textContent = 'Opened!';
-        btn.style.background = '#27ae60';
-        setTimeout(() => {
-          btn.textContent = originalText;
-          btn.style.background = 'linear-gradient(135deg, #e74c3c, #c0392b)';
-        }, 2000);
-      } else {
-        btn.textContent = 'Error';
-        btn.style.background = '#e74c3c';
-        setTimeout(() => {
-          btn.textContent = originalText;
-          btn.style.background = 'linear-gradient(135deg, #e74c3c, #c0392b)';
-        }, 2000);
-      }
-    });
-    buttonGroup.appendChild(btn);
-  });
-}
-
-document.getElementById('refreshChapterBtn').addEventListener('click', function(e) {
-  e.preventDefault();
-  e.stopPropagation();
-  const classSelect = document.getElementById('classSelect');
-  const chapterSelect = document.getElementById('chapterSelect');
-  const pageSelect = document.getElementById('pageSelect');
-  const classValue = classSelect.value;
-  const chapterValue = chapterSelect.value;
-  const pageValue = pageSelect.value;
-  if (!classValue || !chapterValue || !pageValue) {
-    alert('Please select a page first');
-    return;
-  }
-  if (!confirm('Are you sure you want to reset the score for this page?')) {
-    return;
-  }
-  currentQuestions.forEach((q, index) => {
-    const questionId = `${classValue}-${chapterValue}-${pageValue}-${index}`;
-    delete questionStates[questionId];
-  });
-  savePersistentData();
+document.getElementById('subscribeBtn').onclick = function() {
+  isSubscribed = true;
+  localStorage.setItem('neet-pbp-subscription', JSON.stringify(true));
   showQuestions();
-});
-
-function toggleSummary() {
-  const summaryDiv = document.getElementById('summaryContent');
-  const btn = document.getElementById('summaryBtn');
-  if (!summaryDiv || !btn) return;
-  const showing = summaryDiv.classList.toggle('show');
-  btn.textContent = showing ? '📕 Hide Summary' : '📚 View Summary';
-}
+};
 </script>
 </body>
 </html>
