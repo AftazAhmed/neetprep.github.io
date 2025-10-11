@@ -201,6 +201,36 @@
     transition: background-color 0.4s ease;
     max-width: 900px;
     margin: 0 auto 30px auto;
+    position: relative;
+  }
+  .curtain-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.65);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    border-radius: 12px;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  .curtain-message {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .curtain-subtext {
+    font-size: 16px;
+    margin-bottom: 20px;
+    max-width: 80%;
+    color: #b9fbc0;
   }
   .question-count {
     font-weight: 700;
@@ -270,7 +300,6 @@
     position: relative;
     overflow: visible;
   }
-  /* Instead of subtle green, make it very transparent white on hover/active for options */
   .option:hover:not(.disabled):not(.answered-correct):not(.answered-incorrect) {
     background-color: rgba(255, 255, 255, 0.05);
     border-color: #71b280;
@@ -577,6 +606,10 @@
 
 <main class="content-area" id="contentArea">
   <div class="no-questions">Please select Class, Chapter, and Page Number to view questions.</div>
+  <div class="curtain-overlay" id="curtainOverlay" style="display:none;">
+    <div class="curtain-message">Login and subscribe to view the content</div>
+    <div class="curtain-subtext">Please sign in with Google and purchase subscription to unlock full access.</div>
+  </div>
 </main>
 
 <script src="https://accounts.google.com/gsi/client" async defer></script>
@@ -602,7 +635,15 @@
         }
       }
     },
-    "11": {}, // Future locked content, shown locked
+    "11": {
+      "1": {
+        title: "The Living World",
+        questions: {
+          "3": [[], ""], "4": [[], ""], "5": [[], ""], "6": [[], ""], "7": [[], ""], "8": [[], ""], "9": [[], ""]
+        }
+      }
+      // Add other chapters and pages similarly if needed
+    },
     "12": {
       "13": {
         title: "Biodiversity and Conservation",
@@ -684,7 +725,6 @@
     const userInfo = document.getElementById('userInfo');
     const gSignInWrapper = document.getElementById('gSignInWrapper');
     const userNameSpan = document.getElementById('userName');
-
     if (currentUser) {
       userNameSpan.textContent = `Welcome, ${currentUser.name}`;
       userInfo.style.display = 'flex';
@@ -701,469 +741,7 @@
     localStorage.removeItem('neet-pbp-user');
     localStorage.removeItem('neet-pbp-subscription');
     updateLoginUI();
-  }
-
-  function loadPersistentData() {
-    try {
-      const user = localStorage.getItem('neet-pbp-user');
-      if (user) {
-        currentUser = JSON.parse(user);
-        const subscription = localStorage.getItem('neet-pbp-subscription');
-        isSubscribed = subscription ? JSON.parse(subscription) : false;
-        updateLoginUI();
-      }
-      const saved = localStorage.getItem('neet-pbp-states');
-      if (saved) {
-        questionStates = JSON.parse(saved);
-      }
-    } catch (e) {
-      console.error('Error loading data:', e);
-    }
-  }
-
-  function initializeGoogleSignIn() {
-    google.accounts.id.initialize({
-      client_id: 'YOUR_GOOGLE_CLIENT_ID', // Replace with your Google client ID
-      callback: handleGoogleCredentialResponse,
-      auto_select: false,
-      ux_mode: 'popup'
-    });
-    document.getElementById('googleSignInBtn').addEventListener('click', () => {
-      google.accounts.id.prompt();
-    });
-  }
-
-  function handleGoogleCredentialResponse(response) {
-    const credential = response.credential;
-    const userObject = parseJwt(credential);
-    currentUser = {
-      name: userObject.name,
-      email: userObject.email,
-      picture: userObject.picture
-    };
-    // For demo, auto subscribe on login
-    isSubscribed = true;
-    localStorage.setItem('neet-pbp-user', JSON.stringify(currentUser));
-    localStorage.setItem('neet-pbp-subscription', JSON.stringify(isSubscribed));
-    updateLoginUI();
-  }
-
-  function parseJwt(token) {
-    const base64Url = token.split('.')[1];
-    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
-    return JSON.parse(jsonPayload);
-  }
-
-  window.onload = function() {
-    loadPersistentData();
-    initializeGoogleSignIn();
-  };
-
-  function updateChapters() {
-    const classSelect = document.getElementById('classSelect');
-    const chapterSelect = document.getElementById('chapterSelect');
-    const pageSelect = document.getElementById('pageSelect');
-
-    const classValue = classSelect.value;
-    chapterSelect.innerHTML = '<option value="">Select Chapter</option>';
-    pageSelect.innerHTML = '<option value="">Select Page</option>';
-    chapterSelect.disabled = true;
-    pageSelect.disabled = true;
-    document.getElementById('contentArea').innerHTML = '<div class="no-questions">Please select Class, Chapter, and Page Number to view questions.</div>';
-
-    if (!currentUser || !isSubscribed) {
-      if (classValue === 'demo') {
-        const chapters = questionData[classValue];
-        Object.keys(chapters).forEach(chapterNum => {
-          const option = document.createElement('option');
-          option.value = chapterNum;
-          option.textContent = `Chapter ${chapterNum}: ${chapters[chapterNum].title}`;
-          chapterSelect.appendChild(option);
-        });
-        chapterSelect.disabled = false;
-      } else {
-        chapterSelect.disabled = true;
-        document.getElementById('contentArea').innerHTML = '<div class="no-questions">Please login and subscribe to unlock Class 11 and Class 12 content.</div>';
-      }
-      updateScoreDisplay();
-      return;
-    }
-    if (classValue && questionData[classValue]) {
-      const chapters = questionData[classValue];
-      Object.keys(chapters).forEach(chapterNum => {
-        const option = document.createElement('option');
-        option.value = chapterNum;
-        option.textContent = `Chapter ${chapterNum}: ${chapters[chapterNum].title}`;
-        chapterSelect.appendChild(option);
-      });
-      chapterSelect.disabled = false;
-    }
-    updateScoreDisplay();
-  }
-
-  function updatePages() {
-    const classSelect = document.getElementById('classSelect');
-    const chapterSelect = document.getElementById('chapterSelect');
-    const pageSelect = document.getElementById('pageSelect');
-    const classValue = classSelect.value;
-    const chapterValue = chapterSelect.value;
-    pageSelect.innerHTML = '<option value="">Select Page</option>';
-    pageSelect.disabled = true;
-    document.getElementById('contentArea').innerHTML = '<div class="no-questions">Please select a Page Number to view questions.</div>';
-
-    if (classValue && chapterValue) {
-      const chapter = questionData[classValue][chapterValue];
-      if (chapter && chapter.questions) {
-        const pages = Object.keys(chapter.questions).sort((a, b) => parseInt(a) - parseInt(b));
-        if (pages.length > 0) {
-          pages.forEach(pageNum => {
-            const pageData = chapter.questions[pageNum];
-            let questionCount = 0;
-            if (Array.isArray(pageData) && pageData.length === 2 && Array.isArray(pageData[0])) {
-              questionCount = pageData[0].length;
-            } else if (Array.isArray(pageData)) {
-              questionCount = pageData.length;
-            }
-            const option = document.createElement('option');
-            option.value = pageNum;
-            option.textContent = `Page ${pageNum} (${questionCount} question${questionCount !== 1 ? 's' : ''})`;
-            pageSelect.appendChild(option);
-          });
-          pageSelect.disabled = false;
-        }
-      }
-    }
-    updateScoreDisplay();
-  }
-
-  function showQuestions() {
-    const classSelect = document.getElementById('classSelect');
-    const chapterSelect = document.getElementById('chapterSelect');
-    const pageSelect = document.getElementById('pageSelect');
-    const contentArea = document.getElementById('contentArea');
-
-    const classValue = classSelect.value;
-    const chapterValue = chapterSelect.value;
-    const pageValue = pageSelect.value;
-
-    if (!classValue || !chapterValue || !pageValue) { return; }
-
-    currentQuestions = questionData[classValue][chapterValue].questions[pageValue] || [];
-
-    let questionsArr = currentQuestions;
-    let summaryStr = "";
-    if (Array.isArray(currentQuestions) && currentQuestions.length === 2 && Array.isArray(currentQuestions[0])) {
-      questionsArr = currentQuestions[0];
-      summaryStr = currentQuestions[1] || "";
-      currentQuestions = questionsArr;
-    }
-
-    if (currentQuestions.length === 0) {
-      contentArea.innerHTML = '<div class="no-questions">No questions available for this page yet. Add questions to see them here.</div>';
-      updateScoreDisplay();
-      return;
-    }
-
-    let html = '';
-
-    if (summaryStr && summaryStr.trim().length > 0) {
-      html += `
-        <button id="summaryBtn" class="summary-toggle-btn" onclick="toggleSummary()">📚 View Summary</button>
-        <div id="summaryContent" class="summary-content">${summaryStr}</div>
-      `;
-    }
-
-    html += `<div class="question-count">Total Questions: ${currentQuestions.length}</div>`;
-    currentQuestions.forEach((q, index) => {
-      const questionId = `${classValue}-${chapterValue}-${pageValue}-${index}`;
-      const questionState = questionStates[questionId];
-
-      html += `
-        <div class="question-item" data-question-index="${index}">
-          <div class="question-header">
-            <span class="question-number">Question ${index + 1}</span>
-            <span class="question-year" style="cursor: pointer;" onclick="copyQuestion(${index}, '${pageValue}')">📋 Copy</span>
-          </div>
-          <div class="question-text">${q.question}</div>
-          <div class="options">
-            ${q.options.map((opt, optIndex) => {
-              let optionClass = 'option';
-              if (questionState) {
-                optionClass += ' disabled';
-                if (questionState.selectedIndex === optIndex) {
-                  optionClass += questionState.isCorrect ? ' answered-correct' : ' answered-incorrect';
-                }
-              }
-              return `<div class="${optionClass}" onclick="selectOption(${index}, ${optIndex}, '${q.answer.replace(/'/g, "\\'")}', '${questionId}')">${opt}</div>`;
-            }).join('')}
-          </div>
-          <div class="button-group">
-            <button class="btn btn-answer" onclick="showAnswer(${index})">Show Answer</button>
-          </div>
-          <div class="answer-reveal" id="answer-${index}">
-            <strong>Correct Answer:</strong> ${q.answer}
-          </div>
-        </div>
-      `;
-    });
-    contentArea.innerHTML = html;
-    setTimeout(addChatGPTButtons, 100);
-    updateScoreDisplay();
-  }
-
-  function selectOption(questionIndex, optionIndex, correctAnswer, questionId) {
-    if (questionStates[questionId]) { return; }
-
-    const selectedOption = currentQuestions[questionIndex].options[optionIndex];
-    const isCorrect = selectedOption === correctAnswer;
-
-    questionStates[questionId] = {
-      selectedIndex: optionIndex,
-      isCorrect: isCorrect
-    };
-
-    savePersistentData();
-
-    const questionItem = document.querySelector(`.question-item[data-question-index="${questionIndex}"]`);
-    if (!questionItem) return;
-
-    const options = questionItem.querySelectorAll('.option');
-    options.forEach((option, index) => {
-      if (index === questionStates[questionId].selectedIndex) {
-        option.classList.toggle('answered-correct', isCorrect);
-        option.classList.toggle('answered-incorrect', !isCorrect);
-      } else {
-        option.classList.add('disabled');
-      }
-    });
-
-    const clickedOption = options[questionStates[questionId].selectedIndex];
-    const popup = document.createElement('div');
-    popup.className = `answer-popup ${isCorrect ? 'correct' : 'incorrect'}`;
-    popup.textContent = isCorrect ? '✓' : '✗';
-    clickedOption.appendChild(popup);
-    setTimeout(() => { if (clickedOption.contains(popup)) clickedOption.removeChild(popup); }, 1200);
-    const tickCrossPopup = document.createElement('div');
-    tickCrossPopup.className = `tick-cross-popup ${isCorrect ? 'correct' : 'incorrect'}`;
-    tickCrossPopup.textContent = isCorrect ? '✓' : '✗';
-    document.body.appendChild(tickCrossPopup);
-    setTimeout(() => document.body.removeChild(tickCrossPopup), 1500);
-    updateScoreDisplay();
-  }
-
-  function showAnswer(index) {
-    const answerDiv = document.getElementById(`answer-${index}`);
-    answerDiv.style.display = answerDiv.style.display === 'block' ? 'none' : 'block';
-  }
-
-  function copyQuestion(index, pageNum) {
-    const q = currentQuestions[index];
-    const text = `Page ${pageNum}\n\n${q.question}\n\n${q.options.join('\n')}\n\nAnswer: ${q.answer}`;
-    navigator.clipboard.writeText(text).then(() => {
-      alert('Question copied to clipboard!');
-    }).catch(() => {
-      alert('Failed to copy question');
-    });
-  }
-
-  function updateScoreDisplay() {
-    const classSelect = document.getElementById('classSelect');
-    const chapterSelect = document.getElementById('chapterSelect');
-    const pageSelect = document.getElementById('pageSelect');
-    const scoreCard = document.getElementById('scoreCard');
-
-    const classValue = classSelect.value;
-    const chapterValue = chapterSelect.value;
-    const pageValue = pageSelect.value;
-
-    if (!classValue || !chapterValue || !pageValue || currentQuestions.length === 0) {
-      scoreCard.textContent = 'Page score: 0 / 0';
-      return;
-    }
-
-    let correct = 0;
-    currentQuestions.forEach((q, index) => {
-      const questionId = `${classValue}-${chapterValue}-${pageValue}-${index}`;
-      const questionState = questionStates[questionId];
-      if (questionState && questionState.isCorrect) {
-        correct++;
-      }
-    });
-    const totalQuestions = currentQuestions.length;
-    scoreCard.textContent = `Page score: ${correct} / ${totalQuestions}`;
-  }
-
-  function buildChatGPTPrompt(questionIndex) {
-    if (!currentQuestions[questionIndex]) return null;
-    const q = currentQuestions[questionIndex];
-    return `Question:
-${q.question}
-
-Options:
-${q.options.join('\n')}
-
-Answer this question in 3 versions:
-
-Version 1: Brief explanation
-
-Version 2: Quote exact reference from NCERT textbook and explain accordingly
-
-Version 3: Detailed explanation with option analysis`;
-  }
-
-  async function copyToClipboard(text) {
-    try {
-      await navigator.clipboard.writeText(text);
-      return true;
-    } catch (err) {
-      return false;
-    }
-  }
-
-  async function openChatGPTWithAutopaste(prompt) {
-    await copyToClipboard(prompt);
-    try {
-      const encodedPrompt = encodeURIComponent(prompt);
-      const chatGPTUrl = `https://chat.openai.com/?q=${encodedPrompt}`;
-      const newWindow = window.open(chatGPTUrl, '_blank');
-      if (newWindow) {
-        setTimeout(() => {
-          try { newWindow.focus(); } catch (e) {}
-        }, 1000);
-      }
-      return true;
-    } catch (e) {
-      window.open('https://chat.openai.com/', '_blank');
-      return true;
-    }
-  }
-
-  function showCopyNotification() {
-    const notification = document.createElement('div');
-    notification.className = 'copy-notification';
-    notification.textContent = '✓ Copied! Opening ChatGPT...';
-    document.body.appendChild(notification);
-    setTimeout(() => { notification.remove(); }, 3000);
-  }
-
-  function addChatGPTButtons() {
-    const questionItems = document.querySelectorAll('.question-item');
-    questionItems.forEach((questionElement, index) => {
-      const buttonGroup = questionElement.querySelector('.button-group');
-      if (!buttonGroup) return;
-      if (buttonGroup.querySelector('.chatgpt-btn')) return;
-      const btn = document.createElement('button');
-      btn.className = 'chatgpt-btn';
-      btn.textContent = 'ChatGPT';
-      btn.addEventListener('click', async () => {
-        const prompt = buildChatGPTPrompt(index);
-        if (!prompt) {
-          alert('Could not extract question content.');
-          return;
-        }
-        const originalText = btn.textContent;
-        btn.textContent = 'Opening...';
-        btn.style.background = '#f39c12';
-        const success = await openChatGPTWithAutopaste(prompt);
-        if (success) {
-          showCopyNotification();
-          btn.textContent = 'Opened!';
-          btn.style.background = '#27ae60';
-          setTimeout(() => {
-            btn.textContent = originalText;
-            btn.style.background = 'linear-gradient(135deg, #e74c3c, #c0392b)';
-          }, 2000);
-        } else {
-          btn.textContent = 'Error';
-          btn.style.background = '#e74c3c';
-          setTimeout(() => {
-            btn.textContent = originalText;
-            btn.style.background = 'linear-gradient(135deg, #e74c3c, #c0392b)';
-          }, 2000);
-        }
-      });
-      buttonGroup.appendChild(btn);
-    });
-  }
-
-  document.getElementById('refreshChapterBtn').addEventListener('click', function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    const classSelect = document.getElementById('classSelect');
-    const chapterSelect = document.getElementById('chapterSelect');
-    const pageSelect = document.getElementById('pageSelect');
-    const classValue = classSelect.value;
-    const chapterValue = chapterSelect.value;
-    const pageValue = pageSelect.value;
-    if (!classValue || !chapterValue || !pageValue) {
-      alert('Please select a page first');
-      return;
-    }
-    if (!confirm('Are you sure you want to reset the score for this page?')) {
-      return;
-    }
-    currentQuestions.forEach((q, index) => {
-      const questionId = `${classValue}-${chapterValue}-${pageValue}-${index}`;
-      delete questionStates[questionId];
-    });
-    savePersistentData();
     showQuestions();
-  });
-
-  function toggleSummary() {
-    const summaryDiv = document.getElementById('summaryContent');
-    const btn = document.getElementById('summaryBtn');
-    if (!summaryDiv || !btn) return;
-    const showing = summaryDiv.classList.toggle('show');
-    btn.textContent = showing ? '📕 Hide Summary' : '📚 View Summary';
-  }
-
-  // Initialize Google Sign-In
-  function initializeGoogleSignIn() {
-    google.accounts.id.initialize({
-      client_id: 'YOUR_GOOGLE_CLIENT_ID', // <-- Replace with actual Client ID
-      callback: handleGoogleCredentialResponse,
-      auto_select: false,
-      ux_mode: 'popup'
-    });
-    document.getElementById('googleSignInBtn').addEventListener('click', () => {
-      google.accounts.id.prompt();
-    });
-  }
-
-  function handleGoogleCredentialResponse(response) {
-    const credential = response.credential;
-    const userObject = parseJwt(credential);
-    currentUser = {
-      name: userObject.name,
-      email: userObject.email,
-      picture: userObject.picture
-    };
-    // Grant subscription upon login
-    isSubscribed = true;
-    localStorage.setItem('neet-pbp-user', JSON.stringify(currentUser));
-    localStorage.setItem('neet-pbp-subscription', JSON.stringify(isSubscribed));
-    updateLoginUI();
-  }
-
-  function parseJwt(token) {
-    const base64Url = token.split('.')[1];
-    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
-    return JSON.parse(jsonPayload);
-  }
-
-  function handleLogout() {
-    currentUser = null;
-    isSubscribed = false;
-    localStorage.removeItem('neet-pbp-user');
-    localStorage.removeItem('neet-pbp-subscription');
-    updateLoginUI();
   }
 
   function loadPersistentData() {
@@ -1184,6 +762,50 @@ Version 3: Detailed explanation with option analysis`;
     }
   }
 
+  function savePersistentData() {
+    try {
+      localStorage.setItem('neet-pbp-states', JSON.stringify(questionStates));
+    } catch (e) {
+      console.error('Error saving data:', e);
+    }
+  }
+
+  function initializeGoogleSignIn() {
+    google.accounts.id.initialize({
+      client_id: 'YOUR_GOOGLE_CLIENT_ID', // Replace with actual Client ID
+      callback: handleGoogleCredentialResponse,
+      auto_select: false,
+      ux_mode: 'popup'
+    });
+    document.getElementById('googleSignInBtn').addEventListener('click', () => {
+      google.accounts.id.prompt();
+    });
+  }
+
+  function handleGoogleCredentialResponse(response) {
+    const credential = response.credential;
+    const userObject = parseJwt(credential);
+    currentUser = {
+      name: userObject.name,
+      email: userObject.email,
+      picture: userObject.picture
+    };
+    isSubscribed = true; // Auto subscribe for demo; adapt for real backend
+    localStorage.setItem('neet-pbp-user', JSON.stringify(currentUser));
+    localStorage.setItem('neet-pbp-subscription', JSON.stringify(isSubscribed));
+    updateLoginUI();
+    showQuestions();
+  }
+
+  function parseJwt(token) {
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+    return JSON.parse(jsonPayload);
+  }
+
   window.onload = () => {
     loadPersistentData();
     initializeGoogleSignIn();
@@ -1199,24 +821,6 @@ Version 3: Detailed explanation with option analysis`;
     chapterSelect.disabled = true;
     pageSelect.disabled = true;
     document.getElementById('contentArea').innerHTML = '<div class="no-questions">Please select Class, Chapter, and Page Number to view questions.</div>';
-
-    if (!currentUser || !isSubscribed) {
-      if (classValue === 'demo') {
-        const chapters = questionData[classValue];
-        Object.keys(chapters).forEach(chapterNum => {
-          const option = document.createElement('option');
-          option.value = chapterNum;
-          option.textContent = `Chapter ${chapterNum}: ${chapters[chapterNum].title}`;
-          chapterSelect.appendChild(option);
-        });
-        chapterSelect.disabled = false;
-      } else {
-        chapterSelect.disabled = true;
-        document.getElementById('contentArea').innerHTML = '<div class="no-questions">Please login and subscribe to unlock Class 11 and Class 12 content.</div>';
-      }
-      updateScoreDisplay();
-      return;
-    }
 
     if (classValue && questionData[classValue]) {
       const chapters = questionData[classValue];
@@ -1271,12 +875,17 @@ Version 3: Detailed explanation with option analysis`;
     const chapterSelect = document.getElementById('chapterSelect');
     const pageSelect = document.getElementById('pageSelect');
     const contentArea = document.getElementById('contentArea');
+    const curtainOverlay = document.getElementById('curtainOverlay');
 
     const classValue = classSelect.value;
     const chapterValue = chapterSelect.value;
     const pageValue = pageSelect.value;
 
-    if (!classValue || !chapterValue || !pageValue) return;
+    if (!classValue || !chapterValue || !pageValue) {
+      curtainOverlay.style.display = 'none';
+      contentArea.innerHTML = '<div class="no-questions">Please select Class, Chapter, and Page Number to view questions.</div>';
+      return;
+    }
 
     currentQuestions = questionData[classValue][chapterValue].questions[pageValue] || [];
 
@@ -1288,12 +897,34 @@ Version 3: Detailed explanation with option analysis`;
       currentQuestions = questionsArr;
     }
 
+    // Show demo content always without curtain
+    if (classValue === 'demo') {
+      curtainOverlay.style.display = 'none';
+      renderQuestions(currentQuestions, summaryStr);
+      return;
+    }
+
+    // For classes 11, 12 show curtain if not logged in or subscribed
+    if (!currentUser || !isSubscribed) {
+      curtainOverlay.style.display = 'flex';
+      contentArea.innerHTML = '';
+      return;
+    }
+
+    // If logged in and subscribed show content and hide curtain
+    curtainOverlay.style.display = 'none';
+
     if (currentQuestions.length === 0) {
       contentArea.innerHTML = '<div class="no-questions">No questions available for this page yet. Add questions to see them here.</div>';
       updateScoreDisplay();
       return;
     }
 
+    renderQuestions(currentQuestions, summaryStr);
+  }
+
+  function renderQuestions(currentQuestions, summaryStr) {
+    const contentArea = document.getElementById('contentArea');
     let html = '';
 
     if (summaryStr && summaryStr.trim().length > 0) {
@@ -1304,15 +935,19 @@ Version 3: Detailed explanation with option analysis`;
     }
 
     html += `<div class="question-count">Total Questions: ${currentQuestions.length}</div>`;
+
     currentQuestions.forEach((q, index) => {
-      const questionId = `${classValue}-${chapterValue}-${pageValue}-${index}`;
+      const classSelect = document.getElementById('classSelect').value;
+      const chapterSelect = document.getElementById('chapterSelect').value;
+      const pageSelect = document.getElementById('pageSelect').value;
+      const questionId = `${classSelect}-${chapterSelect}-${pageSelect}-${index}`;
       const questionState = questionStates[questionId];
 
       html += `
         <div class="question-item" data-question-index="${index}">
           <div class="question-header">
             <span class="question-number">Question ${index + 1}</span>
-            <span class="question-year" style="cursor: pointer;" onclick="copyQuestion(${index}, '${pageValue}')">📋 Copy</span>
+            <span class="question-year" style="cursor: pointer;" onclick="copyQuestion(${index}, '${pageSelect}')">📋 Copy</span>
           </div>
           <div class="question-text">${q.question}</div>
           <div class="options">
@@ -1336,19 +971,18 @@ Version 3: Detailed explanation with option analysis`;
         </div>
       `;
     });
+
     contentArea.innerHTML = html;
     setTimeout(addChatGPTButtons, 100);
     updateScoreDisplay();
   }
 
+  // Rest of script functions unchanged...
   function selectOption(questionIndex, optionIndex, correctAnswer, questionId) {
     if (questionStates[questionId]) return;
     const selectedOption = currentQuestions[questionIndex].options[optionIndex];
     const isCorrect = selectedOption === correctAnswer;
-    questionStates[questionId] = {
-      selectedIndex: optionIndex,
-      isCorrect: isCorrect
-    };
+    questionStates[questionId] = { selectedIndex: optionIndex, isCorrect: isCorrect };
     savePersistentData();
     const questionItem = document.querySelector(`.question-item[data-question-index="${questionIndex}"]`);
     if (!questionItem) return;
@@ -1383,11 +1017,7 @@ Version 3: Detailed explanation with option analysis`;
   function copyQuestion(index, pageNum) {
     const q = currentQuestions[index];
     const text = `Page ${pageNum}\n\n${q.question}\n\n${q.options.join('\n')}\n\nAnswer: ${q.answer}`;
-    navigator.clipboard.writeText(text).then(() => {
-      alert('Question copied to clipboard!');
-    }).catch(() => {
-      alert('Failed to copy question');
-    });
+    navigator.clipboard.writeText(text).then(() => { alert('Question copied to clipboard!'); }).catch(() => { alert('Failed to copy question'); });
   }
 
   function updateScoreDisplay() {
@@ -1408,8 +1038,7 @@ Version 3: Detailed explanation with option analysis`;
       const questionState = questionStates[questionId];
       if (questionState && questionState.isCorrect) correct++;
     });
-    const totalQuestions = currentQuestions.length;
-    scoreCard.textContent = `Page score: ${correct} / ${totalQuestions}`;
+    scoreCard.textContent = `Page score: ${correct} / ${currentQuestions.length}`;
   }
 
   function buildChatGPTPrompt(questionIndex) {
