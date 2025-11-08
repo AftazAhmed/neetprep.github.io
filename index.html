@@ -279,27 +279,6 @@
     line-height: 1.8;
   }
   
-  /* GIVEN DATA BOX */
-  .qa-given-data {
-    background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
-    border-left: 4px solid #4caf50;
-    padding: 16px;
-    margin: 16px 0;
-    border-radius: 6px;
-  }
-  
-  .qa-given-data h5 {
-    margin: 0 0 12px 0;
-    color: #2e7d32;
-    font-size: 15px;
-  }
-  
-  .qa-given-data p {
-    margin: 6px 0;
-    font-size: 15px;
-    line-height: 1.8;
-  }
-  
   /* FORMULA BOX */
   .qa-formula {
     background: linear-gradient(135deg, #fff3e0, #ffe0b2);
@@ -327,53 +306,6 @@
     gap: 8px;
   }
   
-  /* CALCULATION BOX */
-  .qa-calculation {
-    background: linear-gradient(135deg, #e1f5fe, #b3e5fc);
-    border-left: 4px solid #0288d1;
-    padding: 16px;
-    margin: 16px 0;
-    border-radius: 6px;
-  }
-  
-  .qa-calculation h5 {
-    margin: 0 0 12px 0;
-    color: #01579b;
-    font-size: 15px;
-  }
-  
-  .qa-step {
-    margin: 12px 0;
-    padding: 10px;
-    background: white;
-    border-radius: 6px;
-    font-size: 15px;
-    line-height: 1.8;
-  }
-  
-  /* FINAL ANSWER BOX */
-  .qa-final-answer {
-    background: linear-gradient(135deg, #c8e6c9, #a5d6a7);
-    border: 3px solid #4caf50;
-    padding: 16px;
-    margin: 20px 0;
-    border-radius: 8px;
-    text-align: center;
-  }
-  
-  .qa-final-answer h5 {
-    margin: 0 0 8px 0;
-    color: #1b5e20;
-    font-size: 16px;
-  }
-  
-  .qa-final-answer p {
-    margin: 0;
-    font-size: 20px;
-    font-weight: 700;
-    color: #2e7d32;
-  }
-  
   /* Mathematical notation */
   sub {
     font-size: 0.75em;
@@ -383,12 +315,6 @@
   sup {
     font-size: 0.75em;
     vertical-align: super;
-  }
-  
-  .equals {
-    font-size: 20px;
-    font-weight: 700;
-    margin: 0 8px;
   }
   
   /* VIEW TOGGLE */
@@ -482,6 +408,20 @@
   <button class="view-btn active" onclick="switchView('qa')">Q&A Mode</button>
 </div>
 
+<!-- MCQ MODE -->
+<div id="mcqMode" class="mode-container" style="display:none;">
+  <div style="text-align:center; padding:40px; color:#666;">
+    <p>MCQ content will appear here</p>
+  </div>
+</div>
+
+<!-- NOTES MODE -->
+<div id="notesMode" class="mode-container" style="display:none;">
+  <div style="text-align:center; padding:40px; color:#666;">
+    <p>Notes content will appear here</p>
+  </div>
+</div>
+
 <!-- Q&A MODE -->
 <div id="qaMode" class="mode-container">
   <h2 style="text-align:center; color:#023047; margin-bottom:24px;">📝 Question & Answer Section</h2>
@@ -554,12 +494,7 @@
           },
           {
             marks: 2,
-            question: "The velocity of a particle is given by v = 
-                      <span class='frac-inline'>
-                        <span class='numerator'>s</span>
-                        <span class='denominator'>t</span>
-                      </span>
-                      . If s = 20 m and t = 4 s, find the velocity.",
+            question: "The velocity of a particle is given by v = <span class='frac-inline'><span class='numerator'>s</span><span class='denominator'>t</span></span>. If s = 20 m and t = 4 s, find the velocity.",
             answer: `
               <div class="answer-2mark">
                 <div class="point">
@@ -587,12 +522,7 @@
           },
           {
             marks: 3,
-            question: "Derive the formula for acceleration: a = 
-                      <span class='frac-inline'>
-                        <span class='numerator'>v - u</span>
-                        <span class='denominator'>t</span>
-                      </span>
-                      and calculate acceleration when initial velocity u = 10 m/s, final velocity v = 30 m/s, and time t = 5 s.",
+            question: "Derive the formula for acceleration: a = <span class='frac-inline'><span class='numerator'>v - u</span><span class='denominator'>t</span></span> and calculate acceleration when initial velocity u = 10 m/s, final velocity v = 30 m/s, and time t = 5 s.",
             answer: `
               <div class="answer-3mark">
                 <div class="point">
@@ -637,12 +567,7 @@
           },
           {
             marks: 2,
-            question: "The density formula is ρ = 
-                      <span class='frac-inline'>
-                        <span class='numerator'>m</span>
-                        <span class='denominator'>V</span>
-                      </span>
-                      . Calculate density if mass m = 500 g and volume V = 250 cm<sup>3</sup>.",
+            question: "The density formula is ρ = <span class='frac-inline'><span class='numerator'>m</span><span class='denominator'>V</span></span>. Calculate density if mass m = 500 g and volume V = 250 cm<sup>3</sup>.",
             answer: `
               <div class="answer-2mark">
                 <div class="point">
@@ -744,6 +669,8 @@
 
   function switchView(view) {
     currentView = view;
+    document.getElementById('mcqMode').style.display = view === 'mcq' ? 'block' : 'none';
+    document.getElementById('notesMode').style.display = view === 'notes' ? 'block' : 'none';
     document.getElementById('qaMode').style.display = view === 'qa' ? 'block' : 'none';
     
     document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
@@ -806,6 +733,7 @@
     document.getElementById('qaContent').innerHTML = html;
   }
 
+  // Load Q&A on page load
   loadQA();
 </script>
 
