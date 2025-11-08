@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -326,17 +325,157 @@
   .mark-filter-btn.filter-5.active { background: linear-gradient(135deg, #f44336, #ef5350); color: white; }
   .mark-filter-btn.filter-all.active { background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
   
-  /* MOBILE RESPONSIVE */
+  /* MOBILE RESPONSIVE - OPTIMIZED */
   @media (max-width: 900px) {
+    body {
+      padding: 12px 8px;
+    }
+    
+    .header {
+      padding: 32px 16px 24px 16px;
+      margin-bottom: 20px;
+    }
+    
     .header h1 {
-      font-size: 2rem;
+      font-size: 1.8rem;
       white-space: normal;
     }
-    .qa-item {
-      padding: 16px;
+    
+    .header .subtitle {
+      font-size: 14px;
     }
+    
+    .qa-container {
+      max-width: 100%;
+      padding: 0;
+    }
+    
+    .qa-item {
+      padding: 12px;
+      margin-bottom: 16px;
+      border-radius: 8px;
+    }
+    
     .qa-question {
-      font-size: 16px;
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+    
+    .qa-question-number {
+      font-size: 12px;
+      padding: 4px 10px;
+      margin-right: 6px;
+    }
+    
+    .mark-badge {
+      font-size: 11px;
+      padding: 4px 10px;
+      margin-left: 6px;
+    }
+    
+    .answer-length-guide {
+      font-size: 11px;
+      padding: 8px 10px;
+      margin-bottom: 10px;
+    }
+    
+    .qa-answer-section {
+      padding: 12px;
+      margin-top: 10px;
+    }
+    
+    .qa-answer-label {
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+    
+    /* Reduced font sizes for answers */
+    .answer-1mark, .answer-2mark .point, .answer-3mark .point, .answer-5mark .section p {
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    
+    .answer-3mark .point, .answer-5mark .section {
+      padding: 10px;
+      margin: 10px 0;
+    }
+    
+    .answer-5mark .section h5 {
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    
+    /* Optimize fractions for mobile */
+    .frac {
+      font-size: 0.9em;
+      margin: 0 2px;
+    }
+    
+    .frac .num, .frac .den {
+      padding: 1px 4px;
+    }
+    
+    .frac-lg {
+      font-size: 1em;
+      margin: 0 4px;
+    }
+    
+    .frac-lg .num, .frac-lg .den {
+      padding: 3px 8px;
+    }
+    
+    /* Make view toggle buttons smaller */
+    .view-toggle {
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    
+    .view-btn {
+      padding: 8px 14px;
+      font-size: 13px;
+    }
+    
+    /* Make mark filter smaller */
+    .mark-filter {
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    
+    .mark-filter-btn {
+      padding: 6px 12px;
+      font-size: 11px;
+    }
+  }
+  
+  /* EXTRA SMALL MOBILE (< 400px) */
+  @media (max-width: 400px) {
+    body {
+      padding: 10px 6px;
+    }
+    
+    .qa-item {
+      padding: 10px;
+    }
+    
+    .qa-question {
+      font-size: 13px;
+    }
+    
+    .qa-answer-section {
+      padding: 10px;
+    }
+    
+    .answer-1mark, .answer-2mark .point, .answer-3mark .point, .answer-5mark .section p {
+      font-size: 12px;
+    }
+    
+    .frac {
+      font-size: 0.85em;
+    }
+    
+    .frac-lg {
+      font-size: 0.95em;
     }
   }
 </style>
@@ -588,7 +727,7 @@
   function loadQA() {
     const chapter = questionData["11"]["5"];
     
-    let html = `<p style="text-align:center; color:#666; margin-bottom:24px;">
+    let html = `<p style="text-align:center; color:#666; margin-bottom:24px; font-size:14px;">
       Chapter: ${chapter.title} | Total: ${chapter.qaData.length} Questions
     </p>`;
     
@@ -623,3 +762,4 @@
 
 </body>
 </html>
+
