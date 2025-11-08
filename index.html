@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,69 +55,48 @@
   }
   
   /* FRACTION STYLES */
-  .fraction {
+  .frac {
     display: inline-block;
     vertical-align: middle;
     text-align: center;
     margin: 0 4px;
   }
   
-  .fraction .numerator {
+  .frac .num {
     display: block;
-    padding: 2px 8px;
+    padding: 2px 6px;
     border-bottom: 2px solid currentColor;
-    margin-bottom: 2px;
-  }
-  
-  .fraction .denominator {
-    display: block;
-    padding: 2px 8px;
-    margin-top: 2px;
-  }
-  
-  /* Inline fraction for text flow */
-  .frac-inline {
-    display: inline-block;
-    vertical-align: middle;
-    text-align: center;
-    font-size: 0.9em;
-  }
-  
-  .frac-inline .numerator {
-    display: block;
-    padding: 0 4px 1px 4px;
-    border-bottom: 1.5px solid currentColor;
     line-height: 1.2;
   }
   
-  .frac-inline .denominator {
+  .frac .den {
     display: block;
-    padding: 1px 4px 0 4px;
+    padding: 2px 6px;
     line-height: 1.2;
   }
   
   /* Large fraction for formulas */
-  .frac-large {
+  .frac-lg {
     display: inline-block;
     vertical-align: middle;
     text-align: center;
     font-size: 1.1em;
-    margin: 0 8px;
+    margin: 0 6px;
   }
   
-  .frac-large .numerator {
+  .frac-lg .num {
     display: block;
-    padding: 4px 12px;
+    padding: 4px 10px;
     border-bottom: 3px solid currentColor;
-    margin-bottom: 4px;
     font-weight: 700;
+    line-height: 1.3;
   }
   
-  .frac-large .denominator {
+  .frac-lg .den {
     display: block;
-    padding: 4px 12px;
-    margin-top: 4px;
+    padding: 4px 10px;
     font-weight: 700;
+    line-height: 1.3;
   }
   
   /* MARK BADGE STYLES */
@@ -201,11 +181,14 @@
   }
   
   /* ANSWER STYLES */
+  .answer-1mark, .answer-2mark, .answer-3mark, .answer-5mark {
+    padding: 16px;
+    border-radius: 6px;
+  }
+  
   .answer-1mark {
     background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
     border-left: 4px solid #4caf50;
-    padding: 16px;
-    border-radius: 6px;
     font-size: 15px;
     line-height: 1.8;
   }
@@ -213,8 +196,6 @@
   .answer-2mark {
     background: linear-gradient(135deg, #e3f2fd, #bbdefb);
     border-left: 4px solid #2196f3;
-    padding: 16px;
-    border-radius: 6px;
   }
   
   .answer-2mark .point {
@@ -236,8 +217,6 @@
   .answer-3mark {
     background: linear-gradient(135deg, #fff3e0, #ffe0b2);
     border-left: 4px solid #ff9800;
-    padding: 16px;
-    border-radius: 6px;
   }
   
   .answer-3mark .point {
@@ -256,8 +235,6 @@
   .answer-5mark {
     background: linear-gradient(135deg, #ffebee, #ffcdd2);
     border-left: 4px solid #f44336;
-    padding: 16px;
-    border-radius: 6px;
   }
   
   .answer-5mark .section {
@@ -277,33 +254,6 @@
     margin: 8px 0;
     font-size: 15px;
     line-height: 1.8;
-  }
-  
-  /* FORMULA BOX */
-  .qa-formula {
-    background: linear-gradient(135deg, #fff3e0, #ffe0b2);
-    border: 2px solid #ff9800;
-    padding: 20px;
-    margin: 20px 0;
-    border-radius: 8px;
-    text-align: center;
-  }
-  
-  .qa-formula h5 {
-    margin: 0 0 16px 0;
-    color: #e65100;
-    font-size: 15px;
-  }
-  
-  .qa-formula-text {
-    font-size: 20px;
-    font-weight: 700;
-    color: #bf360c;
-    margin: 12px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
   }
   
   /* Mathematical notation */
@@ -388,9 +338,6 @@
     .qa-question {
       font-size: 16px;
     }
-    .frac-large {
-      font-size: 1em;
-    }
   }
 </style>
 </head>
@@ -441,6 +388,12 @@
 </div>
 
 <script>
+  // Helper function to create fractions
+  function frac(numerator, denominator, large = false) {
+    const cls = large ? 'frac-lg' : 'frac';
+    return `<span class="${cls}"><span class="num">${numerator}</span><span class="den">${denominator}</span></span>`;
+  }
+
   const questionData = {
     "11": {
       "5": {
@@ -448,43 +401,24 @@
         qaData: [
           {
             marks: 3,
-            question: "Calculate the gravitational force between the Moon and Earth. Given: M<sub>E</sub> = 5.972 × 10<sup>24</sup> kg, M<sub>M</sub> = 7.342 × 10<sup>22</sup> kg, r = 3.844 × 10<sup>8</sup> m, G = 6.674 × 10<sup>-11</sup> N·m<sup>2</sup>/kg<sup>2</sup>",
+            question: `Calculate the gravitational force between the Moon and Earth. Given: M<sub>E</sub> = 5.972 × 10<sup>24</sup> kg, M<sub>M</sub> = 7.342 × 10<sup>22</sup> kg, r = 3.844 × 10<sup>8</sup> m, G = 6.674 × 10<sup>-11</sup> N·m<sup>2</sup>/kg<sup>2</sup>`,
             answer: `
               <div class="answer-3mark">
                 <div class="point">
                   <strong>Step 1: Formula (½ mark)</strong><br><br>
-                  <div class="qa-formula-text">
-                    F = G × 
-                    <span class="frac-large">
-                      <span class="numerator">M<sub>E</sub> × M<sub>M</sub></span>
-                      <span class="denominator">r<sup>2</sup></span>
-                    </span>
-                  </div>
+                  F = G × ${frac('M<sub>E</sub> × M<sub>M</sub>', 'r<sup>2</sup>', true)}
                 </div>
                 
                 <div class="point">
                   <strong>Step 2: Substitution (1 mark)</strong><br><br>
-                  F = (6.674 × 10<sup>-11</sup>) × 
-                  <span class="frac-inline">
-                    <span class="numerator">(5.972 × 10<sup>24</sup> × 7.342 × 10<sup>22</sup>)</span>
-                    <span class="denominator">(3.844 × 10<sup>8</sup>)<sup>2</sup></span>
-                  </span>
+                  F = (6.674 × 10<sup>-11</sup>) × ${frac('(5.972 × 10<sup>24</sup> × 7.342 × 10<sup>22</sup>)', '(3.844 × 10<sup>8</sup>)<sup>2</sup>')}
                   <br><br>
-                  F = (6.674 × 10<sup>-11</sup>) × 
-                  <span class="frac-inline">
-                    <span class="numerator">4.384 × 10<sup>47</sup></span>
-                    <span class="denominator">1.478 × 10<sup>17</sup></span>
-                  </span>
+                  F = (6.674 × 10<sup>-11</sup>) × ${frac('4.384 × 10<sup>47</sup>', '1.478 × 10<sup>17</sup>')}
                 </div>
                 
                 <div class="point">
                   <strong>Step 3: Final Answer (1½ marks)</strong><br><br>
-                  F = 
-                  <span class="frac-inline">
-                    <span class="numerator">29.26 × 10<sup>36</sup></span>
-                    <span class="denominator">1.478 × 10<sup>17</sup></span>
-                  </span>
-                  = 19.8 × 10<sup>19</sup> N
+                  F = ${frac('29.26 × 10<sup>36</sup>', '1.478 × 10<sup>17</sup>')} = 19.8 × 10<sup>19</sup> N
                   <br><br>
                   <strong>F = 1.98 × 10<sup>20</sup> N</strong>
                 </div>
@@ -494,25 +428,16 @@
           },
           {
             marks: 2,
-            question: "The velocity of a particle is given by v = <span class='frac-inline'><span class='numerator'>s</span><span class='denominator'>t</span></span>. If s = 20 m and t = 4 s, find the velocity.",
+            question: `The velocity of a particle is given by v = ${frac('s', 't')}. If s = 20 m and t = 4 s, find the velocity.`,
             answer: `
               <div class="answer-2mark">
                 <div class="point">
                   <strong>Given:</strong> s = 20 m, t = 4 s<br>
-                  <strong>Formula:</strong> v = 
-                  <span class="frac-inline">
-                    <span class="numerator">s</span>
-                    <span class="denominator">t</span>
-                  </span>
+                  <strong>Formula:</strong> v = ${frac('s', 't')}
                 </div>
                 <div class="point">
                   <strong>Solution:</strong><br>
-                  v = 
-                  <span class="frac-inline">
-                    <span class="numerator">20</span>
-                    <span class="denominator">4</span>
-                  </span>
-                  = 5 m/s
+                  v = ${frac('20', '4')} = 5 m/s
                   <br><br>
                   <strong>Answer: v = 5 m/s</strong>
                 </div>
@@ -522,37 +447,19 @@
           },
           {
             marks: 3,
-            question: "Derive the formula for acceleration: a = <span class='frac-inline'><span class='numerator'>v - u</span><span class='denominator'>t</span></span> and calculate acceleration when initial velocity u = 10 m/s, final velocity v = 30 m/s, and time t = 5 s.",
+            question: `Derive the formula for acceleration: a = ${frac('v - u', 't')} and calculate acceleration when initial velocity u = 10 m/s, final velocity v = 30 m/s, and time t = 5 s.`,
             answer: `
               <div class="answer-3mark">
                 <div class="point">
                   <strong>Step 1: Definition (1 mark)</strong><br>
                   Acceleration is the rate of change of velocity with respect to time.<br><br>
-                  a = 
-                  <span class="frac-large">
-                    <span class="numerator">Change in velocity</span>
-                    <span class="denominator">Time taken</span>
-                  </span>
-                  = 
-                  <span class="frac-large">
-                    <span class="numerator">v - u</span>
-                    <span class="denominator">t</span>
-                  </span>
+                  a = ${frac('Change in velocity', 'Time taken', true)} = ${frac('v - u', 't', true)}
                 </div>
                 
                 <div class="point">
                   <strong>Step 2: Given Data and Substitution (1 mark)</strong><br>
                   Given: u = 10 m/s, v = 30 m/s, t = 5 s<br><br>
-                  a = 
-                  <span class="frac-inline">
-                    <span class="numerator">30 - 10</span>
-                    <span class="denominator">5</span>
-                  </span>
-                  = 
-                  <span class="frac-inline">
-                    <span class="numerator">20</span>
-                    <span class="denominator">5</span>
-                  </span>
+                  a = ${frac('30 - 10', '5')} = ${frac('20', '5')}
                 </div>
                 
                 <div class="point">
@@ -567,25 +474,16 @@
           },
           {
             marks: 2,
-            question: "The density formula is ρ = <span class='frac-inline'><span class='numerator'>m</span><span class='denominator'>V</span></span>. Calculate density if mass m = 500 g and volume V = 250 cm<sup>3</sup>.",
+            question: `The density formula is ρ = ${frac('m', 'V')}. Calculate density if mass m = 500 g and volume V = 250 cm<sup>3</sup>.`,
             answer: `
               <div class="answer-2mark">
                 <div class="point">
                   <strong>Given:</strong> m = 500 g, V = 250 cm<sup>3</sup><br>
-                  <strong>Formula:</strong> ρ = 
-                  <span class="frac-inline">
-                    <span class="numerator">m</span>
-                    <span class="denominator">V</span>
-                  </span>
+                  <strong>Formula:</strong> ρ = ${frac('m', 'V')}
                 </div>
                 <div class="point">
                   <strong>Calculation:</strong><br>
-                  ρ = 
-                  <span class="frac-inline">
-                    <span class="numerator">500</span>
-                    <span class="denominator">250</span>
-                  </span>
-                  = 2 g/cm<sup>3</sup>
+                  ρ = ${frac('500', '250')} = 2 g/cm<sup>3</sup>
                   <br><br>
                   <strong>Density = 2 g/cm<sup>3</sup></strong>
                 </div>
@@ -609,27 +507,12 @@
                   <p>Final momentum = p<sub>f</sub> = mv</p>
                   <p>Change in momentum = mv - mu = m(v - u)</p>
                   <br>
-                  <p>Rate of change of momentum = 
-                    <span class="frac-large">
-                      <span class="numerator">m(v - u)</span>
-                      <span class="denominator">t</span>
-                    </span>
-                  </p>
+                  <p>Rate of change of momentum = ${frac('m(v - u)', 't', true)}</p>
                   <br>
                   <p>According to Newton's Second Law:</p>
-                  <p>F ∝ 
-                    <span class="frac-inline">
-                      <span class="numerator">m(v - u)</span>
-                      <span class="denominator">t</span>
-                    </span>
-                  </p>
+                  <p>F ∝ ${frac('m(v - u)', 't')}</p>
                   <br>
-                  <p>Since a = 
-                    <span class="frac-inline">
-                      <span class="numerator">v - u</span>
-                      <span class="denominator">t</span>
-                    </span>
-                  </p>
+                  <p>Since a = ${frac('v - u', 't')}</p>
                   <p>Therefore, F = kma (where k is constant of proportionality)</p>
                   <p>In SI units, k = 1, hence <strong>F = ma</strong></p>
                 </div>
@@ -640,24 +523,25 @@
                   <p><strong>To find:</strong> a = ?</p>
                   <br>
                   <p>Using F = ma</p>
-                  <p>a = 
-                    <span class="frac-large">
-                      <span class="numerator">F</span>
-                      <span class="denominator">m</span>
-                    </span>
-                    = 
-                    <span class="frac-large">
-                      <span class="numerator">20</span>
-                      <span class="denominator">5</span>
-                    </span>
-                    = 4 m/s<sup>2</sup>
-                  </p>
+                  <p>a = ${frac('F', 'm', true)} = ${frac('20', '5', true)} = 4 m/s<sup>2</sup></p>
                   <br>
                   <p><strong>Answer: The acceleration produced is 4 m/s<sup>2</sup></strong></p>
                 </div>
               </div>
             `,
             examTip: "For 5 marks: Statement (1), Derivation with proper fractions (2), Numerical with steps (2)"
+          },
+          {
+            marks: 1,
+            question: "State the formula for gravitational force.",
+            answer: `
+              <div class="answer-1mark">
+                F = G × ${frac('m<sub>1</sub> × m<sub>2</sub>', 'r<sup>2</sup>', true)}
+                <br><br>
+                where G is gravitational constant, m<sub>1</sub> and m<sub>2</sub> are masses, and r is distance between centers.
+              </div>
+            `,
+            examTip: "For 1 mark: Write formula clearly with proper notation"
           }
         ]
       }
