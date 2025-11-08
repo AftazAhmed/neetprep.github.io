@@ -53,6 +53,72 @@
     letter-spacing: 0.6px;
   }
   
+  /* FRACTION STYLES */
+  .fraction {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    margin: 0 4px;
+  }
+  
+  .fraction .numerator {
+    display: block;
+    padding: 2px 8px;
+    border-bottom: 2px solid currentColor;
+    margin-bottom: 2px;
+  }
+  
+  .fraction .denominator {
+    display: block;
+    padding: 2px 8px;
+    margin-top: 2px;
+  }
+  
+  /* Inline fraction for text flow */
+  .frac-inline {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 0.9em;
+  }
+  
+  .frac-inline .numerator {
+    display: block;
+    padding: 0 4px 1px 4px;
+    border-bottom: 1.5px solid currentColor;
+    line-height: 1.2;
+  }
+  
+  .frac-inline .denominator {
+    display: block;
+    padding: 1px 4px 0 4px;
+    line-height: 1.2;
+  }
+  
+  /* Large fraction for formulas */
+  .frac-large {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 1.1em;
+    margin: 0 8px;
+  }
+  
+  .frac-large .numerator {
+    display: block;
+    padding: 4px 12px;
+    border-bottom: 3px solid currentColor;
+    margin-bottom: 4px;
+    font-weight: 700;
+  }
+  
+  .frac-large .denominator {
+    display: block;
+    padding: 4px 12px;
+    margin-top: 4px;
+    font-weight: 700;
+  }
+  
   /* MARK BADGE STYLES */
   .mark-badge {
     display: inline-block;
@@ -64,25 +130,10 @@
     vertical-align: middle;
   }
   
-  .mark-1 {
-    background: linear-gradient(135deg, #4caf50, #66bb6a);
-    color: white;
-  }
-  
-  .mark-2 {
-    background: linear-gradient(135deg, #2196f3, #42a5f5);
-    color: white;
-  }
-  
-  .mark-3 {
-    background: linear-gradient(135deg, #ff9800, #ffa726);
-    color: white;
-  }
-  
-  .mark-5 {
-    background: linear-gradient(135deg, #f44336, #ef5350);
-    color: white;
-  }
+  .mark-1 { background: linear-gradient(135deg, #4caf50, #66bb6a); color: white; }
+  .mark-2 { background: linear-gradient(135deg, #2196f3, #42a5f5); color: white; }
+  .mark-3 { background: linear-gradient(135deg, #ff9800, #ffa726); color: white; }
+  .mark-5 { background: linear-gradient(135deg, #f44336, #ef5350); color: white; }
   
   /* Q&A CONTAINER */
   .qa-container {
@@ -109,7 +160,7 @@
     font-weight: 700;
     color: #023047;
     margin-bottom: 20px;
-    line-height: 1.6;
+    line-height: 1.8;
   }
   
   .qa-question-number {
@@ -149,17 +200,16 @@
     font-weight: 600;
   }
   
-  /* ONE MARK ANSWER STYLE */
+  /* ANSWER STYLES */
   .answer-1mark {
     background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
     border-left: 4px solid #4caf50;
     padding: 16px;
     border-radius: 6px;
     font-size: 15px;
-    line-height: 1.7;
+    line-height: 1.8;
   }
   
-  /* TWO MARK ANSWER STYLE */
   .answer-2mark {
     background: linear-gradient(135deg, #e3f2fd, #bbdefb);
     border-left: 4px solid #2196f3;
@@ -172,7 +222,7 @@
     padding-left: 20px;
     position: relative;
     font-size: 15px;
-    line-height: 1.7;
+    line-height: 1.8;
   }
   
   .answer-2mark .point:before {
@@ -183,7 +233,6 @@
     font-weight: 700;
   }
   
-  /* THREE MARK ANSWER STYLE */
   .answer-3mark {
     background: linear-gradient(135deg, #fff3e0, #ffe0b2);
     border-left: 4px solid #ff9800;
@@ -197,14 +246,13 @@
     background: white;
     border-radius: 6px;
     font-size: 15px;
-    line-height: 1.7;
+    line-height: 1.8;
   }
   
   .answer-3mark .point strong {
     color: #e65100;
   }
   
-  /* FIVE MARK ANSWER STYLE */
   .answer-5mark {
     background: linear-gradient(135deg, #ffebee, #ffcdd2);
     border-left: 4px solid #f44336;
@@ -228,17 +276,7 @@
   .answer-5mark .section p {
     margin: 8px 0;
     font-size: 15px;
-    line-height: 1.7;
-  }
-  
-  .answer-5mark .section ul {
-    margin: 8px 0;
-    padding-left: 20px;
-  }
-  
-  .answer-5mark .section li {
-    margin: 6px 0;
-    line-height: 1.7;
+    line-height: 1.8;
   }
   
   /* GIVEN DATA BOX */
@@ -273,17 +311,20 @@
   }
   
   .qa-formula h5 {
-    margin: 0 0 12px 0;
+    margin: 0 0 16px 0;
     color: #e65100;
     font-size: 15px;
   }
   
   .qa-formula-text {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 700;
-    font-family: 'Courier New', monospace;
     color: #bf360c;
     margin: 12px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
   }
   
   /* CALCULATION BOX */
@@ -333,32 +374,7 @@
     color: #2e7d32;
   }
   
-  /* CHEMICAL EQUATION */
-  .chemical-equation {
-    background: linear-gradient(135deg, #f3e5f5, #e1bee7);
-    border: 2px solid #9c27b0;
-    padding: 20px;
-    margin: 20px 0;
-    border-radius: 8px;
-    text-align: center;
-    font-size: 18px;
-    font-weight: 600;
-    font-family: 'Courier New', monospace;
-  }
-  
-  /* WORD COUNT INDICATOR */
-  .word-count {
-    display: inline-block;
-    background: #e0e0e0;
-    color: #616161;
-    padding: 4px 10px;
-    border-radius: 12px;
-    font-size: 12px;
-    font-weight: 600;
-    margin-left: 8px;
-  }
-  
-  /* Mathematical and Chemical notation */
+  /* Mathematical notation */
   sub {
     font-size: 0.75em;
     vertical-align: sub;
@@ -369,7 +385,7 @@
     vertical-align: super;
   }
   
-  .arrow {
+  .equals {
     font-size: 20px;
     font-weight: 700;
     margin: 0 8px;
@@ -446,8 +462,8 @@
     .qa-question {
       font-size: 16px;
     }
-    .qa-formula-text {
-      font-size: 16px;
+    .frac-large {
+      font-size: 1em;
     }
   }
 </style>
@@ -464,20 +480,6 @@
   <button class="view-btn" onclick="switchView('mcq')">MCQ Mode</button>
   <button class="view-btn" onclick="switchView('notes')">Notes Mode</button>
   <button class="view-btn active" onclick="switchView('qa')">Q&A Mode</button>
-</div>
-
-<!-- MCQ MODE -->
-<div id="mcqMode" class="mode-container" style="display:none;">
-  <div style="text-align:center; padding:40px; color:#666;">
-    <p>MCQ content will appear here</p>
-  </div>
-</div>
-
-<!-- NOTES MODE -->
-<div id="notesMode" class="mode-container" style="display:none;">
-  <div style="text-align:center; padding:40px; color:#666;">
-    <p>Notes content will appear here</p>
-  </div>
 </div>
 
 <!-- Q&A MODE -->
@@ -505,125 +507,232 @@
         title: "Gravitation & Chemical Reactions",
         qaData: [
           {
-            marks: 1,
-            question: "State Newton's Law of Universal Gravitation.",
-            answer: `
-              <div class="answer-1mark">
-                Every particle in the universe attracts every other particle with a force that is directly proportional to the product of their masses and inversely proportional to the square of the distance between their centers.
-              </div>
-            `,
-            examTip: "For 1 mark: Write definition in one clear sentence (20-30 words)"
-          },
-          {
-            marks: 2,
-            question: "What is a double displacement reaction? Give one example.",
-            answer: `
-              <div class="answer-2mark">
-                <div class="point">
-                  <strong>Definition:</strong> A double displacement reaction is a chemical reaction in which two compounds exchange ions or bonds to form two new compounds.
-                </div>
-                <div class="point">
-                  <strong>Example:</strong> AgNO<sub>3</sub>(aq) + NaCl(aq) → AgCl(s)↓ + NaNO<sub>3</sub>(aq)
-                  <br><span style="font-size:13px; color:#666;">(Silver chloride precipitates as a white solid)</span>
-                </div>
-              </div>
-            `,
-            examTip: "For 2 marks: Definition (1 mark) + One example with equation (1 mark). Total: 40-50 words"
-          },
-          {
             marks: 3,
             question: "Calculate the gravitational force between the Moon and Earth. Given: M<sub>E</sub> = 5.972 × 10<sup>24</sup> kg, M<sub>M</sub> = 7.342 × 10<sup>22</sup> kg, r = 3.844 × 10<sup>8</sup> m, G = 6.674 × 10<sup>-11</sup> N·m<sup>2</sup>/kg<sup>2</sup>",
             answer: `
               <div class="answer-3mark">
                 <div class="point">
-                  <strong>Step 1: Formula (½ mark)</strong><br>
-                  F = G × (M<sub>E</sub> × M<sub>M</sub>) / r<sup>2</sup>
+                  <strong>Step 1: Formula (½ mark)</strong><br><br>
+                  <div class="qa-formula-text">
+                    F = G × 
+                    <span class="frac-large">
+                      <span class="numerator">M<sub>E</sub> × M<sub>M</sub></span>
+                      <span class="denominator">r<sup>2</sup></span>
+                    </span>
+                  </div>
                 </div>
                 
                 <div class="point">
-                  <strong>Step 2: Substitution (1 mark)</strong><br>
-                  F = (6.674 × 10<sup>-11</sup>) × (5.972 × 10<sup>24</sup> × 7.342 × 10<sup>22</sup>) / (3.844 × 10<sup>8</sup>)<sup>2</sup><br>
-                  F = (6.674 × 10<sup>-11</sup>) × (4.384 × 10<sup>47</sup>) / (1.478 × 10<sup>17</sup>)
+                  <strong>Step 2: Substitution (1 mark)</strong><br><br>
+                  F = (6.674 × 10<sup>-11</sup>) × 
+                  <span class="frac-inline">
+                    <span class="numerator">(5.972 × 10<sup>24</sup> × 7.342 × 10<sup>22</sup>)</span>
+                    <span class="denominator">(3.844 × 10<sup>8</sup>)<sup>2</sup></span>
+                  </span>
+                  <br><br>
+                  F = (6.674 × 10<sup>-11</sup>) × 
+                  <span class="frac-inline">
+                    <span class="numerator">4.384 × 10<sup>47</sup></span>
+                    <span class="denominator">1.478 × 10<sup>17</sup></span>
+                  </span>
                 </div>
                 
                 <div class="point">
-                  <strong>Step 3: Final Answer (1½ marks)</strong><br>
-                  F = 1.98 × 10<sup>20</sup> N
+                  <strong>Step 3: Final Answer (1½ marks)</strong><br><br>
+                  F = 
+                  <span class="frac-inline">
+                    <span class="numerator">29.26 × 10<sup>36</sup></span>
+                    <span class="denominator">1.478 × 10<sup>17</sup></span>
+                  </span>
+                  = 19.8 × 10<sup>19</sup> N
+                  <br><br>
+                  <strong>F = 1.98 × 10<sup>20</sup> N</strong>
                 </div>
               </div>
             `,
-            examTip: "For 3 marks: Formula (½), Correct substitution (1), Calculation + Answer with unit (1½). Total: 60-80 words"
-          },
-          {
-            marks: 5,
-            question: "Explain double displacement reactions in detail with three examples and their applications.",
-            answer: `
-              <div class="answer-5mark">
-                <div class="section">
-                  <h5>1. Definition and Characteristics (1 mark)</h5>
-                  <p>A double displacement reaction is a type of chemical reaction where two compounds exchange ions or bonds to form two new compounds. The general form is AB + CD → AD + CB. These reactions typically occur in aqueous solutions and may produce a precipitate, gas, or water.</p>
-                </div>
-                
-                <div class="section">
-                  <h5>2. Types of Double Displacement Reactions (1½ marks)</h5>
-                  <p><strong>(a) Precipitation Reactions:</strong> Form an insoluble solid</p>
-                  <p><strong>(b) Neutralization Reactions:</strong> Acid reacts with base to form salt and water</p>
-                  <p><strong>(c) Gas Evolution Reactions:</strong> Produce a gaseous product</p>
-                </div>
-                
-                <div class="section">
-                  <h5>3. Examples with Equations (1½ marks)</h5>
-                  <p><strong>Example 1 - Precipitation:</strong></p>
-                  <p>AgNO<sub>3</sub>(aq) + NaCl(aq) → AgCl(s)↓ + NaNO<sub>3</sub>(aq)</p>
-                  <p style="font-size:13px; color:#666;">White precipitate of silver chloride forms</p>
-                  
-                  <p style="margin-top:12px;"><strong>Example 2 - Neutralization:</strong></p>
-                  <p>HCl(aq) + NaOH(aq) → NaCl(aq) + H<sub>2</sub>O(l)</p>
-                  <p style="font-size:13px; color:#666;">Acid-base reaction produces salt and water</p>
-                  
-                  <p style="margin-top:12px;"><strong>Example 3 - Gas Evolution:</strong></p>
-                  <p>Na<sub>2</sub>CO<sub>3</sub>(aq) + 2HCl(aq) → 2NaCl(aq) + H<sub>2</sub>O(l) + CO<sub>2</sub>(g)↑</p>
-                  <p style="font-size:13px; color:#666;">Effervescence due to carbon dioxide gas released</p>
-                </div>
-                
-                <div class="section">
-                  <h5>4. Applications (1 mark)</h5>
-                  <ul>
-                    <li><strong>Water Treatment:</strong> Precipitation reactions remove impurities from water</li>
-                    <li><strong>Medicine:</strong> Neutralization used in antacids to neutralize stomach acid</li>
-                    <li><strong>Qualitative Analysis:</strong> Precipitation reactions identify presence of specific ions</li>
-                    <li><strong>Industrial Processes:</strong> Manufacturing of salts, fertilizers, and chemicals</li>
-                  </ul>
-                </div>
-              </div>
-            `,
-            examTip: "For 5 marks: Definition (1), Types (1½), Three examples with equations (1½), Applications (1). Total: 200-250 words. Use proper headings and structure."
+            examTip: "For 3 marks: Formula with proper fraction notation (½), Correct substitution (1), Calculation + Answer with unit (1½)"
           },
           {
             marks: 2,
-            question: "Define gravitational constant. Write its SI unit and value.",
+            question: "The velocity of a particle is given by v = 
+                      <span class='frac-inline'>
+                        <span class='numerator'>s</span>
+                        <span class='denominator'>t</span>
+                      </span>
+                      . If s = 20 m and t = 4 s, find the velocity.",
             answer: `
               <div class="answer-2mark">
                 <div class="point">
-                  <strong>Definition:</strong> Gravitational constant (G) is the constant of proportionality in Newton's Law of Universal Gravitation that relates the gravitational force between two masses to their masses and distance.
+                  <strong>Given:</strong> s = 20 m, t = 4 s<br>
+                  <strong>Formula:</strong> v = 
+                  <span class="frac-inline">
+                    <span class="numerator">s</span>
+                    <span class="denominator">t</span>
+                  </span>
                 </div>
                 <div class="point">
-                  <strong>Value and Unit:</strong> G = 6.674 × 10<sup>-11</sup> N·m<sup>2</sup>/kg<sup>2</sup>
+                  <strong>Solution:</strong><br>
+                  v = 
+                  <span class="frac-inline">
+                    <span class="numerator">20</span>
+                    <span class="denominator">4</span>
+                  </span>
+                  = 5 m/s
+                  <br><br>
+                  <strong>Answer: v = 5 m/s</strong>
                 </div>
               </div>
             `,
-            examTip: "For 2 marks: Definition (1 mark) + Value with correct unit (1 mark)"
+            examTip: "For 2 marks: Formula (½), Substitution (½), Answer with unit (1)"
           },
           {
-            marks: 1,
-            question: "Write the general equation for a double displacement reaction.",
+            marks: 3,
+            question: "Derive the formula for acceleration: a = 
+                      <span class='frac-inline'>
+                        <span class='numerator'>v - u</span>
+                        <span class='denominator'>t</span>
+                      </span>
+                      and calculate acceleration when initial velocity u = 10 m/s, final velocity v = 30 m/s, and time t = 5 s.",
             answer: `
-              <div class="answer-1mark">
-                AB + CD → AD + CB
-                <br><span style="font-size:13px; color:#666;">(where A and C are cations, B and D are anions)</span>
+              <div class="answer-3mark">
+                <div class="point">
+                  <strong>Step 1: Definition (1 mark)</strong><br>
+                  Acceleration is the rate of change of velocity with respect to time.<br><br>
+                  a = 
+                  <span class="frac-large">
+                    <span class="numerator">Change in velocity</span>
+                    <span class="denominator">Time taken</span>
+                  </span>
+                  = 
+                  <span class="frac-large">
+                    <span class="numerator">v - u</span>
+                    <span class="denominator">t</span>
+                  </span>
+                </div>
+                
+                <div class="point">
+                  <strong>Step 2: Given Data and Substitution (1 mark)</strong><br>
+                  Given: u = 10 m/s, v = 30 m/s, t = 5 s<br><br>
+                  a = 
+                  <span class="frac-inline">
+                    <span class="numerator">30 - 10</span>
+                    <span class="denominator">5</span>
+                  </span>
+                  = 
+                  <span class="frac-inline">
+                    <span class="numerator">20</span>
+                    <span class="denominator">5</span>
+                  </span>
+                </div>
+                
+                <div class="point">
+                  <strong>Step 3: Final Answer (1 mark)</strong><br>
+                  a = 4 m/s<sup>2</sup>
+                  <br><br>
+                  The acceleration is <strong>4 m/s<sup>2</sup></strong> in the direction of motion.
+                </div>
               </div>
             `,
-            examTip: "For 1 mark: Write equation clearly. Brief explanation in brackets can earn you full credit."
+            examTip: "For 3 marks: Derivation with proper fractions (1), Substitution (1), Answer (1)"
+          },
+          {
+            marks: 2,
+            question: "The density formula is ρ = 
+                      <span class='frac-inline'>
+                        <span class='numerator'>m</span>
+                        <span class='denominator'>V</span>
+                      </span>
+                      . Calculate density if mass m = 500 g and volume V = 250 cm<sup>3</sup>.",
+            answer: `
+              <div class="answer-2mark">
+                <div class="point">
+                  <strong>Given:</strong> m = 500 g, V = 250 cm<sup>3</sup><br>
+                  <strong>Formula:</strong> ρ = 
+                  <span class="frac-inline">
+                    <span class="numerator">m</span>
+                    <span class="denominator">V</span>
+                  </span>
+                </div>
+                <div class="point">
+                  <strong>Calculation:</strong><br>
+                  ρ = 
+                  <span class="frac-inline">
+                    <span class="numerator">500</span>
+                    <span class="denominator">250</span>
+                  </span>
+                  = 2 g/cm<sup>3</sup>
+                  <br><br>
+                  <strong>Density = 2 g/cm<sup>3</sup></strong>
+                </div>
+              </div>
+            `,
+            examTip: "For 2 marks: Write formula with proper fraction, substitute and calculate"
+          },
+          {
+            marks: 5,
+            question: "Explain Newton's Second Law of Motion. Derive F = ma and solve: A force of 20 N acts on a body of mass 5 kg. Calculate the acceleration produced.",
+            answer: `
+              <div class="answer-5mark">
+                <div class="section">
+                  <h5>1. Statement of Newton's Second Law (1 mark)</h5>
+                  <p>The rate of change of momentum of a body is directly proportional to the applied force and takes place in the direction of the force.</p>
+                </div>
+                
+                <div class="section">
+                  <h5>2. Mathematical Derivation (2 marks)</h5>
+                  <p>Let initial momentum = p<sub>i</sub> = mu</p>
+                  <p>Final momentum = p<sub>f</sub> = mv</p>
+                  <p>Change in momentum = mv - mu = m(v - u)</p>
+                  <br>
+                  <p>Rate of change of momentum = 
+                    <span class="frac-large">
+                      <span class="numerator">m(v - u)</span>
+                      <span class="denominator">t</span>
+                    </span>
+                  </p>
+                  <br>
+                  <p>According to Newton's Second Law:</p>
+                  <p>F ∝ 
+                    <span class="frac-inline">
+                      <span class="numerator">m(v - u)</span>
+                      <span class="denominator">t</span>
+                    </span>
+                  </p>
+                  <br>
+                  <p>Since a = 
+                    <span class="frac-inline">
+                      <span class="numerator">v - u</span>
+                      <span class="denominator">t</span>
+                    </span>
+                  </p>
+                  <p>Therefore, F = kma (where k is constant of proportionality)</p>
+                  <p>In SI units, k = 1, hence <strong>F = ma</strong></p>
+                </div>
+                
+                <div class="section">
+                  <h5>3. Numerical Solution (2 marks)</h5>
+                  <p><strong>Given:</strong> F = 20 N, m = 5 kg</p>
+                  <p><strong>To find:</strong> a = ?</p>
+                  <br>
+                  <p>Using F = ma</p>
+                  <p>a = 
+                    <span class="frac-large">
+                      <span class="numerator">F</span>
+                      <span class="denominator">m</span>
+                    </span>
+                    = 
+                    <span class="frac-large">
+                      <span class="numerator">20</span>
+                      <span class="denominator">5</span>
+                    </span>
+                    = 4 m/s<sup>2</sup>
+                  </p>
+                  <br>
+                  <p><strong>Answer: The acceleration produced is 4 m/s<sup>2</sup></strong></p>
+                </div>
+              </div>
+            `,
+            examTip: "For 5 marks: Statement (1), Derivation with proper fractions (2), Numerical with steps (2)"
           }
         ]
       }
@@ -635,8 +744,6 @@
 
   function switchView(view) {
     currentView = view;
-    document.getElementById('mcqMode').style.display = view === 'mcq' ? 'block' : 'none';
-    document.getElementById('notesMode').style.display = view === 'notes' ? 'block' : 'none';
     document.getElementById('qaMode').style.display = view === 'qa' ? 'block' : 'none';
     
     document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
@@ -650,7 +757,6 @@
   function filterByMark(mark) {
     currentFilter = mark;
     
-    // Update filter buttons
     document.querySelectorAll('.mark-filter-btn').forEach(btn => btn.classList.remove('active'));
     if (mark === 'all') {
       document.querySelector('.filter-all').classList.add('active');
@@ -658,7 +764,6 @@
       document.querySelector(`.filter-${mark}`).classList.add('active');
     }
     
-    // Filter questions
     document.querySelectorAll('.qa-item').forEach(item => {
       if (mark === 'all') {
         item.style.display = 'block';
@@ -670,7 +775,6 @@
   }
 
   function loadQA() {
-    // Using sample data from Class 11, Chapter 5
     const chapter = questionData["11"]["5"];
     
     let html = `<p style="text-align:center; color:#666; margin-bottom:24px;">
@@ -681,21 +785,16 @@
       const markClass = `mark-${qa.marks}-item`;
       html += `<div class="qa-item ${markClass}" data-mark="${qa.marks}">`;
       
-      // Question header
       html += `<div class="qa-question">`;
       html += `<span class="qa-question-number">Q${idx + 1}</span>`;
       html += qa.question;
       html += `<span class="mark-badge mark-${qa.marks}">${qa.marks} Mark${qa.marks > 1 ? 's' : ''}</span>`;
       html += `</div>`;
       
-      // Exam tip
       if (qa.examTip) {
-        html += `<div class="answer-length-guide">`;
-        html += `📝 ${qa.examTip}`;
-        html += `</div>`;
+        html += `<div class="answer-length-guide">📝 ${qa.examTip}</div>`;
       }
       
-      // Answer section
       html += `<div class="qa-answer-section">`;
       html += `<span class="qa-answer-label">✍️ Answer:</span>`;
       html += qa.answer;
@@ -707,7 +806,6 @@
     document.getElementById('qaContent').innerHTML = html;
   }
 
-  // Load Q&A on page load
   loadQA();
 </script>
 
