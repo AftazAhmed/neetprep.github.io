@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>NEET-PbP</title>
 <style>
-  /* All your existing styles... */
   body {
     font-family: 'Montserrat', Arial, sans-serif;
     margin: 0;
@@ -14,260 +13,6 @@
     color: #1f2937;
     overflow-x: hidden;
   }
-  
-  /* ADD THESE NEW STYLES FOR RICH CONTENT */
-  
-  /* Table styling */
-  .notes-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    background: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  }
-  
-  .notes-table th {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
-    padding: 12px;
-    text-align: left;
-    font-weight: 700;
-    font-size: 14px;
-  }
-  
-  .notes-table td {
-    padding: 12px;
-    border-bottom: 1px solid #e5e7eb;
-    font-size: 14px;
-    line-height: 1.6;
-  }
-  
-  .notes-table tr:last-child td {
-    border-bottom: none;
-  }
-  
-  .notes-table tr:hover {
-    background-color: #f9fafb;
-  }
-  
-  /* Dedicated notes page styling */
-  .notes-page {
-    background-color: #ffffff;
-    padding: 32px;
-    border-radius: 12px;
-    max-width: 900px;
-    margin: 0 auto;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  }
-  
-  .notes-page h2 {
-    color: #023047;
-    font-size: 28px;
-    font-weight: 800;
-    margin-bottom: 24px;
-    border-bottom: 3px solid #028090;
-    padding-bottom: 12px;
-  }
-  
-  .notes-page h3 {
-    color: #116466;
-    font-size: 20px;
-    font-weight: 700;
-    margin-top: 28px;
-    margin-bottom: 14px;
-  }
-  
-  .notes-page h4 {
-    color: #2a6f62;
-    font-size: 16px;
-    font-weight: 700;
-    margin-top: 20px;
-    margin-bottom: 10px;
-  }
-  
-  .notes-section {
-    margin-bottom: 32px;
-    padding: 20px;
-    background-color: #f9fafb;
-    border-left: 4px solid #028090;
-    border-radius: 8px;
-  }
-  
-  .notes-list {
-    list-style: none;
-    padding-left: 0;
-  }
-  
-  .notes-list li {
-    padding: 10px 0 10px 30px;
-    position: relative;
-    line-height: 1.7;
-    font-size: 15px;
-  }
-  
-  .notes-list li:before {
-    content: "▸";
-    position: absolute;
-    left: 10px;
-    color: #028090;
-    font-weight: 700;
-    font-size: 18px;
-  }
-  
-  /* Highlight boxes */
-  .highlight-box {
-    background: linear-gradient(135deg, #fff8e1, #ffe0b2);
-    border-left: 5px solid #ff9800;
-    padding: 16px 20px;
-    margin: 20px 0;
-    border-radius: 8px;
-  }
-  
-  .highlight-box strong {
-    color: #e65100;
-  }
-  
-  /* Definition boxes */
-  .definition-box {
-    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-    border-left: 5px solid #2196f3;
-    padding: 16px 20px;
-    margin: 20px 0;
-    border-radius: 8px;
-  }
-  
-  .definition-box dt {
-    font-weight: 700;
-    color: #0d47a1;
-    font-size: 16px;
-    margin-bottom: 8px;
-  }
-  
-  .definition-box dd {
-    margin: 0;
-    line-height: 1.7;
-    color: #1565c0;
-  }
-  
-  /* Formula boxes */
-  .formula-box {
-    background: linear-gradient(135deg, #f3e5f5, #e1bee7);
-    border: 2px solid #9c27b0;
-    padding: 16px 20px;
-    margin: 20px 0;
-    border-radius: 8px;
-    text-align: center;
-    font-family: 'Courier New', monospace;
-    font-size: 16px;
-    font-weight: 700;
-  }
-  
-  /* Comparison tables */
-  .comparison-table {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin: 20px 0;
-  }
-  
-  .comparison-card {
-    background: white;
-    border: 2px solid #e5e7eb;
-    border-radius: 8px;
-    padding: 16px;
-  }
-  
-  .comparison-card h4 {
-    color: #023047;
-    margin-top: 0;
-    padding-bottom: 8px;
-    border-bottom: 2px solid #028090;
-  }
-  
-  /* Tab navigation for notes */
-  .notes-tabs {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 24px;
-    border-bottom: 2px solid #e5e7eb;
-    flex-wrap: wrap;
-  }
-  
-  .notes-tab {
-    padding: 12px 24px;
-    background: transparent;
-    border: none;
-    color: #6b7280;
-    font-weight: 600;
-    cursor: pointer;
-    border-bottom: 3px solid transparent;
-    transition: all 0.3s;
-  }
-  
-  .notes-tab:hover {
-    color: #023047;
-    background-color: #f3f4f6;
-  }
-  
-  .notes-tab.active {
-    color: #023047;
-    border-bottom-color: #028090;
-  }
-  
-  .tab-content {
-    display: none;
-  }
-  
-  .tab-content.active {
-    display: block;
-  }
-  
-  /* View toggle buttons */
-  .view-toggle {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 20px;
-    justify-content: center;
-  }
-  
-  .view-btn {
-    padding: 10px 20px;
-    border: 2px solid #028090;
-    background: white;
-    color: #023047;
-    border-radius: 8px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s;
-  }
-  
-  .view-btn:hover, .view-btn.active {
-    background: #028090;
-    color: white;
-  }
-  
-  /* Mobile responsive for tables */
-  @media (max-width: 900px) {
-    .notes-table {
-      font-size: 13px;
-    }
-    
-    .notes-table th, .notes-table td {
-      padding: 8px;
-    }
-    
-    .comparison-table {
-      grid-template-columns: 1fr;
-    }
-    
-    .notes-page {
-      padding: 20px 16px;
-    }
-  }
-  
-  /* Keep all your existing styles below */
   .header {
     text-align: left;
     background-color: #023047;
@@ -278,14 +23,540 @@
     position: relative;
     overflow: hidden;
   }
-  /* ... rest of your existing CSS ... */
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, #4f59b0 0%, transparent 70%);
+    opacity: 0.3;
+    pointer-events: none;
+  }
+  .header h1 {
+    position: relative;
+    margin: 0 0 12px 0;
+    font-size: 3rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    line-height: 1.1;
+    color: #ffa726;
+    max-width: 100%;
+    white-space: nowrap;
+  }
+  .header .subtitle {
+    position: relative;
+    font-size: 18px;
+    font-weight: 600;
+    color: #b9fbc0;
+    letter-spacing: 0.6px;
+  }
+  .login-section {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    z-index: 10;
+  }
+  .login-btn {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .login-btn:hover {
+    background: linear-gradient(135deg, #764ba2, #667eea);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  }
+  .note {
+    max-width: 720px;
+    margin: 0 auto 24px auto;
+    font-style: italic;
+    font-size: 14px;
+    color: #4b6650;
+    background-color: #d7e7d0;
+    border-left: 6px solid #a8c77a;
+    padding: 12px 20px;
+    border-radius: 8px;
+  }
+  
+  /* TABLE STYLES */
+  .notes-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  .notes-table th {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 12px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .notes-table td {
+    padding: 12px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .notes-table tr:last-child td {
+    border-bottom: none;
+  }
+  .notes-table tr:hover {
+    background-color: #f9fafb;
+  }
+  
+  /* NOTES PAGE STYLES */
+  .notes-page {
+    background-color: #ffffff;
+    padding: 32px;
+    border-radius: 12px;
+    max-width: 900px;
+    margin: 0 auto;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+  .notes-page h2 {
+    color: #023047;
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 24px;
+    border-bottom: 3px solid #028090;
+    padding-bottom: 12px;
+  }
+  .notes-page h3 {
+    color: #116466;
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 28px;
+    margin-bottom: 14px;
+  }
+  .notes-page h4 {
+    color: #2a6f62;
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  .notes-section {
+    margin-bottom: 32px;
+    padding: 20px;
+    background-color: #f9fafb;
+    border-left: 4px solid #028090;
+    border-radius: 8px;
+  }
+  .notes-list {
+    list-style: none;
+    padding-left: 0;
+  }
+  .notes-list li {
+    padding: 10px 0 10px 30px;
+    position: relative;
+    line-height: 1.7;
+    font-size: 15px;
+  }
+  .notes-list li:before {
+    content: "▸";
+    position: absolute;
+    left: 10px;
+    color: #028090;
+    font-weight: 700;
+    font-size: 18px;
+  }
+  
+  /* HIGHLIGHT BOXES */
+  .highlight-box {
+    background: linear-gradient(135deg, #fff8e1, #ffe0b2);
+    border-left: 5px solid #ff9800;
+    padding: 16px 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+  }
+  .highlight-box strong {
+    color: #e65100;
+  }
+  
+  /* DEFINITION BOXES */
+  .definition-box {
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+    border-left: 5px solid #2196f3;
+    padding: 16px 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+  }
+  .definition-box dt {
+    font-weight: 700;
+    color: #0d47a1;
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  .definition-box dd {
+    margin: 0;
+    line-height: 1.7;
+    color: #1565c0;
+  }
+  
+  /* FORMULA BOXES */
+  .formula-box {
+    background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+    border: 2px solid #9c27b0;
+    padding: 16px 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+  }
+  
+  /* COMPARISON TABLES */
+  .comparison-table {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 20px 0;
+  }
+  .comparison-card {
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 16px;
+  }
+  .comparison-card h4 {
+    color: #023047;
+    margin-top: 0;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #028090;
+  }
+  
+  /* TAB NAVIGATION */
+  .notes-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+    border-bottom: 2px solid #e5e7eb;
+    flex-wrap: wrap;
+  }
+  .notes-tab {
+    padding: 12px 24px;
+    background: transparent;
+    border: none;
+    color: #6b7280;
+    font-weight: 600;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s;
+  }
+  .notes-tab:hover {
+    color: #023047;
+    background-color: #f3f4f6;
+  }
+  .notes-tab.active {
+    color: #023047;
+    border-bottom-color: #028090;
+  }
+  .tab-content {
+    display: none;
+  }
+  .tab-content.active {
+    display: block;
+  }
+  
+  /* VIEW TOGGLE */
+  .view-toggle {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .view-btn {
+    padding: 10px 20px;
+    border: 2px solid #028090;
+    background: white;
+    color: #023047;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .view-btn:hover, .view-btn.active {
+    background: #028090;
+    color: white;
+  }
+  
+  /* Q&A MODE STYLES */
+  .qa-container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  .qa-item {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-left: 5px solid #028090;
+  }
+  
+  .qa-question {
+    font-size: 18px;
+    font-weight: 700;
+    color: #023047;
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+  
+  .qa-question-number {
+    display: inline-block;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 14px;
+    margin-right: 10px;
+    font-weight: 700;
+  }
+  
+  .qa-answer-section {
+    background: #f9fafb;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 16px;
+  }
+  
+  .qa-answer-label {
+    font-weight: 700;
+    color: #116466;
+    font-size: 16px;
+    margin-bottom: 12px;
+    display: block;
+  }
+  
+  .qa-given-data {
+    background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+    border-left: 4px solid #4caf50;
+    padding: 16px;
+    margin: 16px 0;
+    border-radius: 6px;
+  }
+  
+  .qa-given-data h5 {
+    margin: 0 0 12px 0;
+    color: #2e7d32;
+    font-size: 15px;
+  }
+  
+  .qa-given-data p {
+    margin: 6px 0;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  
+  .qa-formula {
+    background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+    border: 2px solid #ff9800;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .qa-formula h5 {
+    margin: 0 0 12px 0;
+    color: #e65100;
+    font-size: 15px;
+  }
+  
+  .qa-formula-text {
+    font-size: 18px;
+    font-weight: 700;
+    font-family: 'Courier New', monospace;
+    color: #bf360c;
+    margin: 12px 0;
+  }
+  
+  .qa-calculation {
+    background: linear-gradient(135deg, #e1f5fe, #b3e5fc);
+    border-left: 4px solid #0288d1;
+    padding: 16px;
+    margin: 16px 0;
+    border-radius: 6px;
+  }
+  
+  .qa-calculation h5 {
+    margin: 0 0 12px 0;
+    color: #01579b;
+    font-size: 15px;
+  }
+  
+  .qa-step {
+    margin: 12px 0;
+    padding: 10px;
+    background: white;
+    border-radius: 6px;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  
+  .qa-final-answer {
+    background: linear-gradient(135deg, #c8e6c9, #a5d6a7);
+    border: 3px solid #4caf50;
+    padding: 16px;
+    margin: 20px 0;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .qa-final-answer h5 {
+    margin: 0 0 8px 0;
+    color: #1b5e20;
+    font-size: 16px;
+  }
+  
+  .qa-final-answer p {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #2e7d32;
+  }
+  
+  .chemical-equation {
+    background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+    border: 2px solid #9c27b0;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    font-family: 'Courier New', monospace;
+  }
+  
+  /* Mathematical and Chemical notation */
+  sub {
+    font-size: 0.75em;
+    vertical-align: sub;
+  }
+  
+  sup {
+    font-size: 0.75em;
+    vertical-align: super;
+  }
+  
+  .math-inline {
+    font-family: 'Times New Roman', serif;
+    font-style: italic;
+  }
+  
+  .arrow {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 8px;
+  }
+  
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-bottom: 16px;
+    justify-content: center;
+    align-items: center;
+  }
+  .dropdown-group {
+    min-width: 180px;
+    flex: 1;
+  }
+  label {
+    display: block;
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 6px;
+    color: #344e41;
+  }
+  select {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 2px solid #028090;
+    font-size: 15px;
+    background-color: #ffffff;
+    color: #023047;
+    transition: 0.3s;
+  }
+  select:focus {
+    outline: none;
+    border-color: #023047;
+    background-color: #e0f7f4;
+  }
+  .reload-btn {
+    cursor: pointer;
+    background-color: #8b5cf6;
+    border: none;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 12px;
+    transition: background-color 0.3s ease;
+    height: 36px;
+  }
+  .reload-btn:hover {
+    background-color: #7c3aed;
+  }
+  
+  /* MOBILE RESPONSIVE */
+  @media (max-width: 900px) {
+    .header h1 {
+      font-size: 2rem;
+      white-space: normal;
+    }
+    .notes-table {
+      font-size: 13px;
+    }
+    .notes-table th, .notes-table td {
+      padding: 8px;
+    }
+    .comparison-table {
+      grid-template-columns: 1fr;
+    }
+    .notes-page {
+      padding: 20px 16px;
+    }
+    .login-section {
+      position: relative;
+      top: auto;
+      right: auto;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .qa-item {
+      padding: 16px;
+    }
+    .qa-question {
+      font-size: 16px;
+    }
+    .qa-formula-text {
+      font-size: 16px;
+    }
+  }
 </style>
 </head>
 <body>
 
 <div class="header" role="banner">
   <div class="login-section" id="loginSection">
-    <button class="login-btn" onclick="openLoginModal()">Login / Sign Up</button>
+    <button class="login-btn" onclick="alert('Login coming soon')">Login / Sign Up</button>
   </div>
   <h1>NEET-PbP</h1>
   <div class="subtitle">NEET/AIPMT Biology Page by Page Analysis (1988-2025)</div>
@@ -299,252 +570,176 @@
 <div class="view-toggle">
   <button class="view-btn active" onclick="switchView('mcq')">MCQ Mode</button>
   <button class="view-btn" onclick="switchView('notes')">Notes Mode</button>
+  <button class="view-btn" onclick="switchView('qa')">Q&A Mode</button>
 </div>
 
-<!-- MCQ MODE (Your existing structure) -->
+<!-- MCQ MODE -->
 <div id="mcqMode" class="mode-container">
-  <div class="controls" role="region" aria-label="Filtering controls">
-    <div class="class-reload-group">
-      <div class="class-dropdown-part">
-        <label for="classSelect">Class:</label>
-        <select id="classSelect" onchange="updateChapters()">
-          <option value="">Select Class</option>
-          <option value="12">Class 12</option>
-        </select>
-      </div>
-      <button class="reload-btn" onclick="window.location.reload()">↻ Reload</button>
+  <div class="controls">
+    <div class="dropdown-group">
+      <label for="classSelect">Class:</label>
+      <select id="classSelect" onchange="updateChapters()">
+        <option value="">Select Class</option>
+        <option value="11">Class 11</option>
+        <option value="12">Class 12</option>
+      </select>
     </div>
     <div class="dropdown-group">
       <label for="chapterSelect">Chapter:</label>
-      <select id="chapterSelect" onchange="updatePages()" disabled>
+      <select id="chapterSelect" onchange="loadContent()" disabled>
         <option value="">Select Chapter</option>
       </select>
     </div>
-    <div class="dropdown-group">
-      <label for="pageSelect">Page Number:</label>
-      <select id="pageSelect" onchange="showQuestions()" disabled>
-        <option value="">Select Page</option>
-      </select>
-    </div>
+    <button class="reload-btn" onclick="window.location.reload()">↻ Reload</button>
   </div>
   
-  <main class="content-area" id="contentArea">
-    <div class="no-questions">Please select Class, Chapter, and Page Number to view questions.</div>
-  </main>
+  <div style="text-align:center; padding:40px; color:#666;">
+    <p>MCQ content will appear here</p>
+  </div>
 </div>
 
-<!-- NOTES MODE (New dedicated notes view) -->
+<!-- NOTES MODE -->
 <div id="notesMode" class="mode-container" style="display:none;">
   <div class="notes-page" id="notesContent">
     <h2>📚 Chapter Summary Notes</h2>
-    <p style="text-align:center; color:#666;">Select a chapter from MCQ mode to view detailed notes here.</p>
+    <p style="text-align:center; color:#666;">Select a chapter to view detailed notes</p>
+  </div>
+</div>
+
+<!-- Q&A MODE -->
+<div id="qaMode" class="mode-container" style="display:none;">
+  <div class="qa-container" id="qaContent">
+    <h2 style="text-align:center; color:#023047; margin-bottom:32px;">📝 Question & Answer Section</h2>
+    <p style="text-align:center; color:#666;">Select a chapter to view detailed Q&A</p>
   </div>
 </div>
 
 <script>
   const questionData = {
-    "12": {
-      "13": {
-        title: "Biodiversity and Conservation",
-        questions: {
-          "216": [
-            [{
-              question: "How many species of ants exist globally?",
-              options: ["a) 10,000", "b) 20,000", "c) 30,000", "d) 40,000"],
-              answer: "b) 20,000"
-            }],
-            "NEET POINTERS:<br><br>1. <b>Biodiversity</b> is the combined diversity at all levels."
-          ]
-        },
-        // NEW: Rich formatted notes
-        detailedNotes: {
-          title: "Biodiversity and Conservation - Complete Notes",
-          sections: [
-            {
-              heading: "Introduction to Biodiversity",
-              content: `
-                <div class="definition-box">
-                  <dl>
-                    <dt>Biodiversity</dt>
-                    <dd>The variety of life forms at all organizational levels, from genes to ecosystems, including their ecological processes and interactions.</dd>
-                  </dl>
-                </div>
-                
-                <h4>Key Levels of Biodiversity</h4>
-                <ul class="notes-list">
-                  <li><strong>Genetic Diversity:</strong> Variation in genes within species</li>
-                  <li><strong>Species Diversity:</strong> Variety of species in an ecosystem</li>
-                  <li><strong>Ecosystem Diversity:</strong> Variety of habitats and ecological processes</li>
-                </ul>
-              `
+    "11": {
+      "5": {
+        title: "Gravitation (Physics)",
+        qaData: [
+          {
+            question: "Calculate the force between the Moon and Earth.",
+            givenData: {
+              "Mass of Earth (M<sub>E</sub>)": "5.972 × 10<sup>24</sup> kg",
+              "Mass of Moon (M<sub>M</sub>)": "7.342 × 10<sup>22</sup> kg",
+              "Distance between centers (r)": "3.844 × 10<sup>8</sup> m",
+              "Gravitational constant (G)": "6.674 × 10<sup>-11</sup> N·m<sup>2</sup>/kg<sup>2</sup>"
             },
-            {
-              heading: "Species Richness Data",
-              content: `
-                <table class="notes-table">
-                  <thead>
-                    <tr>
-                      <th>Organism Group</th>
-                      <th>Approximate Species Count</th>
-                      <th>Notable Features</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Insects</td>
-                      <td>~10,00,000</td>
-                      <td>Largest animal group</td>
-                    </tr>
-                    <tr>
-                      <td>Beetles</td>
-                      <td>~3,00,000</td>
-                      <td>Most diverse insect order</td>
-                    </tr>
-                    <tr>
-                      <td>Ants</td>
-                      <td>~20,000</td>
-                      <td>Social insects</td>
-                    </tr>
-                    <tr>
-                      <td>Orchids</td>
-                      <td>~20,000</td>
-                      <td>Most diverse plant family</td>
-                    </tr>
-                    <tr>
-                      <td>Fish</td>
-                      <td>~28,000</td>
-                      <td>Aquatic vertebrates</td>
-                    </tr>
-                  </tbody>
-                </table>
-              `
-            },
-            {
-              heading: "Patterns of Biodiversity",
-              content: `
-                <div class="highlight-box">
-                  <strong>Latitudinal Gradient:</strong> Species richness decreases from equator to poles. Tropical regions have maximum biodiversity.
+            formula: "F = G × (M<sub>E</sub> × M<sub>M</sub>) / r<sup>2</sup>",
+            formulaExplanation: "This is Newton's Law of Universal Gravitation. Every particle attracts every other particle with a force proportional to the product of their masses and inversely proportional to the square of the distance between them.",
+            solution: `
+              <div class="qa-step">
+                <strong>Step 1:</strong> Write down the formula<br>
+                F = G × (M<sub>E</sub> × M<sub>M</sub>) / r<sup>2</sup>
+              </div>
+              
+              <div class="qa-step">
+                <strong>Step 2:</strong> Substitute the given values<br>
+                F = (6.674 × 10<sup>-11</sup>) × (5.972 × 10<sup>24</sup> × 7.342 × 10<sup>22</sup>) / (3.844 × 10<sup>8</sup>)<sup>2</sup>
+              </div>
+              
+              <div class="qa-step">
+                <strong>Step 3:</strong> Calculate the numerator<br>
+                M<sub>E</sub> × M<sub>M</sub> = 5.972 × 10<sup>24</sup> × 7.342 × 10<sup>22</sup><br>
+                = 43.84 × 10<sup>46</sup> kg<sup>2</sup><br>
+                = 4.384 × 10<sup>47</sup> kg<sup>2</sup>
+              </div>
+              
+              <div class="qa-step">
+                <strong>Step 4:</strong> Calculate the denominator<br>
+                r<sup>2</sup> = (3.844 × 10<sup>8</sup>)<sup>2</sup><br>
+                = 14.776 × 10<sup>16</sup> m<sup>2</sup><br>
+                = 1.478 × 10<sup>17</sup> m<sup>2</sup>
+              </div>
+              
+              <div class="qa-step">
+                <strong>Step 5:</strong> Calculate the force<br>
+                F = (6.674 × 10<sup>-11</sup>) × (4.384 × 10<sup>47</sup>) / (1.478 × 10<sup>17</sup>)<br>
+                F = (29.26 × 10<sup>36</sup>) / (1.478 × 10<sup>17</sup>)<br>
+                F = 19.8 × 10<sup>19</sup> N<br>
+                F = <strong>1.98 × 10<sup>20</sup> N</strong>
+              </div>
+            `,
+            finalAnswer: "F = 1.98 × 10<sup>20</sup> N",
+            note: "This enormous force keeps the Moon in orbit around Earth. Despite the large distance, the gravitational attraction is significant due to the massive sizes of both celestial bodies."
+          },
+          {
+            question: "What is a double displacement reaction? Give a chemical equation.",
+            definition: "A double displacement reaction (also called metathesis reaction) is a type of chemical reaction where two compounds exchange ions or bonds to form two new compounds. The general form is: AB + CD → AD + CB",
+            explanation: `
+              <p><strong>Characteristics:</strong></p>
+              <ul class="notes-list">
+                <li>Two reactants exchange partners to form two products</li>
+                <li>Cations and anions swap places</li>
+                <li>Often occurs in aqueous solutions</li>
+                <li>May produce a precipitate, gas, or water</li>
+              </ul>
+              
+              <p style="margin-top:16px;"><strong>Types of Double Displacement:</strong></p>
+              <div class="comparison-table">
+                <div class="comparison-card">
+                  <h4>Precipitation Reaction</h4>
+                  <p style="font-size:13px;">Forms an insoluble solid (precipitate)</p>
                 </div>
-                
-                <div class="comparison-table">
-                  <div class="comparison-card">
-                    <h4>Tropical Regions</h4>
-                    <ul class="notes-list">
-                      <li>High species richness</li>
-                      <li>Stable climate</li>
-                      <li>More evolutionary time</li>
-                      <li>High productivity</li>
-                    </ul>
-                  </div>
-                  <div class="comparison-card">
-                    <h4>Polar Regions</h4>
-                    <ul class="notes-list">
-                      <li>Low species richness</li>
-                      <li>Extreme climate</li>
-                      <li>Less evolutionary time</li>
-                      <li>Low productivity</li>
-                    </ul>
-                  </div>
+                <div class="comparison-card">
+                  <h4>Neutralization Reaction</h4>
+                  <p style="font-size:13px;">Acid + Base → Salt + Water</p>
                 </div>
-              `
-            },
-            {
-              heading: "Conservation Strategies",
-              content: `
-                <h4>In-situ Conservation</h4>
-                <ul class="notes-list">
-                  <li>National Parks</li>
-                  <li>Wildlife Sanctuaries</li>
-                  <li>Biosphere Reserves</li>
-                  <li>Sacred Groves</li>
+              </div>
+            `,
+            examples: [
+              {
+                title: "Example 1: Precipitation Reaction",
+                equation: "AgNO<sub>3</sub>(aq) + NaCl(aq) <span class='arrow'>→</span> AgCl(s)↓ + NaNO<sub>3</sub>(aq)",
+                explanation: "Silver nitrate reacts with sodium chloride to form a white precipitate of silver chloride and aqueous sodium nitrate. The white precipitate (AgCl) settles at the bottom."
+              },
+              {
+                title: "Example 2: Neutralization Reaction",
+                equation: "HCl(aq) + NaOH(aq) <span class='arrow'>→</span> NaCl(aq) + H<sub>2</sub>O(l)",
+                explanation: "Hydrochloric acid reacts with sodium hydroxide (base) to form salt (sodium chloride) and water. This is an acid-base neutralization reaction."
+              },
+              {
+                title: "Example 3: Gas Formation",
+                equation: "Na<sub>2</sub>CO<sub>3</sub>(aq) + 2HCl(aq) <span class='arrow'>→</span> 2NaCl(aq) + H<sub>2</sub>O(l) + CO<sub>2</sub>(g)↑",
+                explanation: "Sodium carbonate reacts with hydrochloric acid to produce sodium chloride, water, and carbon dioxide gas (effervescence observed)."
+              }
+            ],
+            balancingNote: `
+              <div class="highlight-box">
+                <strong>Important:</strong> In double displacement reactions, always check that:
+                <ul style="margin:8px 0 0 20px;">
+                  <li>The equation is balanced (same number of each atom on both sides)</li>
+                  <li>Charges are balanced (total charge on reactants = total charge on products)</li>
+                  <li>States of matter are indicated: (s) solid, (l) liquid, (g) gas, (aq) aqueous</li>
+                  <li>Use ↓ for precipitates and ↑ for gases evolved</li>
                 </ul>
-                
-                <h4>Ex-situ Conservation</h4>
-                <ul class="notes-list">
-                  <li>Zoological Parks</li>
-                  <li>Botanical Gardens</li>
-                  <li>Seed Banks</li>
-                  <li>Cryopreservation</li>
-                </ul>
-              `
-            }
-          ]
-        }
+              </div>
+            `
+          }
+        ]
       }
     }
   };
-
+  
   let currentView = 'mcq';
 
   function switchView(view) {
     currentView = view;
     document.getElementById('mcqMode').style.display = view === 'mcq' ? 'block' : 'none';
     document.getElementById('notesMode').style.display = view === 'notes' ? 'block' : 'none';
+    document.getElementById('qaMode').style.display = view === 'qa' ? 'block' : 'none';
     
-    // Update button states
-    document.querySelectorAll('.view-btn').forEach(btn => {
-      btn.classList.remove('active');
-    });
+    document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
     event.target.classList.add('active');
     
-    // Load notes if switching to notes mode
     if (view === 'notes') {
-      loadDetailedNotes();
+      loadNotes();
+    } else if (view === 'qa') {
+      loadQA();
     }
-  }
-
-  function loadDetailedNotes() {
-    const classSelect = document.getElementById('classSelect').value;
-    const chapterSelect = document.getElementById('chapterSelect').value;
-    
-    if (!classSelect || !chapterSelect) {
-      document.getElementById('notesContent').innerHTML = `
-        <h2>📚 Chapter Summary Notes</h2>
-        <p style="text-align:center; color:#666;">Please select a class and chapter from MCQ mode first.</p>
-      `;
-      return;
-    }
-    
-    const chapter = questionData[classSelect][chapterSelect];
-    if (!chapter.detailedNotes) {
-      document.getElementById('notesContent').innerHTML = `
-        <h2>📚 ${chapter.title}</h2>
-        <p style="text-align:center; color:#666;">Detailed notes coming soon for this chapter.</p>
-      `;
-      return;
-    }
-    
-    const notes = chapter.detailedNotes;
-    let html = `<h2>${notes.title}</h2>`;
-    
-    // Create tabs for sections
-    html += '<div class="notes-tabs">';
-    notes.sections.forEach((section, idx) => {
-      html += `<button class="notes-tab ${idx === 0 ? 'active' : ''}" onclick="switchNotesTab(${idx})">${section.heading}</button>`;
-    });
-    html += '</div>';
-    
-    // Add section content
-    notes.sections.forEach((section, idx) => {
-      html += `
-        <div class="tab-content ${idx === 0 ? 'active' : ''}" id="notesTab${idx}">
-          <div class="notes-section">
-            ${section.content}
-          </div>
-        </div>
-      `;
-    });
-    
-    document.getElementById('notesContent').innerHTML = html;
-  }
-
-  function switchNotesTab(tabIndex) {
-    document.querySelectorAll('.notes-tab').forEach((tab, idx) => {
-      tab.classList.toggle('active', idx === tabIndex);
-    });
-    document.querySelectorAll('.tab-content').forEach((content, idx) => {
-      content.classList.toggle('active', idx === tabIndex);
-    });
   }
 
   function updateChapters() {
@@ -561,68 +756,144 @@
         chapterSelect.appendChild(option);
       });
       chapterSelect.disabled = false;
+    } else {
+      chapterSelect.disabled = true;
     }
   }
 
-  function updatePages() {
+  function loadContent() {
+    if (currentView === 'notes') {
+      loadNotes();
+    } else if (currentView === 'qa') {
+      loadQA();
+    }
+  }
+
+  function loadNotes() {
+    document.getElementById('notesContent').innerHTML = `
+      <h2>📚 Chapter Summary Notes</h2>
+      <p style="text-align:center; color:#666;">Notes functionality ready. Add detailedNotes to your chapter data.</p>
+    `;
+  }
+
+  function loadQA() {
     const classSelect = document.getElementById('classSelect').value;
     const chapterSelect = document.getElementById('chapterSelect').value;
-    const pageSelect = document.getElementById('pageSelect');
     
-    pageSelect.innerHTML = '<option value="">Select Page</option>';
-    
-    if (classSelect && chapterSelect && questionData[classSelect][chapterSelect]) {
-      const pages = Object.keys(questionData[classSelect][chapterSelect].questions);
-      pages.forEach(page => {
-        const option = document.createElement('option');
-        option.value = page;
-        option.textContent = `Page ${page}`;
-        pageSelect.appendChild(option);
-      });
-      pageSelect.disabled = false;
+    if (!classSelect || !chapterSelect) {
+      document.getElementById('qaContent').innerHTML = `
+        <h2 style="text-align:center; color:#023047; margin-bottom:32px;">📝 Question & Answer Section</h2>
+        <p style="text-align:center; color:#666;">Please select a class and chapter first.</p>
+      `;
+      return;
     }
-  }
-
-  function showQuestions() {
-    // Your existing MCQ rendering code
-    const classSelect = document.getElementById('classSelect').value;
-    const chapterSelect = document.getElementById('chapterSelect').value;
-    const pageSelect = document.getElementById('pageSelect').value;
     
-    if (classSelect && chapterSelect && pageSelect) {
-      const [questions, pointers] = questionData[classSelect][chapterSelect].questions[pageSelect];
-      renderContent(questions, pointers);
+    const chapter = questionData[classSelect][chapterSelect];
+    if (!chapter.qaData) {
+      document.getElementById('qaContent').innerHTML = `
+        <h2 style="text-align:center; color:#023047; margin-bottom:32px;">📝 ${chapter.title}</h2>
+        <p style="text-align:center; color:#666;">Q&A coming soon for this chapter.</p>
+      `;
+      return;
     }
-  }
-
-  function renderContent(questions, pointers) {
-    const contentArea = document.getElementById('contentArea');
-    let html = '';
     
-    if (questions.length > 0) {
-      html += `<div class="question-count">Questions: ${questions.length}</div>`;
+    let html = `<h2 style="text-align:center; color:#023047; margin-bottom:32px;">📝 ${chapter.title} - Q&A</h2>`;
+    
+    chapter.qaData.forEach((qa, idx) => {
+      html += `<div class="qa-item">`;
+      html += `<div class="qa-question"><span class="qa-question-number">Q${idx + 1}</span>${qa.question}</div>`;
       
-      questions.forEach((q, idx) => {
-        html += `
-          <div class="question-item">
-            <div class="question-header">
-              <div class="question-number">Q${idx + 1}</div>
-              <div class="question-year">NEET PYQ</div>
-            </div>
-            <div class="question-text">${q.question}</div>
-            <div class="options">
-              ${q.options.map(opt => `<div class="option">${opt}</div>`).join('')}
-            </div>
-          </div>
-        `;
-      });
-    }
+      // For mathematical calculation questions
+      if (qa.givenData) {
+        html += `<div class="qa-answer-section">`;
+        html += `<span class="qa-answer-label">📊 Solution:</span>`;
+        
+        // Given data
+        html += `<div class="qa-given-data">`;
+        html += `<h5>Given:</h5>`;
+        for (let [key, value] of Object.entries(qa.givenData)) {
+          html += `<p><strong>${key}:</strong> ${value}</p>`;
+        }
+        html += `</div>`;
+        
+        // Formula
+        if (qa.formula) {
+          html += `<div class="qa-formula">`;
+          html += `<h5>Formula:</h5>`;
+          html += `<div class="qa-formula-text">${qa.formula}</div>`;
+          if (qa.formulaExplanation) {
+            html += `<p style="margin-top:12px; font-size:14px; color:#666;">${qa.formulaExplanation}</p>`;
+          }
+          html += `</div>`;
+        }
+        
+        // Solution steps
+        html += `<div class="qa-calculation">`;
+        html += `<h5>Calculation:</h5>`;
+        html += qa.solution;
+        html += `</div>`;
+        
+        // Final answer
+        html += `<div class="qa-final-answer">`;
+        html += `<h5>Final Answer:</h5>`;
+        html += `<p>${qa.finalAnswer}</p>`;
+        html += `</div>`;
+        
+        if (qa.note) {
+          html += `<div class="highlight-box" style="margin-top:16px;">`;
+          html += `<strong>Note:</strong> ${qa.note}`;
+          html += `</div>`;
+        }
+        
+        html += `</div>`;
+      }
+      
+      // For theory/chemistry questions
+      if (qa.definition) {
+        html += `<div class="qa-answer-section">`;
+        html += `<span class="qa-answer-label">📚 Answer:</span>`;
+        
+        html += `<div class="definition-box">`;
+        html += `<dt>Definition</dt>`;
+        html += `<dd>${qa.definition}</dd>`;
+        html += `</div>`;
+        
+        if (qa.explanation) {
+          html += `<div class="notes-section">`;
+          html += qa.explanation;
+          html += `</div>`;
+        }
+        
+        if (qa.examples) {
+          qa.examples.forEach(example => {
+            html += `<div style="margin-top:24px;">`;
+            html += `<h4 style="color:#116466;">${example.title}</h4>`;
+            html += `<div class="chemical-equation">${example.equation}</div>`;
+            html += `<p style="color:#555; margin-top:12px;"><strong>Explanation:</strong> ${example.explanation}</p>`;
+            html += `</div>`;
+          });
+        }
+        
+        if (qa.balancingNote) {
+          html += qa.balancingNote;
+        }
+        
+        html += `</div>`;
+      }
+      
+      html += `</div>`;
+    });
     
-    contentArea.innerHTML = html;
+    document.getElementById('qaContent').innerHTML = html;
   }
 
-  function openLoginModal() {
-    alert('Login functionality - placeholder');
+  function switchNotesTab(tabIndex) {
+    document.querySelectorAll('.notes-tab').forEach((tab, idx) => {
+      tab.classList.toggle('active', idx === tabIndex);
+    });
+    document.querySelectorAll('.tab-content').forEach((content, idx) => {
+      content.classList.toggle('active', idx === tabIndex);
+    });
   }
 </script>
 
