@@ -325,15 +325,16 @@
   .mark-filter-btn.filter-5.active { background: linear-gradient(135deg, #f44336, #ef5350); color: white; }
   .mark-filter-btn.filter-all.active { background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
   
-  /* MOBILE RESPONSIVE - OPTIMIZED */
+  /* MOBILE RESPONSIVE - MAXIMUM WIDTH */
   @media (max-width: 900px) {
     body {
-      padding: 12px 8px;
+      padding: 8px 4px;
     }
     
     .header {
-      padding: 32px 16px 24px 16px;
-      margin-bottom: 20px;
+      padding: 24px 8px 16px 8px;
+      margin-bottom: 16px;
+      border-radius: 6px;
     }
     
     .header h1 {
@@ -345,15 +346,38 @@
       font-size: 14px;
     }
     
+    .view-toggle {
+      gap: 6px;
+      margin-bottom: 12px;
+      padding: 0 4px;
+    }
+    
+    .view-btn {
+      padding: 8px 12px;
+      font-size: 13px;
+    }
+    
+    .mark-filter {
+      gap: 6px;
+      margin-bottom: 16px;
+      padding: 0 4px;
+    }
+    
+    .mark-filter-btn {
+      padding: 6px 10px;
+      font-size: 12px;
+    }
+    
     .qa-container {
       max-width: 100%;
       padding: 0;
+      margin: 0;
     }
     
     .qa-item {
-      padding: 12px;
-      margin-bottom: 16px;
-      border-radius: 8px;
+      padding: 10px 8px;
+      margin-bottom: 12px;
+      border-radius: 6px;
     }
     
     .qa-question {
@@ -364,24 +388,27 @@
     
     .qa-question-number {
       font-size: 12px;
-      padding: 4px 10px;
-      margin-right: 6px;
+      padding: 4px 8px;
+      margin-right: 4px;
     }
     
     .mark-badge {
       font-size: 11px;
-      padding: 4px 10px;
-      margin-left: 6px;
+      padding: 3px 8px;
+      margin-left: 4px;
+      display: block;
+      margin-top: 6px;
+      width: fit-content;
     }
     
     .answer-length-guide {
       font-size: 11px;
-      padding: 8px 10px;
+      padding: 8px 8px;
       margin-bottom: 10px;
     }
     
     .qa-answer-section {
-      padding: 12px;
+      padding: 10px 8px;
       margin-top: 10px;
     }
     
@@ -390,20 +417,24 @@
       margin-bottom: 8px;
     }
     
-    /* Reduced font sizes for answers */
+    /* Keep original font sizes for answers */
     .answer-1mark, .answer-2mark .point, .answer-3mark .point, .answer-5mark .section p {
       font-size: 13px;
       line-height: 1.6;
     }
     
+    .answer-1mark, .answer-2mark, .answer-3mark, .answer-5mark {
+      padding: 10px 8px;
+    }
+    
     .answer-3mark .point, .answer-5mark .section {
-      padding: 10px;
-      margin: 10px 0;
+      padding: 8px;
+      margin: 8px 0;
     }
     
     .answer-5mark .section h5 {
       font-size: 14px;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
     
     /* Optimize fractions for mobile */
@@ -413,69 +444,54 @@
     }
     
     .frac .num, .frac .den {
-      padding: 1px 4px;
+      padding: 1px 3px;
     }
     
     .frac-lg {
       font-size: 1em;
-      margin: 0 4px;
+      margin: 0 3px;
     }
     
     .frac-lg .num, .frac-lg .den {
-      padding: 3px 8px;
-    }
-    
-    /* Make view toggle buttons smaller */
-    .view-toggle {
-      gap: 8px;
-      margin-bottom: 16px;
-    }
-    
-    .view-btn {
-      padding: 8px 14px;
-      font-size: 13px;
-    }
-    
-    /* Make mark filter smaller */
-    .mark-filter {
-      gap: 6px;
-      margin-bottom: 16px;
-    }
-    
-    .mark-filter-btn {
-      padding: 6px 12px;
-      font-size: 11px;
+      padding: 2px 6px;
     }
   }
   
   /* EXTRA SMALL MOBILE (< 400px) */
   @media (max-width: 400px) {
     body {
+      padding: 6px 2px;
+    }
+    
+    .header {
+      padding: 20px 6px 12px 6px;
+    }
+    
+    .qa-item {
+      padding: 8px 6px;
+    }
+    
+    .qa-answer-section {
+      padding: 8px 6px;
+    }
+    
+    .answer-1mark, .answer-2mark, .answer-3mark, .answer-5mark {
+      padding: 8px 6px;
+    }
+  }
+  
+  /* LARGE MOBILE (> 600px but < 900px) */
+  @media (min-width: 600px) and (max-width: 900px) {
+    body {
       padding: 10px 6px;
     }
     
     .qa-item {
-      padding: 10px;
-    }
-    
-    .qa-question {
-      font-size: 13px;
+      padding: 14px 10px;
     }
     
     .qa-answer-section {
-      padding: 10px;
-    }
-    
-    .answer-1mark, .answer-2mark .point, .answer-3mark .point, .answer-5mark .section p {
-      font-size: 12px;
-    }
-    
-    .frac {
-      font-size: 0.85em;
-    }
-    
-    .frac-lg {
-      font-size: 0.95em;
+      padding: 12px 10px;
     }
   }
 </style>
@@ -762,4 +778,3 @@
 
 </body>
 </html>
-
