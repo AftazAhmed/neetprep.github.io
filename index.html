@@ -3,26 +3,28 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>NEET-PbP</title>
+<title>Class 8 - PbP</title>
 <style>
   body {
     font-family: 'Montserrat', Arial, sans-serif;
     margin: 0;
-    padding: 20px 24px;
+    padding: 16px 8px;
     background-color: #f9fafb;
     color: #1f2937;
     overflow-x: hidden;
   }
+  
   .header {
-    text-align: left;
+    text-align: center;
     background-color: #023047;
     color: #ffb347;
-    padding: 48px 24px 32px 24px;
+    padding: 32px 16px 24px 16px;
     border-radius: 10px;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
     position: relative;
     overflow: hidden;
   }
+  
   .header::before {
     content: '';
     position: absolute;
@@ -34,20 +36,19 @@
     opacity: 0.3;
     pointer-events: none;
   }
+  
   .header h1 {
     position: relative;
-    margin: 0 0 12px 0;
-    font-size: 3rem;
+    margin: 0 0 8px 0;
+    font-size: 2.5rem;
     font-weight: 900;
     letter-spacing: 2px;
-    line-height: 1.1;
     color: #ffa726;
-    max-width: 100%;
-    white-space: nowrap;
   }
+  
   .header .subtitle {
     position: relative;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
     color: #b9fbc0;
     letter-spacing: 0.6px;
@@ -58,33 +59,35 @@
     display: inline-block;
     vertical-align: middle;
     text-align: center;
-    margin: 0 4px;
+    margin: 0 3px;
   }
   
   .frac .num {
     display: block;
-    padding: 2px 6px;
+    padding: 1px 4px;
     border-bottom: 2px solid currentColor;
     line-height: 1.2;
+    font-size: 0.95em;
   }
   
   .frac .den {
     display: block;
-    padding: 2px 6px;
+    padding: 1px 4px;
     line-height: 1.2;
+    font-size: 0.95em;
   }
   
   .frac-lg {
     display: inline-block;
     vertical-align: middle;
     text-align: center;
-    font-size: 1.1em;
-    margin: 0 6px;
+    font-size: 1em;
+    margin: 0 4px;
   }
   
   .frac-lg .num {
     display: block;
-    padding: 4px 10px;
+    padding: 3px 8px;
     border-bottom: 3px solid currentColor;
     font-weight: 700;
     line-height: 1.3;
@@ -92,119 +95,120 @@
   
   .frac-lg .den {
     display: block;
-    padding: 4px 10px;
+    padding: 3px 8px;
     font-weight: 700;
     line-height: 1.3;
   }
   
   /* NOTES SECTION STYLES */
   .notes-container {
-    max-width: 1000px;
+    max-width: 100%;
     margin: 0 auto;
     background: white;
-    padding: 32px;
-    border-radius: 12px;
+    padding: 20px 12px;
+    border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   }
   
   .notes-title {
-    font-size: 28px;
+    font-size: 22px;
     font-weight: 800;
     color: #023047;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     text-align: center;
     border-bottom: 3px solid #028090;
-    padding-bottom: 12px;
+    padding-bottom: 10px;
   }
   
   .note-segment {
-    margin-bottom: 32px;
-    padding: 20px;
+    margin-bottom: 24px;
+    padding: 16px;
     background: #f9fafb;
-    border-radius: 8px;
+    border-radius: 6px;
     border-left: 4px solid #028090;
   }
   
   .segment-heading {
-    font-size: 20px;
+    font-size: 17px;
     font-weight: 700;
     color: #116466;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
   }
   
   .segment-subheading {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 700;
     color: #2a6f62;
-    margin-top: 16px;
-    margin-bottom: 10px;
+    margin-top: 12px;
+    margin-bottom: 8px;
   }
   
   .note-paragraph {
-    font-size: 15px;
-    line-height: 1.8;
+    font-size: 13px;
+    line-height: 1.6;
     color: #1f2937;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     text-align: justify;
   }
   
   .note-list {
     list-style: none;
     padding-left: 0;
-    margin: 12px 0;
+    margin: 10px 0;
   }
   
   .note-list li {
-    padding: 8px 0 8px 28px;
+    padding: 6px 0 6px 24px;
     position: relative;
-    font-size: 15px;
-    line-height: 1.7;
+    font-size: 13px;
+    line-height: 1.6;
   }
   
   .note-list li:before {
     content: "▸";
     position: absolute;
-    left: 8px;
+    left: 6px;
     color: #028090;
     font-weight: 700;
-    font-size: 16px;
+    font-size: 14px;
   }
   
   .note-numbered-list {
-    padding-left: 20px;
-    margin: 12px 0;
+    padding-left: 18px;
+    margin: 10px 0;
   }
   
   .note-numbered-list li {
-    padding: 6px 0;
-    font-size: 15px;
-    line-height: 1.7;
+    padding: 5px 0;
+    font-size: 13px;
+    line-height: 1.6;
   }
   
   .note-table {
     width: 100%;
     border-collapse: collapse;
-    margin: 20px 0;
+    margin: 16px 0;
     background: white;
-    border-radius: 8px;
+    border-radius: 6px;
     overflow: hidden;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    font-size: 12px;
   }
   
   .note-table th {
     background: linear-gradient(135deg, #667eea, #764ba2);
     color: white;
-    padding: 12px;
+    padding: 10px 8px;
     text-align: left;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 12px;
   }
   
   .note-table td {
-    padding: 12px;
+    padding: 10px 8px;
     border-bottom: 1px solid #e5e7eb;
-    font-size: 14px;
-    line-height: 1.6;
+    font-size: 12px;
+    line-height: 1.5;
   }
   
   .note-table tr:last-child td {
@@ -218,52 +222,53 @@
   .formula-box {
     background: linear-gradient(135deg, #fff3e0, #ffe0b2);
     border: 2px solid #ff9800;
-    padding: 20px;
-    margin: 20px 0;
-    border-radius: 8px;
+    padding: 16px;
+    margin: 16px 0;
+    border-radius: 6px;
     text-align: center;
   }
   
   .formula-label {
-    font-size: 14px;
+    font-size: 12px;
     color: #e65100;
     font-weight: 700;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
   }
   
   .formula-text {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 700;
     color: #bf360c;
-    margin: 8px 0;
+    margin: 6px 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 6px;
     flex-wrap: wrap;
   }
   
   .equation-box {
     background: linear-gradient(135deg, #e3f2fd, #bbdefb);
     border: 2px solid #2196f3;
-    padding: 16px;
-    margin: 16px 0;
-    border-radius: 8px;
+    padding: 14px;
+    margin: 14px 0;
+    border-radius: 6px;
     text-align: center;
   }
   
   .equation-text {
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 600;
     color: #0d47a1;
   }
   
   .highlight-box {
     background: linear-gradient(135deg, #fff8e1, #ffe0b2);
-    border-left: 5px solid #ff9800;
-    padding: 16px 20px;
-    margin: 16px 0;
-    border-radius: 8px;
+    border-left: 4px solid #ff9800;
+    padding: 12px 16px;
+    margin: 12px 0;
+    border-radius: 6px;
+    font-size: 13px;
   }
   
   .highlight-box strong {
@@ -272,30 +277,32 @@
   
   .definition-box {
     background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-    border-left: 5px solid #2196f3;
-    padding: 16px 20px;
-    margin: 16px 0;
-    border-radius: 8px;
+    border-left: 4px solid #2196f3;
+    padding: 12px 16px;
+    margin: 12px 0;
+    border-radius: 6px;
   }
   
   .definition-term {
     font-weight: 700;
     color: #0d47a1;
-    font-size: 16px;
-    margin-bottom: 8px;
+    font-size: 14px;
+    margin-bottom: 6px;
   }
   
   .definition-text {
     color: #1565c0;
-    line-height: 1.7;
+    line-height: 1.6;
+    font-size: 13px;
   }
   
   .important-note {
     background: linear-gradient(135deg, #ffebee, #ffcdd2);
     border: 2px solid #f44336;
-    padding: 16px 20px;
-    margin: 16px 0;
-    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 12px 0;
+    border-radius: 6px;
+    font-size: 13px;
   }
   
   .important-note strong {
@@ -304,94 +311,147 @@
   
   /* MCQ STYLES */
   .mcq-container {
-    max-width: 900px;
+    max-width: 100%;
     margin: 0 auto;
+  }
+  
+  .score-display {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 16px;
   }
   
   .question-count {
     font-weight: 700;
-    font-size: 18px;
+    font-size: 15px;
     color: #116466;
-    margin-bottom: 18px;
-    border-left: 5px solid #028090;
-    padding-left: 14px;
+    margin-bottom: 14px;
+    border-left: 4px solid #028090;
+    padding-left: 12px;
   }
   
   .question-item {
     background-color: #fff8f0;
-    border-radius: 12px;
+    border-radius: 8px;
     border: 1.5px solid #f0c49c;
-    margin-bottom: 26px;
-    padding: 20px 24px;
-    font-size: 15px;
+    margin-bottom: 20px;
+    padding: 16px;
+    font-size: 13px;
   }
   
   .question-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 14px;
-    gap: 12px;
+    margin-bottom: 12px;
+    gap: 8px;
     flex-wrap: wrap;
   }
   
   .question-number {
     font-weight: 700;
-    font-size: 18px;
+    font-size: 16px;
     color: #2a6f62;
   }
   
-  .question-year {
-    background-color: #116466;
-    color: #e0f7f4;
-    padding: 5px 14px;
-    border-radius: 16px;
+  .chatgpt-btn {
+    background-color: #198754;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
     font-weight: 600;
-    font-size: 13px;
+    font-size: 11px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .chatgpt-btn:hover {
+    background-color: #146c43;
+    transform: scale(1.05);
   }
   
   .question-text {
     font-weight: 600;
-    font-size: 15px;
+    font-size: 13px;
     color: #255c4d;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
+    line-height: 1.6;
   }
   
   .options {
-    margin-bottom: 18px;
+    margin-bottom: 14px;
   }
   
   .option {
     background-color: #ffffff;
     border-radius: 6px;
     border: 1.8px solid #b5d0c8;
-    padding: 11px 18px;
-    margin: 8px 0;
+    padding: 10px 14px;
+    margin: 6px 0;
     font-weight: 500;
-    font-size: 15px;
+    font-size: 13px;
     color: #244636;
     cursor: pointer;
     transition: all 0.3s;
+    position: relative;
   }
   
   .option:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: #e8f5f1;
     border-color: #71b280;
+  }
+  
+  .option.correct {
+    background-color: #d4edda;
+    border-color: #28a745;
+  }
+  
+  .option.wrong {
+    background-color: #f8d7da;
+    border-color: #dc3545;
+  }
+  
+  .option.correct::after {
+    content: "✓";
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #28a745;
+    font-weight: 700;
+    font-size: 18px;
+  }
+  
+  .option.wrong::after {
+    content: "✗";
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #dc3545;
+    font-weight: 700;
+    font-size: 18px;
   }
   
   .button-group {
     display: flex;
-    gap: 14px;
+    gap: 10px;
     flex-wrap: wrap;
   }
   
   .btn {
-    padding: 11px 18px;
+    padding: 8px 14px;
     border: none;
-    border-radius: 7px;
+    border-radius: 6px;
     cursor: pointer;
     font-weight: 700;
-    font-size: 15px;
+    font-size: 13px;
     transition: all 0.3s;
   }
   
@@ -407,11 +467,11 @@
   /* Q&A STYLES */
   .mark-badge {
     display: inline-block;
-    padding: 6px 16px;
-    border-radius: 20px;
-    font-size: 13px;
+    padding: 5px 12px;
+    border-radius: 16px;
+    font-size: 11px;
     font-weight: 700;
-    margin-left: 12px;
+    margin-left: 8px;
     vertical-align: middle;
   }
   
@@ -421,17 +481,17 @@
   .mark-5 { background: linear-gradient(135deg, #f44336, #ef5350); color: white; }
   
   .qa-container {
-    max-width: 900px;
+    max-width: 100%;
     margin: 0 auto;
   }
   
   .qa-item {
     background: white;
-    border-radius: 12px;
-    padding: 24px;
-    margin-bottom: 24px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    border-left: 5px solid #028090;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    border-left: 4px solid #028090;
   }
   
   .qa-item.mark-1-item { border-left-color: #4caf50; }
@@ -440,73 +500,73 @@
   .qa-item.mark-5-item { border-left-color: #f44336; }
   
   .qa-question {
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 700;
     color: #023047;
-    margin-bottom: 20px;
-    line-height: 1.8;
+    margin-bottom: 14px;
+    line-height: 1.6;
   }
   
   .qa-question-number {
     display: inline-block;
     background: linear-gradient(135deg, #667eea, #764ba2);
     color: white;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 14px;
-    margin-right: 10px;
+    padding: 5px 12px;
+    border-radius: 16px;
+    font-size: 12px;
+    margin-right: 8px;
     font-weight: 700;
   }
   
   .qa-answer-section {
     background: #f9fafb;
-    padding: 20px;
-    border-radius: 8px;
-    margin-top: 16px;
+    padding: 14px;
+    border-radius: 6px;
+    margin-top: 12px;
   }
   
   .qa-answer-label {
     font-weight: 700;
     color: #116466;
-    font-size: 16px;
-    margin-bottom: 12px;
+    font-size: 14px;
+    margin-bottom: 10px;
     display: block;
   }
   
   .answer-length-guide {
     background: linear-gradient(135deg, #fff3e0, #ffe0b2);
-    border-left: 4px solid #ff9800;
-    padding: 12px 16px;
-    margin-bottom: 16px;
-    border-radius: 6px;
-    font-size: 13px;
+    border-left: 3px solid #ff9800;
+    padding: 10px 12px;
+    margin-bottom: 12px;
+    border-radius: 5px;
+    font-size: 11px;
     color: #e65100;
     font-weight: 600;
   }
   
   .answer-1mark, .answer-2mark, .answer-3mark, .answer-5mark {
-    padding: 16px;
+    padding: 12px;
     border-radius: 6px;
+    font-size: 13px;
+    line-height: 1.6;
   }
   
   .answer-1mark {
     background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
-    border-left: 4px solid #4caf50;
-    font-size: 15px;
-    line-height: 1.8;
+    border-left: 3px solid #4caf50;
   }
   
   .answer-2mark {
     background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-    border-left: 4px solid #2196f3;
+    border-left: 3px solid #2196f3;
   }
   
   .answer-2mark .point {
-    margin: 10px 0;
-    padding-left: 20px;
+    margin: 8px 0;
+    padding-left: 18px;
     position: relative;
-    font-size: 15px;
-    line-height: 1.8;
+    font-size: 13px;
+    line-height: 1.6;
   }
   
   .answer-2mark .point:before {
@@ -519,16 +579,16 @@
   
   .answer-3mark {
     background: linear-gradient(135deg, #fff3e0, #ffe0b2);
-    border-left: 4px solid #ff9800;
+    border-left: 3px solid #ff9800;
   }
   
   .answer-3mark .point {
-    margin: 12px 0;
-    padding: 12px;
+    margin: 10px 0;
+    padding: 10px;
     background: white;
-    border-radius: 6px;
-    font-size: 15px;
-    line-height: 1.8;
+    border-radius: 5px;
+    font-size: 13px;
+    line-height: 1.6;
   }
   
   .answer-3mark .point strong {
@@ -537,26 +597,26 @@
   
   .answer-5mark {
     background: linear-gradient(135deg, #ffebee, #ffcdd2);
-    border-left: 4px solid #f44336;
+    border-left: 3px solid #f44336;
   }
   
   .answer-5mark .section {
-    margin: 16px 0;
-    padding: 16px;
+    margin: 12px 0;
+    padding: 12px;
     background: white;
-    border-radius: 8px;
+    border-radius: 6px;
   }
   
   .answer-5mark .section h5 {
-    margin: 0 0 10px 0;
+    margin: 0 0 8px 0;
     color: #c62828;
-    font-size: 16px;
+    font-size: 14px;
   }
   
   .answer-5mark .section p {
-    margin: 8px 0;
-    font-size: 15px;
-    line-height: 1.8;
+    margin: 6px 0;
+    font-size: 13px;
+    line-height: 1.6;
   }
   
   /* Mathematical notation */
@@ -574,31 +634,31 @@
   .controls {
     display: flex;
     flex-wrap: wrap;
-    gap: 18px;
-    margin-bottom: 16px;
+    gap: 12px;
+    margin-bottom: 12px;
     justify-content: center;
     align-items: center;
   }
   
   .dropdown-group {
-    min-width: 180px;
+    min-width: 140px;
     flex: 1;
   }
   
   label {
     display: block;
     font-weight: 700;
-    font-size: 15px;
-    margin-bottom: 6px;
+    font-size: 13px;
+    margin-bottom: 5px;
     color: #344e41;
   }
   
   select {
     width: 100%;
-    padding: 10px 14px;
-    border-radius: 8px;
+    padding: 8px 10px;
+    border-radius: 6px;
     border: 2px solid #028090;
-    font-size: 15px;
+    font-size: 13px;
     background-color: #ffffff;
     color: #023047;
     transition: 0.3s;
@@ -619,7 +679,8 @@
     border-radius: 6px;
     font-weight: 700;
     font-size: 12px;
-    height: 36px;
+    height: 34px;
+    transition: all 0.3s;
   }
   
   .reload-btn:hover {
@@ -629,19 +690,20 @@
   /* VIEW TOGGLE */
   .view-toggle {
     display: flex;
-    gap: 12px;
-    margin-bottom: 20px;
+    gap: 10px;
+    margin-bottom: 16px;
     justify-content: center;
     flex-wrap: wrap;
   }
   
   .view-btn {
-    padding: 10px 20px;
+    padding: 8px 16px;
     border: 2px solid #028090;
     background: white;
     color: #023047;
-    border-radius: 8px;
+    border-radius: 6px;
     font-weight: 700;
+    font-size: 13px;
     cursor: pointer;
     transition: all 0.3s;
   }
@@ -654,20 +716,20 @@
   /* FILTER BY MARKS */
   .mark-filter {
     display: flex;
-    gap: 8px;
+    gap: 6px;
     justify-content: center;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
     flex-wrap: wrap;
   }
   
   .mark-filter-btn {
-    padding: 8px 16px;
+    padding: 6px 12px;
     border: 2px solid #e0e0e0;
     background: white;
-    border-radius: 20px;
+    border-radius: 16px;
     cursor: pointer;
     font-weight: 600;
-    font-size: 13px;
+    font-size: 11px;
     transition: all 0.3s;
   }
   
@@ -687,41 +749,12 @@
   
   /* MOBILE RESPONSIVE */
   @media (max-width: 900px) {
-    body {
-      padding: 8px 4px;
-    }
-    
-    .header {
-      padding: 24px 8px 16px 8px;
-      margin-bottom: 16px;
-      border-radius: 6px;
-    }
-    
     .header h1 {
-      font-size: 1.8rem;
-      white-space: normal;
+      font-size: 2rem;
     }
     
     .header .subtitle {
       font-size: 14px;
-    }
-    
-    .notes-container, .mcq-container, .qa-container {
-      padding: 16px 12px;
-      max-width: 100%;
-    }
-    
-    .qa-item, .question-item {
-      padding: 10px 8px;
-      margin-bottom: 12px;
-    }
-    
-    .frac {
-      font-size: 0.9em;
-    }
-    
-    .frac-lg {
-      font-size: 1em;
     }
   }
 </style>
@@ -729,24 +762,32 @@
 <body>
 
 <div class="header" role="banner">
-  <h1>NEET-PbP</h1>
-  <div class="subtitle">NEET/AIPMT Biology Page by Page Analysis 1988-2025</div>
+  <h1>Class 8</h1>
+  <div class="subtitle">Pagewise Notes, MCQs, Q&A</div>
 </div>
 
 <!-- CHAPTER SELECTION -->
 <div class="controls">
   <div class="dropdown-group">
-    <label for="classSelect">Class:</label>
-    <select id="classSelect" onchange="updateChapters()">
-      <option value="">Select Class</option>
-      <option value="11">Class 11</option>
-      <option value="12">Class 12</option>
+    <label for="chapterSelect">Chapter:</label>
+    <select id="chapterSelect" onchange="updatePages()">
+      <option value="">Select Chapter</option>
+      <option value="1">Chapter 1</option>
+      <option value="2">Chapter 2</option>
+      <option value="3">Chapter 3</option>
+      <option value="4">Chapter 4</option>
+      <option value="5">Chapter 5</option>
+      <option value="6">Chapter 6</option>
+      <option value="7">Chapter 7: Electronic Configuration</option>
+      <option value="8">Chapter 8</option>
+      <option value="9">Chapter 9</option>
+      <option value="10">Chapter 10</option>
     </select>
   </div>
   <div class="dropdown-group">
-    <label for="chapterSelect">Chapter:</label>
-    <select id="chapterSelect" onchange="loadChapter()" disabled>
-      <option value="">Select Chapter</option>
+    <label for="pageSelect">Page:</label>
+    <select id="pageSelect" onchange="loadPage()" disabled>
+      <option value="">Select Page</option>
     </select>
   </div>
   <button class="reload-btn" onclick="window.location.reload()">↻ Reload</button>
@@ -754,17 +795,16 @@
 
 <!-- VIEW TOGGLE -->
 <div class="view-toggle">
-  <button class="view-btn active" onclick="switchView('mcq')">MCQ Mode</button>
-  <button class="view-btn" onclick="switchView('notes')">Notes Mode</button>
-  <button class="view-btn" onclick="switchView('qa')">Q&A Mode</button>
+  <button class="view-btn active" onclick="switchView('mcq')">MCQs</button>
+  <button class="view-btn" onclick="switchView('notes')">Notes</button>
+  <button class="view-btn" onclick="switchView('qa')">Q&A</button>
 </div>
 
 <!-- MCQ MODE -->
 <div id="mcqMode" class="mode-container">
   <div class="mcq-container">
     <div id="mcqContent">
-      <!-- PASTE MCQ CONTENT HERE -->
-      <p style="text-align:center; padding:40px; color:#666;">Select a chapter to view MCQs</p>
+      <p style="text-align:center; padding:40px; color:#666; font-size:14px;">Select a chapter and page to view MCQs</p>
     </div>
   </div>
 </div>
@@ -773,15 +813,14 @@
 <div id="notesMode" class="mode-container" style="display:none;">
   <div class="notes-container">
     <div id="notesContent">
-      <!-- PASTE NOTES CONTENT HERE -->
-      <p style="text-align:center; padding:40px; color:#666;">Select a chapter to view notes</p>
+      <p style="text-align:center; padding:40px; color:#666; font-size:14px;">Select a chapter and page to view notes</p>
     </div>
   </div>
 </div>
 
 <!-- Q&A MODE -->
 <div id="qaMode" class="mode-container" style="display:none;">
-  <h2 style="text-align:center; color:#023047; margin-bottom:24px;">📝 Question & Answer Section</h2>
+  <h2 style="text-align:center; color:#023047; margin-bottom:20px; font-size:20px;">📝 Questions & Answers</h2>
   
   <div class="mark-filter">
     <button class="mark-filter-btn filter-all active" onclick="filterByMark('all')">All Questions</button>
@@ -793,130 +832,120 @@
   
   <div class="qa-container">
     <div id="qaContent">
-      <!-- PASTE Q&A CONTENT HERE -->
-      <p style="text-align:center; padding:40px; color:#666;">Select a chapter to view Q&A</p>
+      <p style="text-align:center; padding:40px; color:#666; font-size:14px;">Select a chapter and page to view Q&A</p>
     </div>
   </div>
 </div>
 
 <script>
-  // Helper function to create fractions
   function frac(numerator, denominator, large = false) {
     const cls = large ? 'frac-lg' : 'frac';
     return `<span class="${cls}"><span class="num">${numerator}</span><span class="den">${denominator}</span></span>`;
   }
 
-  // Chapter data structure
   const chapterData = {
-    "11": {
-      "5": {
-        title: "Gravitation",
-        mcqContent: `<!-- MCQ CONTENT GOES HERE -->`,
-        notesContent: `<!-- NOTES CONTENT GOES HERE -->`,
-        qaContent: `<!-- Q&A CONTENT GOES HERE -->`
-      }
-    },
-    "12": {
-      "13": {
-        title: "Biodiversity and Conservation",
-        mcqContent: ` <div class="question-count">Questions: 5</div>
+    "7": {
+      "1": {
+        mcqContent: `<div class="score-display" id="scoreDisplay">Score: 0/5 | Correct: 0 | Wrong: 0</div>
+
+<div class="question-count">Questions: 5</div>
 
 <div class="question-item">
   <div class="question-header">
     <div class="question-number">Q1</div>
-    <div class="question-year">NEET 2020</div>
+    <button class="chatgpt-btn" onclick="openChatGPT('The electronic configuration of Aluminium is 2, 8, 3. How many electrons are present in the M shell?')">🤖 ChatGPT</button>
   </div>
   <div class="question-text">
     The electronic configuration of Aluminium is 2, 8, 3. How many electrons are present in the M shell?
   </div>
   <div class="options">
-    <div class="option" onclick="showAnswer('c) 3')">a) 2</div>
-    <div class="option" onclick="showAnswer('c) 3')">b) 8</div>
-    <div class="option" onclick="showAnswer('c) 3')">c) 3</div>
-    <div class="option" onclick="showAnswer('c) 3')">d) 13</div>
+    <div class="option" onclick="checkAnswer(this, false, 'c')">a) 2</div>
+    <div class="option" onclick="checkAnswer(this, false, 'c')">b) 8</div>
+    <div class="option" onclick="checkAnswer(this, true, 'c')">c) 3</div>
+    <div class="option" onclick="checkAnswer(this, false, 'c')">d) 13</div>
   </div>
   <div class="button-group">
-    <button class="btn btn-answer" onclick="showAnswer('c) 3')">Show Answer</button>
+    <button class="btn btn-answer" onclick="revealAnswer(this, 'c')">Show Answer</button>
   </div>
 </div>
 
 <div class="question-item">
   <div class="question-header">
     <div class="question-number">Q2</div>
-    <div class="question-year">NEET 2019</div>
+    <button class="chatgpt-btn" onclick="openChatGPT('Which noble gas has the electronic configuration 2, 8, 8?')">🤖 ChatGPT</button>
   </div>
   <div class="question-text">
     Which noble gas has the electronic configuration 2, 8, 8?
   </div>
   <div class="options">
-    <div class="option" onclick="showAnswer('c) Argon')">a) Helium</div>
-    <div class="option" onclick="showAnswer('c) Argon')">b) Neon</div>
-    <div class="option" onclick="showAnswer('c) Argon')">c) Argon</div>
-    <div class="option" onclick="showAnswer('c) Argon')">d) Krypton</div>
+    <div class="option" onclick="checkAnswer(this, false, 'c')">a) Helium</div>
+    <div class="option" onclick="checkAnswer(this, false, 'c')">b) Neon</div>
+    <div class="option" onclick="checkAnswer(this, true, 'c')">c) Argon</div>
+    <div class="option" onclick="checkAnswer(this, false, 'c')">d) Krypton</div>
   </div>
   <div class="button-group">
-    <button class="btn btn-answer" onclick="showAnswer('c) Argon')">Show Answer</button>
+    <button class="btn btn-answer" onclick="revealAnswer(this, 'c')">Show Answer</button>
   </div>
 </div>
 
 <div class="question-item">
   <div class="question-header">
     <div class="question-number">Q3</div>
-    <div class="question-year">NEET 2021</div>
+    <button class="chatgpt-btn" onclick="openChatGPT('Sodium atom loses one electron to form sodium cation. The electronic configuration of Na+ is:')">🤖 ChatGPT</button>
   </div>
   <div class="question-text">
     Sodium atom loses one electron to form sodium cation. The electronic configuration of Na<sup>+</sup> is:
   </div>
   <div class="options">
-    <div class="option" onclick="showAnswer('b) 2, 8')">a) 2, 8, 1</div>
-    <div class="option" onclick="showAnswer('b) 2, 8')">b) 2, 8</div>
-    <div class="option" onclick="showAnswer('b) 2, 8')">c) 2, 7</div>
-    <div class="option" onclick="showAnswer('b) 2, 8')">d) 2, 8, 2</div>
+    <div class="option" onclick="checkAnswer(this, false, 'b')">a) 2, 8, 1</div>
+    <div class="option" onclick="checkAnswer(this, true, 'b')">b) 2, 8</div>
+    <div class="option" onclick="checkAnswer(this, false, 'b')">c) 2, 7</div>
+    <div class="option" onclick="checkAnswer(this, false, 'b')">d) 2, 8, 2</div>
   </div>
   <div class="button-group">
-    <button class="btn btn-answer" onclick="showAnswer('b) 2, 8')">Show Answer</button>
+    <button class="btn btn-answer" onclick="revealAnswer(this, 'b')">Show Answer</button>
   </div>
 </div>
 
 <div class="question-item">
   <div class="question-header">
     <div class="question-number">Q4</div>
-    <div class="question-year">NEET 2018</div>
+    <button class="chatgpt-btn" onclick="openChatGPT('Chlorine gains one electron to form chloride anion. The electronic configuration of Cl- is:')">🤖 ChatGPT</button>
   </div>
   <div class="question-text">
     Chlorine gains one electron to form chloride anion. The electronic configuration of Cl<sup>-</sup> is:
   </div>
   <div class="options">
-    <div class="option" onclick="showAnswer('d) 2, 8, 8')">a) 2, 8, 7</div>
-    <div class="option" onclick="showAnswer('d) 2, 8, 8')">b) 2, 7, 8</div>
-    <div class="option" onclick="showAnswer('d) 2, 8, 8')">c) 2, 8, 6</div>
-    <div class="option" onclick="showAnswer('d) 2, 8, 8')">d) 2, 8, 8</div>
+    <div class="option" onclick="checkAnswer(this, false, 'd')">a) 2, 8, 7</div>
+    <div class="option" onclick="checkAnswer(this, false, 'd')">b) 2, 7, 8</div>
+    <div class="option" onclick="checkAnswer(this, false, 'd')">c) 2, 8, 6</div>
+    <div class="option" onclick="checkAnswer(this, true, 'd')">d) 2, 8, 8</div>
   </div>
   <div class="button-group">
-    <button class="btn btn-answer" onclick="showAnswer('d) 2, 8, 8')">Show Answer</button>
+    <button class="btn btn-answer" onclick="revealAnswer(this, 'd')">Show Answer</button>
   </div>
 </div>
 
 <div class="question-item">
   <div class="question-header">
     <div class="question-number">Q5</div>
-    <div class="question-year">NEET 2022</div>
+    <button class="chatgpt-btn" onclick="openChatGPT('Which element has 17 protons and 18 electrons?')">🤖 ChatGPT</button>
   </div>
   <div class="question-text">
     Which element has 17 protons and 18 electrons?
   </div>
   <div class="options">
-    <div class="option" onclick="showAnswer('b) Chloride ion')">a) Chlorine atom</div>
-    <div class="option" onclick="showAnswer('b) Chloride ion')">b) Chloride ion</div>
-    <div class="option" onclick="showAnswer('b) Chloride ion')">c) Argon atom</div>
-    <div class="option" onclick="showAnswer('b) Chloride ion')">d) Sodium cation</div>
+    <div class="option" onclick="checkAnswer(this, false, 'b')">a) Chlorine atom</div>
+    <div class="option" onclick="checkAnswer(this, true, 'b')">b) Chloride ion</div>
+    <div class="option" onclick="checkAnswer(this, false, 'b')">c) Argon atom</div>
+    <div class="option" onclick="checkAnswer(this, false, 'b')">d) Sodium cation</div>
   </div>
   <div class="button-group">
-    <button class="btn btn-answer" onclick="showAnswer('b) Chloride ion')">Show Answer</button>
+    <button class="btn btn-answer" onclick="revealAnswer(this, 'b')">Show Answer</button>
   </div>
-</div>
-   `,
-        notesContent: `  <div class="notes-title">📚 Electronic Configuration of Elements</div>
+</div>`,
+
+        notesContent: `<div class="notes-title">📚 Electronic Configuration of Elements</div>
 
 <div class="note-segment">
   <div class="segment-heading">Introduction to Electronic Configuration</div>
@@ -982,12 +1011,6 @@
         <th>Type of Element</th>
         <th>Element</th>
         <th>Atomic Number</th>
-        <th colspan="4">Number of Electrons in Shells</th>
-      </tr>
-      <tr>
-        <th></th>
-        <th></th>
-        <th></th>
         <th>K</th>
         <th>L</th>
         <th>M</th>
@@ -1021,7 +1044,7 @@
         <td>-</td>
       </tr>
       <tr>
-        <td rowspan="6"><strong>Metals</strong></td>
+        <td rowspan="5"><strong>Metals</strong></td>
         <td>Sodium (Na)</td>
         <td>11</td>
         <td>2</td>
@@ -1060,9 +1083,6 @@
         <td>8</td>
         <td>8</td>
         <td>2</td>
-      </tr>
-      <tr>
-        <td colspan="7" style="background:#f0f0f0; font-style:italic;">Note: Metals have 1-3 electrons in outermost shell</td>
       </tr>
       <tr>
         <td rowspan="6"><strong>Non-Metals</strong></td>
@@ -1132,7 +1152,7 @@
       <br>
       2, 8, 1 → 2, 8
       <br>
-      <span style="font-size:13px; color:#666;">Sodium cation</span>
+      <span style="font-size:11px; color:#666;">Sodium cation</span>
     </div>
   </div>
   
@@ -1152,7 +1172,7 @@
       <br>
       2, 8, 7 → 2, 8, 8
       <br>
-      <span style="font-size:13px; color:#666;">Chloride anion</span>
+      <span style="font-size:11px; color:#666;">Chloride anion</span>
     </div>
   </div>
   
@@ -1176,7 +1196,7 @@
     <div class="equation-text">
       Na + Cl → Na<sup>+</sup> + Cl<sup>-</sup> → NaCl
       <br>
-      <span style="font-size:13px; color:#666;">Electron transfer from sodium to chlorine</span>
+      <span style="font-size:11px; color:#666;">Electron transfer from sodium to chlorine</span>
     </div>
   </div>
   
@@ -1203,10 +1223,10 @@
     <li>Ions are formed to attain stable noble gas configuration</li>
     <li>Ionic compounds form when metals react with non-metals by electron transfer</li>
   </ul>
-</div>
- `,
-        qaContent: ` <p style="text-align:center; color:#666; margin-bottom:24px; font-size:14px;">
-  Chapter: Electronic Configuration | Total: 6 Questions
+</div>`,
+
+        qaContent: `<p style="text-align:center; color:#666; margin-bottom:20px; font-size:13px;">
+  Chapter 7 Page 1: Electronic Configuration | Total: 6 Questions
 </p>
 
 <div class="qa-item mark-1-item" data-mark="1">
@@ -1386,52 +1406,62 @@
       </div>
     </div>
   </div>
-</div>
- `
+</div>`
       }
     }
   };
 
   let currentView = 'mcq';
-  let currentClass = '';
   let currentChapter = '';
+  let currentPage = '';
   let currentFilter = 'all';
+  let score = { correct: 0, wrong: 0 };
 
-  function updateChapters() {
-    const classSelect = document.getElementById('classSelect').value;
-    const chapterSelect = document.getElementById('chapterSelect');
-    currentClass = classSelect;
-    
-    chapterSelect.innerHTML = '<option value="">Select Chapter</option>';
-    
-    if (classSelect && chapterData[classSelect]) {
-      Object.keys(chapterData[classSelect]).forEach(chapter => {
-        const option = document.createElement('option');
-        option.value = chapter;
-        option.textContent = `Chapter ${chapter}: ${chapterData[classSelect][chapter].title}`;
-        chapterSelect.appendChild(option);
-      });
-      chapterSelect.disabled = false;
-    } else {
-      chapterSelect.disabled = true;
-    }
-  }
-
-  function loadChapter() {
+  function updatePages() {
     const chapterSelect = document.getElementById('chapterSelect').value;
+    const pageSelect = document.getElementById('pageSelect');
     currentChapter = chapterSelect;
     
-    if (currentClass && currentChapter) {
-      const chapter = chapterData[currentClass][currentChapter];
+    pageSelect.innerHTML = '<option value="">Select Page</option>';
+    
+    if (chapterSelect) {
+      for (let i = 1; i <= 10; i++) {
+        const option = document.createElement('option');
+        option.value = i;
+        option.textContent = `Page ${i}`;
+        pageSelect.appendChild(option);
+      }
+      pageSelect.disabled = false;
+    } else {
+      pageSelect.disabled = true;
+    }
+    
+    // Reset score
+    score = { correct: 0, wrong: 0 };
+    updateScoreDisplay();
+  }
+
+  function loadPage() {
+    const pageSelect = document.getElementById('pageSelect').value;
+    currentPage = pageSelect;
+    
+    if (currentChapter && currentPage) {
+      const pageData = chapterData[currentChapter]?.[currentPage];
       
-      // Load MCQ content
-      document.getElementById('mcqContent').innerHTML = chapter.mcqContent;
+      if (pageData) {
+        document.getElementById('mcqContent').innerHTML = pageData.mcqContent;
+        document.getElementById('notesContent').innerHTML = pageData.notesContent;
+        document.getElementById('qaContent').innerHTML = pageData.qaContent;
+      } else {
+        const emptyMsg = '<p style="text-align:center; padding:40px; color:#666; font-size:14px;">Content not available for this page yet</p>';
+        document.getElementById('mcqContent').innerHTML = emptyMsg;
+        document.getElementById('notesContent').innerHTML = emptyMsg;
+        document.getElementById('qaContent').innerHTML = emptyMsg;
+      }
       
-      // Load Notes content
-      document.getElementById('notesContent').innerHTML = chapter.notesContent;
-      
-      // Load Q&A content
-      document.getElementById('qaContent').innerHTML = chapter.qaContent;
+      // Reset score
+      score = { correct: 0, wrong: 0 };
+      updateScoreDisplay();
     }
   }
 
@@ -1443,6 +1473,62 @@
     
     document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
     event.target.classList.add('active');
+  }
+
+  function checkAnswer(element, isCorrect, correctOption) {
+    const questionItem = element.closest('.question-item');
+    const allOptions = questionItem.querySelectorAll('.option');
+    
+    // Disable all options in this question
+    allOptions.forEach(opt => {
+      opt.style.pointerEvents = 'none';
+      if (opt === element) {
+        opt.classList.add(isCorrect ? 'correct' : 'wrong');
+      }
+    });
+    
+    // Show correct answer
+    allOptions.forEach(opt => {
+      if (opt.textContent.trim().startsWith(correctOption + ')')) {
+        opt.classList.add('correct');
+      }
+    });
+    
+    // Update score
+    if (isCorrect) {
+      score.correct++;
+    } else {
+      score.wrong++;
+    }
+    updateScoreDisplay();
+  }
+
+  function revealAnswer(button, correctOption) {
+    const questionItem = button.closest('.question-item');
+    const allOptions = questionItem.querySelectorAll('.option');
+    
+    allOptions.forEach(opt => {
+      opt.style.pointerEvents = 'none';
+      if (opt.textContent.trim().startsWith(correctOption + ')')) {
+        opt.classList.add('correct');
+      }
+    });
+    
+    button.disabled = true;
+    button.style.opacity = '0.5';
+  }
+
+  function updateScoreDisplay() {
+    const scoreDisplay = document.getElementById('scoreDisplay');
+    if (scoreDisplay) {
+      const total = score.correct + score.wrong;
+      scoreDisplay.textContent = `Score: ${score.correct}/${total} | Correct: ${score.correct} | Wrong: ${score.wrong}`;
+    }
+  }
+
+  function openChatGPT(questionText) {
+    const encodedText = encodeURIComponent(questionText);
+    window.open(`https://chat.openai.com/?q=${encodedText}`, '_blank');
   }
 
   function filterByMark(mark) {
@@ -1463,10 +1549,6 @@
         item.style.display = itemMark == mark ? 'block' : 'none';
       }
     });
-  }
-
-  function showAnswer(answer) {
-    alert('Answer: ' + answer);
   }
 </script>
 
