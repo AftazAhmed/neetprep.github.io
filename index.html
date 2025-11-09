@@ -147,7 +147,7 @@
     max-width: 100%;
     margin: 0 auto;
     background: white;
-    padding: 20px 8px;
+    padding: 20px 4px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   }
@@ -164,7 +164,7 @@
   
   .note-segment {
     margin-bottom: 24px;
-    padding: 16px 12px;
+    padding: 16px 8px;
     background: #f9fafb;
     border-radius: 6px;
     border-left: 4px solid #028090;
@@ -174,7 +174,7 @@
   .note-segment .ai-btn {
     position: absolute;
     top: 12px;
-    right: 12px;
+    right: 8px;
   }
   
   .segment-heading {
@@ -506,6 +506,22 @@
     display: block;
   }
   
+  .hint-display {
+    background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+    border: 2px solid #ff9800;
+    border-radius: 6px;
+    padding: 12px;
+    margin: 12px 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: #e65100;
+    display: none;
+  }
+  
+  .hint-display.show {
+    display: block;
+  }
+  
   .button-group {
     display: flex;
     gap: 10px;
@@ -523,12 +539,21 @@
   }
   
   .btn-answer {
-    background-color: #198754;
+    background-color: #047857;
     color: #ffffff;
   }
   
   .btn-answer:hover {
-    background-color: #146c43;
+    background-color: #065f46;
+  }
+  
+  .btn-hint {
+    background-color: #dc2626;
+    color: #ffffff;
+  }
+  
+  .btn-hint:hover {
+    background-color: #b91c1c;
   }
   
   /* Q&A STYLES */
@@ -550,13 +575,13 @@
   .qa-container {
     max-width: 100%;
     margin: 0 auto;
-    padding: 0 2px;
+    padding: 0;
   }
   
   .qa-item {
     background: white;
     border-radius: 8px;
-    padding: 14px 8px;
+    padding: 14px 6px;
     margin-bottom: 16px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     border-left: 4px solid #028090;
@@ -566,7 +591,7 @@
   .qa-item .ai-btn {
     position: absolute;
     top: 12px;
-    right: 8px;
+    right: 6px;
   }
   
   .qa-item.mark-1-item { border-left-color: #4caf50; }
@@ -596,7 +621,7 @@
   
   .qa-answer-section {
     background: #f9fafb;
-    padding: 12px 8px;
+    padding: 12px 6px;
     border-radius: 6px;
     margin-top: 12px;
   }
@@ -621,7 +646,7 @@
   }
   
   .answer-1mark, .answer-2mark, .answer-3mark, .answer-5mark {
-    padding: 10px 8px;
+    padding: 10px 6px;
     border-radius: 6px;
     font-size: 13px;
     line-height: 1.6;
@@ -813,11 +838,11 @@
   @media (max-width: 900px) {
     .header h1 { font-size: 2rem; }
     .header .subtitle { font-size: 14px; }
-    .notes-container { padding: 16px 6px; }
-    .qa-container { padding: 0 2px; }
-    .qa-item { padding: 14px 6px; }
-    .qa-answer-section { padding: 10px 6px; }
-    .answer-1mark, .answer-2mark, .answer-3mark, .answer-5mark { padding: 10px 6px; }
+    .notes-container { padding: 16px 4px; }
+    .qa-container { padding: 0; }
+    .qa-item { padding: 14px 4px; }
+    .qa-answer-section { padding: 10px 4px; }
+    .answer-1mark, .answer-2mark, .answer-3mark, .answer-5mark { padding: 10px 4px; }
   }
 </style>
 </head>
@@ -978,11 +1003,36 @@
     "7": {
       "1": {
         mcqData: [
-          { question: "The electronic configuration of Aluminium is 2, 8, 3. How many electrons are present in the M shell?", options: ["a) 2", "b) 8", "c) 3", "d) 13"], correct: "c" },
-          { question: "Which noble gas has the electronic configuration 2, 8, 8?", options: ["a) Helium", "b) Neon", "c) Argon", "d) Krypton"], correct: "c" },
-          { question: "Sodium atom loses one electron to form sodium cation. The electronic configuration of Na+ is:", options: ["a) 2, 8, 1", "b) 2, 8", "c) 2, 7", "d) 2, 8, 2"], correct: "b" },
-          { question: "Chlorine gains one electron to form chloride anion. The electronic configuration of Cl- is:", options: ["a) 2, 8, 7", "b) 2, 7, 8", "c) 2, 8, 6", "d) 2, 8, 8"], correct: "d" },
-          { question: "Which element has 17 protons and 18 electrons?", options: ["a) Chlorine atom", "b) Chloride ion", "c) Argon atom", "d) Sodium cation"], correct: "b" }
+          { 
+            question: "The electronic configuration of Aluminium is 2, 8, 3. How many electrons are present in the M shell?", 
+            options: ["a) 2", "b) 8", "c) 3", "d) 13"], 
+            correct: "c",
+            hint: "Look at the third number in the electronic configuration. The shells are labeled K, L, M in order."
+          },
+          { 
+            question: "Which noble gas has the electronic configuration 2, 8, 8?", 
+            options: ["a) Helium", "b) Neon", "c) Argon", "d) Krypton"], 
+            correct: "c",
+            hint: "Count the total number of electrons (2+8+8=18). The element with atomic number 18 is this noble gas."
+          },
+          { 
+            question: "Sodium atom loses one electron to form sodium cation. The electronic configuration of Na+ is:", 
+            options: ["a) 2, 8, 1", "b) 2, 8", "c) 2, 7", "d) 2, 8, 2"], 
+            correct: "b",
+            hint: "Sodium starts with 2, 8, 1. When it loses one electron from the outermost shell, what remains?"
+          },
+          { 
+            question: "Chlorine gains one electron to form chloride anion. The electronic configuration of Cl- is:", 
+            options: ["a) 2, 8, 7", "b) 2, 7, 8", "c) 2, 8, 6", "d) 2, 8, 8"], 
+            correct: "d",
+            hint: "Chlorine has 2, 8, 7. When it gains one electron in the M shell, the M shell will have 7+1 electrons."
+          },
+          { 
+            question: "Which element has 17 protons and 18 electrons?", 
+            options: ["a) Chlorine atom", "b) Chloride ion", "c) Argon atom", "d) Sodium cation"], 
+            correct: "b",
+            hint: "An element is identified by the number of protons. If electrons > protons, it's a negative ion (anion)."
+          }
         ],
         notesData: [
           { heading: "Introduction to Electronic Configuration", content: `<div class="note-paragraph">Electronic configuration represents the arrangement of electrons in different shells around the nucleus of an atom. The shells are designated as K, L, M, N and can hold a maximum number of electrons according to the formula 2n², where n is the shell number.</div><div class="definition-box"><div class="definition-term">Electronic Configuration</div><div class="definition-text">The distribution of electrons in an atom among the available shells K, L, M, N surrounding the nucleus.</div></div>` },
@@ -1099,14 +1149,60 @@
     html += `<div class="question-count">Questions: ${mcqs.length}</div>`;
     mcqs.forEach((q, idx) => {
       const fullQuestion = `Question:\n${q.question}\n\nOptions:\n${q.options.join('\n')}`;
-      html += `<div class="question-item"><div class="question-header"><div class="question-number">Q${idx + 1}</div><button class="chatgpt-btn" onclick="openAI(\`${escapeForJS(fullQuestion)}\`)">ChatGPT</button></div><div class="question-text">${q.question}</div><div class="options">`;
+      html += `<div class="question-item">
+        <div class="question-header">
+          <div class="question-number">Q${idx + 1}</div>
+          <button class="chatgpt-btn" onclick="openAI(\`${escapeForJS(fullQuestion)}\`)">ChatGPT</button>
+        </div>
+        <div class="question-text">${q.question}</div>
+        <div class="options">`;
+      
       q.options.forEach(opt => {
         const optLetter = opt.charAt(0);
         html += `<div class="option" onclick="checkAnswer(this, '${q.correct}', '${optLetter}')">${opt}</div>`;
       });
-      html += `</div><div class="answer-display" id="answer-${idx}"><strong>Correct Answer:</strong> ${q.options.find(o => o.startsWith(q.correct))}</div><div class="button-group"><button class="btn btn-answer" onclick="showAnswerBox(${idx})">Show Answer</button></div></div>`;
+      
+      html += `</div>
+        <div class="answer-display" id="answer-${idx}">
+          <strong>Correct Answer:</strong> ${q.options.find(o => o.startsWith(q.correct))}
+        </div>
+        <div class="hint-display" id="hint-${idx}">
+          <strong>💡 Hint:</strong> ${q.hint || "No hint available"}
+        </div>
+        <div class="button-group">
+          <button class="btn btn-answer" onclick="toggleAnswer(${idx})">Show Answer</button>
+          <button class="btn btn-hint" onclick="toggleHint(${idx})">Show Hint</button>
+        </div>
+      </div>`;
     });
+    
     document.getElementById('mcqContent').innerHTML = html;
+  }
+
+  function toggleAnswer(idx) {
+    const answerBox = document.getElementById(`answer-${idx}`);
+    const button = event.target;
+    
+    if (answerBox.classList.contains('show')) {
+      answerBox.classList.remove('show');
+      button.textContent = 'Show Answer';
+    } else {
+      answerBox.classList.add('show');
+      button.textContent = 'Hide Answer';
+    }
+  }
+
+  function toggleHint(idx) {
+    const hintBox = document.getElementById(`hint-${idx}`);
+    const button = event.target;
+    
+    if (hintBox.classList.contains('show')) {
+      hintBox.classList.remove('show');
+      button.textContent = 'Show Hint';
+    } else {
+      hintBox.classList.add('show');
+      button.textContent = 'Hide Hint';
+    }
   }
 
   function renderNotes(notes) {
@@ -1145,10 +1241,6 @@
     element.classList.add('selected');
     if (selected === correct) { element.classList.add('correct'); updateScore(1); }
     else { element.classList.add('wrong'); }
-  }
-
-  function showAnswerBox(idx) {
-    document.getElementById(`answer-${idx}`).classList.add('show');
   }
 
   function updateScore(points) {
