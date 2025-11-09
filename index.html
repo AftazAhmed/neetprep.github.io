@@ -54,15 +54,15 @@
     letter-spacing: 0.6px;
   }
   
-  /* AI BUTTON STYLES */
+  /* AI BUTTON STYLES - Circular with gradient */
   .ai-btn {
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #dc2626, #ef4444);
+    background: linear-gradient(135deg, #dc2626 0%, #2563eb 100%);
     color: white;
     border: none;
-    font-size: 16px;
+    font-size: 12px;
     font-weight: 700;
     cursor: pointer;
     display: inline-flex;
@@ -144,10 +144,10 @@
   
   /* NOTES SECTION STYLES */
   .notes-container {
-    max-width: 1200px;
+    max-width: 100%;
     margin: 0 auto;
     background: white;
-    padding: 20px 16px;
+    padding: 20px 8px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   }
@@ -164,7 +164,7 @@
   
   .note-segment {
     margin-bottom: 24px;
-    padding: 16px;
+    padding: 16px 12px;
     background: #f9fafb;
     border-radius: 6px;
     border-left: 4px solid #028090;
@@ -366,7 +366,7 @@
   }
   
   .score-display {
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: #023047;
     color: white;
     padding: 12px 16px;
     border-radius: 8px;
@@ -548,14 +548,15 @@
   .mark-5 { background: linear-gradient(135deg, #f44336, #ef5350); color: white; }
   
   .qa-container {
-    max-width: 1200px;
+    max-width: 100%;
     margin: 0 auto;
+    padding: 0 4px;
   }
   
   .qa-item {
     background: white;
     border-radius: 8px;
-    padding: 16px;
+    padding: 16px 12px;
     margin-bottom: 16px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     border-left: 4px solid #028090;
@@ -595,7 +596,7 @@
   
   .qa-answer-section {
     background: #f9fafb;
-    padding: 14px;
+    padding: 14px 12px;
     border-radius: 6px;
     margin-top: 12px;
   }
@@ -812,6 +813,8 @@
   @media (max-width: 900px) {
     .header h1 { font-size: 2rem; }
     .header .subtitle { font-size: 14px; }
+    .notes-container { padding: 16px 6px; }
+    .qa-container { padding: 0 2px; }
   }
 </style>
 </head>
@@ -913,15 +916,15 @@
           { question: "Which element has 17 protons and 18 electrons?", options: ["a) Chlorine atom", "b) Chloride ion", "c) Argon atom", "d) Sodium cation"], correct: "b" }
         ],
         notesData: [
-          { heading: "Introduction to Electronic Configuration", content: `<div class="note-paragraph">Electronic configuration represents the arrangement of electrons in different shells around the nucleus of an atom. The shells are designated as K, L, M, N and can hold a maximum number of electrons according to the formula 2n squared, where n is the shell number.</div><div class="definition-box"><div class="definition-term">Electronic Configuration</div><div class="definition-text">The distribution of electrons in an atom among the available shells K, L, M, N surrounding the nucleus.</div></div>` },
-          { heading: "Maximum Electrons in Each Shell", content: `<table class="note-table"><thead><tr><th>Shell Name</th><th>Shell Number n</th><th>Maximum Electrons 2n squared</th></tr></thead><tbody><tr><td>K</td><td>1</td><td>2</td></tr><tr><td>L</td><td>2</td><td>8</td></tr><tr><td>M</td><td>3</td><td>18</td></tr><tr><td>N</td><td>4</td><td>32</td></tr></tbody></table><div class="important-note"><strong>Important:</strong> The outermost shell can hold a maximum of 8 electrons, even if the formula allows more.</div>` },
-          { heading: "Electronic Configuration of Elements", content: `<table class="note-table"><thead><tr><th>Type</th><th>Element</th><th>Atomic No</th><th>K</th><th>L</th><th>M</th><th>N</th></tr></thead><tbody><tr><td rowspan="3"><strong>Noble Gases</strong></td><td>Helium He</td><td>2</td><td>2</td><td>-</td><td>-</td><td>-</td></tr><tr><td>Neon Ne</td><td>10</td><td>2</td><td>8</td><td>-</td><td>-</td></tr><tr><td>Argon Ar</td><td>18</td><td>2</td><td>8</td><td>8</td><td>-</td></tr><tr><td rowspan="5"><strong>Metals</strong></td><td>Sodium Na</td><td>11</td><td>2</td><td>8</td><td>1</td><td>-</td></tr><tr><td>Magnesium Mg</td><td>12</td><td>2</td><td>8</td><td>2</td><td>-</td></tr><tr><td>Aluminium Al</td><td>13</td><td>2</td><td>8</td><td>3</td><td>-</td></tr><tr><td>Potassium K</td><td>19</td><td>2</td><td>8</td><td>8</td><td>1</td></tr><tr><td>Calcium Ca</td><td>20</td><td>2</td><td>8</td><td>8</td><td>2</td></tr><tr><td rowspan="6"><strong>Non-Metals</strong></td><td>Nitrogen N</td><td>7</td><td>2</td><td>5</td><td>-</td><td>-</td></tr><tr><td>Oxygen O</td><td>8</td><td>2</td><td>6</td><td>-</td><td>-</td></tr><tr><td>Fluorine F</td><td>9</td><td>2</td><td>7</td><td>-</td><td>-</td></tr><tr><td>Phosphorus P</td><td>15</td><td>2</td><td>8</td><td>5</td><td>-</td></tr><tr><td>Sulphur S</td><td>16</td><td>2</td><td>8</td><td>6</td><td>-</td></tr><tr><td>Chlorine Cl</td><td>17</td><td>2</td><td>8</td><td>7</td><td>-</td></tr></tbody></table>` },
-          { heading: "Formation of Ions", content: `<div class="segment-subheading">Cation Formation</div><div class="note-paragraph">Metals lose electrons from their outermost shell to attain stable noble gas configuration. The atom becomes positively charged after losing electrons.</div><div class="equation-box"><div class="equation-text">Na arrow Na plus e minus<br>2, 8, 1 arrow 2, 8<br><span style="font-size:11px; color:#666;">Sodium cation</span></div></div><div class="segment-subheading">Anion Formation</div><div class="note-paragraph">Non-metals gain electrons in their outermost shell to complete their octet and attain stable noble gas configuration. The atom becomes negatively charged after gaining electrons.</div><div class="equation-box"><div class="equation-text">Cl plus e minus arrow Cl minus<br>2, 8, 7 arrow 2, 8, 8<br><span style="font-size:11px; color:#666;">Chloride anion</span></div></div>` }
+          { heading: "Introduction to Electronic Configuration", content: `<div class="note-paragraph">Electronic configuration represents the arrangement of electrons in different shells around the nucleus of an atom. The shells are designated as K, L, M, N and can hold a maximum number of electrons according to the formula 2n², where n is the shell number.</div><div class="definition-box"><div class="definition-term">Electronic Configuration</div><div class="definition-text">The distribution of electrons in an atom among the available shells K, L, M, N surrounding the nucleus.</div></div>` },
+          { heading: "Maximum Electrons in Each Shell", content: `<table class="note-table"><thead><tr><th>Shell Name</th><th>Shell Number (n)</th><th>Maximum Electrons (2n²)</th></tr></thead><tbody><tr><td>K</td><td>1</td><td>2</td></tr><tr><td>L</td><td>2</td><td>8</td></tr><tr><td>M</td><td>3</td><td>18</td></tr><tr><td>N</td><td>4</td><td>32</td></tr></tbody></table><div class="important-note"><strong>Important:</strong> The outermost shell can hold a maximum of 8 electrons, even if the formula allows more.</div>` },
+          { heading: "Electronic Configuration of Elements", content: `<table class="note-table"><thead><tr><th>Type</th><th>Element</th><th>Atomic No</th><th>K</th><th>L</th><th>M</th><th>N</th></tr></thead><tbody><tr><td rowspan="3"><strong>Noble Gases</strong></td><td>Helium (He)</td><td>2</td><td>2</td><td>-</td><td>-</td><td>-</td></tr><tr><td>Neon (Ne)</td><td>10</td><td>2</td><td>8</td><td>-</td><td>-</td></tr><tr><td>Argon (Ar)</td><td>18</td><td>2</td><td>8</td><td>8</td><td>-</td></tr><tr><td rowspan="5"><strong>Metals</strong></td><td>Sodium (Na)</td><td>11</td><td>2</td><td>8</td><td>1</td><td>-</td></tr><tr><td>Magnesium (Mg)</td><td>12</td><td>2</td><td>8</td><td>2</td><td>-</td></tr><tr><td>Aluminium (Al)</td><td>13</td><td>2</td><td>8</td><td>3</td><td>-</td></tr><tr><td>Potassium (K)</td><td>19</td><td>2</td><td>8</td><td>8</td><td>1</td></tr><tr><td>Calcium (Ca)</td><td>20</td><td>2</td><td>8</td><td>8</td><td>2</td></tr><tr><td rowspan="6"><strong>Non-Metals</strong></td><td>Nitrogen (N)</td><td>7</td><td>2</td><td>5</td><td>-</td><td>-</td></tr><tr><td>Oxygen (O)</td><td>8</td><td>2</td><td>6</td><td>-</td><td>-</td></tr><tr><td>Fluorine (F)</td><td>9</td><td>2</td><td>7</td><td>-</td><td>-</td></tr><tr><td>Phosphorus (P)</td><td>15</td><td>2</td><td>8</td><td>5</td><td>-</td></tr><tr><td>Sulphur (S)</td><td>16</td><td>2</td><td>8</td><td>6</td><td>-</td></tr><tr><td>Chlorine (Cl)</td><td>17</td><td>2</td><td>8</td><td>7</td><td>-</td></tr></tbody></table>` },
+          { heading: "Formation of Ions", content: `<div class="segment-subheading">Cation Formation</div><div class="note-paragraph">Metals lose electrons from their outermost shell to attain stable noble gas configuration. The atom becomes positively charged after losing electrons.</div><div class="equation-box"><div class="equation-text">Na → Na⁺ + e⁻<br>2, 8, 1 → 2, 8<br><span style="font-size:11px; color:#666;">Sodium cation</span></div></div><div class="segment-subheading">Anion Formation</div><div class="note-paragraph">Non-metals gain electrons in their outermost shell to complete their octet and attain stable noble gas configuration. The atom becomes negatively charged after gaining electrons.</div><div class="equation-box"><div class="equation-text">Cl + e⁻ → Cl⁻<br>2, 8, 7 → 2, 8, 8<br><span style="font-size:11px; color:#666;">Chloride anion</span></div></div>` }
         ],
         qaData: [
           { marks: 1, question: "What is electronic configuration?", answer: "Electronic configuration is the distribution or arrangement of electrons in different shells K, L, M, N around the nucleus of an atom." },
-          { marks: 2, question: "Write the electronic configuration of sodium and chlorine. How do they form ions?", answer: `<div class="point"><strong>Electronic Configuration:</strong> Sodium Na has atomic number 11 with configuration 2, 8, 1. Chlorine Cl has atomic number 17 with configuration 2, 8, 7.</div><div class="point"><strong>Ion Formation:</strong> Sodium loses one electron to form Na plus 2, 8. Chlorine gains one electron to form Cl minus 2, 8, 8. Both attain stable noble gas configuration.</div>` },
-          { marks: 3, question: "Explain the formation of sodium chloride with electronic configuration.", answer: `<div class="point"><strong>Step 1: Initial Configuration half mark</strong><br>Sodium Na has electronic configuration 2, 8, 1<br>Chlorine Cl has electronic configuration 2, 8, 7</div><div class="point"><strong>Step 2: Electron Transfer one and half marks</strong><br>Sodium atom loses one electron from M shell to form Na plus cation with configuration 2, 8. Chlorine atom gains one electron in M shell to form Cl minus anion with configuration 2, 8, 8. Both ions attain stable noble gas configuration.</div><div class="point"><strong>Step 3: Ionic Bond Formation 1 mark</strong><br>Na plus and Cl minus ions are oppositely charged and attract each other by strong electrostatic forces to form sodium chloride NaCl. It exists as aggregates of ions, not molecules.</div>` }
+          { marks: 2, question: "Write the electronic configuration of sodium and chlorine. How do they form ions?", answer: `<div class="point"><strong>Electronic Configuration:</strong> Sodium (Na) has atomic number 11 with configuration 2, 8, 1. Chlorine (Cl) has atomic number 17 with configuration 2, 8, 7.</div><div class="point"><strong>Ion Formation:</strong> Sodium loses one electron to form Na⁺ (2, 8). Chlorine gains one electron to form Cl⁻ (2, 8, 8). Both attain stable noble gas configuration.</div>` },
+          { marks: 3, question: "Explain the formation of sodium chloride with electronic configuration.", answer: `<div class="point"><strong>Step 1: Initial Configuration (½ mark)</strong><br>Sodium (Na) has electronic configuration 2, 8, 1<br>Chlorine (Cl) has electronic configuration 2, 8, 7</div><div class="point"><strong>Step 2: Electron Transfer (1½ marks)</strong><br>Sodium atom loses one electron from M shell to form Na⁺ cation with configuration 2, 8. Chlorine atom gains one electron in M shell to form Cl⁻ anion with configuration 2, 8, 8. Both ions attain stable noble gas configuration.</div><div class="point"><strong>Step 3: Ionic Bond Formation (1 mark)</strong><br>Na⁺ and Cl⁻ ions are oppositely charged and attract each other by strong electrostatic forces to form sodium chloride (NaCl). It exists as aggregates of ions, not molecules.</div>` }
         ]
       },
       "2": {}, "3": {}, "4": {}, "5": {}, "6": {}, "7": {}, "8": {}, "9": {}, "10": {}
@@ -985,7 +988,7 @@
     let html = `<div class="score-display"><span>Score: ${score}/${mcqs.length}</span><button class="reset-score-btn" onclick="resetScore()">Reset Score</button></div>`;
     html += `<div class="question-count">Questions: ${mcqs.length}</div>`;
     mcqs.forEach((q, idx) => {
-      const fullQuestion = `${q.question} Options: ${q.options.join(', ')}`;
+      const fullQuestion = `Question: ${q.question}\n\nOptions:\n${q.options.join('\n')}`;
       html += `<div class="question-item"><div class="question-header"><div class="question-number">Q${idx + 1}</div><button class="chatgpt-btn" onclick="openAI(\`${escapeForJS(fullQuestion)}\`)">ChatGPT</button></div><div class="question-text">${q.question}</div><div class="options">`;
       q.options.forEach(opt => {
         const optLetter = opt.charAt(0);
@@ -1000,7 +1003,7 @@
     const notesTitle = `<div class="notes-title">📚 Chapter ${currentChapter} Page ${currentPage}</div>`;
     let html = notesTitle;
     notes.forEach((note, idx) => {
-      const noteText = `${note.heading}. ${stripHtml(note.content)}`;
+      const noteText = `${note.heading}\n\n${stripHtml(note.content)}\n\n---\n\n`;
       html += `<div class="note-segment"><button class="ai-btn" onclick="openAI(\`${escapeForJS(noteText)}\`)">AI</button><div class="segment-heading">${note.heading}</div>${note.content}</div>`;
     });
     document.getElementById('notesContent').innerHTML = html;
@@ -1009,7 +1012,7 @@
   function renderQA(qas) {
     let html = `<p style="text-align:center; color:#666; margin-bottom:20px; font-size:13px;">Chapter ${currentChapter} Page ${currentPage} | Total: ${qas.length} Questions</p>`;
     qas.forEach((qa, idx) => {
-      const qaText = `Question: ${qa.question} Answer: ${stripHtml(qa.answer)}`;
+      const qaText = `Question:\n${qa.question}\n\nAnswer:\n${stripHtml(qa.answer)}`;
       const markClass = `mark-${qa.marks}-item`;
       html += `<div class="qa-item ${markClass}" data-mark="${qa.marks}"><button class="ai-btn" onclick="openAI(\`${escapeForJS(qaText)}\`)">AI</button><div class="qa-question"><span class="qa-question-number">Q${idx + 1}</span>${qa.question}<span class="mark-badge mark-${qa.marks}">${qa.marks} Mark${qa.marks > 1 ? 's' : ''}</span></div><div class="qa-answer-section"><span class="qa-answer-label">✍️ Answer:</span><div class="answer-${qa.marks}mark">${qa.answer}</div></div></div>`;
     });
@@ -1049,7 +1052,7 @@
   }
 
   function openAI(text) {
-    const cleanText = stripHtml(text).replace(/\s+/g, ' ').trim();
+    const cleanText = text.replace(/\s+/g, ' ').trim();
     const encodedText = encodeURIComponent(cleanText);
     window.open(`https://chat.openai.com/?q=${encodedText}`, '_blank');
   }
@@ -1061,7 +1064,7 @@
   }
 
   function escapeForJS(text) {
-    return text.replace(/\\/g, '\\\\').replace(/`/g, '\\`').replace(/\$/g, '\\$');
+    return text.replace(/\\/g, '\\\\').replace(/`/g, '\\`').replace(/\$/g, '\\$').replace(/\n/g, '\\n');
   }
 
   function switchView(view) {
