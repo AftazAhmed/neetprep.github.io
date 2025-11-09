@@ -16,7 +16,7 @@
   
   .header {
     text-align: center;
-    background: linear-gradient(135deg, #0369a1 0%, #0284c7 50%, #0ea5e9 100%);
+    background-color: #023047;
     color: #ffb347;
     padding: 32px 16px 24px 16px;
     border-radius: 10px;
@@ -32,8 +32,8 @@
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle at center, #60a5fa 0%, transparent 70%);
-    opacity: 0.2;
+    background: radial-gradient(circle at center, #4f59b0 0%, transparent 70%);
+    opacity: 0.3;
     pointer-events: none;
   }
   
@@ -903,12 +903,78 @@
   let pageScores = JSON.parse(localStorage.getItem('pageScores')) || {};
 
   const chapterData = {
-    "1": { "1": {}, "2": {}, "3": {}, "4": {}, "5": {}, "6": {}, "7": {}, "8": {}, "9": {}, "10": {} },
-    "2": { "1": {}, "2": {}, "3": {}, "4": {}, "5": {}, "6": {}, "7": {}, "8": {}, "9": {}, "10": {} },
-    "3": { "1": {}, "2": {}, "3": {}, "4": {}, "5": {}, "6": {}, "7": {}, "8": {}, "9": {}, "10": {} },
-    "4": { "1": {}, "2": {}, "3": {}, "4": {}, "5": {}, "6": {}, "7": {}, "8": {}, "9": {}, "10": {} },
-    "5": { "1": {}, "2": {}, "3": {}, "4": {}, "5": {}, "6": {}, "7": {}, "8": {}, "9": {}, "10": {} },
-    "6": { "1": {}, "2": {}, "3": {}, "4": {}, "5": {}, "6": {}, "7": {}, "8": {}, "9": {}, "10": {} },
+    "1": {
+      "1": { mcqData: [], notesData: [], qaData: [] },
+      "2": { mcqData: [], notesData: [], qaData: [] },
+      "3": { mcqData: [], notesData: [], qaData: [] },
+      "4": { mcqData: [], notesData: [], qaData: [] },
+      "5": { mcqData: [], notesData: [], qaData: [] },
+      "6": { mcqData: [], notesData: [], qaData: [] },
+      "7": { mcqData: [], notesData: [], qaData: [] },
+      "8": { mcqData: [], notesData: [], qaData: [] },
+      "9": { mcqData: [], notesData: [], qaData: [] },
+      "10": { mcqData: [], notesData: [], qaData: [] }
+    },
+    "2": {
+      "1": { mcqData: [], notesData: [], qaData: [] },
+      "2": { mcqData: [], notesData: [], qaData: [] },
+      "3": { mcqData: [], notesData: [], qaData: [] },
+      "4": { mcqData: [], notesData: [], qaData: [] },
+      "5": { mcqData: [], notesData: [], qaData: [] },
+      "6": { mcqData: [], notesData: [], qaData: [] },
+      "7": { mcqData: [], notesData: [], qaData: [] },
+      "8": { mcqData: [], notesData: [], qaData: [] },
+      "9": { mcqData: [], notesData: [], qaData: [] },
+      "10": { mcqData: [], notesData: [], qaData: [] }
+    },
+    "3": {
+      "1": { mcqData: [], notesData: [], qaData: [] },
+      "2": { mcqData: [], notesData: [], qaData: [] },
+      "3": { mcqData: [], notesData: [], qaData: [] },
+      "4": { mcqData: [], notesData: [], qaData: [] },
+      "5": { mcqData: [], notesData: [], qaData: [] },
+      "6": { mcqData: [], notesData: [], qaData: [] },
+      "7": { mcqData: [], notesData: [], qaData: [] },
+      "8": { mcqData: [], notesData: [], qaData: [] },
+      "9": { mcqData: [], notesData: [], qaData: [] },
+      "10": { mcqData: [], notesData: [], qaData: [] }
+    },
+    "4": {
+      "1": { mcqData: [], notesData: [], qaData: [] },
+      "2": { mcqData: [], notesData: [], qaData: [] },
+      "3": { mcqData: [], notesData: [], qaData: [] },
+      "4": { mcqData: [], notesData: [], qaData: [] },
+      "5": { mcqData: [], notesData: [], qaData: [] },
+      "6": { mcqData: [], notesData: [], qaData: [] },
+      "7": { mcqData: [], notesData: [], qaData: [] },
+      "8": { mcqData: [], notesData: [], qaData: [] },
+      "9": { mcqData: [], notesData: [], qaData: [] },
+      "10": { mcqData: [], notesData: [], qaData: [] }
+    },
+    "5": {
+      "1": { mcqData: [], notesData: [], qaData: [] },
+      "2": { mcqData: [], notesData: [], qaData: [] },
+      "3": { mcqData: [], notesData: [], qaData: [] },
+      "4": { mcqData: [], notesData: [], qaData: [] },
+      "5": { mcqData: [], notesData: [], qaData: [] },
+      "6": { mcqData: [], notesData: [], qaData: [] },
+      "7": { mcqData: [], notesData: [], qaData: [] },
+      "8": { mcqData: [], notesData: [], qaData: [] },
+      "9": { mcqData: [], notesData: [], qaData: [] },
+      "10": { mcqData: [], notesData: [], qaData: [] }
+    },
+    "6": {
+      "1": { mcqData: [], notesData: [], qaData: [] },
+      "2": { mcqData: [], notesData: [], qaData: [] },
+      "3": { mcqData: [], notesData: [], qaData: [] },
+      "4": { mcqData: [], notesData: [], qaData: [] },
+      "5": { mcqData: [], notesData: [], qaData: [] },
+      "6": { mcqData: [], notesData: [], qaData: [] },
+      "7": { mcqData: [], notesData: [], qaData: [] },
+      "8": { mcqData: [], notesData: [], qaData: [] },
+      "9": { mcqData: [], notesData: [], qaData: [] },
+      "10": { mcqData: [], notesData: [], qaData: [] }
+    },
     "7": {
       "1": {
         mcqData: [
@@ -930,11 +996,52 @@
           { marks: 3, question: "Explain the formation of sodium chloride with electronic configuration.", answer: `<div class="point"><strong>Step 1: Initial Configuration (½ mark)</strong><br>Sodium (Na) has electronic configuration 2, 8, 1<br>Chlorine (Cl) has electronic configuration 2, 8, 7</div><div class="point"><strong>Step 2: Electron Transfer (1½ marks)</strong><br>Sodium atom loses one electron from M shell to form Na⁺ cation with configuration 2, 8. Chlorine atom gains one electron in M shell to form Cl⁻ anion with configuration 2, 8, 8. Both ions attain stable noble gas configuration.</div><div class="point"><strong>Step 3: Ionic Bond Formation (1 mark)</strong><br>Na⁺ and Cl⁻ ions are oppositely charged and attract each other by strong electrostatic forces to form sodium chloride (NaCl). It exists as aggregates of ions, not molecules.</div>` }
         ]
       },
-      "2": {}, "3": {}, "4": {}, "5": {}, "6": {}, "7": {}, "8": {}, "9": {}, "10": {}
+      "2": { mcqData: [], notesData: [], qaData: [] },
+      "3": { mcqData: [], notesData: [], qaData: [] },
+      "4": { mcqData: [], notesData: [], qaData: [] },
+      "5": { mcqData: [], notesData: [], qaData: [] },
+      "6": { mcqData: [], notesData: [], qaData: [] },
+      "7": { mcqData: [], notesData: [], qaData: [] },
+      "8": { mcqData: [], notesData: [], qaData: [] },
+      "9": { mcqData: [], notesData: [], qaData: [] },
+      "10": { mcqData: [], notesData: [], qaData: [] }
     },
-    "8": { "1": {}, "2": {}, "3": {}, "4": {}, "5": {}, "6": {}, "7": {}, "8": {}, "9": {}, "10": {} },
-    "9": { "1": {}, "2": {}, "3": {}, "4": {}, "5": {}, "6": {}, "7": {}, "8": {}, "9": {}, "10": {} },
-    "10": { "1": {}, "2": {}, "3": {}, "4": {}, "5": {}, "6": {}, "7": {}, "8": {}, "9": {}, "10": {} }
+    "8": {
+      "1": { mcqData: [], notesData: [], qaData: [] },
+      "2": { mcqData: [], notesData: [], qaData: [] },
+      "3": { mcqData: [], notesData: [], qaData: [] },
+      "4": { mcqData: [], notesData: [], qaData: [] },
+      "5": { mcqData: [], notesData: [], qaData: [] },
+      "6": { mcqData: [], notesData: [], qaData: [] },
+      "7": { mcqData: [], notesData: [], qaData: [] },
+      "8": { mcqData: [], notesData: [], qaData: [] },
+      "9": { mcqData: [], notesData: [], qaData: [] },
+      "10": { mcqData: [], notesData: [], qaData: [] }
+    },
+    "9": {
+      "1": { mcqData: [], notesData: [], qaData: [] },
+      "2": { mcqData: [], notesData: [], qaData: [] },
+      "3": { mcqData: [], notesData: [], qaData: [] },
+      "4": { mcqData: [], notesData: [], qaData: [] },
+      "5": { mcqData: [], notesData: [], qaData: [] },
+      "6": { mcqData: [], notesData: [], qaData: [] },
+      "7": { mcqData: [], notesData: [], qaData: [] },
+      "8": { mcqData: [], notesData: [], qaData: [] },
+      "9": { mcqData: [], notesData: [], qaData: [] },
+      "10": { mcqData: [], notesData: [], qaData: [] }
+    },
+    "10": {
+      "1": { mcqData: [], notesData: [], qaData: [] },
+      "2": { mcqData: [], notesData: [], qaData: [] },
+      "3": { mcqData: [], notesData: [], qaData: [] },
+      "4": { mcqData: [], notesData: [], qaData: [] },
+      "5": { mcqData: [], notesData: [], qaData: [] },
+      "6": { mcqData: [], notesData: [], qaData: [] },
+      "7": { mcqData: [], notesData: [], qaData: [] },
+      "8": { mcqData: [], notesData: [], qaData: [] },
+      "9": { mcqData: [], notesData: [], qaData: [] },
+      "10": { mcqData: [], notesData: [], qaData: [] }
+    }
   };
 
   let currentView = 'mcq', currentChapter = '', currentPage = '', currentFilter = 'all';
@@ -972,10 +1079,10 @@
     clearAllContent();
     if (currentChapter && currentPage) {
       const pageData = chapterData[currentChapter]?.[currentPage];
-      if (pageData && (pageData.mcqData || pageData.notesData || pageData.qaData)) {
-        if (pageData.mcqData) renderMCQ(pageData.mcqData);
-        if (pageData.notesData) renderNotes(pageData.notesData);
-        if (pageData.qaData) renderQA(pageData.qaData);
+      if (pageData && (pageData.mcqData?.length || pageData.notesData?.length || pageData.qaData?.length)) {
+        if (pageData.mcqData?.length) renderMCQ(pageData.mcqData);
+        if (pageData.notesData?.length) renderNotes(pageData.notesData);
+        if (pageData.qaData?.length) renderQA(pageData.qaData);
       } else {
         const emptyMsg = '<p style="text-align:center; padding:40px; color:#666; font-size:14px;">Content not available for this page yet</p>';
         document.getElementById('mcqContent').innerHTML = emptyMsg;
@@ -1006,17 +1113,13 @@
     const notesTitle = `<div class="notes-title">📚 Chapter ${currentChapter} Page ${currentPage}</div>`;
     let html = notesTitle;
     notes.forEach((note, idx) => {
-      // Extract all paragraphs/sections from content
       const tempDiv = document.createElement('div');
       tempDiv.innerHTML = note.content;
       const sections = [];
-      
-      // Get all major content blocks
       const contentBlocks = tempDiv.querySelectorAll('.note-paragraph, .definition-box, .equation-box, .important-note, .highlight-box, table');
       contentBlocks.forEach(block => {
         sections.push(stripHtml(block.innerHTML).trim());
       });
-      
       const noteText = `${note.heading}\n\n${sections.join('\n\n')}`;
       html += `<div class="note-segment"><button class="ai-btn" onclick="openAI(\`${escapeForJS(noteText)}\`)">AI</button><div class="segment-heading">${note.heading}</div>${note.content}</div>`;
     });
@@ -1106,4 +1209,3 @@
 </script>
 </body>
 </html>
-
