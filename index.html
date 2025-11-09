@@ -77,6 +77,25 @@
     box-shadow: 0 4px 12px rgba(220, 38, 38, 0.5);
   }
   
+  /* ChatGPT Button for MCQ */
+  .chatgpt-btn {
+    background: linear-gradient(90deg, #dc2626 0%, #2563eb 100%);
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  }
+  
+  .chatgpt-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+  
   /* FRACTION STYLES */
   .frac {
     display: inline-block;
@@ -125,10 +144,10 @@
   
   /* NOTES SECTION STYLES */
   .notes-container {
-    max-width: 100%;
+    max-width: 1200px;
     margin: 0 auto;
     background: white;
-    padding: 20px 12px;
+    padding: 20px 16px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   }
@@ -361,8 +380,8 @@
   }
   
   .reset-score-btn {
-    background: #ef4444;
-    color: white;
+    background: #ff9800;
+    color: #000000;
     border: none;
     padding: 6px 12px;
     border-radius: 6px;
@@ -373,7 +392,7 @@
   }
   
   .reset-score-btn:hover {
-    background: #dc2626;
+    background: #fb8c00;
   }
   
   .question-count {
@@ -529,7 +548,7 @@
   .mark-5 { background: linear-gradient(135deg, #f44336, #ef5350); color: white; }
   
   .qa-container {
-    max-width: 100%;
+    max-width: 1200px;
     margin: 0 auto;
   }
   
@@ -675,16 +694,8 @@
     line-height: 1.6;
   }
   
-  /* Mathematical notation */
-  sub {
-    font-size: 0.75em;
-    vertical-align: sub;
-  }
-  
-  sup {
-    font-size: 0.75em;
-    vertical-align: super;
-  }
+  sub { font-size: 0.75em; vertical-align: sub; }
+  sup { font-size: 0.75em; vertical-align: super; }
   
   /* CONTROLS */
   .controls {
@@ -789,13 +800,8 @@
     transition: all 0.3s;
   }
   
-  .mark-filter-btn:hover {
-    border-color: #028090;
-  }
-  
-  .mark-filter-btn.active {
-    border-color: transparent;
-  }
+  .mark-filter-btn:hover { border-color: #028090; }
+  .mark-filter-btn.active { border-color: transparent; }
   
   .mark-filter-btn.filter-1.active { background: linear-gradient(135deg, #4caf50, #66bb6a); color: white; }
   .mark-filter-btn.filter-2.active { background: linear-gradient(135deg, #2196f3, #42a5f5); color: white; }
@@ -803,15 +809,9 @@
   .mark-filter-btn.filter-5.active { background: linear-gradient(135deg, #f44336, #ef5350); color: white; }
   .mark-filter-btn.filter-all.active { background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
   
-  /* MOBILE RESPONSIVE */
   @media (max-width: 900px) {
-    .header h1 {
-      font-size: 2rem;
-    }
-    
-    .header .subtitle {
-      font-size: 14px;
-    }
+    .header h1 { font-size: 2rem; }
+    .header .subtitle { font-size: 14px; }
   }
 </style>
 </head>
@@ -822,7 +822,6 @@
   <div class="subtitle">Pagewise Notes, MCQs, Q&A</div>
 </div>
 
-<!-- CHAPTER SELECTION -->
 <div class="controls">
   <div class="dropdown-group">
     <label for="chapterSelect">Chapter:</label>
@@ -849,14 +848,12 @@
   <button class="reload-btn" onclick="window.location.reload()">↻ Reload</button>
 </div>
 
-<!-- VIEW TOGGLE -->
 <div class="view-toggle">
   <button class="view-btn active" onclick="switchView('mcq')">MCQs</button>
   <button class="view-btn" onclick="switchView('notes')">Notes</button>
   <button class="view-btn" onclick="switchView('qa')">Q&A</button>
 </div>
 
-<!-- MCQ MODE -->
 <div id="mcqMode" class="mode-container">
   <div class="mcq-container">
     <div id="mcqContent">
@@ -865,7 +862,6 @@
   </div>
 </div>
 
-<!-- NOTES MODE -->
 <div id="notesMode" class="mode-container" style="display:none;">
   <div class="notes-container">
     <div id="notesContent">
@@ -874,7 +870,6 @@
   </div>
 </div>
 
-<!-- Q&A MODE -->
 <div id="qaMode" class="mode-container" style="display:none;">
   <h2 style="text-align:center; color:#023047; margin-bottom:20px; font-size:20px;">📝 Questions & Answers</h2>
   
@@ -899,176 +894,52 @@
     return `<span class="${cls}"><span class="num">${numerator}</span><span class="den">${denominator}</span></span>`;
   }
 
-  // Load score from localStorage
   let pageScores = JSON.parse(localStorage.getItem('pageScores')) || {};
 
   const chapterData = {
+    "1": { "1": {}, "2": {}, "3": {}, "4": {}, "5": {}, "6": {}, "7": {}, "8": {}, "9": {}, "10": {} },
+    "2": { "1": {}, "2": {}, "3": {}, "4": {}, "5": {}, "6": {}, "7": {}, "8": {}, "9": {}, "10": {} },
+    "3": { "1": {}, "2": {}, "3": {}, "4": {}, "5": {}, "6": {}, "7": {}, "8": {}, "9": {}, "10": {} },
+    "4": { "1": {}, "2": {}, "3": {}, "4": {}, "5": {}, "6": {}, "7": {}, "8": {}, "9": {}, "10": {} },
+    "5": { "1": {}, "2": {}, "3": {}, "4": {}, "5": {}, "6": {}, "7": {}, "8": {}, "9": {}, "10": {} },
+    "6": { "1": {}, "2": {}, "3": {}, "4": {}, "5": {}, "6": {}, "7": {}, "8": {}, "9": {}, "10": {} },
     "7": {
       "1": {
         mcqData: [
-          {
-            question: "The electronic configuration of Aluminium is 2, 8, 3. How many electrons are present in the M shell?",
-            options: ["a) 2", "b) 8", "c) 3", "d) 13"],
-            correct: "c"
-          },
-          {
-            question: "Which noble gas has the electronic configuration 2, 8, 8?",
-            options: ["a) Helium", "b) Neon", "c) Argon", "d) Krypton"],
-            correct: "c"
-          },
-          {
-            question: "Sodium atom loses one electron to form sodium cation. The electronic configuration of Na+ is:",
-            options: ["a) 2, 8, 1", "b) 2, 8", "c) 2, 7", "d) 2, 8, 2"],
-            correct: "b"
-          },
-          {
-            question: "Chlorine gains one electron to form chloride anion. The electronic configuration of Cl- is:",
-            options: ["a) 2, 8, 7", "b) 2, 7, 8", "c) 2, 8, 6", "d) 2, 8, 8"],
-            correct: "d"
-          },
-          {
-            question: "Which element has 17 protons and 18 electrons?",
-            options: ["a) Chlorine atom", "b) Chloride ion", "c) Argon atom", "d) Sodium cation"],
-            correct: "b"
-          }
+          { question: "The electronic configuration of Aluminium is 2, 8, 3. How many electrons are present in the M shell?", options: ["a) 2", "b) 8", "c) 3", "d) 13"], correct: "c" },
+          { question: "Which noble gas has the electronic configuration 2, 8, 8?", options: ["a) Helium", "b) Neon", "c) Argon", "d) Krypton"], correct: "c" },
+          { question: "Sodium atom loses one electron to form sodium cation. The electronic configuration of Na+ is:", options: ["a) 2, 8, 1", "b) 2, 8", "c) 2, 7", "d) 2, 8, 2"], correct: "b" },
+          { question: "Chlorine gains one electron to form chloride anion. The electronic configuration of Cl- is:", options: ["a) 2, 8, 7", "b) 2, 7, 8", "c) 2, 8, 6", "d) 2, 8, 8"], correct: "d" },
+          { question: "Which element has 17 protons and 18 electrons?", options: ["a) Chlorine atom", "b) Chloride ion", "c) Argon atom", "d) Sodium cation"], correct: "b" }
         ],
-        
         notesData: [
-          {
-            heading: "Introduction to Electronic Configuration",
-            content: `<div class="note-paragraph">
-              Electronic configuration represents the arrangement of electrons in different shells around the nucleus of an atom. The shells are designated as K, L, M, N and can hold a maximum number of electrons according to the formula 2n<sup>2</sup>, where n is the shell number.
-            </div>
-            
-            <div class="definition-box">
-              <div class="definition-term">Electronic Configuration</div>
-              <div class="definition-text">
-                The distribution of electrons in an atom among the available shells K, L, M, N surrounding the nucleus.
-              </div>
-            </div>`
-          },
-          {
-            heading: "Maximum Electrons in Each Shell",
-            content: `<table class="note-table">
-              <thead>
-                <tr>
-                  <th>Shell Name</th>
-                  <th>Shell Number (n)</th>
-                  <th>Maximum Electrons (2n<sup>2</sup>)</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td>K</td><td>1</td><td>2</td></tr>
-                <tr><td>L</td><td>2</td><td>8</td></tr>
-                <tr><td>M</td><td>3</td><td>18</td></tr>
-                <tr><td>N</td><td>4</td><td>32</td></tr>
-              </tbody>
-            </table>
-            
-            <div class="important-note">
-              <strong>Important:</strong> The outermost shell can hold a maximum of 8 electrons, even if the formula allows more.
-            </div>`
-          },
-          {
-            heading: "Electronic Configuration of Elements",
-            content: `<table class="note-table">
-              <thead>
-                <tr>
-                  <th>Type of Element</th>
-                  <th>Element</th>
-                  <th>Atomic Number</th>
-                  <th>K</th>
-                  <th>L</th>
-                  <th>M</th>
-                  <th>N</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td rowspan="3"><strong>Noble Gases</strong></td><td>Helium (He)</td><td>2</td><td>2</td><td>-</td><td>-</td><td>-</td></tr>
-                <tr><td>Neon (Ne)</td><td>10</td><td>2</td><td>8</td><td>-</td><td>-</td></tr>
-                <tr><td>Argon (Ar)</td><td>18</td><td>2</td><td>8</td><td>8</td><td>-</td></tr>
-                <tr><td rowspan="5"><strong>Metals</strong></td><td>Sodium (Na)</td><td>11</td><td>2</td><td>8</td><td>1</td><td>-</td></tr>
-                <tr><td>Magnesium (Mg)</td><td>12</td><td>2</td><td>8</td><td>2</td><td>-</td></tr>
-                <tr><td>Aluminium (Al)</td><td>13</td><td>2</td><td>8</td><td>3</td><td>-</td></tr>
-                <tr><td>Potassium (K)</td><td>19</td><td>2</td><td>8</td><td>8</td><td>1</td></tr>
-                <tr><td>Calcium (Ca)</td><td>20</td><td>2</td><td>8</td><td>8</td><td>2</td></tr>
-                <tr><td rowspan="6"><strong>Non-Metals</strong></td><td>Nitrogen (N)</td><td>7</td><td>2</td><td>5</td><td>-</td><td>-</td></tr>
-                <tr><td>Oxygen (O)</td><td>8</td><td>2</td><td>6</td><td>-</td><td>-</td></tr>
-                <tr><td>Fluorine (F)</td><td>9</td><td>2</td><td>7</td><td>-</td><td>-</td></tr>
-                <tr><td>Phosphorus (P)</td><td>15</td><td>2</td><td>8</td><td>5</td><td>-</td></tr>
-                <tr><td>Sulphur (S)</td><td>16</td><td>2</td><td>8</td><td>6</td><td>-</td></tr>
-                <tr><td>Chlorine (Cl)</td><td>17</td><td>2</td><td>8</td><td>7</td><td>-</td></tr>
-              </tbody>
-            </table>`
-          },
-          {
-            heading: "Formation of Ions",
-            content: `<div class="segment-subheading">Cation Formation</div>
-            
-            <div class="note-paragraph">
-              Metals lose electrons from their outermost shell to attain stable noble gas configuration. The atom becomes positively charged after losing electrons.
-            </div>
-            
-            <div class="equation-box">
-              <div class="equation-text">
-                Na → Na<sup>+</sup> + e<sup>-</sup><br>
-                2, 8, 1 → 2, 8<br>
-                <span style="font-size:11px; color:#666;">Sodium cation</span>
-              </div>
-            </div>
-            
-            <div class="segment-subheading">Anion Formation</div>
-            
-            <div class="note-paragraph">
-              Non-metals gain electrons in their outermost shell to complete their octet and attain stable noble gas configuration. The atom becomes negatively charged after gaining electrons.
-            </div>
-            
-            <div class="equation-box">
-              <div class="equation-text">
-                Cl + e<sup>-</sup> → Cl<sup>-</sup><br>
-                2, 8, 7 → 2, 8, 8<br>
-                <span style="font-size:11px; color:#666;">Chloride anion</span>
-              </div>
-            </div>`
-          }
+          { heading: "Introduction to Electronic Configuration", content: `<div class="note-paragraph">Electronic configuration represents the arrangement of electrons in different shells around the nucleus of an atom. The shells are designated as K, L, M, N and can hold a maximum number of electrons according to the formula 2n squared, where n is the shell number.</div><div class="definition-box"><div class="definition-term">Electronic Configuration</div><div class="definition-text">The distribution of electrons in an atom among the available shells K, L, M, N surrounding the nucleus.</div></div>` },
+          { heading: "Maximum Electrons in Each Shell", content: `<table class="note-table"><thead><tr><th>Shell Name</th><th>Shell Number n</th><th>Maximum Electrons 2n squared</th></tr></thead><tbody><tr><td>K</td><td>1</td><td>2</td></tr><tr><td>L</td><td>2</td><td>8</td></tr><tr><td>M</td><td>3</td><td>18</td></tr><tr><td>N</td><td>4</td><td>32</td></tr></tbody></table><div class="important-note"><strong>Important:</strong> The outermost shell can hold a maximum of 8 electrons, even if the formula allows more.</div>` },
+          { heading: "Electronic Configuration of Elements", content: `<table class="note-table"><thead><tr><th>Type</th><th>Element</th><th>Atomic No</th><th>K</th><th>L</th><th>M</th><th>N</th></tr></thead><tbody><tr><td rowspan="3"><strong>Noble Gases</strong></td><td>Helium He</td><td>2</td><td>2</td><td>-</td><td>-</td><td>-</td></tr><tr><td>Neon Ne</td><td>10</td><td>2</td><td>8</td><td>-</td><td>-</td></tr><tr><td>Argon Ar</td><td>18</td><td>2</td><td>8</td><td>8</td><td>-</td></tr><tr><td rowspan="5"><strong>Metals</strong></td><td>Sodium Na</td><td>11</td><td>2</td><td>8</td><td>1</td><td>-</td></tr><tr><td>Magnesium Mg</td><td>12</td><td>2</td><td>8</td><td>2</td><td>-</td></tr><tr><td>Aluminium Al</td><td>13</td><td>2</td><td>8</td><td>3</td><td>-</td></tr><tr><td>Potassium K</td><td>19</td><td>2</td><td>8</td><td>8</td><td>1</td></tr><tr><td>Calcium Ca</td><td>20</td><td>2</td><td>8</td><td>8</td><td>2</td></tr><tr><td rowspan="6"><strong>Non-Metals</strong></td><td>Nitrogen N</td><td>7</td><td>2</td><td>5</td><td>-</td><td>-</td></tr><tr><td>Oxygen O</td><td>8</td><td>2</td><td>6</td><td>-</td><td>-</td></tr><tr><td>Fluorine F</td><td>9</td><td>2</td><td>7</td><td>-</td><td>-</td></tr><tr><td>Phosphorus P</td><td>15</td><td>2</td><td>8</td><td>5</td><td>-</td></tr><tr><td>Sulphur S</td><td>16</td><td>2</td><td>8</td><td>6</td><td>-</td></tr><tr><td>Chlorine Cl</td><td>17</td><td>2</td><td>8</td><td>7</td><td>-</td></tr></tbody></table>` },
+          { heading: "Formation of Ions", content: `<div class="segment-subheading">Cation Formation</div><div class="note-paragraph">Metals lose electrons from their outermost shell to attain stable noble gas configuration. The atom becomes positively charged after losing electrons.</div><div class="equation-box"><div class="equation-text">Na arrow Na plus e minus<br>2, 8, 1 arrow 2, 8<br><span style="font-size:11px; color:#666;">Sodium cation</span></div></div><div class="segment-subheading">Anion Formation</div><div class="note-paragraph">Non-metals gain electrons in their outermost shell to complete their octet and attain stable noble gas configuration. The atom becomes negatively charged after gaining electrons.</div><div class="equation-box"><div class="equation-text">Cl plus e minus arrow Cl minus<br>2, 8, 7 arrow 2, 8, 8<br><span style="font-size:11px; color:#666;">Chloride anion</span></div></div>` }
         ],
-        
         qaData: [
-          {
-            marks: 1,
-            question: "What is electronic configuration?",
-            answer: "Electronic configuration is the distribution or arrangement of electrons in different shells K, L, M, N around the nucleus of an atom."
-          },
-          {
-            marks: 2,
-            question: "Write the electronic configuration of sodium and chlorine. How do they form ions?",
-            answer: `<div class="point"><strong>Electronic Configuration:</strong> Sodium (Na) has atomic number 11 with configuration 2, 8, 1. Chlorine (Cl) has atomic number 17 with configuration 2, 8, 7.</div>
-            <div class="point"><strong>Ion Formation:</strong> Sodium loses one electron to form Na<sup>+</sup> (2, 8). Chlorine gains one electron to form Cl<sup>-</sup> (2, 8, 8). Both attain stable noble gas configuration.</div>`
-          },
-          {
-            marks: 3,
-            question: "Explain the formation of sodium chloride with electronic configuration.",
-            answer: `<div class="point"><strong>Step 1: Initial Configuration (½ mark)</strong><br>Sodium (Na) has electronic configuration 2, 8, 1<br>Chlorine (Cl) has electronic configuration 2, 8, 7</div>
-            <div class="point"><strong>Step 2: Electron Transfer (1½ marks)</strong><br>Sodium atom loses one electron from M shell to form Na<sup>+</sup> cation with configuration 2, 8. Chlorine atom gains one electron in M shell to form Cl<sup>-</sup> anion with configuration 2, 8, 8. Both ions attain stable noble gas configuration.</div>
-            <div class="point"><strong>Step 3: Ionic Bond Formation (1 mark)</strong><br>Na<sup>+</sup> and Cl<sup>-</sup> ions are oppositely charged and attract each other by strong electrostatic forces to form sodium chloride (NaCl). It exists as aggregates of ions, not molecules.</div>`
-          }
+          { marks: 1, question: "What is electronic configuration?", answer: "Electronic configuration is the distribution or arrangement of electrons in different shells K, L, M, N around the nucleus of an atom." },
+          { marks: 2, question: "Write the electronic configuration of sodium and chlorine. How do they form ions?", answer: `<div class="point"><strong>Electronic Configuration:</strong> Sodium Na has atomic number 11 with configuration 2, 8, 1. Chlorine Cl has atomic number 17 with configuration 2, 8, 7.</div><div class="point"><strong>Ion Formation:</strong> Sodium loses one electron to form Na plus 2, 8. Chlorine gains one electron to form Cl minus 2, 8, 8. Both attain stable noble gas configuration.</div>` },
+          { marks: 3, question: "Explain the formation of sodium chloride with electronic configuration.", answer: `<div class="point"><strong>Step 1: Initial Configuration half mark</strong><br>Sodium Na has electronic configuration 2, 8, 1<br>Chlorine Cl has electronic configuration 2, 8, 7</div><div class="point"><strong>Step 2: Electron Transfer one and half marks</strong><br>Sodium atom loses one electron from M shell to form Na plus cation with configuration 2, 8. Chlorine atom gains one electron in M shell to form Cl minus anion with configuration 2, 8, 8. Both ions attain stable noble gas configuration.</div><div class="point"><strong>Step 3: Ionic Bond Formation 1 mark</strong><br>Na plus and Cl minus ions are oppositely charged and attract each other by strong electrostatic forces to form sodium chloride NaCl. It exists as aggregates of ions, not molecules.</div>` }
         ]
-      }
-    }
+      },
+      "2": {}, "3": {}, "4": {}, "5": {}, "6": {}, "7": {}, "8": {}, "9": {}, "10": {}
+    },
+    "8": { "1": {}, "2": {}, "3": {}, "4": {}, "5": {}, "6": {}, "7": {}, "8": {}, "9": {}, "10": {} },
+    "9": { "1": {}, "2": {}, "3": {}, "4": {}, "5": {}, "6": {}, "7": {}, "8": {}, "9": {}, "10": {} },
+    "10": { "1": {}, "2": {}, "3": {}, "4": {}, "5": {}, "6": {}, "7": {}, "8": {}, "9": {}, "10": {} }
   };
 
-  let currentView = 'mcq';
-  let currentChapter = '';
-  let currentPage = '';
-  let currentFilter = 'all';
+  let currentView = 'mcq', currentChapter = '', currentPage = '', currentFilter = 'all';
 
   function updatePages() {
     const chapterSelect = document.getElementById('chapterSelect').value;
     const pageSelect = document.getElementById('pageSelect');
     currentChapter = chapterSelect;
-    
+    currentPage = '';
     pageSelect.innerHTML = '<option value="">Select Page</option>';
-    
+    clearAllContent();
     if (chapterSelect) {
       for (let i = 1; i <= 10; i++) {
         const option = document.createElement('option');
@@ -1082,17 +953,23 @@
     }
   }
 
+  function clearAllContent() {
+    const emptyMsg = '<p style="text-align:center; padding:40px; color:#666; font-size:14px;">Select a chapter and page to view content</p>';
+    document.getElementById('mcqContent').innerHTML = emptyMsg;
+    document.getElementById('notesContent').innerHTML = emptyMsg;
+    document.getElementById('qaContent').innerHTML = emptyMsg;
+  }
+
   function loadPage() {
     const pageSelect = document.getElementById('pageSelect').value;
     currentPage = pageSelect;
-    
+    clearAllContent();
     if (currentChapter && currentPage) {
       const pageData = chapterData[currentChapter]?.[currentPage];
-      
-      if (pageData) {
-        renderMCQ(pageData.mcqData);
-        renderNotes(pageData.notesData);
-        renderQA(pageData.qaData);
+      if (pageData && (pageData.mcqData || pageData.notesData || pageData.qaData)) {
+        if (pageData.mcqData) renderMCQ(pageData.mcqData);
+        if (pageData.notesData) renderNotes(pageData.notesData);
+        if (pageData.qaData) renderQA(pageData.qaData);
       } else {
         const emptyMsg = '<p style="text-align:center; padding:40px; color:#666; font-size:14px;">Content not available for this page yet</p>';
         document.getElementById('mcqContent').innerHTML = emptyMsg;
@@ -1105,118 +982,58 @@
   function renderMCQ(mcqs) {
     const pageKey = `${currentChapter}-${currentPage}`;
     const score = pageScores[pageKey] || 0;
-    
-    let html = `<div class="score-display">
-      <span>Score: ${score}/${mcqs.length}</span>
-      <button class="reset-score-btn" onclick="resetScore()">Reset Score</button>
-    </div>`;
-    
+    let html = `<div class="score-display"><span>Score: ${score}/${mcqs.length}</span><button class="reset-score-btn" onclick="resetScore()">Reset Score</button></div>`;
     html += `<div class="question-count">Questions: ${mcqs.length}</div>`;
-    
     mcqs.forEach((q, idx) => {
       const fullQuestion = `${q.question} Options: ${q.options.join(', ')}`;
-      html += `<div class="question-item">
-        <div class="question-header">
-          <div class="question-number">Q${idx + 1}</div>
-          <button class="ai-btn" onclick="openAI('${escapeHtml(fullQuestion)}')">AI</button>
-        </div>
-        <div class="question-text">${q.question}</div>
-        <div class="options">`;
-      
+      html += `<div class="question-item"><div class="question-header"><div class="question-number">Q${idx + 1}</div><button class="chatgpt-btn" onclick="openAI(\`${escapeForJS(fullQuestion)}\`)">ChatGPT</button></div><div class="question-text">${q.question}</div><div class="options">`;
       q.options.forEach(opt => {
         const optLetter = opt.charAt(0);
         html += `<div class="option" onclick="checkAnswer(this, '${q.correct}', '${optLetter}')">${opt}</div>`;
       });
-      
-      html += `</div>
-        <div class="answer-display" id="answer-${idx}">
-          <strong>Correct Answer:</strong> ${q.options.find(o => o.startsWith(q.correct))}
-        </div>
-        <div class="button-group">
-          <button class="btn btn-answer" onclick="showAnswerBox(${idx})">Show Answer</button>
-        </div>
-      </div>`;
+      html += `</div><div class="answer-display" id="answer-${idx}"><strong>Correct Answer:</strong> ${q.options.find(o => o.startsWith(q.correct))}</div><div class="button-group"><button class="btn btn-answer" onclick="showAnswerBox(${idx})">Show Answer</button></div></div>`;
     });
-    
     document.getElementById('mcqContent').innerHTML = html;
   }
 
   function renderNotes(notes) {
-    const notesTitle = `<div class="notes-title">📚 Electronic Configuration of Elements</div>`;
+    const notesTitle = `<div class="notes-title">📚 Chapter ${currentChapter} Page ${currentPage}</div>`;
     let html = notesTitle;
-    
     notes.forEach((note, idx) => {
-      const noteText = `${note.heading}. ${note.content}`;
-      html += `<div class="note-segment">
-        <button class="ai-btn" onclick="openAI('${escapeHtml(noteText)}')">AI</button>
-        <div class="segment-heading">${note.heading}</div>
-        ${note.content}
-      </div>`;
+      const noteText = `${note.heading}. ${stripHtml(note.content)}`;
+      html += `<div class="note-segment"><button class="ai-btn" onclick="openAI(\`${escapeForJS(noteText)}\`)">AI</button><div class="segment-heading">${note.heading}</div>${note.content}</div>`;
     });
-    
     document.getElementById('notesContent').innerHTML = html;
   }
 
   function renderQA(qas) {
-    let html = `<p style="text-align:center; color:#666; margin-bottom:20px; font-size:13px;">
-      Chapter 7 Page 1: Electronic Configuration | Total: ${qas.length} Questions
-    </p>`;
-    
+    let html = `<p style="text-align:center; color:#666; margin-bottom:20px; font-size:13px;">Chapter ${currentChapter} Page ${currentPage} | Total: ${qas.length} Questions</p>`;
     qas.forEach((qa, idx) => {
-      const qaText = `Question: ${qa.question} Answer: ${qa.answer}`;
+      const qaText = `Question: ${qa.question} Answer: ${stripHtml(qa.answer)}`;
       const markClass = `mark-${qa.marks}-item`;
-      html += `<div class="qa-item ${markClass}" data-mark="${qa.marks}">
-        <button class="ai-btn" onclick="openAI('${escapeHtml(qaText)}')">AI</button>
-        <div class="qa-question">
-          <span class="qa-question-number">Q${idx + 1}</span>
-          ${qa.question}
-          <span class="mark-badge mark-${qa.marks}">${qa.marks} Mark${qa.marks > 1 ? 's' : ''}</span>
-        </div>
-        <div class="qa-answer-section">
-          <span class="qa-answer-label">✍️ Answer:</span>
-          <div class="answer-${qa.marks}mark">
-            ${qa.answer}
-          </div>
-        </div>
-      </div>`;
+      html += `<div class="qa-item ${markClass}" data-mark="${qa.marks}"><button class="ai-btn" onclick="openAI(\`${escapeForJS(qaText)}\`)">AI</button><div class="qa-question"><span class="qa-question-number">Q${idx + 1}</span>${qa.question}<span class="mark-badge mark-${qa.marks}">${qa.marks} Mark${qa.marks > 1 ? 's' : ''}</span></div><div class="qa-answer-section"><span class="qa-answer-label">✍️ Answer:</span><div class="answer-${qa.marks}mark">${qa.answer}</div></div></div>`;
     });
-    
     document.getElementById('qaContent').innerHTML = html;
   }
 
   function checkAnswer(element, correct, selected) {
     const questionItem = element.closest('.question-item');
     const allOptions = questionItem.querySelectorAll('.option');
-    
-    // Check if already answered
     if (element.classList.contains('selected')) return;
-    
-    // Disable all options
-    allOptions.forEach(opt => {
-      opt.style.pointerEvents = 'none';
-    });
-    
-    // Mark selected option
+    allOptions.forEach(opt => { opt.style.pointerEvents = 'none'; });
     element.classList.add('selected');
-    if (selected === correct) {
-      element.classList.add('correct');
-      updateScore(1);
-    } else {
-      element.classList.add('wrong');
-    }
+    if (selected === correct) { element.classList.add('correct'); updateScore(1); }
+    else { element.classList.add('wrong'); }
   }
 
   function showAnswerBox(idx) {
-    const answerBox = document.getElementById(`answer-${idx}`);
-    answerBox.classList.add('show');
+    document.getElementById(`answer-${idx}`).classList.add('show');
   }
 
   function updateScore(points) {
     const pageKey = `${currentChapter}-${currentPage}`;
     pageScores[pageKey] = (pageScores[pageKey] || 0) + points;
     localStorage.setItem('pageScores', JSON.stringify(pageScores));
-    
-    // Update display
     const scoreDisplay = document.querySelector('.score-display span');
     if (scoreDisplay) {
       const totalQuestions = chapterData[currentChapter][currentPage].mcqData.length;
@@ -1232,13 +1049,19 @@
   }
 
   function openAI(text) {
-    const cleanText = text.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+    const cleanText = stripHtml(text).replace(/\s+/g, ' ').trim();
     const encodedText = encodeURIComponent(cleanText);
     window.open(`https://chat.openai.com/?q=${encodedText}`, '_blank');
   }
 
-  function escapeHtml(text) {
-    return text.replace(/'/g, '&apos;').replace(/"/g, '&quot;').replace(/<[^>]*>/g, '');
+  function stripHtml(html) {
+    const tmp = document.createElement('div');
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || '';
+  }
+
+  function escapeForJS(text) {
+    return text.replace(/\\/g, '\\\\').replace(/`/g, '\\`').replace(/\$/g, '\\$');
   }
 
   function switchView(view) {
@@ -1246,31 +1069,23 @@
     document.getElementById('mcqMode').style.display = view === 'mcq' ? 'block' : 'none';
     document.getElementById('notesMode').style.display = view === 'notes' ? 'block' : 'none';
     document.getElementById('qaMode').style.display = view === 'qa' ? 'block' : 'none';
-    
     document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
     event.target.classList.add('active');
   }
 
   function filterByMark(mark) {
     currentFilter = mark;
-    
     document.querySelectorAll('.mark-filter-btn').forEach(btn => btn.classList.remove('active'));
-    if (mark === 'all') {
-      document.querySelector('.filter-all').classList.add('active');
-    } else {
-      document.querySelector(`.filter-${mark}`).classList.add('active');
-    }
-    
+    if (mark === 'all') { document.querySelector('.filter-all').classList.add('active'); }
+    else { document.querySelector(`.filter-${mark}`).classList.add('active'); }
     document.querySelectorAll('.qa-item').forEach(item => {
-      if (mark === 'all') {
-        item.style.display = 'block';
-      } else {
+      if (mark === 'all') { item.style.display = 'block'; }
+      else {
         const itemMark = item.getAttribute('data-mark');
         item.style.display = itemMark == mark ? 'block' : 'none';
       }
     });
   }
 </script>
-
 </body>
 </html>
