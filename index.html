@@ -74,7 +74,6 @@
     line-height: 1.2;
   }
   
-  /* Large fraction for formulas */
   .frac-lg {
     display: inline-block;
     vertical-align: middle;
@@ -98,7 +97,314 @@
     line-height: 1.3;
   }
   
-  /* MARK BADGE STYLES */
+  /* NOTES SECTION STYLES */
+  .notes-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: white;
+    padding: 32px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .notes-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: #023047;
+    margin-bottom: 24px;
+    text-align: center;
+    border-bottom: 3px solid #028090;
+    padding-bottom: 12px;
+  }
+  
+  .note-segment {
+    margin-bottom: 32px;
+    padding: 20px;
+    background: #f9fafb;
+    border-radius: 8px;
+    border-left: 4px solid #028090;
+  }
+  
+  .segment-heading {
+    font-size: 20px;
+    font-weight: 700;
+    color: #116466;
+    margin-bottom: 16px;
+  }
+  
+  .segment-subheading {
+    font-size: 16px;
+    font-weight: 700;
+    color: #2a6f62;
+    margin-top: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .note-paragraph {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #1f2937;
+    margin-bottom: 12px;
+    text-align: justify;
+  }
+  
+  .note-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 12px 0;
+  }
+  
+  .note-list li {
+    padding: 8px 0 8px 28px;
+    position: relative;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  
+  .note-list li:before {
+    content: "▸";
+    position: absolute;
+    left: 8px;
+    color: #028090;
+    font-weight: 700;
+    font-size: 16px;
+  }
+  
+  .note-numbered-list {
+    padding-left: 20px;
+    margin: 12px 0;
+  }
+  
+  .note-numbered-list li {
+    padding: 6px 0;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  
+  .note-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .note-table th {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 12px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 14px;
+  }
+  
+  .note-table td {
+    padding: 12px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  
+  .note-table tr:last-child td {
+    border-bottom: none;
+  }
+  
+  .note-table tr:hover {
+    background-color: #f9fafb;
+  }
+  
+  .formula-box {
+    background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+    border: 2px solid #ff9800;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .formula-label {
+    font-size: 14px;
+    color: #e65100;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  
+  .formula-text {
+    font-size: 20px;
+    font-weight: 700;
+    color: #bf360c;
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  
+  .equation-box {
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+    border: 2px solid #2196f3;
+    padding: 16px;
+    margin: 16px 0;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .equation-text {
+    font-size: 18px;
+    font-weight: 600;
+    color: #0d47a1;
+  }
+  
+  .highlight-box {
+    background: linear-gradient(135deg, #fff8e1, #ffe0b2);
+    border-left: 5px solid #ff9800;
+    padding: 16px 20px;
+    margin: 16px 0;
+    border-radius: 8px;
+  }
+  
+  .highlight-box strong {
+    color: #e65100;
+  }
+  
+  .definition-box {
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+    border-left: 5px solid #2196f3;
+    padding: 16px 20px;
+    margin: 16px 0;
+    border-radius: 8px;
+  }
+  
+  .definition-term {
+    font-weight: 700;
+    color: #0d47a1;
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  
+  .definition-text {
+    color: #1565c0;
+    line-height: 1.7;
+  }
+  
+  .important-note {
+    background: linear-gradient(135deg, #ffebee, #ffcdd2);
+    border: 2px solid #f44336;
+    padding: 16px 20px;
+    margin: 16px 0;
+    border-radius: 8px;
+  }
+  
+  .important-note strong {
+    color: #c62828;
+  }
+  
+  /* MCQ STYLES */
+  .mcq-container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  .question-count {
+    font-weight: 700;
+    font-size: 18px;
+    color: #116466;
+    margin-bottom: 18px;
+    border-left: 5px solid #028090;
+    padding-left: 14px;
+  }
+  
+  .question-item {
+    background-color: #fff8f0;
+    border-radius: 12px;
+    border: 1.5px solid #f0c49c;
+    margin-bottom: 26px;
+    padding: 20px 24px;
+    font-size: 15px;
+  }
+  
+  .question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  
+  .question-number {
+    font-weight: 700;
+    font-size: 18px;
+    color: #2a6f62;
+  }
+  
+  .question-year {
+    background-color: #116466;
+    color: #e0f7f4;
+    padding: 5px 14px;
+    border-radius: 16px;
+    font-weight: 600;
+    font-size: 13px;
+  }
+  
+  .question-text {
+    font-weight: 600;
+    font-size: 15px;
+    color: #255c4d;
+    margin-bottom: 14px;
+  }
+  
+  .options {
+    margin-bottom: 18px;
+  }
+  
+  .option {
+    background-color: #ffffff;
+    border-radius: 6px;
+    border: 1.8px solid #b5d0c8;
+    padding: 11px 18px;
+    margin: 8px 0;
+    font-weight: 500;
+    font-size: 15px;
+    color: #244636;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .option:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: #71b280;
+  }
+  
+  .button-group {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  
+  .btn {
+    padding: 11px 18px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 15px;
+    transition: all 0.3s;
+  }
+  
+  .btn-answer {
+    background-color: #198754;
+    color: #ffffff;
+  }
+  
+  .btn-answer:hover {
+    background-color: #146c43;
+  }
+  
+  /* Q&A STYLES */
   .mark-badge {
     display: inline-block;
     padding: 6px 16px;
@@ -114,7 +420,6 @@
   .mark-3 { background: linear-gradient(135deg, #ff9800, #ffa726); color: white; }
   .mark-5 { background: linear-gradient(135deg, #f44336, #ef5350); color: white; }
   
-  /* Q&A CONTAINER */
   .qa-container {
     max-width: 900px;
     margin: 0 auto;
@@ -179,7 +484,6 @@
     font-weight: 600;
   }
   
-  /* ANSWER STYLES */
   .answer-1mark, .answer-2mark, .answer-3mark, .answer-5mark {
     padding: 16px;
     border-radius: 6px;
@@ -266,6 +570,62 @@
     vertical-align: super;
   }
   
+  /* CONTROLS */
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-bottom: 16px;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .dropdown-group {
+    min-width: 180px;
+    flex: 1;
+  }
+  
+  label {
+    display: block;
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 6px;
+    color: #344e41;
+  }
+  
+  select {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 2px solid #028090;
+    font-size: 15px;
+    background-color: #ffffff;
+    color: #023047;
+    transition: 0.3s;
+  }
+  
+  select:focus {
+    outline: none;
+    border-color: #023047;
+    background-color: #e0f7f4;
+  }
+  
+  .reload-btn {
+    cursor: pointer;
+    background-color: #8b5cf6;
+    border: none;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 12px;
+    height: 36px;
+  }
+  
+  .reload-btn:hover {
+    background-color: #7c3aed;
+  }
+  
   /* VIEW TOGGLE */
   .view-toggle {
     display: flex;
@@ -325,7 +685,7 @@
   .mark-filter-btn.filter-5.active { background: linear-gradient(135deg, #f44336, #ef5350); color: white; }
   .mark-filter-btn.filter-all.active { background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
   
-  /* MOBILE RESPONSIVE - MAXIMUM WIDTH */
+  /* MOBILE RESPONSIVE */
   @media (max-width: 900px) {
     body {
       padding: 8px 4px;
@@ -346,152 +706,22 @@
       font-size: 14px;
     }
     
-    .view-toggle {
-      gap: 6px;
-      margin-bottom: 12px;
-      padding: 0 4px;
-    }
-    
-    .view-btn {
-      padding: 8px 12px;
-      font-size: 13px;
-    }
-    
-    .mark-filter {
-      gap: 6px;
-      margin-bottom: 16px;
-      padding: 0 4px;
-    }
-    
-    .mark-filter-btn {
-      padding: 6px 10px;
-      font-size: 12px;
-    }
-    
-    .qa-container {
+    .notes-container, .mcq-container, .qa-container {
+      padding: 16px 12px;
       max-width: 100%;
-      padding: 0;
-      margin: 0;
     }
     
-    .qa-item {
+    .qa-item, .question-item {
       padding: 10px 8px;
       margin-bottom: 12px;
-      border-radius: 6px;
     }
     
-    .qa-question {
-      font-size: 14px;
-      line-height: 1.6;
-      margin-bottom: 12px;
-    }
-    
-    .qa-question-number {
-      font-size: 12px;
-      padding: 4px 8px;
-      margin-right: 4px;
-    }
-    
-    .mark-badge {
-      font-size: 11px;
-      padding: 3px 8px;
-      margin-left: 4px;
-      display: block;
-      margin-top: 6px;
-      width: fit-content;
-    }
-    
-    .answer-length-guide {
-      font-size: 11px;
-      padding: 8px 8px;
-      margin-bottom: 10px;
-    }
-    
-    .qa-answer-section {
-      padding: 10px 8px;
-      margin-top: 10px;
-    }
-    
-    .qa-answer-label {
-      font-size: 13px;
-      margin-bottom: 8px;
-    }
-    
-    /* Keep original font sizes for answers */
-    .answer-1mark, .answer-2mark .point, .answer-3mark .point, .answer-5mark .section p {
-      font-size: 13px;
-      line-height: 1.6;
-    }
-    
-    .answer-1mark, .answer-2mark, .answer-3mark, .answer-5mark {
-      padding: 10px 8px;
-    }
-    
-    .answer-3mark .point, .answer-5mark .section {
-      padding: 8px;
-      margin: 8px 0;
-    }
-    
-    .answer-5mark .section h5 {
-      font-size: 14px;
-      margin-bottom: 6px;
-    }
-    
-    /* Optimize fractions for mobile */
     .frac {
       font-size: 0.9em;
-      margin: 0 2px;
-    }
-    
-    .frac .num, .frac .den {
-      padding: 1px 3px;
     }
     
     .frac-lg {
       font-size: 1em;
-      margin: 0 3px;
-    }
-    
-    .frac-lg .num, .frac-lg .den {
-      padding: 2px 6px;
-    }
-  }
-  
-  /* EXTRA SMALL MOBILE (< 400px) */
-  @media (max-width: 400px) {
-    body {
-      padding: 6px 2px;
-    }
-    
-    .header {
-      padding: 20px 6px 12px 6px;
-    }
-    
-    .qa-item {
-      padding: 8px 6px;
-    }
-    
-    .qa-answer-section {
-      padding: 8px 6px;
-    }
-    
-    .answer-1mark, .answer-2mark, .answer-3mark, .answer-5mark {
-      padding: 8px 6px;
-    }
-  }
-  
-  /* LARGE MOBILE (> 600px but < 900px) */
-  @media (min-width: 600px) and (max-width: 900px) {
-    body {
-      padding: 10px 6px;
-    }
-    
-    .qa-item {
-      padding: 14px 10px;
-    }
-    
-    .qa-answer-section {
-      padding: 12px 10px;
     }
   }
 </style>
@@ -500,35 +730,59 @@
 
 <div class="header" role="banner">
   <h1>NEET-PbP</h1>
-  <div class="subtitle">NEET/AIPMT Biology Page by Page Analysis (1988-2025)</div>
+  <div class="subtitle">NEET/AIPMT Biology Page by Page Analysis 1988-2025</div>
+</div>
+
+<!-- CHAPTER SELECTION -->
+<div class="controls">
+  <div class="dropdown-group">
+    <label for="classSelect">Class:</label>
+    <select id="classSelect" onchange="updateChapters()">
+      <option value="">Select Class</option>
+      <option value="11">Class 11</option>
+      <option value="12">Class 12</option>
+    </select>
+  </div>
+  <div class="dropdown-group">
+    <label for="chapterSelect">Chapter:</label>
+    <select id="chapterSelect" onchange="loadChapter()" disabled>
+      <option value="">Select Chapter</option>
+    </select>
+  </div>
+  <button class="reload-btn" onclick="window.location.reload()">↻ Reload</button>
 </div>
 
 <!-- VIEW TOGGLE -->
 <div class="view-toggle">
-  <button class="view-btn" onclick="switchView('mcq')">MCQ Mode</button>
+  <button class="view-btn active" onclick="switchView('mcq')">MCQ Mode</button>
   <button class="view-btn" onclick="switchView('notes')">Notes Mode</button>
-  <button class="view-btn active" onclick="switchView('qa')">Q&A Mode</button>
+  <button class="view-btn" onclick="switchView('qa')">Q&A Mode</button>
 </div>
 
 <!-- MCQ MODE -->
-<div id="mcqMode" class="mode-container" style="display:none;">
-  <div style="text-align:center; padding:40px; color:#666;">
-    <p>MCQ content will appear here</p>
+<div id="mcqMode" class="mode-container">
+  <div class="mcq-container">
+    <div id="mcqContent">
+      <!-- PASTE MCQ CONTENT HERE -->
+      <p style="text-align:center; padding:40px; color:#666;">Select a chapter to view MCQs</p>
+    </div>
   </div>
 </div>
 
 <!-- NOTES MODE -->
 <div id="notesMode" class="mode-container" style="display:none;">
-  <div style="text-align:center; padding:40px; color:#666;">
-    <p>Notes content will appear here</p>
+  <div class="notes-container">
+    <div id="notesContent">
+      <!-- PASTE NOTES CONTENT HERE -->
+      <p style="text-align:center; padding:40px; color:#666;">Select a chapter to view notes</p>
+    </div>
   </div>
 </div>
 
 <!-- Q&A MODE -->
-<div id="qaMode" class="mode-container">
+<div id="qaMode" class="mode-container" style="display:none;">
   <h2 style="text-align:center; color:#023047; margin-bottom:24px;">📝 Question & Answer Section</h2>
   
-  <!-- MARK FILTER -->
   <div class="mark-filter">
     <button class="mark-filter-btn filter-all active" onclick="filterByMark('all')">All Questions</button>
     <button class="mark-filter-btn filter-1" onclick="filterByMark(1)">1 Mark</button>
@@ -537,8 +791,11 @@
     <button class="mark-filter-btn filter-5" onclick="filterByMark(5)">5 Marks</button>
   </div>
   
-  <div class="qa-container" id="qaContent">
-    <!-- Content will be loaded here -->
+  <div class="qa-container">
+    <div id="qaContent">
+      <!-- PASTE Q&A CONTENT HERE -->
+      <p style="text-align:center; padding:40px; color:#666;">Select a chapter to view Q&A</p>
+    </div>
   </div>
 </div>
 
@@ -549,162 +806,68 @@
     return `<span class="${cls}"><span class="num">${numerator}</span><span class="den">${denominator}</span></span>`;
   }
 
-  const questionData = {
+  // Chapter data structure
+  const chapterData = {
     "11": {
       "5": {
-        title: "Gravitation & Chemical Reactions",
-        qaData: [
-          {
-            marks: 3,
-            question: `Calculate the gravitational force between the Moon and Earth. Given: M<sub>E</sub> = 5.972 × 10<sup>24</sup> kg, M<sub>M</sub> = 7.342 × 10<sup>22</sup> kg, r = 3.844 × 10<sup>8</sup> m, G = 6.674 × 10<sup>-11</sup> N·m<sup>2</sup>/kg<sup>2</sup>`,
-            answer: `
-              <div class="answer-3mark">
-                <div class="point">
-                  <strong>Step 1: Formula (½ mark)</strong><br><br>
-                  F = G × ${frac('M<sub>E</sub> × M<sub>M</sub>', 'r<sup>2</sup>', true)}
-                </div>
-                
-                <div class="point">
-                  <strong>Step 2: Substitution (1 mark)</strong><br><br>
-                  F = (6.674 × 10<sup>-11</sup>) × ${frac('(5.972 × 10<sup>24</sup> × 7.342 × 10<sup>22</sup>)', '(3.844 × 10<sup>8</sup>)<sup>2</sup>')}
-                  <br><br>
-                  F = (6.674 × 10<sup>-11</sup>) × ${frac('4.384 × 10<sup>47</sup>', '1.478 × 10<sup>17</sup>')}
-                </div>
-                
-                <div class="point">
-                  <strong>Step 3: Final Answer (1½ marks)</strong><br><br>
-                  F = ${frac('29.26 × 10<sup>36</sup>', '1.478 × 10<sup>17</sup>')} = 19.8 × 10<sup>19</sup> N
-                  <br><br>
-                  <strong>F = 1.98 × 10<sup>20</sup> N</strong>
-                </div>
-              </div>
-            `,
-            examTip: "For 3 marks: Formula with proper fraction notation (½), Correct substitution (1), Calculation + Answer with unit (1½)"
-          },
-          {
-            marks: 2,
-            question: `The velocity of a particle is given by v = ${frac('s', 't')}. If s = 20 m and t = 4 s, find the velocity.`,
-            answer: `
-              <div class="answer-2mark">
-                <div class="point">
-                  <strong>Given:</strong> s = 20 m, t = 4 s<br>
-                  <strong>Formula:</strong> v = ${frac('s', 't')}
-                </div>
-                <div class="point">
-                  <strong>Solution:</strong><br>
-                  v = ${frac('20', '4')} = 5 m/s
-                  <br><br>
-                  <strong>Answer: v = 5 m/s</strong>
-                </div>
-              </div>
-            `,
-            examTip: "For 2 marks: Formula (½), Substitution (½), Answer with unit (1)"
-          },
-          {
-            marks: 3,
-            question: `Derive the formula for acceleration: a = ${frac('v - u', 't')} and calculate acceleration when initial velocity u = 10 m/s, final velocity v = 30 m/s, and time t = 5 s.`,
-            answer: `
-              <div class="answer-3mark">
-                <div class="point">
-                  <strong>Step 1: Definition (1 mark)</strong><br>
-                  Acceleration is the rate of change of velocity with respect to time.<br><br>
-                  a = ${frac('Change in velocity', 'Time taken', true)} = ${frac('v - u', 't', true)}
-                </div>
-                
-                <div class="point">
-                  <strong>Step 2: Given Data and Substitution (1 mark)</strong><br>
-                  Given: u = 10 m/s, v = 30 m/s, t = 5 s<br><br>
-                  a = ${frac('30 - 10', '5')} = ${frac('20', '5')}
-                </div>
-                
-                <div class="point">
-                  <strong>Step 3: Final Answer (1 mark)</strong><br>
-                  a = 4 m/s<sup>2</sup>
-                  <br><br>
-                  The acceleration is <strong>4 m/s<sup>2</sup></strong> in the direction of motion.
-                </div>
-              </div>
-            `,
-            examTip: "For 3 marks: Derivation with proper fractions (1), Substitution (1), Answer (1)"
-          },
-          {
-            marks: 2,
-            question: `The density formula is ρ = ${frac('m', 'V')}. Calculate density if mass m = 500 g and volume V = 250 cm<sup>3</sup>.`,
-            answer: `
-              <div class="answer-2mark">
-                <div class="point">
-                  <strong>Given:</strong> m = 500 g, V = 250 cm<sup>3</sup><br>
-                  <strong>Formula:</strong> ρ = ${frac('m', 'V')}
-                </div>
-                <div class="point">
-                  <strong>Calculation:</strong><br>
-                  ρ = ${frac('500', '250')} = 2 g/cm<sup>3</sup>
-                  <br><br>
-                  <strong>Density = 2 g/cm<sup>3</sup></strong>
-                </div>
-              </div>
-            `,
-            examTip: "For 2 marks: Write formula with proper fraction, substitute and calculate"
-          },
-          {
-            marks: 5,
-            question: "Explain Newton's Second Law of Motion. Derive F = ma and solve: A force of 20 N acts on a body of mass 5 kg. Calculate the acceleration produced.",
-            answer: `
-              <div class="answer-5mark">
-                <div class="section">
-                  <h5>1. Statement of Newton's Second Law (1 mark)</h5>
-                  <p>The rate of change of momentum of a body is directly proportional to the applied force and takes place in the direction of the force.</p>
-                </div>
-                
-                <div class="section">
-                  <h5>2. Mathematical Derivation (2 marks)</h5>
-                  <p>Let initial momentum = p<sub>i</sub> = mu</p>
-                  <p>Final momentum = p<sub>f</sub> = mv</p>
-                  <p>Change in momentum = mv - mu = m(v - u)</p>
-                  <br>
-                  <p>Rate of change of momentum = ${frac('m(v - u)', 't', true)}</p>
-                  <br>
-                  <p>According to Newton's Second Law:</p>
-                  <p>F ∝ ${frac('m(v - u)', 't')}</p>
-                  <br>
-                  <p>Since a = ${frac('v - u', 't')}</p>
-                  <p>Therefore, F = kma (where k is constant of proportionality)</p>
-                  <p>In SI units, k = 1, hence <strong>F = ma</strong></p>
-                </div>
-                
-                <div class="section">
-                  <h5>3. Numerical Solution (2 marks)</h5>
-                  <p><strong>Given:</strong> F = 20 N, m = 5 kg</p>
-                  <p><strong>To find:</strong> a = ?</p>
-                  <br>
-                  <p>Using F = ma</p>
-                  <p>a = ${frac('F', 'm', true)} = ${frac('20', '5', true)} = 4 m/s<sup>2</sup></p>
-                  <br>
-                  <p><strong>Answer: The acceleration produced is 4 m/s<sup>2</sup></strong></p>
-                </div>
-              </div>
-            `,
-            examTip: "For 5 marks: Statement (1), Derivation with proper fractions (2), Numerical with steps (2)"
-          },
-          {
-            marks: 1,
-            question: "State the formula for gravitational force.",
-            answer: `
-              <div class="answer-1mark">
-                F = G × ${frac('m<sub>1</sub> × m<sub>2</sub>', 'r<sup>2</sup>', true)}
-                <br><br>
-                where G is gravitational constant, m<sub>1</sub> and m<sub>2</sub> are masses, and r is distance between centers.
-              </div>
-            `,
-            examTip: "For 1 mark: Write formula clearly with proper notation"
-          }
-        ]
+        title: "Gravitation",
+        mcqContent: `<!-- MCQ CONTENT GOES HERE -->`,
+        notesContent: `<!-- NOTES CONTENT GOES HERE -->`,
+        qaContent: `<!-- Q&A CONTENT GOES HERE -->`
+      }
+    },
+    "12": {
+      "13": {
+        title: "Biodiversity and Conservation",
+        mcqContent: `<!-- MCQ CONTENT GOES HERE -->`,
+        notesContent: `<!-- NOTES CONTENT GOES HERE -->`,
+        qaContent: `<!-- Q&A CONTENT GOES HERE -->`
       }
     }
   };
-  
-  let currentView = 'qa';
+
+  let currentView = 'mcq';
+  let currentClass = '';
+  let currentChapter = '';
   let currentFilter = 'all';
+
+  function updateChapters() {
+    const classSelect = document.getElementById('classSelect').value;
+    const chapterSelect = document.getElementById('chapterSelect');
+    currentClass = classSelect;
+    
+    chapterSelect.innerHTML = '<option value="">Select Chapter</option>';
+    
+    if (classSelect && chapterData[classSelect]) {
+      Object.keys(chapterData[classSelect]).forEach(chapter => {
+        const option = document.createElement('option');
+        option.value = chapter;
+        option.textContent = `Chapter ${chapter}: ${chapterData[classSelect][chapter].title}`;
+        chapterSelect.appendChild(option);
+      });
+      chapterSelect.disabled = false;
+    } else {
+      chapterSelect.disabled = true;
+    }
+  }
+
+  function loadChapter() {
+    const chapterSelect = document.getElementById('chapterSelect').value;
+    currentChapter = chapterSelect;
+    
+    if (currentClass && currentChapter) {
+      const chapter = chapterData[currentClass][currentChapter];
+      
+      // Load MCQ content
+      document.getElementById('mcqContent').innerHTML = chapter.mcqContent;
+      
+      // Load Notes content
+      document.getElementById('notesContent').innerHTML = chapter.notesContent;
+      
+      // Load Q&A content
+      document.getElementById('qaContent').innerHTML = chapter.qaContent;
+    }
+  }
 
   function switchView(view) {
     currentView = view;
@@ -714,10 +877,6 @@
     
     document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
     event.target.classList.add('active');
-    
-    if (view === 'qa') {
-      loadQA();
-    }
   }
 
   function filterByMark(mark) {
@@ -740,40 +899,9 @@
     });
   }
 
-  function loadQA() {
-    const chapter = questionData["11"]["5"];
-    
-    let html = `<p style="text-align:center; color:#666; margin-bottom:24px; font-size:14px;">
-      Chapter: ${chapter.title} | Total: ${chapter.qaData.length} Questions
-    </p>`;
-    
-    chapter.qaData.forEach((qa, idx) => {
-      const markClass = `mark-${qa.marks}-item`;
-      html += `<div class="qa-item ${markClass}" data-mark="${qa.marks}">`;
-      
-      html += `<div class="qa-question">`;
-      html += `<span class="qa-question-number">Q${idx + 1}</span>`;
-      html += qa.question;
-      html += `<span class="mark-badge mark-${qa.marks}">${qa.marks} Mark${qa.marks > 1 ? 's' : ''}</span>`;
-      html += `</div>`;
-      
-      if (qa.examTip) {
-        html += `<div class="answer-length-guide">📝 ${qa.examTip}</div>`;
-      }
-      
-      html += `<div class="qa-answer-section">`;
-      html += `<span class="qa-answer-label">✍️ Answer:</span>`;
-      html += qa.answer;
-      html += `</div>`;
-      
-      html += `</div>`;
-    });
-    
-    document.getElementById('qaContent').innerHTML = html;
+  function showAnswer(answer) {
+    alert('Answer: ' + answer);
   }
-
-  // Load Q&A on page load
-  loadQA();
 </script>
 
 </body>
