@@ -550,13 +550,13 @@
   .qa-container {
     max-width: 100%;
     margin: 0 auto;
-    padding: 0 4px;
+    padding: 0 2px;
   }
   
   .qa-item {
     background: white;
     border-radius: 8px;
-    padding: 16px 12px;
+    padding: 14px 8px;
     margin-bottom: 16px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     border-left: 4px solid #028090;
@@ -566,7 +566,7 @@
   .qa-item .ai-btn {
     position: absolute;
     top: 12px;
-    right: 12px;
+    right: 8px;
   }
   
   .qa-item.mark-1-item { border-left-color: #4caf50; }
@@ -596,7 +596,7 @@
   
   .qa-answer-section {
     background: #f9fafb;
-    padding: 14px 12px;
+    padding: 12px 8px;
     border-radius: 6px;
     margin-top: 12px;
   }
@@ -621,7 +621,7 @@
   }
   
   .answer-1mark, .answer-2mark, .answer-3mark, .answer-5mark {
-    padding: 12px;
+    padding: 10px 8px;
     border-radius: 6px;
     font-size: 13px;
     line-height: 1.6;
@@ -660,7 +660,7 @@
   
   .answer-3mark .point {
     margin: 10px 0;
-    padding: 10px;
+    padding: 8px 6px;
     background: white;
     border-radius: 5px;
     font-size: 13px;
@@ -677,8 +677,8 @@
   }
   
   .answer-5mark .section {
-    margin: 12px 0;
-    padding: 12px;
+    margin: 10px 0;
+    padding: 10px 8px;
     background: white;
     border-radius: 6px;
   }
@@ -815,6 +815,9 @@
     .header .subtitle { font-size: 14px; }
     .notes-container { padding: 16px 6px; }
     .qa-container { padding: 0 2px; }
+    .qa-item { padding: 14px 6px; }
+    .qa-answer-section { padding: 10px 6px; }
+    .answer-1mark, .answer-2mark, .answer-3mark, .answer-5mark { padding: 10px 6px; }
   }
 </style>
 </head>
@@ -988,7 +991,7 @@
     let html = `<div class="score-display"><span>Score: ${score}/${mcqs.length}</span><button class="reset-score-btn" onclick="resetScore()">Reset Score</button></div>`;
     html += `<div class="question-count">Questions: ${mcqs.length}</div>`;
     mcqs.forEach((q, idx) => {
-      const fullQuestion = `Question: ${q.question}\n\nOptions:\n${q.options.join('\n')}`;
+      const fullQuestion = `Question:\n${q.question}\n\nOptions:\n${q.options.join('\n')}`;
       html += `<div class="question-item"><div class="question-header"><div class="question-number">Q${idx + 1}</div><button class="chatgpt-btn" onclick="openAI(\`${escapeForJS(fullQuestion)}\`)">ChatGPT</button></div><div class="question-text">${q.question}</div><div class="options">`;
       q.options.forEach(opt => {
         const optLetter = opt.charAt(0);
@@ -1003,7 +1006,8 @@
     const notesTitle = `<div class="notes-title">📚 Chapter ${currentChapter} Page ${currentPage}</div>`;
     let html = notesTitle;
     notes.forEach((note, idx) => {
-      const noteText = `${note.heading}\n\n${stripHtml(note.content)}\n\n---\n\n`;
+      const cleanContent = stripHtml(note.content).replace(/\n+/g, '\n\n');
+      const noteText = `${note.heading}\n\n${cleanContent}`;
       html += `<div class="note-segment"><button class="ai-btn" onclick="openAI(\`${escapeForJS(noteText)}\`)">AI</button><div class="segment-heading">${note.heading}</div>${note.content}</div>`;
     });
     document.getElementById('notesContent').innerHTML = html;
@@ -1012,7 +1016,8 @@
   function renderQA(qas) {
     let html = `<p style="text-align:center; color:#666; margin-bottom:20px; font-size:13px;">Chapter ${currentChapter} Page ${currentPage} | Total: ${qas.length} Questions</p>`;
     qas.forEach((qa, idx) => {
-      const qaText = `Question:\n${qa.question}\n\nAnswer:\n${stripHtml(qa.answer)}`;
+      const cleanAnswer = stripHtml(qa.answer).replace(/\n+/g, '\n\n');
+      const qaText = `Question:\n${qa.question}\n\nAnswer:\n${cleanAnswer}`;
       const markClass = `mark-${qa.marks}-item`;
       html += `<div class="qa-item ${markClass}" data-mark="${qa.marks}"><button class="ai-btn" onclick="openAI(\`${escapeForJS(qaText)}\`)">AI</button><div class="qa-question"><span class="qa-question-number">Q${idx + 1}</span>${qa.question}<span class="mark-badge mark-${qa.marks}">${qa.marks} Mark${qa.marks > 1 ? 's' : ''}</span></div><div class="qa-answer-section"><span class="qa-answer-label">✍️ Answer:</span><div class="answer-${qa.marks}mark">${qa.answer}</div></div></div>`;
     });
@@ -1052,8 +1057,7 @@
   }
 
   function openAI(text) {
-    const cleanText = text.replace(/\s+/g, ' ').trim();
-    const encodedText = encodeURIComponent(cleanText);
+    const encodedText = encodeURIComponent(text);
     window.open(`https://chat.openai.com/?q=${encodedText}`, '_blank');
   }
 
