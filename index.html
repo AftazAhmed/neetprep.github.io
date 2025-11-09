@@ -16,7 +16,7 @@
   
   .header {
     text-align: center;
-    background-color: #023047;
+    background: linear-gradient(135deg, #0369a1 0%, #0284c7 50%, #0ea5e9 100%);
     color: #ffb347;
     padding: 32px 16px 24px 16px;
     border-radius: 10px;
@@ -32,8 +32,8 @@
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle at center, #4f59b0 0%, transparent 70%);
-    opacity: 0.3;
+    background: radial-gradient(circle at center, #60a5fa 0%, transparent 70%);
+    opacity: 0.2;
     pointer-events: none;
   }
   
@@ -366,7 +366,7 @@
   }
   
   .score-display {
-    background: #023047;
+    background: linear-gradient(135deg, #0369a1 0%, #0284c7 50%, #0ea5e9 100%);
     color: white;
     padding: 12px 16px;
     border-radius: 8px;
@@ -1006,8 +1006,18 @@
     const notesTitle = `<div class="notes-title">📚 Chapter ${currentChapter} Page ${currentPage}</div>`;
     let html = notesTitle;
     notes.forEach((note, idx) => {
-      const cleanContent = stripHtml(note.content).replace(/\n+/g, '\n\n');
-      const noteText = `${note.heading}\n\n${cleanContent}`;
+      // Extract all paragraphs/sections from content
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = note.content;
+      const sections = [];
+      
+      // Get all major content blocks
+      const contentBlocks = tempDiv.querySelectorAll('.note-paragraph, .definition-box, .equation-box, .important-note, .highlight-box, table');
+      contentBlocks.forEach(block => {
+        sections.push(stripHtml(block.innerHTML).trim());
+      });
+      
+      const noteText = `${note.heading}\n\n${sections.join('\n\n')}`;
       html += `<div class="note-segment"><button class="ai-btn" onclick="openAI(\`${escapeForJS(noteText)}\`)">AI</button><div class="segment-heading">${note.heading}</div>${note.content}</div>`;
     });
     document.getElementById('notesContent').innerHTML = html;
@@ -1096,3 +1106,4 @@
 </script>
 </body>
 </html>
+
