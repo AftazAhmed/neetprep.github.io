@@ -794,8 +794,8 @@
     <label for="chapterSelect">Chapter:</label>
     <select id="chapterSelect" onchange="updatePages()">
       <option value="">Select Chapter</option>
-      <option value="1">Chapter 1</option>
-      <option value="2">Chapter 2</option>
+      <option value="1">Chapter 1: Atoms and molecules</option>
+      <option value="2">Chapter 2: Gravitation</option>
       <option value="3">Chapter 3</option>
       <option value="4">Chapter 4</option>
       <option value="5">Chapter 5</option>
@@ -1528,9 +1528,471 @@
       "10": { mcqData: [], notesData: [], qaData: [] }
     },
     "2": {
-      "11": { mcqData: [], notesData: [], qaData: [] },
-      "12": { mcqData: [], notesData: [], qaData: [] },
-      "13": { mcqData: [], notesData: [], qaData: [] },
+      "11": { mcqData: [  // PASTE THIS IN mcqData: []
+{ 
+  question: "According to Newton's observation, which force is responsible for both an apple falling to the ground and the moon orbiting the earth?", 
+  options: [
+    "a) Gravitational force", 
+    "b) Centrifugal force", 
+    "c) Magnetic force", 
+    "d) Electrostatic force"
+  ], 
+  correct: "a",
+  hint: "Think about the universal force that Newton realized acts on all objects with mass, regardless of their distance from Earth."
+},
+{ 
+  question: "When a stone tied to a thread is whirled in a circular path, what happens to its direction at every point?", 
+  options: [
+    "a) It changes continuously", 
+    "b) It remains constant", 
+    "c) It becomes random", 
+    "d) It reverses completely"
+  ], 
+  correct: "a",
+  hint: "Consider what defines circular motion - does the stone move in the same direction throughout, or does something keep changing?"
+},
+{ 
+  question: "The force that keeps a stone moving in a circular path when whirled on a thread acts in which direction?", 
+  options: [
+    "a) Towards the centre", 
+    "b) Away from centre", 
+    "c) Tangent to circle", 
+    "d) Perpendicular upward"
+  ], 
+  correct: "a",
+  hint: "The name 'centripetal' itself gives a clue - 'centre-seeking'. What direction would that be?"
+},
+{ 
+  question: "What happens to the stone when the thread is released during circular motion?", 
+  options: [
+    "a) It moves tangentially away", 
+    "b) It continues circular path", 
+    "c) It falls straight down", 
+    "d) It moves toward center"
+  ], 
+  correct: "a",
+  hint: "When the centripetal force (tension in thread) is removed, the stone follows its natural tendency according to Newton's first law of motion."
+},
+{ 
+  question: "According to Newton's reasoning, why doesn't the moon fall straight down to Earth despite being attracted by gravitational force?", 
+  options: [
+    "a) It has sufficient tangential velocity to keep orbiting", 
+    "b) It is too far to be affected by gravity", 
+    "c) Another force pushes it away continuously", 
+    "d) The Sun's gravity counteracts Earth's pull"
+  ], 
+  correct: "a",
+  hint: "Think about the stone-and-thread activity - the stone 'falls' towards the centre but also has forward motion. The moon behaves similarly."
+},
+{ 
+  question: "The change in direction of a stone moving in circular path involves change in:", 
+  options: [
+    "a) Velocity and acceleration", 
+    "b) Only speed magnitude", 
+    "c) Mass of the object", 
+    "d) Gravitational constant"
+  ], 
+  correct: "a",
+  hint: "Remember that velocity is a vector quantity. When direction changes, what happens to velocity? And what causes change in velocity?"
+},
+{ 
+  question: "Which of the following observations led Newton to think about gravitational force?", 
+  options: [
+    "a) An apple falling from tree", 
+    "b) Water flowing in river", 
+    "c) Birds flying in the sky", 
+    "d) Wind blowing strongly"
+  ], 
+  correct: "a",
+  hint: "The question mentions a famous historical incident involving Newton sitting under a tree. What fell on him?"
+},
+{ 
+  question: "What is the meaning of the term 'centripetal' in centripetal force?", 
+  options: [
+    "a) Centre-seeking", 
+    "b) Centre-fleeing", 
+    "c) Centre-rotating", 
+    "d) Centre-balancing"
+  ], 
+  correct: "a",
+  hint: "The page explicitly mentions the meaning in parentheses. The prefix 'centri-' means centre, and 'petal' relates to seeking or moving towards."
+}  ],
+ notesData: [  // PASTE THIS IN notesData: []
+{ 
+  heading: "Introduction to Gravitation", 
+  content: `<div class="note-paragraph">Gravitation is the universal force responsible for various natural phenomena we observe daily. When an object is dropped from a height, it falls towards the earth. The planets revolve around the Sun, and the moon orbits around the earth. Isaac Newton realized that a common force is responsible for all these motions - the gravitational force.</div><div class="important-note"><strong>Key Insight:</strong> Newton's genius lay in connecting an apple falling from a tree with the moon's motion around Earth, realizing both are caused by the same gravitational force.</div><div class="note-paragraph">This chapter explores gravitation and the universal law of gravitation, the motion of objects under gravitational influence, variation of weight from place to place, and conditions for objects to float in liquids.</div>` 
+},
+{ 
+  heading: "Newton's Observation and Reasoning", 
+  content: `<div class="note-paragraph">When Newton was sitting under a tree, an apple fell on him. This simple observation triggered profound thinking. He questioned: if Earth can attract an apple, why can't it attract the moon? Is the force acting in both cases the same?</div><div class="highlight-box"><strong>Newton's Conjecture:</strong> The same type of force is responsible for both the falling apple and the moon's orbital motion.</div><div class="note-paragraph">Newton argued that at each point of its orbit, the moon falls towards the earth instead of moving off in a straight line. Therefore, it must be attracted by Earth. However, we don't see the moon falling towards Earth because it has sufficient tangential velocity to maintain its orbit.</div>` 
+},
+{ 
+  heading: "Understanding Circular Motion - Activity 9.1", 
+  content: `<div class="segment-subheading">Activity Setup</div><div class="note-paragraph">Take a piece of thread and tie a small stone at one end. Hold the other end and whirl the stone round in a circular path as shown in Figure 9.1.</div><div class="segment-subheading">Observations</div><div class="note-paragraph"><strong>Before releasing the thread:</strong> The stone moves in a circular path with constant speed but changes direction at every point.</div><div class="note-paragraph"><strong>After releasing the thread:</strong> The stone moves tangentially away from the circular path in a straight line.</div><div class="definition-box"><div class="definition-term">Key Understanding</div><div class="definition-text">Before release, the stone continuously changes direction even though its speed remains constant. Change in direction means change in velocity, which implies acceleration is occurring.</div></div>` 
+},
+{ 
+  heading: "Centripetal Force", 
+  content: `<div class="note-paragraph">The force that causes acceleration in circular motion and keeps the body moving along the circular path acts towards the centre. This force is called the centripetal force.</div><div class="definition-box"><div class="definition-term">Centripetal Force</div><div class="definition-text">The force acting on an object moving in a circular path that is directed towards the centre of the circle. The term 'centripetal' means 'centre-seeking'.</div></div><div class="note-paragraph">In Activity 9.1, the tension in the thread provides the centripetal force. When the thread is released, this force disappears, and the stone flies off tangentially following Newton's first law of motion.</div><div class="important-note"><strong>Important:</strong> Centripetal force doesn't change the speed of the object but continuously changes its direction, keeping it in circular motion.</div>` 
+},
+{ 
+  heading: "Connection Between Centripetal Force and Gravitation", 
+  content: `<div class="note-paragraph">The concept of centripetal force helps us understand the moon's motion around Earth. Just as the thread provides centripetal force to keep the stone in circular motion, Earth's gravitational force provides the centripetal force that keeps the moon in its orbit.</div><table class="note-table"><thead><tr><th>Stone and Thread System</th><th>Moon and Earth System</th></tr></thead><tbody><tr><td>Thread provides centripetal force</td><td>Gravitational force provides centripetal force</td></tr><tr><td>Stone moves in circular path</td><td>Moon moves in orbital path</td></tr><tr><td>When thread released, stone flies tangentially</td><td>If gravity removed, moon would fly off tangentially</td></tr><tr><td>Direction changes continuously</td><td>Direction changes continuously in orbit</td></tr></tbody></table><div class="highlight-box"><strong>Fundamental Principle:</strong> Gravitational force acts as the centripetal force for celestial bodies in orbital motion.</div>` 
+}  ],
+ qaData: [  // PASTE THIS IN qaData: []
+{ 
+  marks: 1, 
+  question: "What is centripetal force?", 
+  answer: "Centripetal force is the force acting towards the centre of a circular path that keeps an object moving along that circular path." 
+},
+{ 
+  marks: 1, 
+  question: "What is gravitational force?", 
+  answer: "Gravitational force is the universal force of attraction that acts between all objects with mass, responsible for phenomena like objects falling to Earth and celestial bodies orbiting each other." 
+},
+{ 
+  marks: 2, 
+  question: "What observation made Newton think about gravitational force? What was his key realization?", 
+  answer: `<div class="point"><strong>Observation:</strong> When Newton was sitting under a tree, an apple fell on him. This made him start thinking about the force causing this fall.</div><div class="point"><strong>Key Realization:</strong> Newton realized that if Earth can attract an apple, it should also attract the moon. He conjectured that the same type of force (gravitational force) is responsible for both the falling apple and the moon's orbital motion around Earth.</div>` 
+},
+{ 
+  marks: 2, 
+  question: "In Activity 9.1, what happens to the motion of the stone before and after releasing the thread?", 
+  answer: `<div class="point"><strong>Before Releasing:</strong> The stone moves in a circular path with constant speed but continuously changes direction at every point. The tension in the thread provides centripetal force directed towards the centre.</div><div class="point"><strong>After Releasing:</strong> When the thread is released, the centripetal force disappears and the stone flies off tangentially in a straight line, following Newton's first law of motion.</div>` 
+},
+{ 
+  marks: 2, 
+  question: "Why does change in direction of a stone moving in circular path involve acceleration?", 
+  answer: `<div class="point"><strong>Velocity is a Vector:</strong> Velocity has both magnitude and direction. When the stone moves in a circular path, its direction changes continuously at every point, even if its speed remains constant.</div><div class="point"><strong>Acceleration Occurs:</strong> Since velocity is changing (due to direction change), there must be acceleration. This acceleration is caused by the centripetal force acting towards the centre of the circular path.</div>` 
+},
+{ 
+  marks: 3, 
+  question: "Explain Newton's reasoning about why the moon doesn't fall straight down to Earth despite being attracted by gravitational force.", 
+  answer: `<div class="point"><strong>Step 1: Newton's Question (½ mark)</strong><br>Newton questioned whether the same force that causes an apple to fall could also act on the moon. He conjectured that gravitational force acts on both.</div><div class="point"><strong>Step 2: Moon's Motion Analysis (1½ marks)</strong><br>Newton argued that at each point of its orbit, the moon actually does fall towards the Earth instead of moving off in a straight line. So it must be attracted by Earth's gravitational force. However, the moon also has tangential velocity (forward motion). The combination of falling towards Earth and moving forward results in a curved orbital path rather than a straight fall.</div><div class="point"><strong>Step 3: Conclusion (1 mark)</strong><br>The moon is continuously falling towards Earth, but its tangential velocity prevents it from actually reaching Earth. This balance between gravitational pull and tangential motion keeps the moon in stable orbit, similar to how the stone moves in a circle when whirled on a thread.</div>` 
+},
+{ 
+  marks: 3, 
+  question: "What is centripetal force? Explain with the help of Activity 9.1 how this force acts in circular motion.", 
+  answer: `<div class="point"><strong>Step 1: Definition (½ mark)</strong><br>Centripetal force is the force acting towards the centre of a circular path that causes acceleration and keeps a body moving along that circular path. The term 'centripetal' means 'centre-seeking'.</div><div class="point"><strong>Step 2: Activity 9.1 Demonstration (1½ marks)</strong><br>When a stone tied to a thread is whirled in a circular path, it moves with constant speed but continuously changes direction. This change in direction means change in velocity, which requires acceleration. The tension in the thread provides the centripetal force directed towards the centre (where you hold the thread). This force keeps pulling the stone towards the centre, preventing it from flying off and maintaining circular motion.</div><div class="point"><strong>Step 3: Result When Force is Removed (1 mark)</strong><br>When the thread is released, the centripetal force disappears. The stone then flies off tangentially in a straight line following Newton's first law of motion, demonstrating that continuous force towards the centre is necessary to maintain circular motion.</div>` 
+} ] },
+      "12": { mcqData: [  // PASTE THIS IN mcqData: []
+{ 
+  question: "A straight line that meets a circle at exactly one point is called:", 
+  options: [
+    "a) A tangent to the circle", 
+    "b) A chord of the circle", 
+    "c) A diameter through circle", 
+    "d) A secant to the circle"
+  ], 
+  correct: "a",
+  hint: "The page mentions this geometric term while explaining what path the stone would follow if the thread is released during circular motion."
+},
+{ 
+  question: "What provides the centripetal force for the moon's motion around the Earth?", 
+  options: [
+    "a) The gravitational force of attraction", 
+    "b) The magnetic field of Earth", 
+    "c) The atmospheric pressure around moon", 
+    "d) The centrifugal force pushing outward"
+  ], 
+  correct: "a",
+  hint: "Think about what force Newton identified as being responsible for both the falling apple and the moon's orbit."
+},
+{ 
+  question: "According to the universal law of gravitation, the force between two objects is directly proportional to:", 
+  options: [
+    "a) Product of their masses", 
+    "b) Sum of their masses", 
+    "c) Difference of their masses", 
+    "d) Ratio of their masses"
+  ], 
+  correct: "a",
+  hint: "Look at equation 9.1 in the universal law. What mathematical operation is performed on M and m?"
+},
+{ 
+  question: "The gravitational force between two objects is inversely proportional to:", 
+  options: [
+    "a) Square of distance between them", 
+    "b) Distance between their centers", 
+    "c) Cube of distance between them", 
+    "d) Square root of their distance"
+  ], 
+  correct: "a",
+  hint: "Check equation 9.2. What power of d appears in the denominator?"
+},
+{ 
+  question: "In the equation F = G <span class='frac'><span class='num'>Mm</span><span class='den'>d²</span></span>, what does G represent?", 
+  options: [
+    "a) Universal gravitation constant", 
+    "b) Gravitational force value", 
+    "c) Total mass of system", 
+    "d) Distance between objects"
+  ], 
+  correct: "a",
+  hint: "This is a constant of proportionality that makes the equation valid. It has the same value everywhere in the universe."
+},
+{ 
+  question: "Why don't we see the Earth moving towards a falling apple, even though the apple attracts the Earth according to Newton's third law?", 
+  options: [
+    "a) Earth's mass is enormously larger, so its acceleration is negligible", 
+    "b) Apple doesn't actually attract the Earth at all", 
+    "c) Earth is fixed in space and cannot move", 
+    "d) Atmospheric friction prevents Earth from moving"
+  ], 
+  correct: "a",
+  hint: "According to Newton's second law, for the same force, acceleration is inversely proportional to mass. Compare the masses of Earth and an apple."
+},
+{ 
+  question: "If there were no gravitational force acting on the moon, what would happen to its motion?", 
+  options: [
+    "a) It would move in uniform straight line motion", 
+    "b) It would immediately fall to Earth's surface", 
+    "c) It would continue in circular orbit forever", 
+    "d) It would spiral outward in expanding circles"
+  ], 
+  correct: "a",
+  hint: "Without centripetal force, what happens to an object in circular motion? Recall the stone-and-thread example."
+},
+{ 
+  question: "According to Newton's conclusion, which of the following is true about gravitational force?", 
+  options: [
+    "a) All objects in universe attract each other", 
+    "b) Only planets attract each other specifically", 
+    "c) Only Earth attracts objects on its surface", 
+    "d) Only celestial bodies experience this force"
+  ], 
+  correct: "a",
+  hint: "Newton extended his reasoning from apple-Earth and moon-Earth to make a universal statement about all objects."
+} ],
+ notesData: [  // PASTE THIS IN notesData: []
+{ 
+  heading: "Tangent and Circular Motion", 
+  content: `<div class="note-paragraph">When the centripetal force acting on an object in circular motion is removed, the object flies off along a straight line. This straight line is tangent to the circular path at the point of release.</div><div class="definition-box"><div class="definition-term">Tangent to a Circle</div><div class="definition-text">A straight line that meets the circle at one and only one point is called a tangent to the circle. This point is called the point of tangency.</div></div><div class="note-paragraph">For the moon orbiting Earth, if gravitational force (which provides centripetal force) were suddenly removed, the moon would pursue uniform straight line motion tangent to its orbital path.</div>` 
+},
+{ 
+  heading: "Why Earth Doesn't Move Towards Falling Objects", 
+  content: `<div class="note-paragraph">When an apple falls towards Earth, does the apple attract the Earth? According to Newton's third law of motion, yes - the apple does attract the Earth with equal force. However, we do not see the Earth moving towards the apple.</div><div class="segment-subheading">Explanation Using Newton's Second Law</div><div class="note-paragraph">According to Newton's second law of motion, for a given force, acceleration is inversely proportional to the mass of an object [Equation 8.4]:<br><br>a ∝ <span class="frac"><span class="num">1</span><span class="den">m</span></span><br><br>or, a = <span class="frac"><span class="num">F</span><span class="den">m</span></span></div><div class="important-note"><strong>Key Point:</strong> The mass of an apple is negligibly small compared to that of the Earth. Therefore, even though the forces are equal (Newton's third law), the Earth's acceleration is so tiny that we cannot observe Earth moving towards the apple.</div><div class="highlight-box"><strong>Same Logic for Moon:</strong> The same argument explains why Earth doesn't visibly move towards the moon, despite the moon attracting Earth with gravitational force.</div>` 
+},
+{ 
+  heading: "Newton's Universal Conclusion", 
+  content: `<div class="note-paragraph">By observing that all planets go around the Sun and using the same reasoning applied to apple-Earth and moon-Earth systems, Newton arrived at a revolutionary conclusion:</div><div class="important-note"><strong>Newton's Conclusion:</strong> Not only does Earth attract an apple and the moon, but all objects in the universe attract each other. This force of attraction between objects is called the gravitational force.</div><div class="note-paragraph">This was a profound insight - gravitation is not special to Earth or celestial bodies, but is a universal property of all matter. Every object with mass attracts every other object with mass.</div>` 
+},
+{ 
+  heading: "Universal Law of Gravitation - Statement", 
+  content: `<div class="definition-box"><div class="definition-term">Universal Law of Gravitation</div><div class="definition-text">Every object in the universe attracts every other object with a force which is proportional to the product of their masses and inversely proportional to the square of the distance between them. The force is along the line joining the centres of two objects.</div></div><div class="note-paragraph">Consider two objects A and B of masses M and m respectively, separated by a distance d between their centres (refer to Figure 9.2 in textbook). The gravitational force F between them follows specific mathematical relationships.</div>` 
+},
+{ 
+  heading: "Mathematical Formulation of Universal Law", 
+  content: `<div class="segment-subheading">Direct Proportionality to Mass Product</div><div class="equation-box"><div class="equation-text">F ∝ M × m<br><br>[Equation 9.1]</div></div><div class="note-paragraph">The gravitational force is directly proportional to the product of the masses. If either mass doubles, the force doubles. If both masses double, the force becomes four times.</div><div class="segment-subheading">Inverse Proportionality to Square of Distance</div><div class="equation-box"><div class="equation-text">F ∝ <span class="frac"><span class="num">1</span><span class="den">d²</span></span><br><br>[Equation 9.2]</div></div><div class="note-paragraph">The gravitational force is inversely proportional to the square of the distance between the centres of two objects. If distance doubles, force becomes one-fourth. If distance triples, force becomes one-ninth.</div><div class="segment-subheading">Combined Relationship</div><div class="equation-box"><div class="equation-text">Combining equations (9.1) and (9.2):<br><br>F ∝ <span class="frac"><span class="num">M × m</span><span class="den">d²</span></span><br><br>[Equation 9.3]</div></div>` 
+},
+{ 
+  heading: "Universal Gravitation Constant (G)", 
+  content: `<div class="note-paragraph">To convert the proportionality into an equation, we introduce a constant of proportionality called the universal gravitation constant, denoted by G.</div><div class="formula-box"><div class="formula-label">Newton's Law of Gravitation (Final Form)</div><div class="formula-text">F = G <span class="frac"><span class="num">M × m</span><span class="den">d²</span></span><br><br>[Equation 9.4]</div></div><div class="note-paragraph">Rearranging equation (9.4) by multiplying crosswise:<br><br>F × d² = G × M × m</div><div class="definition-box"><div class="definition-term">Universal Gravitation Constant (G)</div><div class="definition-text">G is the constant of proportionality in Newton's law of gravitation. It is called "universal" because it has the same value everywhere in the universe, regardless of the masses or distances involved.</div></div><div class="important-note"><strong>Important:</strong> The value of G is extremely small, which is why we don't notice gravitational attraction between everyday objects like books, chairs, or people.</div>` 
+} ],
+ qaData: [  // PASTE THIS IN qaData: []
+{ 
+  marks: 1, 
+  question: "What is a tangent to a circle?", 
+  answer: "A tangent to a circle is a straight line that meets the circle at exactly one point." 
+},
+{ 
+  marks: 1, 
+  question: "What is the universal gravitation constant denoted by?", 
+  answer: "The universal gravitation constant is denoted by the symbol G." 
+},
+{ 
+  marks: 2, 
+  question: "State Newton's universal law of gravitation.", 
+  answer: `<div class="point"><strong>Statement:</strong> Every object in the universe attracts every other object with a force which is proportional to the product of their masses and inversely proportional to the square of the distance between them.</div><div class="point"><strong>Direction:</strong> The gravitational force acts along the line joining the centres of the two objects.</div>` 
+},
+{ 
+  marks: 2, 
+  question: "What would happen to the moon's motion if gravitational force suddenly disappeared?", 
+  answer: `<div class="point"><strong>Current Motion:</strong> The moon orbits Earth in a curved path because gravitational force provides the necessary centripetal force to keep it in circular motion.</div><div class="point"><strong>Without Gravity:</strong> If gravitational force were removed, the centripetal force would disappear and the moon would pursue uniform straight line motion tangent to its orbital path, flying off into space.</div>` 
+},
+{ 
+  marks: 2, 
+  question: "Write the mathematical formula for Newton's law of gravitation and explain the symbols.", 
+  answer: `<div class="point"><strong>Formula:</strong> F = G <span class="frac"><span class="num">M × m</span><span class="den">d²</span></span></div><div class="point"><strong>Symbol Meanings:</strong> F = gravitational force between two objects, M and m = masses of the two objects, d = distance between centres of the objects, G = universal gravitation constant.</div>` 
+},
+{ 
+  marks: 3, 
+  question: "Why don't we see the Earth moving towards a falling apple, even though the apple attracts Earth according to Newton's third law?", 
+  answer: `<div class="point"><strong>Step 1: Newton's Third Law Application (½ mark)</strong><br>According to Newton's third law of motion, when an apple falls towards Earth, the apple also attracts Earth with an equal and opposite force. Both forces are equal in magnitude.</div><div class="point"><strong>Step 2: Newton's Second Law Explanation (1½ marks)</strong><br>According to Newton's second law of motion, for a given force, acceleration is inversely proportional to mass:<br><br>a = <span class="frac"><span class="num">F</span><span class="den">m</span></span><br><br>The mass of an apple is negligibly small (approximately 0.2 kg) compared to Earth's mass (approximately 6 × 10²⁴ kg). Though both experience the same force, Earth's acceleration is extremely tiny due to its enormous mass.</div><div class="point"><strong>Step 3: Conclusion (1 mark)</strong><br>Earth does move towards the apple, but the acceleration is so incredibly small (about 10⁻²⁵ m/s²) that it is completely undetectable. Hence, we do not observe Earth moving towards the apple.</div>` 
+},
+{ 
+  marks: 3, 
+  question: "Derive the mathematical expression for Newton's universal law of gravitation.", 
+  answer: `<div class="point"><strong>Step 1: Direct Proportionality (½ mark)</strong><br>According to the universal law, gravitational force between two objects is directly proportional to the product of their masses M and m:<br><br>F ∝ M × m ... (9.1)</div><div class="point"><strong>Step 2: Inverse Square Proportionality (1 mark)</strong><br>The gravitational force is inversely proportional to the square of the distance d between the centres of the two objects:<br><br>F ∝ <span class="frac"><span class="num">1</span><span class="den">d²</span></span> ... (9.2)<br><br>Combining equations (9.1) and (9.2):<br><br>F ∝ <span class="frac"><span class="num">M × m</span><span class="den">d²</span></span> ... (9.3)</div><div class="point"><strong>Step 3: Introducing Universal Constant (1½ marks)</strong><br>To convert the proportionality into an equation, we introduce a constant of proportionality G called the universal gravitation constant:<br><br>F = G <span class="frac"><span class="num">M × m</span><span class="den">d²</span></span> ... (9.4)<br><br>This is the final mathematical expression for Newton's universal law of gravitation, where G is a universal constant with the same value throughout the universe.</div>` 
+},
+{ 
+  marks: 3, 
+  question: "How did Newton arrive at the conclusion that all objects in the universe attract each other?", 
+  answer: `<div class="point"><strong>Step 1: Initial Observations (1 mark)</strong><br>Newton observed that an apple falls towards Earth and the moon orbits around Earth. He realized that Earth attracts both the apple and the moon through gravitational force. He also noted that all planets in our solar system orbit around the Sun.</div><div class="point"><strong>Step 2: Application of Third Law (1 mark)</strong><br>Using Newton's third law of motion, he reasoned that if Earth attracts an apple, then the apple must also attract Earth with equal force. Similarly, the moon attracts Earth, and each planet attracts the Sun. Though we don't see Earth moving towards these objects due to its enormous mass, the forces do exist.</div><div class="point"><strong>Step 3: Universal Conclusion (1 mark)</strong><br>By extending this reasoning, Newton concluded that gravitational attraction is not limited to Earth or celestial bodies. Instead, all objects in the universe attract each other with gravitational force. This force of attraction between any two objects is called the gravitational force, making gravitation a universal property of all matter.</div>` 
+} ] },
+      "13": { mcqData: [  // PASTE THIS IN mcqData: []
+{ 
+  question: "What is the SI unit of the universal gravitation constant G?", 
+  options: [
+    "a) N m² kg⁻²", 
+    "b) N m² kg⁻¹", 
+    "c) N m kg⁻²", 
+    "d) N m³ kg⁻²"
+  ], 
+  correct: "a",
+  hint: "Rearrange the gravitational force formula F = G(Mm/d²) to find G = (F·d²)/(M×m), then substitute SI units of each quantity."
+},
+{ 
+  question: "What is the accepted value of the universal gravitation constant G?", 
+  options: [
+    "a) 6.673 × 10⁻¹¹ N m² kg⁻²", 
+    "b) 6.673 × 10⁻¹¹ N m² kg⁻¹", 
+    "c) 9.8 × 10⁻¹¹ N m² kg⁻²", 
+    "d) 3.84 × 10⁻¹¹ N m² kg⁻²"
+  ], 
+  correct: "a",
+  hint: "This value was determined by Henry Cavendish using a sensitive balance. It is an extremely small number, indicating why we don't feel gravitational attraction between everyday objects."
+},
+{ 
+  question: "Who determined the value of the universal gravitation constant G experimentally?", 
+  options: [
+    "a) Henry Cavendish", 
+    "b) Isaac Newton", 
+    "c) Galileo Galilei", 
+    "d) Johannes Kepler"
+  ], 
+  correct: "a",
+  hint: "This scientist lived from 1731-1810 and used a sensitive torsion balance to measure the extremely small gravitational force between laboratory objects."
+},
+{ 
+  question: "If the distance between two objects increases by a factor of 6, by what factor does the gravitational force change?", 
+  options: [
+    "a) Decreases by factor of 36", 
+    "b) Decreases by factor of 6", 
+    "c) Increases by factor of 36", 
+    "d) Decreases by factor of 12"
+  ], 
+  correct: "a",
+  hint: "The force is inversely proportional to the square of distance (inverse square law). If d becomes 6d, then F becomes F/(6²)."
+},
+{ 
+  question: "The universal law of gravitation is applicable to:", 
+  options: [
+    "a) All bodies whether big or small, celestial or terrestrial", 
+    "b) Only celestial bodies like planets and stars exclusively", 
+    "c) Only large massive objects above certain mass threshold", 
+    "d) Only terrestrial objects found on Earth's surface"
+  ], 
+  correct: "a",
+  hint: "The word 'universal' in the law's name gives a clue - it applies everywhere and to everything with mass."
+},
+{ 
+  question: "What is the approximate force exerted by Earth on the moon according to Example 9.1?", 
+  options: [
+    "a) 2.02 × 10²⁰ N", 
+    "b) 3.84 × 10²⁰ N", 
+    "c) 6.73 × 10²⁰ N", 
+    "d) 7.40 × 10²⁰ N"
+  ], 
+  correct: "a",
+  hint: "Use the formula F = G(Mm/d²) with given values: M = 6×10²⁴ kg, m = 7.4×10²² kg, d = 3.84×10⁸ m, G = 6.7×10⁻¹¹ N m² kg⁻²."
+},
+{ 
+  question: "When objects fall towards Earth under the influence of gravitational force alone, this motion is called:", 
+  options: [
+    "a) Free fall motion", 
+    "b) Projectile motion", 
+    "c) Uniform motion", 
+    "d) Circular motion"
+  ], 
+  correct: "a",
+  hint: "The term describes motion caused solely by gravity, without any other forces like air resistance or applied forces acting."
+},
+{ 
+  question: "Which of the following phenomena is NOT explained by the universal law of gravitation?", 
+  options: [
+    "a) The formation of rainbow in sky", 
+    "b) The tides due to moon and Sun", 
+    "c) The motion of planets around Sun", 
+    "d) The force binding us to Earth"
+  ], 
+  correct: "a",
+  hint: "Three of these involve gravitational attraction between massive bodies. One involves light refraction through water droplets and has nothing to do with gravity."
+} ], 
+             notesData: [  // PASTE THIS IN notesData: []
+{ 
+  heading: "Deriving SI Unit of G", 
+  content: `<div class="note-paragraph">From Newton's law of gravitation, we can rearrange the equation to express G:</div><div class="equation-box"><div class="equation-text">F = G <span class="frac"><span class="num">M × m</span><span class="den">d²</span></span><br><br>Rearranging:<br><br>G = <span class="frac"><span class="num">F × d²</span><span class="den">M × m</span></span><br><br>[Equation 9.5]</div></div><div class="note-paragraph">The SI unit of G can be obtained by substituting the units of force, distance, and mass:</div><div class="formula-box"><div class="formula-label">SI Unit Derivation</div><div class="formula-text">Force (F) → Newton (N)<br><br>Distance (d) → meter (m)<br><br>Mass (M, m) → kilogram (kg)<br><br>Therefore:<br><br>G = <span class="frac"><span class="num">N × m²</span><span class="den">kg × kg</span></span> = N m² kg⁻²</div></div><div class="important-note"><strong>Important:</strong> The SI unit of G is N m² kg⁻², which can also be written as N m² kg⁻¹ kg⁻¹.</div>` 
+},
+{ 
+  heading: "Value and Discovery of G", 
+  content: `<div class="note-paragraph">The value of the universal gravitation constant G was experimentally determined by the British scientist Henry Cavendish (1731-1810) using an extremely sensitive torsion balance.</div><div class="definition-box"><div class="definition-term">Value of G</div><div class="definition-text">G = 6.673 × 10⁻¹¹ N m² kg⁻²</div></div><div class="note-paragraph">This is the accepted value of the universal gravitation constant. The extremely small value of G explains why we do not experience gravitational attraction between everyday objects like two people sitting nearby or objects on a table.</div><div class="highlight-box"><strong>Practical Implication:</strong> Even though gravitational force exists between you and your friend sitting closeby, the force is so incredibly small due to the tiny value of G that it is completely undetectable and has no practical effect.</div>` 
+},
+{ 
+  heading: "Universal Nature of Gravitation", 
+  content: `<div class="important-note"><strong>Universality:</strong> The law of gravitation is called "universal" because it is applicable to all bodies, whether the bodies are big or small, whether they are celestial or terrestrial.</div><div class="note-paragraph">This means Newton's law applies equally to:</div><table class="note-table"><thead><tr><th>Type of Objects</th><th>Examples</th></tr></thead><tbody><tr><td>Large celestial bodies</td><td>Sun, planets, stars, galaxies</td></tr><tr><td>Small celestial bodies</td><td>Asteroids, comets, satellites</td></tr><tr><td>Large terrestrial objects</td><td>Mountains, buildings, ships</td></tr><tr><td>Small terrestrial objects</td><td>Books, apples, stones, people</td></tr></tbody></table><div class="note-paragraph">The same gravitational constant G appears in all cases, making this truly a universal law of nature.</div>` 
+},
+{ 
+  heading: "Understanding Inverse Square Law", 
+  content: `<div class="definition-box"><div class="definition-term">Inverse Square Relationship</div><div class="definition-text">When we say F is inversely proportional to the square of d, it means that if the distance d increases by a certain factor, the force F decreases by the square of that factor.</div></div><div class="note-paragraph">Mathematical examples of inverse square behavior:</div><table class="note-table"><thead><tr><th>Distance Change</th><th>Force Change</th><th>Explanation</th></tr></thead><tbody><tr><td>d becomes 2d</td><td>F becomes <span class="frac"><span class="num">F</span><span class="den">4</span></span></td><td>Force becomes 1/4 times (2² = 4)</td></tr><tr><td>d becomes 3d</td><td>F becomes <span class="frac"><span class="num">F</span><span class="den">9</span></span></td><td>Force becomes 1/9 times (3² = 9)</td></tr><tr><td>d becomes 6d</td><td>F becomes <span class="frac"><span class="num">F</span><span class="den">36</span></span></td><td>Force becomes 1/36 times (6² = 36)</td></tr><tr><td>d becomes <span class="frac"><span class="num">d</span><span class="den">2</span></span></td><td>F becomes 4F</td><td>Force becomes 4 times (1/0.5² = 4)</td></tr></tbody></table><div class="highlight-box"><strong>Key Point:</strong> Small changes in distance cause large changes in gravitational force due to the square relationship.</div>` 
+},
+{ 
+  heading: "Solved Example - Earth-Moon Gravitational Force", 
+  content: `<div class="segment-subheading">Problem Statement</div><div class="note-paragraph">Calculate the force exerted by Earth on the moon given:<br>Mass of Earth (M) = 6 × 10²⁴ kg<br>Mass of moon (m) = 7.4 × 10²² kg<br>Distance between Earth and moon (d) = 3.84 × 10⁵ km<br>G = 6.7 × 10⁻¹¹ N m² kg⁻¹</div><div class="segment-subheading">Solution Steps</div><div class="equation-box"><div class="equation-text"><strong>Step 1: Convert distance to meters</strong><br><br>d = 3.84 × 10⁵ km<br><br>d = 3.84 × 10⁵ × 1000 m<br><br>d = 3.84 × 10⁸ m<br><br><strong>Step 2: Apply gravitational force formula</strong><br><br>F = G <span class="frac"><span class="num">M × m</span><span class="den">d²</span></span><br><br><strong>Step 3: Substitute values</strong><br><br>F = <span class="frac"><span class="num">6.7 × 10⁻¹¹ × 6 × 10²⁴ × 7.4 × 10²²</span><span class="den">(3.84 × 10⁸)²</span></span><br><br><strong>Step 4: Calculate</strong><br><br>F = <span class="frac"><span class="num">6.7 × 6 × 7.4 × 10⁻¹¹⁺²⁴⁺²²</span><span class="den">3.84² × 10¹⁶</span></span><br><br>F = <span class="frac"><span class="num">297.48 × 10³⁵</span><span class="den">14.75 × 10¹⁶</span></span><br><br>F ≈ 2.02 × 10²⁰ N</div></div><div class="important-note"><strong>Result:</strong> The force exerted by Earth on the moon is approximately 2.02 × 10²⁰ N. This enormous force keeps the moon in orbit around Earth.</div>` 
+},
+{ 
+  heading: "Importance of Universal Law of Gravitation", 
+  content: `<div class="note-paragraph">The universal law of gravitation successfully explained several phenomena which were previously believed to be unconnected:</div><div class="note-paragraph"><strong>(i) The force that binds us to Earth:</strong> Gravitational attraction keeps all objects on Earth's surface from flying off into space.</div><div class="note-paragraph"><strong>(ii) The motion of the moon around Earth:</strong> Earth's gravitational force provides the necessary centripetal force for the moon's orbital motion.</div><div class="note-paragraph"><strong>(iii) The motion of planets around the Sun:</strong> The Sun's massive gravitational pull keeps all planets in their respective orbits.</div><div class="note-paragraph"><strong>(iv) The tides due to moon and Sun:</strong> Gravitational forces from the moon and Sun cause periodic rise and fall of ocean water levels on Earth.</div><div class="highlight-box"><strong>Significance:</strong> Newton's universal law unified terrestrial and celestial mechanics, showing that the same physical laws apply throughout the universe.</div>` 
+},
+{ 
+  heading: "Free Fall - Introduction", 
+  content: `<div class="note-paragraph">When we throw a stone upwards, it reaches a certain height and then starts falling down. This downward motion occurs because Earth attracts objects towards it through gravitational force.</div><div class="definition-box"><div class="definition-term">Free Fall</div><div class="definition-text">When objects fall towards Earth under the influence of gravitational force alone (without any other forces acting), we say that the objects are falling freely.</div></div><div class="important-note"><strong>Key Condition:</strong> For motion to be considered free fall, only gravitational force should act on the object - no air resistance, no applied forces, no support forces.</div><div class="note-paragraph">Activity 9.2 demonstrates this concept by having us observe a stone thrown upward that eventually falls back down under Earth's gravitational attraction.</div>` 
+} ],
+             qaData: [  // PASTE THIS IN qaData: []
+{ 
+  marks: 1, 
+  question: "What is the SI unit of universal gravitation constant G?", 
+  answer: "The SI unit of the universal gravitation constant G is N m² kg⁻²." 
+},
+{ 
+  marks: 1, 
+  question: "What is free fall?", 
+  answer: "Free fall is the motion of objects falling towards Earth under the influence of gravitational force alone, without any other forces acting on them." 
+},
+{ 
+  marks: 1, 
+  question: "Who determined the value of G experimentally?", 
+  answer: "Henry Cavendish (1731-1810) determined the value of G experimentally using a sensitive torsion balance." 
+},
+{ 
+  marks: 2, 
+  question: "State the accepted value of G. Why don't we experience gravitational force between everyday objects?", 
+  answer: `<div class="point"><strong>Value of G:</strong> The accepted value of the universal gravitation constant is G = 6.673 × 10⁻¹¹ N m² kg⁻².</div><div class="point"><strong>Reason:</strong> The value of G is extremely small, which makes the gravitational force between everyday objects (like two people or objects on a table) so incredibly tiny that it is completely undetectable and has no practical effect on their motion.</div>` 
+},
+{ 
+  marks: 2, 
+  question: "What is meant by 'inverse square' in the context of gravitational force?", 
+  answer: `<div class="point"><strong>Definition:</strong> Inverse square means that the gravitational force F is inversely proportional to the square of the distance d between two objects: F ∝ <span class="frac"><span class="num">1</span><span class="den">d²</span></span></div><div class="point"><strong>Example:</strong> If the distance between two objects increases by a factor of 6, the gravitational force between them decreases by a factor of 36 (which is 6²). Similarly, if distance doubles, force becomes one-fourth.</div>` 
+},
+{ 
+  marks: 2, 
+  question: "Write the formula to find the magnitude of gravitational force between Earth and an object on its surface.", 
+  answer: `<div class="point"><strong>Formula:</strong> F = G <span class="frac"><span class="num">M × m</span><span class="den">d²</span></span>, where M is the mass of Earth, m is the mass of the object, d is the distance between their centers (Earth's radius for surface objects), and G is the universal gravitation constant.</div><div class="point"><strong>Alternative Form:</strong> For objects on Earth's surface, this can also be written as F = mg, where g is the acceleration due to gravity at Earth's surface.</div>` 
+},
+{ 
+  marks: 3, 
+  question: "Derive the SI unit of universal gravitation constant G.", 
+  answer: `<div class="point"><strong>Step 1: Rearrange Formula (½ mark)</strong><br>From Newton's law of gravitation:<br><br>F = G <span class="frac"><span class="num">M × m</span><span class="den">d²</span></span><br><br>Rearranging for G:<br><br>G = <span class="frac"><span class="num">F × d²</span><span class="den">M × m</span></span></div><div class="point"><strong>Step 2: Substitute SI Units (1½ marks)</strong><br>SI unit of force (F) = Newton (N)<br><br>SI unit of distance (d) = meter (m)<br><br>SI unit of mass (M, m) = kilogram (kg)<br><br>Substituting in the expression:<br><br>Unit of G = <span class="frac"><span class="num">N × m²</span><span class="den">kg × kg</span></span></div><div class="point"><strong>Step 3: Final Unit (1 mark)</strong><br>Unit of G = N m² kg⁻²<br><br>This can also be written as N m² kg⁻¹ kg⁻¹. Therefore, the SI unit of universal gravitation constant G is N m² kg⁻².</div>` 
+},
+{ 
+  marks: 3, 
+  question: "List four important phenomena explained by the universal law of gravitation.", 
+  answer: `<div class="point"><strong>(i) Binding Force to Earth (¾ mark):</strong> The universal law explains the force that binds us to Earth and prevents us from flying off into space. This is the gravitational attraction between Earth and objects on its surface.</div><div class="point"><strong>(ii) Moon's Orbital Motion (¾ mark):</strong> It explains the motion of the moon around Earth. Earth's gravitational force provides the necessary centripetal force to keep the moon in its orbit.</div><div class="point"><strong>(iii) Planetary Motion (¾ mark):</strong> It successfully explains the motion of all planets around the Sun. The Sun's gravitational pull keeps planets in their elliptical orbits.</div><div class="point"><strong>(iv) Tides (¾ mark):</strong> It explains the occurrence of tides in oceans. The gravitational forces exerted by the moon and Sun on Earth's water bodies cause periodic rise and fall of ocean levels.</div>` 
+},
+{ 
+  marks: 3, 
+  question: "Calculate the gravitational force between two objects of masses 50 kg and 80 kg separated by a distance of 2 m. (Take G = 6.7 × 10⁻¹¹ N m² kg⁻²)", 
+  answer: `<div class="point"><strong>Step 1: Given Data (½ mark)</strong><br>Mass of first object, M = 50 kg<br><br>Mass of second object, m = 80 kg<br><br>Distance between objects, d = 2 m<br><br>Universal gravitation constant, G = 6.7 × 10⁻¹¹ N m² kg⁻²</div><div class="point"><strong>Step 2: Apply Formula (½ mark)</strong><br>Using Newton's law of gravitation:<br><br>F = G <span class="frac"><span class="num">M × m</span><span class="den">d²</span></span></div><div class="point"><strong>Step 3: Calculate (2 marks)</strong><br>F = <span class="frac"><span class="num">6.7 × 10⁻¹¹ × 50 × 80</span><span class="den">(2)²</span></span><br><br>F = <span class="frac"><span class="num">6.7 × 10⁻¹¹ × 4000</span><span class="den">4</span></span><br><br>F = <span class="frac"><span class="num">26800 × 10⁻¹¹</span><span class="den">4</span></span><br><br>F = 6700 × 10⁻¹¹ N<br><br>F = 6.7 × 10⁻⁸ N<br><br>Therefore, the gravitational force between the two objects is 6.7 × 10⁻⁸ N, which is extremely small and imperceptible.</div>` 
+} ] },
       "14": { mcqData: [], notesData: [], qaData: [] },
       "15": { mcqData: [], notesData: [], qaData: [] },
       "16": { mcqData: [], notesData: [], qaData: [] },
@@ -1544,7 +2006,7 @@
       "22": { mcqData: [], notesData: [], qaData: [] },
       "23": { mcqData: [], notesData: [], qaData: [] },
       "24": { mcqData: [], notesData: [], qaData: [] },
-      "25": { mcqData: [], notesData: [], qaData: [] },
+      "125": { mcqData: [], notesData: [], qaData: [] },
       "26": { mcqData: [], notesData: [], qaData: [] },
       "27": { mcqData: [], notesData: [], qaData: [] },
       "28": { mcqData: [], notesData: [], qaData: [] },
