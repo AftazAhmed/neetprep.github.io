@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Class 8 - PbP</title>
+<title>Educational Platform - PbP</title>
 <style>
   body {
     font-family: 'Montserrat', Arial, sans-serif;
@@ -54,7 +54,6 @@
     letter-spacing: 0.6px;
   }
   
-  /* AI BUTTON STYLES - Circular with gradient */
   .ai-btn {
     width: 32px;
     height: 32px;
@@ -77,7 +76,6 @@
     box-shadow: 0 4px 12px rgba(220, 38, 38, 0.5);
   }
   
-  /* ChatGPT Button for MCQ */
   .chatgpt-btn {
     background: linear-gradient(90deg, #dc2626 0%, #2563eb 100%);
     color: white;
@@ -96,7 +94,6 @@
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   }
   
-  /* FRACTION STYLES */
   .frac {
     display: inline-block;
     vertical-align: middle;
@@ -142,7 +139,35 @@
     line-height: 1.3;
   }
   
-  /* NOTES SECTION STYLES */
+  .note-image, .note-image-bordered {
+    margin: 16px auto;
+    text-align: center;
+    max-width: 100%;
+  }
+  
+  .note-image img, .note-image-bordered img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .note-image-bordered img {
+    border: 2px solid #028090;
+    padding: 8px;
+    background: white;
+  }
+  
+  .image-caption {
+    font-size: 12px;
+    color: #116466;
+    font-weight: 600;
+    margin-top: 8px;
+    font-style: italic;
+    text-align: center;
+  }
+  
   .notes-container {
     max-width: 100%;
     margin: 0 auto;
@@ -201,39 +226,6 @@
     text-align: justify;
   }
   
-  .note-list {
-    list-style: none;
-    padding-left: 0;
-    margin: 10px 0;
-  }
-  
-  .note-list li {
-    padding: 6px 0 6px 24px;
-    position: relative;
-    font-size: 13px;
-    line-height: 1.6;
-  }
-  
-  .note-list li:before {
-    content: "▸";
-    position: absolute;
-    left: 6px;
-    color: #028090;
-    font-weight: 700;
-    font-size: 14px;
-  }
-  
-  .note-numbered-list {
-    padding-left: 18px;
-    margin: 10px 0;
-  }
-  
-  .note-numbered-list li {
-    padding: 5px 0;
-    font-size: 13px;
-    line-height: 1.6;
-  }
-  
   .note-table {
     width: 100%;
     border-collapse: collapse;
@@ -269,34 +261,6 @@
     background-color: #f9fafb;
   }
   
-  .formula-box {
-    background: linear-gradient(135deg, #fff3e0, #ffe0b2);
-    border: 2px solid #ff9800;
-    padding: 16px;
-    margin: 16px 0;
-    border-radius: 6px;
-    text-align: center;
-  }
-  
-  .formula-label {
-    font-size: 12px;
-    color: #e65100;
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
-  
-  .formula-text {
-    font-size: 16px;
-    font-weight: 700;
-    color: #bf360c;
-    margin: 6px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    flex-wrap: wrap;
-  }
-  
   .equation-box {
     background: linear-gradient(135deg, #e3f2fd, #bbdefb);
     border: 2px solid #2196f3;
@@ -310,19 +274,6 @@
     font-size: 15px;
     font-weight: 600;
     color: #0d47a1;
-  }
-  
-  .highlight-box {
-    background: linear-gradient(135deg, #fff8e1, #ffe0b2);
-    border-left: 4px solid #ff9800;
-    padding: 12px 16px;
-    margin: 12px 0;
-    border-radius: 6px;
-    font-size: 13px;
-  }
-  
-  .highlight-box strong {
-    color: #e65100;
   }
   
   .definition-box {
@@ -359,7 +310,6 @@
     color: #c62828;
   }
   
-  /* MCQ STYLES */
   .mcq-container {
     max-width: 700px;
     margin: 0 auto;
@@ -556,7 +506,6 @@
     background-color: #b91c1c;
   }
   
-  /* Q&A STYLES */
   .mark-badge {
     display: inline-block;
     padding: 5px 12px;
@@ -632,17 +581,6 @@
     font-size: 14px;
     margin-bottom: 10px;
     display: block;
-  }
-  
-  .answer-length-guide {
-    background: linear-gradient(135deg, #fff3e0, #ffe0b2);
-    border-left: 3px solid #ff9800;
-    padding: 10px 12px;
-    margin-bottom: 12px;
-    border-radius: 5px;
-    font-size: 11px;
-    color: #e65100;
-    font-weight: 600;
   }
   
   .answer-1mark, .answer-2mark, .answer-3mark, .answer-5mark {
@@ -723,7 +661,6 @@
   sub { font-size: 0.75em; vertical-align: sub; }
   sup { font-size: 0.75em; vertical-align: super; }
   
-  /* CONTROLS */
   .controls {
     display: flex;
     flex-wrap: wrap;
@@ -780,7 +717,6 @@
     background-color: #7c3aed;
   }
   
-  /* VIEW TOGGLE */
   .view-toggle {
     display: flex;
     gap: 10px;
@@ -806,7 +742,6 @@
     color: white;
   }
   
-  /* FILTER BY MARKS */
   .mark-filter {
     display: flex;
     gap: 6px;
@@ -849,7 +784,7 @@
 <body>
 
 <div class="header" role="banner">
-  <h1>Class 8</h1>
+  <h1>Educational Platform</h1>
   <div class="subtitle">Pagewise Notes, MCQs, Q&A</div>
 </div>
 
@@ -858,13 +793,13 @@
     <label for="chapterSelect">Chapter:</label>
     <select id="chapterSelect" onchange="updatePages()">
       <option value="">Select Chapter</option>
-      <option value="1">Chapter 1: Atoms and molecules</option>
-      <option value="2">Chapter 2: Gravitation</option>
+      <option value="1">Chapter 1</option>
+      <option value="2">Chapter 2</option>
       <option value="3">Chapter 3</option>
       <option value="4">Chapter 4</option>
       <option value="5">Chapter 5</option>
       <option value="6">Chapter 6</option>
-      <option value="7">Chapter 7: Electronic Configuration</option>
+      <option value="7">Chapter 7</option>
       <option value="8">Chapter 8</option>
       <option value="9">Chapter 9</option>
       <option value="10">Chapter 10</option>
@@ -929,662 +864,11 @@
 
   const chapterData = {
     "1": {
-      "1": { mcqData: [  // PASTE THIS IN mcqData: []
-{ 
-  question: "Who was the ancient Indian philosopher who proposed the concept of 'Parmanu'?", 
-  options: ["a) Pakudha Katyayama", "b) Maharishi Kanad", "c) Democritus", "d) Leucippus"], 
-  correct: "b",
-  hint: "The philosopher who first postulated that dividing matter continuously would lead to smallest indivisible particles was an Indian sage. Look for the name associated with the term 'Parmanu'."
-},
-{ 
-  question: "What is the meaning of the term 'atom' as coined by Democritus?", 
-  options: ["a) Divisible", "b) Indivisible", "c) Combined form", "d) Smallest particle"], 
-  correct: "b",
-  hint: "Democritus used a Greek word that literally translates to a specific property of these particles - their inability to be divided further."
-},
-{ 
-  question: "Around which period did ancient Indian philosophers first consider the idea of divisibility of matter?", 
-  options: ["a) 1000 BC", "b) 500 BC", "c) 100 AD", "d) 500 AD"], 
-  correct: "b",
-  hint: "The text mentions a specific time period in BC when the concept of matter divisibility was first considered in India."
-},
-{ 
-  question: "Who laid the foundation of chemical sciences by establishing two important laws of chemical combination?", 
-  options: ["a) Joseph L. Proust", "b) Democritus", "c) Antoine L. Lavoisier", "d) Maharishi Kanad"], 
-  correct: "c",
-  hint: "This scientist worked at the end of the eighteenth century and performed extensive experiments to establish fundamental laws about how elements combine."
-},
-{ 
-  question: "In Activity 3.1, why is the ignition tube hung carefully inside the conical flask?", 
-  options: ["a) To heat the solution", "b) To ensure solutions do not mix initially", "c) To measure temperature", "d) To add more chemicals"], 
-  correct: "b",
-  hint: "The activity is designed to test the Law of Conservation of Mass. For accurate results, the two solutions must remain separate until a specific moment during the experiment."
-},
-{ 
-  question: "What concentration of solution is prepared for each substance in Activity 3.1?", 
-  options: ["a) 2% in 10 mL water", "b) 5% in 10 mL water", "c) 10% in 5 mL water", "d) 5% in 20 mL water"], 
-  correct: "b",
-  hint: "The activity specifies a particular percentage concentration and volume of water for preparing the solutions of substances X and Y."
-},
-{ 
-  question: "According to ancient Greek philosophers, what would happen if we keep dividing matter continuously?", 
-  options: ["a) Matter will disappear", "b) We will get energy", "c) We will reach indivisible particles called atoms", "d) Matter will change into gas"], 
-  correct: "c",
-  hint: "Democritus and Leucippus suggested that continuous division would eventually lead to particles that cannot be divided further. These were given a specific name."
-},
-{ 
-  question: "Which of the following chemical pairs can be used in Activity 3.1?", 
-  options: ["a) Copper sulphate and sodium carbonate", "b) Hydrochloric acid and sulphuric acid", "c) Oxygen and hydrogen", "d) Salt and sugar"], 
-  correct: "a",
-  hint: "The activity lists three specific pairs of chemicals. One pair includes a blue-colored copper compound and a sodium compound that reacts with it."
-}  ],
-            notesData: [ // PASTE THIS IN notesData: []
-{ 
-  heading: "Ancient Indian Concepts of Matter", 
-  content: `<div class="note-paragraph">Around 500 BC, ancient Indian philosophers explored the nature of matter and its divisibility. Maharishi Kanad postulated the concept of <em>Parmanu</em> (indivisible particles) through philosophical reasoning.</div><div class="definition-box"><div class="definition-term">Parmanu</div><div class="definition-text">The smallest indivisible particles of matter proposed by Maharishi Kanad. He suggested that continuous division of matter (padarth) would eventually lead to particles that cannot be divided further.</div></div><div class="note-paragraph">Pakudha Katyayama elaborated this doctrine further and stated that these particles normally exist in a combined form, which gives us various forms of matter observed in nature.</div><div class="important-note"><strong>Important:</strong> These concepts were based entirely on philosophical considerations around 500 BC, much before experimental methods were developed to validate them.</div>` 
-},
-{ 
-  heading: "Ancient Greek Atomic Theory", 
-  content: `<div class="note-paragraph">Around the same era as Indian philosophers, ancient Greek philosophers Democritus and Leucippus proposed similar ideas about the divisibility of matter.</div><div class="definition-box"><div class="definition-term">Atom</div><div class="definition-text">Democritus called the indivisible particles "atoms" (meaning indivisible). He suggested that if we keep dividing matter, we will eventually reach particles that cannot be divided further.</div></div><div class="highlight-box"><strong>Key Point:</strong> The Greek atomic theory was based on philosophical considerations and not on experimental work. It took until the eighteenth century for scientists to experimentally validate these ideas.</div>` 
-},
-{ 
-  heading: "Development of Chemical Sciences", 
-  content: `<div class="note-paragraph">By the end of the eighteenth century, significant progress was made in understanding the nature of matter and chemical reactions.</div><div class="segment-subheading">Recognition of Elements and Compounds</div><div class="note-paragraph">Scientists recognized the fundamental difference between elements and compounds. This led to natural interest in understanding how and why elements combine, and what happens during chemical combination.</div><div class="segment-subheading">Foundation by Antoine L. Lavoisier</div><div class="note-paragraph">Antoine L. Lavoisier laid the foundation of chemical sciences by establishing two important laws of chemical combination through extensive experimentation. These laws were developed with contributions from Joseph L. Proust.</div><table class="note-table"><thead><tr><th>Aspect</th><th>Before 18th Century</th><th>After 18th Century</th></tr></thead><tbody><tr><td>Approach</td><td>Philosophical reasoning</td><td>Experimental validation</td></tr><tr><td>Understanding</td><td>Speculation about atoms</td><td>Laws of chemical combination</td></tr><tr><td>Key Contributors</td><td>Kanad, Democritus, Leucippus</td><td>Lavoisier, Proust</td></tr></tbody></table>` 
-},
-{ 
-  heading: "Laws of Chemical Combination", 
-  content: `<div class="note-paragraph">Two fundamental laws of chemical combination were established after extensive experimentations by Lavoisier and Joseph L. Proust. These laws govern how elements combine to form compounds.</div><div class="segment-subheading">3.1.1 Law of Conservation of Mass</div><div class="note-paragraph">This law addresses an important question: Is there a change in mass when a chemical change (chemical reaction) takes place?</div><div class="important-note"><strong>Important:</strong> The Law of Conservation of Mass is one of the most fundamental principles in chemistry and forms the basis for all chemical calculations and stoichiometry.</div>` 
-},
-{ 
-  heading: "Activity 3.1: Testing Law of Conservation of Mass", 
-  content: `<div class="segment-subheading">Aim</div><div class="note-paragraph">To verify whether mass changes when a chemical reaction takes place.</div><div class="segment-subheading">Materials Required</div><div class="note-paragraph">One pair of chemicals from the following sets (X and Y):<br>• Copper sulphate and sodium carbonate<br>• Barium chloride and sodium sulphate<br>• Lead nitrate and sodium chloride<br><br>Also needed: Conical flask, ignition tube, thread, cork, water, weighing balance</div><div class="segment-subheading">Procedure</div><div class="note-paragraph"><strong>Step 1:</strong> Prepare separately a 5% solution of any one pair of substances listed under X and Y, each in 10 mL water.<br><br><strong>Step 2:</strong> Take a little amount of solution of Y in a conical flask.<br><br><strong>Step 3:</strong> Take some solution of X in an ignition tube (small test tube).<br><br><strong>Step 4:</strong> Hang the ignition tube inside the conical flask using a thread, ensuring that the solutions do not get mixed.<br><br><strong>Step 5:</strong> Put a cork on the flask to seal the system (Refer to Figure 3.1).<br><br><strong>Step 6:</strong> Weigh the entire setup before and after allowing the solutions to mix and react.</div><div class="segment-subheading">Apparatus Setup</div><div class="note-paragraph">The apparatus consists of:<br>• A conical flask containing solution of Y<br>• A small ignition tube containing solution of X, suspended by a thread<br>• A cork sealing the flask<br>• The ignition tube is carefully positioned so solutions remain separate initially</div><div class="important-note"><strong>Key Observation:</strong> The setup is designed to ensure that no material escapes from the system during the reaction. This is crucial for testing whether mass is conserved during chemical reactions.</div>` 
-}   ], 
-            qaData: [ // PASTE THIS IN qaData: []
-{ 
-  marks: 1, 
-  question: "What is the meaning of the term 'Parmanu'?", 
-  answer: "Parmanu refers to the smallest indivisible particles of matter, as proposed by ancient Indian philosopher Maharishi Kanad." 
-},
-{ 
-  marks: 1, 
-  question: "Who were the two ancient Greek philosophers who proposed the atomic theory?", 
-  answer: "Democritus and Leucippus were the ancient Greek philosophers who proposed the atomic theory." 
-},
-{ 
-  marks: 2, 
-  question: "Explain the concept of 'atom' as proposed by Democritus.", 
-  answer: `<div class="point"><strong>Meaning of Atom:</strong> Democritus called the smallest indivisible particles "atoms" which means "indivisible" in Greek.</div><div class="point"><strong>Concept:</strong> He suggested that if we keep dividing matter continuously, a stage will come when particles obtained cannot be divided further. These ultimate indivisible particles are atoms.</div>` 
-},
-{ 
-  marks: 2, 
-  question: "State the contribution of Antoine L. Lavoisier to chemical sciences.", 
-  answer: `<div class="point"><strong>Foundation of Chemical Sciences:</strong> Antoine L. Lavoisier laid the foundation of chemical sciences by establishing two important laws of chemical combination through extensive experimental work.</div><div class="point"><strong>Experimental Approach:</strong> He performed numerous experiments along with Joseph L. Proust to validate these laws, moving chemistry from philosophical speculation to experimental science.</div>` 
-},
-{ 
-  marks: 3, 
-  question: "Compare the ancient Indian and Greek concepts of matter divisibility.", 
-  answer: `<div class="point"><strong>Step 1: Indian Contribution (1 mark)</strong><br>Around 500 BC, Indian philosopher Maharishi Kanad proposed that continuous division of matter (padarth) would lead to smallest particles called Parmanu that cannot be divided further. Pakudha Katyayama added that these particles exist in combined form to give various forms of matter.</div><div class="point"><strong>Step 2: Greek Contribution (1 mark)</strong><br>Around the same era, Greek philosophers Democritus and Leucippus proposed that continuous division of matter would eventually reach indivisible particles called atoms (meaning indivisible).</div><div class="point"><strong>Step 3: Similarity (1 mark)</strong><br>Both concepts were remarkably similar - proposing indivisible ultimate particles of matter. However, both were based on philosophical reasoning rather than experimental evidence, and scientific validation could not be done until the eighteenth century.</div>` 
-},
-{ 
-  marks: 3, 
-  question: "Describe the procedure of Activity 3.1 to test the Law of Conservation of Mass.", 
-  answer: `<div class="point"><strong>Step 1: Preparation (1 mark)</strong><br>Prepare a 5% solution of substances X and Y (e.g., copper sulphate and sodium carbonate) separately, each in 10 mL water.<br><br>Take solution of Y in a conical flask and solution of X in a small ignition tube.</div><div class="point"><strong>Step 2: Setup (1 mark)</strong><br>Hang the ignition tube containing solution X inside the conical flask using a thread, ensuring the solutions do not mix initially.<br><br>Put a cork on the flask to seal the system completely (Refer to Figure 3.1).</div><div class="point"><strong>Step 3: Observation (1 mark)</strong><br>Weigh the entire sealed setup accurately.<br><br>Tilt the flask to allow the solutions to mix and react.<br><br>Weigh the setup again after the reaction is complete and compare the masses to verify if mass is conserved during the chemical reaction.</div>` 
-},
-{ 
-  marks: 2, 
-  question: "Why was experimental validation of atomic theory not possible until the eighteenth century?", 
-  answer: `<div class="point"><strong>Philosophical Nature:</strong> The ancient concepts of atoms and Parmanu proposed by Indian and Greek philosophers were based entirely on philosophical considerations and logical reasoning, not on experimental observations.</div><div class="point"><strong>Lack of Technology:</strong> The necessary experimental techniques, instruments, and scientific methodology required to observe and validate the existence of atoms were not available until much later. Only by the eighteenth century had scientific methods advanced sufficiently to test these ideas experimentally.</div>` 
-},
-{ 
-  marks: 3, 
-  question: "Trace the historical development of atomic theory from ancient times to the eighteenth century.", 
-  answer: `<div class="point"><strong>Step 1: Ancient Period (~500 BC) (1 mark)</strong><br>Indian philosopher Maharishi Kanad proposed Parmanu (indivisible particles) through philosophical reasoning.<br><br>Around the same time, Greek philosophers Democritus and Leucippus proposed atoms (meaning indivisible) as the ultimate particles of matter.</div><div class="point"><strong>Step 2: Long Gap (1 mark)</strong><br>From ancient times until the eighteenth century, these ideas remained philosophical concepts without experimental validation. Scientists lacked the tools and methods to test these theories experimentally.</div><div class="point"><strong>Step 3: Eighteenth Century Revival (1 mark)</strong><br>By the end of the eighteenth century, scientists recognized the difference between elements and compounds. Antoine L. Lavoisier and Joseph L. Proust established two important laws of chemical combination through experimentation, laying the foundation of modern chemical sciences and providing the first experimental basis for understanding matter.</div>` 
-}   ] },
-      "2": { mcqData: [  // PASTE THIS IN mcqData: []
-{ 
-  question: "According to the Law of Conservation of Mass, what happens to the total mass during a chemical reaction?", 
-  options: ["a) Mass increases", "b) Mass decreases", "c) Mass remains constant", "d) Mass becomes zero"], 
-  correct: "c",
-  hint: "The law explicitly states that mass can neither be created nor destroyed in a chemical reaction. Think about what this means for the total mass before and after the reaction."
-},
-{ 
-  question: "In water (H₂O), the ratio of mass of hydrogen to oxygen is always:", 
-  options: ["a) 1:8", "b) 8:1", "c) 1:16", "d) 2:1"], 
-  correct: "a",
-  hint: "The law of constant proportions states that this ratio is fixed for water. The text specifically mentions the exact ratio of hydrogen to oxygen mass in water."
-},
-{ 
-  question: "The Law of Constant Proportions is also known as:", 
-  options: ["a) Law of multiple proportions", "b) Law of definite proportions", "c) Law of conservation of mass", "d) Avogadro's law"], 
-  correct: "b",
-  hint: "The text mentions an alternate name for the Law of Constant Proportions. Both names emphasize that elements combine in fixed ratios."
-},
-{ 
-  question: "Who stated the Law of Constant Proportions?", 
-  options: ["a) John Dalton", "b) Antoine Lavoisier", "c) Proust", "d) Democritus"], 
-  correct: "c",
-  hint: "This law states that 'in a chemical substance the elements are always present in definite proportions by mass'. The scientist's name is mentioned along with this statement."
-},
-{ 
-  question: "In ammonia (NH₃), the ratio of nitrogen to hydrogen by mass is always:", 
-  options: ["a) 1:3", "b) 14:3", "c) 3:14", "d) 1:14"], 
-  correct: "b",
-  hint: "The text provides a specific mass ratio for nitrogen and hydrogen in ammonia. This ratio is constant regardless of the source or method of preparation."
-},
-{ 
-  question: "According to Dalton's atomic theory, atoms of the same element are:", 
-  options: ["a) Different in mass", "b) Identical in mass and properties", "c) Different in properties", "d) Can be created or destroyed"], 
-  correct: "b",
-  hint: "Dalton's third postulate specifically addresses what is true about atoms of the same element. They share common characteristics."
-},
-{ 
-  question: "Which postulate of Dalton's atomic theory explains the Law of Conservation of Mass?", 
-  options: ["a) Atoms are very tiny particles", "b) Atoms are indivisible and cannot be created or destroyed", "c) Atoms combine in small whole number ratios", "d) Atoms of different elements have different masses"], 
-  correct: "b",
-  hint: "If atoms cannot be created or destroyed in a chemical reaction, then the total mass of atoms remains constant before and after the reaction."
-},
-{ 
-  question: "At what age did John Dalton begin his career as a teacher?", 
-  options: ["a) Ten years", "b) Twelve years", "c) Fifteen years", "d) Twenty years"], 
-  correct: "b",
-  hint: "The biographical information about John Dalton mentions his remarkably young age when he started teaching. This was quite unusual even for that time period."
-},
-{ 
-  question: "In which year did John Dalton present his atomic theory?", 
-  options: ["a) 1793", "b) 1800", "c) 1808", "d) 1815"], 
-  correct: "c",
-  hint: "The text mentions the specific year when Dalton presented his atomic theory, which became a turning point in the study of matter."
-},
-{ 
-  question: "According to Dalton's atomic theory, what are compounds made of?", 
-  options: ["a) Single atoms only", "b) Atoms combining in small whole number ratios", "c) Molecules only", "d) Electrons and protons"], 
-  correct: "b",
-  hint: "Dalton's fifth postulate addresses how atoms combine to form compounds. The ratio involves specific types of numbers."
-}  ],
-            notesData: [ // PASTE THIS IN notesData: []
-{ 
-  heading: "Law of Conservation of Mass", 
-  content: `<div class="note-paragraph">The Law of Conservation of Mass is a fundamental principle in chemistry that governs all chemical reactions.</div><div class="definition-box"><div class="definition-term">Law of Conservation of Mass</div><div class="definition-text">Mass can neither be created nor destroyed in a chemical reaction. The total mass of reactants before a reaction equals the total mass of products after the reaction.</div></div><div class="segment-subheading">Verification through Activity 3.1</div><div class="note-paragraph">In Activity 3.1, after weighing the sealed flask containing solutions X and Y, the flask is tilted to mix the solutions. A chemical reaction takes place, and the flask is weighed again. The mass remains constant before and after the reaction, verifying the law of conservation of mass.</div><div class="important-note"><strong>Important:</strong> This law forms the basis for all stoichiometric calculations in chemistry. It means that atoms are neither created nor destroyed during chemical reactions; they are only rearranged.</div>` 
-},
-{ 
-  heading: "Law of Constant Proportions", 
-  content: `<div class="note-paragraph">Lavoisier and other scientists observed that compounds always contained the same elements in fixed proportions by mass, regardless of their source or method of preparation.</div><div class="definition-box"><div class="definition-term">Law of Constant Proportions (Law of Definite Proportions)</div><div class="definition-text">In a chemical substance, the elements are always present in definite proportions by mass. This law was stated by Proust.</div></div><div class="segment-subheading">Examples</div><div class="note-paragraph"><strong>Water (H₂O):</strong> The ratio of mass of hydrogen to mass of oxygen is always 1:8, regardless of the source of water (river, sea, rain, or laboratory).<br><br><strong>Ammonia (NH₃):</strong> Nitrogen and hydrogen are always present in the ratio 14:3 by mass, irrespective of where it is obtained or who prepares it.</div><div class="highlight-box"><strong>Key Point:</strong> This law demonstrates that chemical compounds have a definite composition. Pure water will always have the same ratio of hydrogen to oxygen (1:8 by mass), whether obtained from a pond, ocean, or synthesized in a laboratory.</div>` 
-},
-{ 
-  heading: "John Dalton: Biography and Contributions", 
-  content: `<div class="note-paragraph">John Dalton was born in a poor weaver's family in England and became one of the most influential scientists in chemistry.</div><div class="segment-subheading">Early Life and Career</div><div class="note-paragraph">• Began his career as a teacher at the age of twelve<br>• Seven years later (at age 19), he became a school principal<br>• In 1793, Dalton left for Manchester to teach mathematics and natural philosophy at a college<br>• Spent most of his life teaching and researching</div><div class="segment-subheading">Atomic Theory (1808)</div><div class="note-paragraph">In 1808, John Dalton presented his atomic theory, which became a turning point in the study of matter. His theory provided scientific explanations for the laws of chemical combination discovered by Lavoisier and Proust.</div><div class="important-note"><strong>Historical Significance:</strong> Dalton picked up the ancient Greek concept of atoms and transformed it from philosophical speculation into a scientific theory with testable predictions and explanations for observed chemical laws.</div>` 
-},
-{ 
-  heading: "Dalton's Atomic Theory: Postulates", 
-  content: `<div class="note-paragraph">According to Dalton's atomic theory, all matter—whether an element, compound, or mixture—is composed of small particles called atoms. The theory consists of six main postulates:</div><div class="definition-box"><div class="definition-term">Postulate 1: Composition of Matter</div><div class="definition-text">All matter is made of very tiny particles called atoms, which participate in chemical reactions.</div></div><div class="definition-box"><div class="definition-term">Postulate 2: Indivisibility of Atoms</div><div class="definition-text">Atoms are indivisible particles which cannot be created or destroyed in a chemical reaction.</div></div><div class="definition-box"><div class="definition-term">Postulate 3: Identical Atoms of Same Element</div><div class="definition-text">Atoms of a given element are identical in mass and chemical properties.</div></div><div class="definition-box"><div class="definition-term">Postulate 4: Different Atoms of Different Elements</div><div class="definition-text">Atoms of different elements have different masses and chemical properties.</div></div><div class="definition-box"><div class="definition-term">Postulate 5: Combination in Whole Number Ratios</div><div class="definition-text">Atoms combine in the ratio of small whole numbers to form compounds.</div></div><div class="definition-box"><div class="definition-term">Postulate 6: Constant Composition</div><div class="definition-text">The relative number and kinds of atoms are constant in a given compound.</div></div><div class="important-note"><strong>Important:</strong> You will study in the next chapter that all atoms are made up of still smaller particles (subatomic particles like protons, neutrons, and electrons).</div>` 
-},
-{ 
-  heading: "Dalton's Theory and Laws of Chemical Combination", 
-  content: `<div class="note-paragraph">Dalton's atomic theory successfully explained both the Law of Conservation of Mass and the Law of Constant Proportions.</div><div class="segment-subheading">Explanation of Law of Conservation of Mass</div><div class="note-paragraph">Since atoms cannot be created or destroyed in a chemical reaction (Postulate 2), the total mass of atoms remains constant before and after the reaction. Atoms are only rearranged during chemical reactions, not created or destroyed.</div><div class="segment-subheading">Explanation of Law of Constant Proportions</div><div class="note-paragraph">Since the relative number and kinds of atoms in a compound are constant (Postulate 6), and atoms of different elements have definite masses (Postulate 4), the mass ratio of elements in a compound is always fixed.<br><br>For example: In water (H₂O), there are always 2 hydrogen atoms and 1 oxygen atom. Since their mass ratio is fixed, water always has hydrogen to oxygen in 1:8 mass ratio.</div><div class="highlight-box"><strong>Key Point:</strong> Dalton transformed the philosophical concept of atoms into a scientific theory that could explain observed chemical laws and make testable predictions about chemical behavior.</div>` 
-}   ], 
-            qaData: [  // PASTE THIS IN qaData: []
-{ 
-  marks: 1, 
-  question: "State the Law of Conservation of Mass.", 
-  answer: "Mass can neither be created nor destroyed in a chemical reaction." 
-},
-{ 
-  marks: 1, 
-  question: "What is the mass ratio of hydrogen to oxygen in water?", 
-  answer: "In water, the mass ratio of hydrogen to oxygen is always 1:8." 
-},
-{ 
-  marks: 1, 
-  question: "Who stated the Law of Constant Proportions?", 
-  answer: "The Law of Constant Proportions was stated by Proust." 
-},
-{ 
-  marks: 2, 
-  question: "State the Law of Constant Proportions with an example.", 
-  answer: `<div class="point"><strong>Statement:</strong> In a chemical substance, the elements are always present in definite proportions by mass. This law is also known as the Law of Definite Proportions.</div><div class="point"><strong>Example:</strong> In water (H₂O), the ratio of mass of hydrogen to mass of oxygen is always 1:8, regardless of the source of water or method of preparation.</div>` 
-},
-{ 
-  marks: 2, 
-  question: "Write any two postulates of Dalton's atomic theory.", 
-  answer: `<div class="point"><strong>Postulate 1:</strong> All matter is made of very tiny particles called atoms, which participate in chemical reactions.</div><div class="point"><strong>Postulate 2:</strong> Atoms are indivisible particles which cannot be created or destroyed in a chemical reaction.</div>` 
-},
-{ 
-  marks: 3, 
-  question: "How does Dalton's atomic theory explain the Law of Conservation of Mass?", 
-  answer: `<div class="point"><strong>Step 1: Dalton's Postulate (1 mark)</strong><br>According to Dalton's atomic theory, atoms are indivisible particles which cannot be created or destroyed in a chemical reaction.</div><div class="point"><strong>Step 2: Chemical Reaction Process (1 mark)</strong><br>During a chemical reaction, atoms of reactants are only rearranged to form products. No atoms are created or destroyed; they simply form new combinations.</div><div class="point"><strong>Step 3: Mass Conservation (1 mark)</strong><br>Since the same atoms are present before and after the reaction (only their arrangement changes), the total mass of atoms remains constant. This explains why mass can neither be created nor destroyed in a chemical reaction.</div>` 
-},
-{ 
-  marks: 3, 
-  question: "How does Dalton's atomic theory explain the Law of Constant Proportions?", 
-  answer: `<div class="point"><strong>Step 1: Relevant Postulates (1 mark)</strong><br>According to Dalton's theory: (i) Atoms of different elements have different masses, and (ii) The relative number and kinds of atoms are constant in a given compound.</div><div class="point"><strong>Step 2: Fixed Atomic Composition (1 mark)</strong><br>In a compound, the number of atoms of each element is fixed. For example, water always contains 2 hydrogen atoms and 1 oxygen atom (H₂O). Since each element has a definite atomic mass, the mass ratio is also fixed.</div><div class="point"><strong>Step 3: Constant Mass Ratio (1 mark)</strong><br>Because the number of atoms of each element and their individual masses are constant, the mass ratio of elements in a compound is always the same, regardless of the source. This explains the Law of Constant Proportions.</div>` 
-},
-{ 
-  marks: 3, 
-  question: "Write a brief note on John Dalton and his contribution to chemistry.", 
-  answer: `<div class="point"><strong>Step 1: Early Life (½ mark)</strong><br>John Dalton was born in a poor weaver's family in England. He began his career as a teacher at the age of twelve and became a school principal at nineteen. In 1793, he moved to Manchester to teach mathematics and natural philosophy.</div><div class="point"><strong>Step 2: Atomic Theory (1½ marks)</strong><br>In 1808, Dalton presented his atomic theory, which was a turning point in the study of matter. He picked up the ancient Greek concept of atoms and developed it into a scientific theory. His theory stated that all matter is composed of indivisible atoms that combine in small whole number ratios to form compounds.</div><div class="point"><strong>Step 3: Impact (1 mark)</strong><br>Dalton's atomic theory successfully explained the laws of chemical combination (Law of Conservation of Mass and Law of Constant Proportions) discovered by Lavoisier and Proust. His work laid the foundation for modern atomic theory and transformed chemistry into a quantitative science.</div>` 
-},
-{ 
-  marks: 2, 
-  question: "In ammonia, nitrogen and hydrogen are present in the ratio 14:3 by mass. Explain what this means.", 
-  answer: `<div class="point"><strong>Constant Mass Ratio:</strong> This means that in any sample of pure ammonia (NH₃), for every 14 grams of nitrogen, there will always be exactly 3 grams of hydrogen present.</div><div class="point"><strong>Universal Application:</strong> This mass ratio (14:3) remains constant regardless of where the ammonia is obtained from or who prepares it. This is an example of the Law of Constant Proportions.</div>` 
-},
-{ 
-  marks: 3, 
-  question: "List all the postulates of Dalton's atomic theory.", 
-  answer: `<div class="point"><strong>Six Postulates of Dalton's Atomic Theory:</strong><br><br>(i) All matter is made of very tiny particles called atoms, which participate in chemical reactions.<br><br>(ii) Atoms are indivisible particles which cannot be created or destroyed in a chemical reaction.<br><br>(iii) Atoms of a given element are identical in mass and chemical properties.<br><br>(iv) Atoms of different elements have different masses and chemical properties.<br><br>(v) Atoms combine in the ratio of small whole numbers to form compounds.<br><br>(vi) The relative number and kinds of atoms are constant in a given compound.</div>` 
-}   ] },
-      "3": { mcqData: [  // PASTE THIS IN mcqData: []
-{ 
-  question: "In the formation of water, hydrogen and oxygen combine in the mass ratio of 1:8. If 3 g of hydrogen is used, what mass of oxygen is required?", 
-  options: ["a) 3 g", "b) 8 g", "c) 24 g", "d) 11 g"], 
-  correct: "c",
-  hint: "The mass ratio is 1:8, meaning for every 1 g of hydrogen, 8 g of oxygen is required. Calculate how much oxygen is needed for 3 g of hydrogen."
-},
-{ 
-  question: "What is the atomic radius of a hydrogen atom?", 
-  options: ["a) 10⁻⁸ m", "b) 10⁻⁹ m", "c) 10⁻¹⁰ m", "d) 10⁻⁴ m"], 
-  correct: "c",
-  hint: "Look at the table of relative sizes provided in the text. Find the row corresponding to 'Atom of hydrogen'."
-},
-{ 
-  question: "How many nanometres are equal to 1 metre?", 
-  options: ["a) 10⁶ nm", "b) 10⁹ nm", "c) 10¹⁰ nm", "d) 10³ nm"], 
-  correct: "b",
-  hint: "The text provides a conversion between metres and nanometres. Check the relationship given in the table about atomic radius measurement."
-},
-{ 
-  question: "What is 1 nanometre equal to in metres?", 
-  options: ["a) 10⁻⁶ m", "b) 10⁻⁹ m", "c) 10⁻¹⁰ m", "d) 10⁻³ m"], 
-  correct: "c",
-  hint: "From the given information, if 1 m = 10⁹ nm, then rearrange this equation to find how many metres are in 1 nanometre."
-},
-{ 
-  question: "According to the table, what is the approximate size of a water molecule?", 
-  options: ["a) 10⁻¹⁰ m", "b) 10⁻⁹ m", "c) 10⁻⁸ m", "d) 10⁻⁴ m"], 
-  correct: "b",
-  hint: "Look at the 'Relative Sizes' table. Find the entry for 'Molecule of water' and note its corresponding radius."
-},
-{ 
-  question: "Who was the first scientist to use symbols for elements in a very specific sense, where each symbol represented one atom?", 
-  options: ["a) Berzelius", "b) Lavoisier", "c) Dalton", "d) Proust"], 
-  correct: "c",
-  hint: "This scientist not only proposed the atomic theory but also introduced the concept that a symbol represents a definite quantity (one atom) of an element."
-},
-{ 
-  question: "Who suggested that the symbols of elements should be made from one or two letters of the element's name?", 
-  options: ["a) Dalton", "b) Berzelius", "c) Lavoisier", "d) Democritus"], 
-  correct: "b",
-  hint: "This scientist improved upon Dalton's symbolic system by suggesting the use of alphabetic letters from the element's name, which is the basis of our modern chemical symbols."
-},
-{ 
-  question: "What are the building blocks of all matter?", 
-  options: ["a) Molecules", "b) Compounds", "c) Atoms", "d) Elements"], 
-  correct: "c",
-  hint: "The text uses an analogy comparing matter to a building. Just as a grain of sand is the building block of an ant-hill, what is the building block of all matter?"
-},
-{ 
-  question: "According to the size comparison table, which is larger: a grain of sand or a molecule of haemoglobin?", 
-  options: ["a) Grain of sand (10⁻⁴ m)", "b) Molecule of haemoglobin (10⁻⁸ m)", "c) Both are equal", "d) Cannot be determined"], 
-  correct: "a",
-  hint: "Compare the powers of 10. A smaller negative exponent means a larger value. For example, 10⁻⁴ is larger than 10⁻⁸."
-},
-{ 
-  question: "Why should we care about atoms despite their insignificant size?", 
-  options: ["a) They are easy to see", "b) Our entire world is made up of atoms", "c) They are not important", "d) They only exist in laboratories"], 
-  correct: "b",
-  hint: "The text addresses this philosophical question by explaining the fundamental role atoms play in everything around us, even though we cannot see them with our naked eyes."
-}   ],
-            notesData: [  // PASTE THIS IN notesData: []
-{ 
-  heading: "What is an Atom?", 
-  content: `<div class="note-paragraph">Atoms are the fundamental building blocks of all matter. Just as a mason uses bricks to build walls, rooms, and houses, or grains of sand form an ant-hill, atoms are the basic units from which all matter is constructed.</div><div class="definition-box"><div class="definition-term">Atom</div><div class="definition-text">An atom is the smallest particle of an element that retains the chemical properties of that element and participates in chemical reactions.</div></div><div class="important-note"><strong>Important:</strong> Although atoms are extremely small and cannot be seen with the naked eye, they are the fundamental constituents of everything in our world. Modern techniques now allow us to produce magnified images of surfaces showing individual atoms (Refer to Figure 3.2).</div>` 
-},
-{ 
-  heading: "Size of Atoms", 
-  content: `<div class="note-paragraph">Atoms are incredibly small—smaller than anything we can imagine or compare with. More than millions of atoms when stacked would make a layer barely as thick as a sheet of paper.</div><div class="segment-subheading">Measurement of Atomic Radius</div><div class="note-paragraph">Atomic radius is measured in nanometres (nm).<br><br>Conversion:<br><span class="frac"><span class="num">1</span><span class="den">10¹⁰</span></span> m = 10⁻¹⁰ m = 1 nm<br><br>1 m = 10⁹ nm</div><table class="note-table"><thead><tr><th>Object</th><th>Radius (in metres)</th><th>Description</th></tr></thead><tbody><tr><td>Atom of hydrogen</td><td>10⁻¹⁰ m</td><td>Smallest atom</td></tr><tr><td>Molecule of water</td><td>10⁻⁹ m</td><td>Simple molecule</td></tr><tr><td>Molecule of haemoglobin</td><td>10⁻⁸ m</td><td>Large protein molecule</td></tr><tr><td>Grain of sand</td><td>10⁻⁴ m</td><td>Visible to naked eye</td></tr><tr><td>Ant</td><td>10⁻³ m</td><td>Small insect</td></tr><tr><td>Apple</td><td>10⁻¹ m</td><td>Common fruit</td></tr></tbody></table><div class="highlight-box"><strong>Key Point:</strong> The hydrogen atom (10⁻¹⁰ m) is about 100,000 times smaller than a grain of sand (10⁻⁴ m) and about 1 billion times smaller than an apple (10⁻¹ m).</div>` 
-},
-{ 
-  heading: "Importance of Atoms", 
-  content: `<div class="note-paragraph">Despite their extremely small size, atoms are of fundamental importance because our entire world is made up of atoms.</div><div class="segment-subheading">Why Study Atoms?</div><div class="note-paragraph">• <strong>Universal composition:</strong> Everything in the universe, including living and non-living matter, is composed of atoms<br>• <strong>Observable effects:</strong> Though we cannot see individual atoms with our naked eyes, we can feel them and use them in everything we do<br>• <strong>Modern visualization:</strong> Through modern techniques, scientists can now produce magnified images of surfaces of elements showing atoms (as shown in Figure 3.2 for silicon)<br>• <strong>Foundation of chemistry:</strong> Understanding atoms is essential for understanding all chemical reactions and properties of matter</div><div class="important-note"><strong>Important:</strong> Modern scanning tunneling microscopes (STM) and atomic force microscopes (AFM) can now produce images showing individual atoms on surfaces, confirming atomic theory experimentally.</div>` 
-},
-{ 
-  heading: "Symbols of Atoms - Dalton's System", 
-  content: `<div class="note-paragraph">John Dalton was the first scientist to use symbols for elements in a very specific sense. When he used a symbol for an element, he meant a definite quantity of that element—specifically, one atom of that element.</div><div class="segment-subheading">Dalton's Symbolic System</div><div class="note-paragraph">Dalton proposed symbols using circles with different markings to represent different elements. His symbols included:<br>• Hydrogen: ⊙ (circle with dot)<br>• Carbon: ● (filled circle)<br>• Oxygen: ○ (empty circle)<br>• Phosphorus, Sulphur, Iron, Copper, Gold, Silver, Platina, Mercury: Various circular symbols with different markings</div><div class="highlight-box"><strong>Key Point:</strong> Dalton's symbolic system was revolutionary because each symbol represented not just an element but a specific quantity—one atom of that element. This made chemical equations and formulas possible.</div><div class="note-paragraph">Refer to Figure 3.3 for Dalton's symbols for various elements.</div>` 
-},
-{ 
-  heading: "Modern Symbols of Atoms - Berzelius System", 
-  content: `<div class="note-paragraph">Berzelius improved upon Dalton's symbolic system by suggesting a more practical approach that forms the basis of our modern chemical notation.</div><div class="definition-box"><div class="definition-term">Berzelius's Suggestion</div><div class="definition-text">The symbols of elements should be made from one or two letters of the name of the element.</div></div><div class="segment-subheading">Rules for Modern Symbols</div><div class="note-paragraph"><strong>Rule 1:</strong> The first letter of the symbol is always written in uppercase (capital letter).<br><br><strong>Rule 2:</strong> If the symbol has two letters, the second letter is always written in lowercase (small letter).<br><br><strong>Examples:</strong><br>• H for Hydrogen (one letter)<br>• C for Carbon (one letter)<br>• O for Oxygen (one letter)<br>• Ca for Calcium (two letters)<br>• Mg for Magnesium (two letters)<br>• Cl for Chlorine (two letters)</div><div class="important-note"><strong>Important:</strong> This system proposed by Berzelius is the internationally accepted system we use today. It is much more practical than Dalton's pictorial symbols and can be easily written and communicated.</div>` 
-}   ],
-            qaData: [  // PASTE THIS IN qaData: []
-{ 
-  marks: 1, 
-  question: "What are atoms?", 
-  answer: "Atoms are the smallest particles of an element that participate in chemical reactions and are the building blocks of all matter." 
-},
-{ 
-  marks: 1, 
-  question: "What is the size of a hydrogen atom?", 
-  answer: "The size (atomic radius) of a hydrogen atom is 10⁻¹⁰ m." 
-},
-{ 
-  marks: 1, 
-  question: "Who suggested that symbols should be made from letters of the element's name?", 
-  answer: "Berzelius suggested that the symbols of elements should be made from one or two letters of the name of the element." 
-},
-{ 
-  marks: 2, 
-  question: "Hydrogen gas combines with oxygen gas in a fixed ratio of 1:8 by mass to form water. What mass of oxygen gas would be required to react completely with 3 g of hydrogen gas?", 
-  answer: `<div class="point"><strong>Given Information:</strong> Mass ratio of H:O in water = 1:8<br>Mass of hydrogen = 3 g</div><div class="point"><strong>Calculation:</strong> If 1 g of hydrogen requires 8 g of oxygen<br>Then 3 g of hydrogen requires:<br><br><span class="frac"><span class="num">8</span><span class="den">1</span></span> × 3 = 24 g of oxygen<br><br>Therefore, 24 g of oxygen gas is required.</div>` 
-},
-{ 
-  marks: 2, 
-  question: "Explain why we should care about atoms despite their extremely small size.", 
-  answer: `<div class="point"><strong>Universal Composition:</strong> Our entire world is made up of atoms. Every substance—living or non-living—is composed of atoms.</div><div class="point"><strong>Practical Significance:</strong> Although we cannot see individual atoms with our naked eyes, we can feel them and use them in everything we do. Through modern techniques, we can now produce magnified images of surfaces showing atoms, confirming their existence.</div>` 
-},
-{ 
-  marks: 2, 
-  question: "What was Dalton's contribution to chemical symbols?", 
-  answer: `<div class="point"><strong>First Symbolic System:</strong> Dalton was the first scientist to use symbols for elements in a very specific sense. He used circular symbols with different markings to represent different elements.</div><div class="point"><strong>Quantitative Meaning:</strong> When Dalton used a symbol for an element, he also meant a definite quantity of that element—specifically one atom of that element. This made it possible to write chemical formulas and equations.</div>` 
-},
-{ 
-  marks: 3, 
-  question: "Describe the size of atoms with examples from the relative size table.", 
-  answer: `<div class="point"><strong>Step 1: Extremely Small Size (1 mark)</strong><br>Atoms are incredibly small—smaller than anything we can imagine. A hydrogen atom has a radius of only 10⁻¹⁰ m. More than millions of atoms stacked together would make a layer barely as thick as a sheet of paper.</div><div class="point"><strong>Step 2: Comparison with Other Objects (1 mark)</strong><br>To understand atomic size, we can compare:<br>• Hydrogen atom: 10⁻¹⁰ m<br>• Water molecule: 10⁻⁹ m (10 times larger)<br>• Grain of sand: 10⁻⁴ m (1 million times larger)<br>• Ant: 10⁻³ m (10 million times larger)</div><div class="point"><strong>Step 3: Measurement Units (1 mark)</strong><br>Atomic radius is measured in nanometres (nm), where 1 nm = 10⁻¹⁰ m, and 1 m = 10⁹ nm. Despite their tiny size, modern techniques like scanning tunneling microscopy can now produce magnified images showing individual atoms.</div>` 
-},
-{ 
-  marks: 3, 
-  question: "Compare Dalton's symbolic system with Berzelius's symbolic system for elements.", 
-  answer: `<div class="point"><strong>Step 1: Dalton's System (1 mark)</strong><br>Dalton was the first to use symbols systematically. He used circular symbols with different markings (dots, lines, fills) to represent different elements. For example, hydrogen was represented by ⊙, carbon by ●, and oxygen by ○. Each symbol represented one atom of that element.</div><div class="point"><strong>Step 2: Berzelius's System (1 mark)</strong><br>Berzelius improved upon Dalton's system by suggesting that symbols should be made from one or two letters of the element's name. The first letter is always uppercase, and if present, the second letter is lowercase. Examples: H for hydrogen, C for carbon, Ca for calcium.</div><div class="point"><strong>Step 3: Comparison (1 mark)</strong><br>Berzelius's system is more practical and easier to write and communicate than Dalton's pictorial symbols. It forms the basis of our modern chemical notation and is internationally accepted today. While Dalton's contribution was revolutionary, Berzelius's alphabetic system is universally used in modern chemistry.</div>` 
-},
-{ 
-  marks: 2, 
-  question: "Convert the following: (a) 5 metres to nanometres (b) 500 nanometres to metres", 
-  answer: `<div class="point"><strong>(a) Converting 5 metres to nanometres:</strong><br>Given: 1 m = 10⁹ nm<br><br>5 m = 5 × 10⁹ nm<br><br>= 5,000,000,000 nm (or 5 × 10⁹ nm)</div><div class="point"><strong>(b) Converting 500 nanometres to metres:</strong><br>Given: 1 nm = 10⁻¹⁰ m<br><br>500 nm = 500 × 10⁻¹⁰ m<br><br>= 5 × 10⁻⁸ m</div>` 
-},
-{ 
-  marks: 3, 
-  question: "In a reaction, 5.3 g of sodium carbonate reacted with 6 g of ethanoic acid. The products were 2.2 g of carbon dioxide, 0.9 g of water and 8.2 g of sodium ethanoate. Show that these observations are in agreement with the law of conservation of mass.", 
-  answer: `<div class="point"><strong>Step 1: Total Mass of Reactants (1 mark)</strong><br>Mass of sodium carbonate = 5.3 g<br>Mass of ethanoic acid = 6 g<br><br>Total mass of reactants = 5.3 + 6 = 11.3 g</div><div class="point"><strong>Step 2: Total Mass of Products (1 mark)</strong><br>Mass of carbon dioxide = 2.2 g<br>Mass of water = 0.9 g<br>Mass of sodium ethanoate = 8.2 g<br><br>Total mass of products = 2.2 + 0.9 + 8.2 = 11.3 g</div><div class="point"><strong>Step 3: Verification (1 mark)</strong><br>Total mass of reactants = 11.3 g<br>Total mass of products = 11.3 g<br><br>Since total mass of reactants equals total mass of products, these observations are in agreement with the law of conservation of mass, which states that mass can neither be created nor destroyed in a chemical reaction.</div>` 
-}   ] },
-      "4": { mcqData: [  // PASTE THIS IN mcqData: []
-{ 
-  question: "What does IUPAC stand for?", 
-  options: ["a) International Union of Physics and Chemistry", "b) International Union of Applied and Pure Chemistry", "c) International University of Applied Chemistry", "d) Indian Union of Pure and Applied Chemistry"], 
-  correct: "b",
-  hint: "IUPAC is the internationally recognized authority for naming chemical elements and compounds. The full form includes words related to 'Applied' and 'Pure'."
-},
-{ 
-  question: "The symbol for iron is Fe. From which language is this symbol derived?", 
-  options: ["a) English", "b) Greek", "c) Latin", "d) German"], 
-  correct: "c",
-  hint: "The text mentions that iron's symbol comes from its Latin name 'Ferrum'. Look for elements whose symbols don't match their English names."
-},
-{ 
-  question: "What is the symbol for potassium?", 
-  options: ["a) P", "b) Po", "c) Pt", "d) K"], 
-  correct: "d",
-  hint: "Potassium's symbol comes from its Latin name 'Kalium', not from its English name. Check Table 3.1 for the correct symbol."
-},
-{ 
-  question: "According to modern IUPAC recommendations, the atomic mass unit is now abbreviated as:", 
-  options: ["a) amu", "b) u", "c) a.m.u.", "d) AMU"], 
-  correct: "b",
-  hint: "The text mentions that earlier it was abbreviated as 'amu', but the latest IUPAC recommendations have changed this to a simpler abbreviation."
-},
-{ 
-  question: "In the symbol of an element, the first letter is always written as:", 
-  options: ["a) Lowercase (small letter)", "b) Uppercase (capital letter)", "c) Either uppercase or lowercase", "d) Bold letter"], 
-  correct: "b",
-  hint: "There is a specific rule for writing chemical symbols. The first letter follows one convention, and if there's a second letter, it follows another."
-},
-{ 
-  question: "The symbol for sodium (Na) comes from which Latin name?", 
-  options: ["a) Ferrum", "b) Kalium", "c) Natrium", "d) Aurum"], 
-  correct: "c",
-  hint: "Like potassium and iron, sodium's symbol is also derived from its Latin name. The 'Na' comes from a Latin word starting with 'N'."
-},
-{ 
-  question: "In carbon monoxide (CO), 3 g of carbon combines with how many grams of oxygen?", 
-  options: ["a) 3 g", "b) 4 g", "c) 7 g", "d) 12 g"], 
-  correct: "b",
-  hint: "The text provides a specific example of carbon monoxide formation. Look for the mass of oxygen that combines with 3 g (or 3 u) of carbon."
-},
-{ 
-  question: "What is the definition of atomic mass?", 
-  options: ["a) Mass of a molecule", "b) Mass of an atom of an element", "c) Mass of electrons in an atom", "d) Mass of protons only"], 
-  correct: "b",
-  hint: "The text defines atomic mass as the mass of a specific particle of an element. This is a fundamental property of each element."
-},
-{ 
-  question: "Why were some elements named after places?", 
-  options: ["a) To honor scientists", "b) Because they were found there first", "c) For easy remembering", "d) Random choice"], 
-  correct: "b",
-  hint: "In the beginning, elements were named based on where they were first discovered. The example given is copper, which was named after a specific location."
-},
-{ 
-  question: "Which element's name was derived from the English word meaning yellow?", 
-  options: ["a) Copper", "b) Gold", "c) Sulphur", "d) Silver"], 
-  correct: "b",
-  hint: "Some elements were named after their characteristic colors. Gold has a distinctive yellow color, and its name reflects this property."
-}  ], 
-            notesData: [ // PASTE THIS IN notesData: []
-{ 
-  heading: "Origin of Element Names", 
-  content: `<div class="note-paragraph">The names of elements have diverse origins based on their discovery, properties, or location.</div><div class="segment-subheading">Naming Based on Location</div><div class="note-paragraph">In the beginning, many elements were named after the place where they were found for the first time.<br><br><strong>Example:</strong> Copper was named after Cyprus, where it was first discovered.</div><div class="segment-subheading">Naming Based on Color</div><div class="note-paragraph">Some elements were named after their characteristic colors.<br><br><strong>Example:</strong> Gold was taken from the English word meaning yellow, reflecting its distinctive yellow color.</div><div class="important-note"><strong>Important:</strong> Today, IUPAC (International Union of Applied and Pure Chemistry) approves names of elements following systematic guidelines.</div>` 
-},
-{ 
-  heading: "Rules for Writing Chemical Symbols", 
-  content: `<div class="note-paragraph">Chemical symbols are standardized abbreviations used to represent elements. There are specific rules for writing these symbols correctly.</div><div class="segment-subheading">Basic Rules</div><div class="note-paragraph"><strong>Rule 1:</strong> Many symbols consist of the first one or two letters of the element's name in English.<br><br><strong>Rule 2:</strong> The first letter of a symbol is always written as a capital letter (uppercase).<br><br><strong>Rule 3:</strong> If present, the second letter is always written as a small letter (lowercase).</div><div class="segment-subheading">Examples of Correct Symbol Writing</div><div class="note-paragraph">(i) Hydrogen: H (correct) – single letter<br>(ii) Aluminium: Al (correct), not AL (incorrect)<br>(iii) Cobalt: Co (correct), not CO (incorrect – CO represents carbon monoxide compound)</div><div class="highlight-box"><strong>Key Point:</strong> Proper capitalization is crucial. Writing both letters in uppercase can change the meaning entirely. For example, 'Co' is cobalt (element) while 'CO' is carbon monoxide (compound).</div>` 
-},
-{ 
-  heading: "Symbols Derived from Other Languages", 
-  content: `<div class="note-paragraph">Some elements have symbols that don't match their English names because they are derived from names in Latin, German, or Greek.</div><table class="note-table"><thead><tr><th>Element</th><th>Symbol</th><th>Origin Language</th><th>Original Name</th></tr></thead><tbody><tr><td>Iron</td><td>Fe</td><td>Latin</td><td>Ferrum</td></tr><tr><td>Sodium</td><td>Na</td><td>Latin</td><td>Natrium</td></tr><tr><td>Potassium</td><td>K</td><td>Latin</td><td>Kalium</td></tr><tr><td>Gold</td><td>Au</td><td>Latin</td><td>Aurum</td></tr><tr><td>Silver</td><td>Ag</td><td>Latin</td><td>Argentum</td></tr><tr><td>Lead</td><td>Pb</td><td>Latin</td><td>Plumbum</td></tr></tbody></table><div class="important-note"><strong>Important:</strong> Every element has a name and a unique chemical symbol. These symbols are universally recognized across all languages and countries.</div>` 
-},
-{ 
-  heading: "Table 3.1: Symbols of Common Elements", 
-  content: `<div class="note-paragraph">The following table provides symbols for commonly encountered elements. This is a reference table – memorization will happen naturally with repeated usage.</div><table class="note-table"><thead><tr><th>Element</th><th>Symbol</th><th>Element</th><th>Symbol</th><th>Element</th><th>Symbol</th></tr></thead><tbody><tr><td>Aluminium</td><td>Al</td><td>Copper</td><td>Cu</td><td>Nitrogen</td><td>N</td></tr><tr><td>Argon</td><td>Ar</td><td>Fluorine</td><td>F</td><td>Oxygen</td><td>O</td></tr><tr><td>Barium</td><td>Ba</td><td>Gold</td><td>Au</td><td>Potassium</td><td>K</td></tr><tr><td>Boron</td><td>B</td><td>Hydrogen</td><td>H</td><td>Silicon</td><td>Si</td></tr><tr><td>Bromine</td><td>Br</td><td>Iodine</td><td>I</td><td>Silver</td><td>Ag</td></tr><tr><td>Calcium</td><td>Ca</td><td>Iron</td><td>Fe</td><td>Sodium</td><td>Na</td></tr><tr><td>Carbon</td><td>C</td><td>Lead</td><td>Pb</td><td>Sulphur</td><td>S</td></tr><tr><td>Chlorine</td><td>Cl</td><td>Magnesium</td><td>Mg</td><td>Uranium</td><td>U</td></tr><tr><td>Cobalt</td><td>Co</td><td>Neon</td><td>Ne</td><td>Zinc</td><td>Zn</td></tr></tbody></table><div class="highlight-box"><strong>Key Point:</strong> Do not try to memorize all symbols at once. With passage of time and repeated usage, you will automatically be able to reproduce the symbols.</div>` 
-},
-{ 
-  heading: "Atomic Mass: Concept and Definition", 
-  content: `<div class="note-paragraph">One of the most remarkable concepts in Dalton's atomic theory was the idea of atomic mass. Dalton proposed that each element has a characteristic atomic mass.</div><div class="definition-box"><div class="definition-term">Atomic Mass</div><div class="definition-text">The mass of an atom of an element is called its atomic mass.</div></div><div class="segment-subheading">Dalton's Theory and Atomic Mass</div><div class="note-paragraph">According to Dalton, each element had a characteristic atomic mass. This concept helped explain the Law of Constant Proportions – elements combine in fixed mass ratios because their atoms have definite masses.</div><div class="important-note"><strong>Important:</strong> Measuring the mass of individual atoms was a relatively difficult task. Scientists determined relative atomic masses using the laws of chemical combination and the compounds formed.</div>` 
-},
-{ 
-  heading: "Atomic Mass Unit (u)", 
-  content: `<div class="note-paragraph">To express atomic masses, scientists use a special unit called the atomic mass unit.</div><div class="definition-box"><div class="definition-term">Atomic Mass Unit (u)</div><div class="definition-text">The atomic mass unit is a standard unit for expressing atomic masses. Earlier it was abbreviated as 'amu', but according to the latest IUPAC recommendations, it is now abbreviated as 'u'. This is also called unified mass unit.</div></div><div class="segment-subheading">Example: Carbon Monoxide Formation</div><div class="note-paragraph">Let us understand atomic mass through the example of carbon monoxide (CO) formation:<br><br>• Carbon monoxide is formed by carbon and oxygen<br>• It was observed that 3 g (or 3 u) of carbon combines with 4 g of oxygen to form CO<br>• In other words, carbon combines with <span class="frac"><span class="num">4</span><span class="den">3</span></span> times its mass of oxygen<br>• If we define the atomic mass unit such that 100 units of carbon equals the mass of one carbon atom, we can calculate relative masses of other elements</div><div class="highlight-box"><strong>Key Point:</strong> Relative atomic masses are determined using laws of chemical combination by observing the mass ratios in which elements combine to form compounds.</div>` 
-}   ],
-            qaData: [  // PASTE THIS IN qaData: []
-{ 
-  marks: 1, 
-  question: "What does IUPAC stand for?", 
-  answer: "IUPAC stands for International Union of Applied and Pure Chemistry." 
-},
-{ 
-  marks: 1, 
-  question: "What is the symbol for sodium?", 
-  answer: "The symbol for sodium is Na." 
-},
-{ 
-  marks: 1, 
-  question: "Define atomic mass.", 
-  answer: "The mass of an atom of an element is called its atomic mass." 
-},
-{ 
-  marks: 2, 
-  question: "State the rules for writing chemical symbols of elements.", 
-  answer: `<div class="point"><strong>Rule 1:</strong> The first letter of a symbol is always written as a capital letter (uppercase).</div><div class="point"><strong>Rule 2:</strong> If the symbol contains two letters, the second letter is always written as a small letter (lowercase). For example: H (hydrogen), Al (aluminium), Co (cobalt).</div>` 
-},
-{ 
-  marks: 2, 
-  question: "Why are some element symbols different from their English names? Give two examples.", 
-  answer: `<div class="point"><strong>Reason:</strong> Some element symbols are derived from their names in Latin, German, or Greek languages rather than from their English names.</div><div class="point"><strong>Examples:</strong> (i) Iron has symbol Fe, derived from its Latin name 'Ferrum'<br>(ii) Sodium has symbol Na, derived from its Latin name 'Natrium'<br>(iii) Potassium has symbol K, derived from its Latin name 'Kalium'</div>` 
-},
-{ 
-  marks: 2, 
-  question: "Explain how elements were named in the beginning with examples.", 
-  answer: `<div class="point"><strong>Based on Location:</strong> In the beginning, many elements were named after the place where they were found for the first time. For example, copper was named after Cyprus where it was first discovered.</div><div class="point"><strong>Based on Color:</strong> Some elements were named based on their characteristic colors. For example, gold was taken from the English word meaning yellow because of its distinctive yellow color.</div>` 
-},
-{ 
-  marks: 3, 
-  question: "Write the symbols for the following elements: (a) Hydrogen (b) Aluminium (c) Chlorine (d) Iron (e) Sodium (f) Potassium", 
-  answer: `<div class="point"><strong>Symbols:</strong><br>(a) Hydrogen: H<br>(b) Aluminium: Al<br>(c) Chlorine: Cl<br>(d) Iron: Fe (from Latin name Ferrum)<br>(e) Sodium: Na (from Latin name Natrium)<br>(f) Potassium: K (from Latin name Kalium)</div>` 
-},
-{ 
-  marks: 3, 
-  question: "Explain the concept of atomic mass with an example of carbon monoxide formation.", 
-  answer: `<div class="point"><strong>Step 1: Concept of Atomic Mass (1 mark)</strong><br>Atomic mass is the mass of an atom of an element. According to Dalton's atomic theory, each element has a characteristic atomic mass. This concept helps explain why elements combine in fixed mass ratios.</div><div class="point"><strong>Step 2: Carbon Monoxide Example (1 mark)</strong><br>In carbon monoxide (CO) formation, it was observed that 3 g (or 3 u) of carbon combines with 4 g of oxygen to form CO.<br><br>This means carbon combines with <span class="frac"><span class="num">4</span><span class="den">3</span></span> times its mass of oxygen.</div><div class="point"><strong>Step 3: Determination Method (1 mark)</strong><br>Scientists determined relative atomic masses using the laws of chemical combination and observing the mass ratios in which elements combine to form compounds. The atomic mass unit (u) was defined as a standard unit for expressing these masses.</div>` 
-},
-{ 
-  marks: 2, 
-  question: "What is the modern abbreviation for atomic mass unit? What was it abbreviated as earlier?", 
-  answer: `<div class="point"><strong>Earlier Abbreviation:</strong> Earlier, the atomic mass unit was abbreviated as 'amu'.</div><div class="point"><strong>Current Abbreviation:</strong> According to the latest IUPAC (International Union of Applied and Pure Chemistry) recommendations, it is now abbreviated as 'u', which stands for unified mass unit.</div>` 
-},
-{ 
-  marks: 3, 
-  question: "Why is it important to follow the correct capitalization rules when writing chemical symbols? Explain with examples.", 
-  answer: `<div class="point"><strong>Step 1: The Rule (½ mark)</strong><br>The first letter of a chemical symbol must be uppercase (capital), and if there is a second letter, it must be lowercase (small).</div><div class="point"><strong>Step 2: Importance (1½ marks)</strong><br>Proper capitalization is crucial because incorrect capitalization can completely change the meaning. Writing both letters in uppercase can represent a compound instead of an element.<br><br>For example:<br>• 'Co' represents cobalt (an element)<br>• 'CO' represents carbon monoxide (a compound of carbon and oxygen)</div><div class="point"><strong>Step 3: Conclusion (1 mark)</strong><br>Following correct capitalization ensures clear scientific communication and prevents confusion between elements and compounds. Symbols like Al (aluminium) must not be written as AL, as this could be misinterpreted.</div>` 
-}  ] },
-      "5": { mcqData: [  // PASTE THIS IN mcqData: []
-{ 
-  question: "Which isotope of carbon is used as the standard reference for measuring atomic masses?", 
-  options: ["a) Carbon-11", "b) Carbon-12", "c) Carbon-13", "d) Carbon-14"], 
-  correct: "b",
-  hint: "In 1961, scientists universally agreed on a carbon isotope as the standard for atomic mass. The text mentions which specific isotope was assigned an atomic mass of exactly 12u."
-},
-{ 
-  question: "One atomic mass unit (u) is defined as:", 
-  options: ["a) Mass of one hydrogen atom", "b) <span class='frac'><span class='num'>1</span><span class='den'>16</span></span> mass of oxygen atom", "c) <span class='frac'><span class='num'>1</span><span class='den'>12</span></span> mass of one carbon-12 atom", "d) Mass of one electron"], 
-  correct: "c",
-  hint: "The atomic mass unit is based on the carbon-12 standard. It is defined as a specific fraction of the mass of one carbon-12 atom."
-},
-{ 
-  question: "What is the atomic mass of oxygen?", 
-  options: ["a) 14 u", "b) 16 u", "c) 23 u", "d) 32 u"], 
-  correct: "b",
-  hint: "Check Table 3.2 which lists atomic masses of several elements. Find the row corresponding to oxygen."
-},
-{ 
-  question: "According to Table 3.2, which element has an atomic mass of 35.5 u?", 
-  options: ["a) Sulphur", "b) Calcium", "c) Chlorine", "d) Magnesium"], 
-  correct: "c",
-  hint: "Most elements have whole number atomic masses, but some have fractional values. Look for the element with atomic mass 35.5 u in the table."
-},
-{ 
-  question: "Can atoms of most elements exist independently?", 
-  options: ["a) Yes, all atoms exist independently", "b) No, most atoms cannot exist independently", "c) Only metal atoms can exist independently", "d) Only non-metal atoms exist independently"], 
-  correct: "b",
-  hint: "The text explicitly addresses this question in section 3.2.3. Most atoms need to form specific structures to exist in nature."
-},
-{ 
-  question: "What do atoms form when they cannot exist independently?", 
-  options: ["a) Only molecules", "b) Only ions", "c) Molecules and ions", "d) Only compounds"], 
-  correct: "c",
-  hint: "The text mentions two types of structures that atoms form when they cannot exist independently. Both structures help atoms achieve stability."
-},
-{ 
-  question: "What is a molecule defined as?", 
-  options: ["a) A single atom", "b) The smallest particle capable of independent existence showing all properties", "c) A group of electrons", "d) A charged particle"], 
-  correct: "b",
-  hint: "A molecule is defined as the smallest particle of a substance that retains two key characteristics: ability to exist independently and showing all properties of that substance."
-},
-{ 
-  question: "What holds atoms together in a molecule?", 
-  options: ["a) Magnetic forces", "b) Gravitational forces", "c) Attractive forces (chemical bonds)", "d) Nuclear forces"], 
-  correct: "c",
-  hint: "The text mentions that atoms in a molecule are chemically bonded together. These bonds are a type of force that holds the group together."
-},
-{ 
-  question: "According to Table 3.2, what is the atomic mass of magnesium?", 
-  options: ["a) 23 u", "b) 24 u", "c) 32 u", "d) 40 u"], 
-  correct: "b",
-  hint: "Refer to Table 3.2 and find the row for magnesium. Note its atomic mass value."
-},
-{ 
-  question: "Can molecules be formed from atoms of different elements?", 
-  options: ["a) No, only same element atoms can form molecules", "b) Yes, atoms of same or different elements can form molecules", "c) Only non-metals can form molecules", "d) Only metals can form molecules"], 
-  correct: "b",
-  hint: "The text clearly states that atoms can join together to form molecules in two ways - consider both possibilities mentioned."
-}  ], 
-            notesData: [ // PASTE THIS IN notesData: []
-{ 
-  heading: "Atomic Mass Unit: Historical Development", 
-  content: `<div class="note-paragraph">While searching for an appropriate standard for measuring atomic masses, scientists went through several changes before arriving at the current definition.</div><div class="segment-subheading">Initial Standard (Before 1961)</div><div class="note-paragraph">Initially, scientists took <span class="frac"><span class="num">1</span><span class="den">16</span></span> of the mass of naturally occurring oxygen as the unit. This was changed because oxygen has isotopes and was not a reliable standard.</div><div class="segment-subheading">Modern Standard (1961 onwards)</div><div class="note-paragraph">In 1961, for a universally acceptable atomic mass unit, carbon-12 isotope was chosen as the standard reference for measuring atomic masses. Carbon-12 (C-12) is one of the isotopes of carbon and it was assigned an atomic mass of exactly 12u.</div><div class="important-note"><strong>Important:</strong> C-12 was chosen because it is stable, abundant, and provides a consistent standard for all atomic mass measurements worldwide.</div>` 
-},
-{ 
-  heading: "Definition of Atomic Mass Unit (u)", 
-  content: `<div class="definition-box"><div class="definition-term">Atomic Mass Unit (u)</div><div class="definition-text">The atomic mass unit is a mass unit equal to exactly one-twelfth (<span class="frac"><span class="num">1</span><span class="den">12</span></span>) the mass of one atom of carbon-12.</div></div><div class="equation-box"><div class="equation-text">1u = <span class="frac"><span class="num">1</span><span class="den">12</span></span> × (mass of one C-12 atom)<br><br>Mass of one C-12 atom = 12u</div></div><div class="note-paragraph">The relative atomic masses of all elements have been found with respect to an atom of carbon-12. This provides a universal standard for comparing masses of different atoms.</div>` 
-},
-{ 
-  heading: "Understanding Relative Atomic Mass: Fruit Seller Analogy", 
-  content: `<div class="note-paragraph">To understand relative atomic mass, consider the analogy of a fruit seller selling fruits without standard weights (Refer to Figure 3.4).</div><div class="segment-subheading">The Analogy</div><div class="note-paragraph">• The fruit seller takes a watermelon and arbitrarily assigns it a mass of 12 units (12 watermelon units or 12 fruit mass units)<br>• He cuts the watermelon into 12 equal pieces<br>• Each piece has a mass of 1 fruit mass unit (fmu)<br>• Now he can measure the mass of other fruits by comparing them to pieces of watermelon<br>• All fruit masses are expressed relative to <span class="frac"><span class="num">1</span><span class="den">12</span></span> of the watermelon</div><div class="segment-subheading">Connection to Atomic Mass</div><div class="note-paragraph">Similarly, scientists define atomic masses relative to <span class="frac"><span class="num">1</span><span class="den">12</span></span> of the mass of a carbon-12 atom. Just as the fruit seller uses watermelon pieces as a reference, scientists use carbon-12 as the reference standard for atomic masses.</div><div class="definition-box"><div class="definition-term">Relative Atomic Mass</div><div class="definition-text">The relative atomic mass of an atom of an element is defined as the mass of the atom, as compared to <span class="frac"><span class="num">1</span><span class="den">12</span></span>th the mass of one carbon-12 atom.</div></div>` 
-},
-{ 
-  heading: "Atomic Masses of Common Elements", 
-  content: `<div class="note-paragraph">Table 3.2 provides atomic masses of several commonly encountered elements. These values are relative to carbon-12.</div><table class="note-table"><thead><tr><th>Element</th><th>Atomic Mass (u)</th><th>Notes</th></tr></thead><tbody><tr><td>Hydrogen</td><td>1</td><td>Lightest element</td></tr><tr><td>Carbon</td><td>12</td><td>Reference standard (C-12)</td></tr><tr><td>Nitrogen</td><td>14</td><td>Major component of air</td></tr><tr><td>Oxygen</td><td>16</td><td>Essential for respiration</td></tr><tr><td>Sodium</td><td>23</td><td>Common metal</td></tr><tr><td>Magnesium</td><td>24</td><td>Light metal</td></tr><tr><td>Sulphur</td><td>32</td><td>Non-metal</td></tr><tr><td>Chlorine</td><td>35.5</td><td>Fractional atomic mass</td></tr><tr><td>Calcium</td><td>40</td><td>Important for bones</td></tr></tbody></table><div class="highlight-box"><strong>Key Point:</strong> Most elements have whole number or near-whole number atomic masses. Some elements like chlorine have fractional atomic masses (35.5 u) due to the presence of isotopes in different proportions.</div>` 
-},
-{ 
-  heading: "How Do Atoms Exist?", 
-  content: `<div class="note-paragraph">Atoms of most elements are not able to exist independently in nature. They need to form specific structures to achieve stability.</div><div class="segment-subheading">Why Atoms Cannot Exist Independently</div><div class="note-paragraph">Most atoms are unstable when alone and seek to achieve stable electron configurations by combining with other atoms.</div><div class="segment-subheading">How Atoms Achieve Stability</div><div class="note-paragraph">Atoms form two types of structures:<br><br><strong>1. Molecules:</strong> Groups of atoms chemically bonded together<br><br><strong>2. Ions:</strong> Charged particles formed by loss or gain of electrons</div><div class="note-paragraph">These molecules or ions aggregate in large numbers to form the matter that we can see, feel or touch.</div><div class="important-note"><strong>Important:</strong> Noble gases (like helium, neon, argon) are exceptions - they can exist independently as single atoms because they already have stable electron configurations.</div>` 
-},
-{ 
-  heading: "What is a Molecule?", 
-  content: `<div class="definition-box"><div class="definition-term">Molecule</div><div class="definition-text">A molecule is in general a group of two or more atoms that are chemically bonded together. The group is held together by attractive forces.</div></div><div class="segment-subheading">More Precise Definition</div><div class="note-paragraph">A molecule can be defined as the smallest particle of an element or a compound that:<br>• Is capable of independent existence<br>• Shows all the properties of that substance</div><div class="segment-subheading">Types of Molecules</div><div class="note-paragraph"><strong>Based on composition:</strong><br><br><strong>1. Molecules of Elements:</strong> Atoms of the same element join together<br>Examples: H₂, O₂, N₂, Cl₂<br><br><strong>2. Molecules of Compounds:</strong> Atoms of different elements join together<br>Examples: H₂O, CO₂, NH₃, CH₄</div><div class="highlight-box"><strong>Key Point:</strong> A molecule retains all chemical properties of the substance. If we break a molecule further into individual atoms, those atoms will not show the properties of the original substance.</div>` 
-}   ], 
-            qaData: [  // PASTE THIS IN qaData: []
-{ 
-  marks: 1, 
-  question: "What is one atomic mass unit (u)?", 
-  answer: "One atomic mass unit (u) is a mass unit equal to exactly one-twelfth (<span class='frac'><span class='num'>1</span><span class='den'>12</span></span>) the mass of one atom of carbon-12." 
-},
-{ 
-  marks: 1, 
-  question: "What is the atomic mass of chlorine?", 
-  answer: "The atomic mass of chlorine is 35.5 u." 
-},
-{ 
-  marks: 1, 
-  question: "Can atoms exist independently?", 
-  answer: "Atoms of most elements cannot exist independently. They form molecules or ions to achieve stability." 
-},
-{ 
-  marks: 2, 
-  question: "Define relative atomic mass.", 
-  answer: `<div class="point"><strong>Definition:</strong> The relative atomic mass of an atom of an element is defined as the mass of the atom, as compared to <span class="frac"><span class="num">1</span><span class="den">12</span></span>th the mass of one carbon-12 atom.</div><div class="point"><strong>Standard Reference:</strong> All relative atomic masses are measured with respect to carbon-12, which is assigned an atomic mass of exactly 12u.</div>` 
-},
-{ 
-  marks: 2, 
-  question: "Define molecule.", 
-  answer: `<div class="point"><strong>General Definition:</strong> A molecule is a group of two or more atoms that are chemically bonded together and held by attractive forces.</div><div class="point"><strong>Precise Definition:</strong> A molecule is the smallest particle of an element or a compound that is capable of independent existence and shows all the properties of that substance.</div>` 
-},
-{ 
-  marks: 2, 
-  question: "Why was carbon-12 chosen as the standard for atomic mass?", 
-  answer: `<div class="point"><strong>Historical Context:</strong> Initially, <span class="frac"><span class="num">1</span><span class="den">16</span></span> mass of naturally occurring oxygen was used, but this was changed because oxygen has isotopes making it less reliable.</div><div class="point"><strong>Reason for C-12:</strong> In 1961, carbon-12 isotope was chosen as the standard reference because it is stable, abundant, and provides a universally acceptable and consistent standard for measuring atomic masses. C-12 was assigned an atomic mass of exactly 12u.</div>` 
-},
-{ 
-  marks: 3, 
-  question: "Explain the fruit seller analogy to understand relative atomic mass.", 
-  answer: `<div class="point"><strong>Step 1: The Setup (1 mark)</strong><br>Imagine a fruit seller without standard weights. He takes a watermelon and assigns it a mass of 12 units (12 fruit mass units or fmu). He then cuts the watermelon into 12 equal pieces, so each piece has a mass of 1 fmu.</div><div class="point"><strong>Step 2: Measuring Other Fruits (1 mark)</strong><br>Now the fruit seller can weigh other fruits by comparing them to the watermelon pieces. All fruit masses are expressed relative to <span class="frac"><span class="num">1</span><span class="den">12</span></span> of the watermelon. For example, if an apple weighs as much as 2 pieces, its mass is 2 fmu.</div><div class="point"><strong>Step 3: Connection to Atomic Mass (1 mark)</strong><br>Similarly, scientists use carbon-12 as the reference standard. Just as the fruit seller compares fruits to watermelon pieces, scientists compare atomic masses to <span class="frac"><span class="num">1</span><span class="den">12</span></span> of carbon-12 atom. This gives relative atomic masses of all elements.</div>` 
-},
-{ 
-  marks: 3, 
-  question: "How do atoms exist in nature? Explain.", 
-  answer: `<div class="point"><strong>Step 1: Inability to Exist Independently (1 mark)</strong><br>Atoms of most elements are not able to exist independently in nature. They are unstable as single atoms and need to achieve stable electron configurations.</div><div class="point"><strong>Step 2: Formation of Molecules and Ions (1 mark)</strong><br>To achieve stability, atoms form:<br>(i) Molecules - groups of atoms chemically bonded together (e.g., H₂, O₂, H₂O)<br>(ii) Ions - charged particles formed by loss or gain of electrons</div><div class="point"><strong>Step 3: Formation of Matter (1 mark)</strong><br>These molecules or ions aggregate in large numbers to form the matter that we can see, feel or touch. Exception: Noble gases (He, Ne, Ar) can exist as independent atoms because they already have stable electron configurations.</div>` 
-},
-{ 
-  marks: 2, 
-  question: "What is meant by the term chemical formula?", 
-  answer: `<div class="point"><strong>Definition:</strong> A chemical formula is a symbolic representation of a molecule or compound using element symbols and numerical subscripts.</div><div class="point"><strong>Purpose:</strong> It shows which elements are present in a molecule and in what ratio. For example, H₂O represents water molecule containing 2 hydrogen atoms and 1 oxygen atom chemically bonded together.</div>` 
-},
-{ 
-  marks: 2, 
-  question: "Why is it not possible to see an atom with naked eye?", 
-  answer: `<div class="point"><strong>Extremely Small Size:</strong> Atoms are incredibly small - smaller than anything we can imagine. For example, a hydrogen atom has a radius of only 10⁻¹⁰ m. This is far below the resolution limit of human eyes.</div><div class="point"><strong>Scale Comparison:</strong> More than millions of atoms stacked together would make a layer barely as thick as a sheet of paper. Such tiny objects cannot be seen with naked eyes. However, modern techniques like scanning tunneling microscopy can now produce magnified images showing individual atoms.</div>` 
-},
-{ 
-  marks: 3, 
-  question: "What are the two types of molecules? Explain with examples.", 
-  answer: `<div class="point"><strong>Step 1: Molecules of Elements (1½ marks)</strong><br>These molecules are formed when atoms of the same element join together. They contain only one type of atom.<br><br>Examples:<br>• H₂ - hydrogen molecule (2 hydrogen atoms)<br>• O₂ - oxygen molecule (2 oxygen atoms)<br>• N₂ - nitrogen molecule (2 nitrogen atoms)<br>• Cl₂ - chlorine molecule (2 chlorine atoms)</div><div class="point"><strong>Step 2: Molecules of Compounds (1½ marks)</strong><br>These molecules are formed when atoms of different elements join together. They contain two or more types of atoms.<br><br>Examples:<br>• H₂O - water molecule (2 hydrogen + 1 oxygen)<br>• CO₂ - carbon dioxide (1 carbon + 2 oxygen)<br>• NH₃ - ammonia (1 nitrogen + 3 hydrogen)<br>• CH₄ - methane (1 carbon + 4 hydrogen)</div>` 
-}  ] },
+      "1": { mcqData: [], notesData: [], qaData: [] },
+      "2": { mcqData: [], notesData: [], qaData: [] },
+      "3": { mcqData: [], notesData: [], qaData: [] },
+      "4": { mcqData: [], notesData: [], qaData: [] },
+      "5": { mcqData: [], notesData: [], qaData: [] },
       "6": { mcqData: [], notesData: [], qaData: [] },
       "7": { mcqData: [], notesData: [], qaData: [] },
       "8": { mcqData: [], notesData: [], qaData: [] },
@@ -1592,558 +876,67 @@
       "10": { mcqData: [], notesData: [], qaData: [] }
     },
     "2": {
-      "11": { mcqData: [  // PASTE THIS IN mcqData: []
-{ 
-  question: "According to Newton's observation, which force is responsible for both an apple falling to the ground and the moon orbiting the earth?", 
-  options: [
-    "a) Gravitational force", 
-    "b) Centrifugal force", 
-    "c) Magnetic force", 
-    "d) Electrostatic force"
-  ], 
-  correct: "a",
-  hint: "Think about the universal force that Newton realized acts on all objects with mass, regardless of their distance from Earth."
-},
-{ 
-  question: "When a stone tied to a thread is whirled in a circular path, what happens to its direction at every point?", 
-  options: [
-    "a) It changes continuously", 
-    "b) It remains constant", 
-    "c) It becomes random", 
-    "d) It reverses completely"
-  ], 
-  correct: "a",
-  hint: "Consider what defines circular motion - does the stone move in the same direction throughout, or does something keep changing?"
-},
-{ 
-  question: "The force that keeps a stone moving in a circular path when whirled on a thread acts in which direction?", 
-  options: [
-    "a) Towards the centre", 
-    "b) Away from centre", 
-    "c) Tangent to circle", 
-    "d) Perpendicular upward"
-  ], 
-  correct: "a",
-  hint: "The name 'centripetal' itself gives a clue - 'centre-seeking'. What direction would that be?"
-},
-{ 
-  question: "What happens to the stone when the thread is released during circular motion?", 
-  options: [
-    "a) It moves tangentially away", 
-    "b) It continues circular path", 
-    "c) It falls straight down", 
-    "d) It moves toward center"
-  ], 
-  correct: "a",
-  hint: "When the centripetal force (tension in thread) is removed, the stone follows its natural tendency according to Newton's first law of motion."
-},
-{ 
-  question: "According to Newton's reasoning, why doesn't the moon fall straight down to Earth despite being attracted by gravitational force?", 
-  options: [
-    "a) It has sufficient tangential velocity to keep orbiting", 
-    "b) It is too far to be affected by gravity", 
-    "c) Another force pushes it away continuously", 
-    "d) The Sun's gravity counteracts Earth's pull"
-  ], 
-  correct: "a",
-  hint: "Think about the stone-and-thread activity - the stone 'falls' towards the centre but also has forward motion. The moon behaves similarly."
-},
-{ 
-  question: "The change in direction of a stone moving in circular path involves change in:", 
-  options: [
-    "a) Velocity and acceleration", 
-    "b) Only speed magnitude", 
-    "c) Mass of the object", 
-    "d) Gravitational constant"
-  ], 
-  correct: "a",
-  hint: "Remember that velocity is a vector quantity. When direction changes, what happens to velocity? And what causes change in velocity?"
-},
-{ 
-  question: "Which of the following observations led Newton to think about gravitational force?", 
-  options: [
-    "a) An apple falling from tree", 
-    "b) Water flowing in river", 
-    "c) Birds flying in the sky", 
-    "d) Wind blowing strongly"
-  ], 
-  correct: "a",
-  hint: "The question mentions a famous historical incident involving Newton sitting under a tree. What fell on him?"
-},
-{ 
-  question: "What is the meaning of the term 'centripetal' in centripetal force?", 
-  options: [
-    "a) Centre-seeking", 
-    "b) Centre-fleeing", 
-    "c) Centre-rotating", 
-    "d) Centre-balancing"
-  ], 
-  correct: "a",
-  hint: "The page explicitly mentions the meaning in parentheses. The prefix 'centri-' means centre, and 'petal' relates to seeking or moving towards."
-} ],
-            notesData: [ // PASTE THIS IN notesData: []
-{ 
-  heading: "Introduction to Gravitation", 
-  content: `<div class="note-paragraph">Gravitation is the universal force responsible for various natural phenomena we observe daily. When an object is dropped from a height, it falls towards the earth. The planets revolve around the Sun, and the moon orbits around the earth. Isaac Newton realized that a common force is responsible for all these motions - the gravitational force.</div><div class="important-note"><strong>Key Insight:</strong> Newton's genius lay in connecting an apple falling from a tree with the moon's motion around Earth, realizing both are caused by the same gravitational force.</div><div class="note-paragraph">This chapter explores gravitation and the universal law of gravitation, the motion of objects under gravitational influence, variation of weight from place to place, and conditions for objects to float in liquids.</div>` 
-},
-{ 
-  heading: "Newton's Observation and Reasoning", 
-  content: `<div class="note-paragraph">When Newton was sitting under a tree, an apple fell on him. This simple observation triggered profound thinking. He questioned: if Earth can attract an apple, why can't it attract the moon? Is the force acting in both cases the same?</div><div class="highlight-box"><strong>Newton's Conjecture:</strong> The same type of force is responsible for both the falling apple and the moon's orbital motion.</div><div class="note-paragraph">Newton argued that at each point of its orbit, the moon falls towards the earth instead of moving off in a straight line. Therefore, it must be attracted by Earth. However, we don't see the moon falling towards Earth because it has sufficient tangential velocity to maintain its orbit.</div>` 
-},
-{ 
-  heading: "Understanding Circular Motion - Activity 9.1", 
-  content: `<div class="segment-subheading">Activity Setup</div><div class="note-paragraph">Take a piece of thread and tie a small stone at one end. Hold the other end and whirl the stone round in a circular path as shown in Figure 9.1.</div><div class="segment-subheading">Observations</div><div class="note-paragraph"><strong>Before releasing the thread:</strong> The stone moves in a circular path with constant speed but changes direction at every point.</div><div class="note-paragraph"><strong>After releasing the thread:</strong> The stone moves tangentially away from the circular path in a straight line.</div><div class="definition-box"><div class="definition-term">Key Understanding</div><div class="definition-text">Before release, the stone continuously changes direction even though its speed remains constant. Change in direction means change in velocity, which implies acceleration is occurring.</div></div>` 
-},
-{ 
-  heading: "Centripetal Force", 
-  content: `<div class="note-paragraph">The force that causes acceleration in circular motion and keeps the body moving along the circular path acts towards the centre. This force is called the centripetal force.</div><div class="definition-box"><div class="definition-term">Centripetal Force</div><div class="definition-text">The force acting on an object moving in a circular path that is directed towards the centre of the circle. The term 'centripetal' means 'centre-seeking'.</div></div><div class="note-paragraph">In Activity 9.1, the tension in the thread provides the centripetal force. When the thread is released, this force disappears, and the stone flies off tangentially following Newton's first law of motion.</div><div class="important-note"><strong>Important:</strong> Centripetal force doesn't change the speed of the object but continuously changes its direction, keeping it in circular motion.</div>` 
-},
-{ 
-  heading: "Connection Between Centripetal Force and Gravitation", 
-  content: `<div class="note-paragraph">The concept of centripetal force helps us understand the moon's motion around Earth. Just as the thread provides centripetal force to keep the stone in circular motion, Earth's gravitational force provides the centripetal force that keeps the moon in its orbit.</div><table class="note-table"><thead><tr><th>Stone and Thread System</th><th>Moon and Earth System</th></tr></thead><tbody><tr><td>Thread provides centripetal force</td><td>Gravitational force provides centripetal force</td></tr><tr><td>Stone moves in circular path</td><td>Moon moves in orbital path</td></tr><tr><td>When thread released, stone flies tangentially</td><td>If gravity removed, moon would fly off tangentially</td></tr><tr><td>Direction changes continuously</td><td>Direction changes continuously in orbit</td></tr></tbody></table><div class="highlight-box"><strong>Fundamental Principle:</strong> Gravitational force acts as the centripetal force for celestial bodies in orbital motion.</div>` 
-}  ],
-            qaData: [  // PASTE THIS IN qaData: []
-{ 
-  marks: 1, 
-  question: "What is centripetal force?", 
-  answer: "Centripetal force is the force acting towards the centre of a circular path that keeps an object moving along that circular path." 
-},
-{ 
-  marks: 1, 
-  question: "What is gravitational force?", 
-  answer: "Gravitational force is the universal force of attraction that acts between all objects with mass, responsible for phenomena like objects falling to Earth and celestial bodies orbiting each other." 
-},
-{ 
-  marks: 2, 
-  question: "What observation made Newton think about gravitational force? What was his key realization?", 
-  answer: `<div class="point"><strong>Observation:</strong> When Newton was sitting under a tree, an apple fell on him. This made him start thinking about the force causing this fall.</div><div class="point"><strong>Key Realization:</strong> Newton realized that if Earth can attract an apple, it should also attract the moon. He conjectured that the same type of force (gravitational force) is responsible for both the falling apple and the moon's orbital motion around Earth.</div>` 
-},
-{ 
-  marks: 2, 
-  question: "In Activity 9.1, what happens to the motion of the stone before and after releasing the thread?", 
-  answer: `<div class="point"><strong>Before Releasing:</strong> The stone moves in a circular path with constant speed but continuously changes direction at every point. The tension in the thread provides centripetal force directed towards the centre.</div><div class="point"><strong>After Releasing:</strong> When the thread is released, the centripetal force disappears and the stone flies off tangentially in a straight line, following Newton's first law of motion.</div>` 
-},
-{ 
-  marks: 2, 
-  question: "Why does change in direction of a stone moving in circular path involve acceleration?", 
-  answer: `<div class="point"><strong>Velocity is a Vector:</strong> Velocity has both magnitude and direction. When the stone moves in a circular path, its direction changes continuously at every point, even if its speed remains constant.</div><div class="point"><strong>Acceleration Occurs:</strong> Since velocity is changing (due to direction change), there must be acceleration. This acceleration is caused by the centripetal force acting towards the centre of the circular path.</div>` 
-},
-{ 
-  marks: 3, 
-  question: "Explain Newton's reasoning about why the moon doesn't fall straight down to Earth despite being attracted by gravitational force.", 
-  answer: `<div class="point"><strong>Step 1: Newton's Question (½ mark)</strong><br>Newton questioned whether the same force that causes an apple to fall could also act on the moon. He conjectured that gravitational force acts on both.</div><div class="point"><strong>Step 2: Moon's Motion Analysis (1½ marks)</strong><br>Newton argued that at each point of its orbit, the moon actually does fall towards the Earth instead of moving off in a straight line. So it must be attracted by Earth's gravitational force. However, the moon also has tangential velocity (forward motion). The combination of falling towards Earth and moving forward results in a curved orbital path rather than a straight fall.</div><div class="point"><strong>Step 3: Conclusion (1 mark)</strong><br>The moon is continuously falling towards Earth, but its tangential velocity prevents it from actually reaching Earth. This balance between gravitational pull and tangential motion keeps the moon in stable orbit, similar to how the stone moves in a circle when whirled on a thread.</div>` 
-},
-{ 
-  marks: 3, 
-  question: "What is centripetal force? Explain with the help of Activity 9.1 how this force acts in circular motion.", 
-  answer: `<div class="point"><strong>Step 1: Definition (½ mark)</strong><br>Centripetal force is the force acting towards the centre of a circular path that causes acceleration and keeps a body moving along that circular path. The term 'centripetal' means 'centre-seeking'.</div><div class="point"><strong>Step 2: Activity 9.1 Demonstration (1½ marks)</strong><br>When a stone tied to a thread is whirled in a circular path, it moves with constant speed but continuously changes direction. This change in direction means change in velocity, which requires acceleration. The tension in the thread provides the centripetal force directed towards the centre (where you hold the thread). This force keeps pulling the stone towards the centre, preventing it from flying off and maintaining circular motion.</div><div class="point"><strong>Step 3: Result When Force is Removed (1 mark)</strong><br>When the thread is released, the centripetal force disappears. The stone then flies off tangentially in a straight line following Newton's first law of motion, demonstrating that continuous force towards the centre is necessary to maintain circular motion.</div>` 
-} ] },
+      "11": { mcqData: [], notesData: [], qaData: [] },
       "12": { mcqData: [], notesData: [], qaData: [] },
       "13": { mcqData: [], notesData: [], qaData: [] },
-      
-      "14": { mcqData: [], notesData: [], qaData: [] }
+      "14": { mcqData: [], notesData: [], qaData: [] },
+      "15": { mcqData: [], notesData: [], qaData: [] },
+      "16": { mcqData: [], notesData: [], qaData: [] },
+      "17": { mcqData: [], notesData: [], qaData: [] },
+      "18": { mcqData: [], notesData: [], qaData: [] },
+      "19": { mcqData: [], notesData: [], qaData: [] },
+      "20": { mcqData: [], notesData: [], qaData: [] }
     },
     "3": {
-      "1": { mcqData: [], notesData: [], qaData: [] },
-      "2": { mcqData: [], notesData: [], qaData: [] },
-      "3": { mcqData: [], notesData: [], qaData: [] },
-      "4": { mcqData: [], notesData: [], qaData: [] },
-      "5": { mcqData: [], notesData: [], qaData: [] },
-      "6": { mcqData: [], notesData: [], qaData: [] },
-      "7": { mcqData: [], notesData: [], qaData: [] },
-      "8": { mcqData: [], notesData: [], qaData: [] },
-      "9": { mcqData: [], notesData: [], qaData: [] },
-      "10": { mcqData: [], notesData: [], qaData: [] }
+      "21": { mcqData: [], notesData: [], qaData: [] },
+      "22": { mcqData: [], notesData: [], qaData: [] },
+      "23": { mcqData: [], notesData: [], qaData: [] },
+      "24": { mcqData: [], notesData: [], qaData: [] },
+      "25": { mcqData: [], notesData: [], qaData: [] },
+      "26": { mcqData: [], notesData: [], qaData: [] },
+      "27": { mcqData: [], notesData: [], qaData: [] },
+      "28": { mcqData: [], notesData: [], qaData: [] },
+      "29": { mcqData: [], notesData: [], qaData: [] },
+      "30": { mcqData: [], notesData: [], qaData: [] }
     },
     "4": {
-      "1": { mcqData: [], notesData: [], qaData: [] },
-      "2": { mcqData: [], notesData: [], qaData: [] },
-      "3": { mcqData: [], notesData: [], qaData: [] },
-      "4": { mcqData: [], notesData: [], qaData: [] },
-      "5": { mcqData: [], notesData: [], qaData: [] },
-      "6": { mcqData: [], notesData: [], qaData: [] },
-      "7": { mcqData: [], notesData: [], qaData: [] },
-      "8": { mcqData: [], notesData: [], qaData: [] },
-      "9": { mcqData: [], notesData: [], qaData: [] },
-      "10": { mcqData: [], notesData: [], qaData: [] }
+      "31": { mcqData: [], notesData: [], qaData: [] },
+      "32": { mcqData: [], notesData: [], qaData: [] },
+      "33": { mcqData: [], notesData: [], qaData: [] },
+      "34": { mcqData: [], notesData: [], qaData: [] },
+      "35": { mcqData: [], notesData: [], qaData: [] },
+      "36": { mcqData: [], notesData: [], qaData: [] },
+      "37": { mcqData: [], notesData: [], qaData: [] },
+      "38": { mcqData: [], notesData: [], qaData: [] },
+      "39": { mcqData: [], notesData: [], qaData: [] },
+      "40": { mcqData: [], notesData: [], qaData: [] }
     },
     "5": {
-      "1": { mcqData: [], notesData: [], qaData: [] },
-      "2": { mcqData: [], notesData: [], qaData: [] },
-      "3": { mcqData: [], notesData: [], qaData: [] },
-      "4": { mcqData: [], notesData: [], qaData: [] },
-      "5": { mcqData: [], notesData: [], qaData: [] },
-      "6": { mcqData: [], notesData: [], qaData: [] },
-      "7": { mcqData: [], notesData: [], qaData: [] },
-      "8": { mcqData: [], notesData: [], qaData: [] },
-      "9": { mcqData: [], notesData: [], qaData: [] },
-      "10": { mcqData: [], notesData: [], qaData: [] }
+      "41": { mcqData: [], notesData: [], qaData: [] },
+      "42": { mcqData: [], notesData: [], qaData: [] },
+      "43": { mcqData: [], notesData: [], qaData: [] },
+      "44": { mcqData: [], notesData: [], qaData: [] },
+      "45": { mcqData: [], notesData: [], qaData: [] },
+      "46": { mcqData: [], notesData: [], qaData: [] },
+      "47": { mcqData: [], notesData: [], qaData: [] },
+      "48": { mcqData: [], notesData: [], qaData: [] },
+      "49": { mcqData: [], notesData: [], qaData: [] },
+      "50": { mcqData: [], notesData: [], qaData: [] }
     },
     "6": {
-      "1": { mcqData: [ { 
-  question: "What is the formula of magnesium chloride as shown in Figure 3.6?", 
-  options: ["a) MgCl", "b) MgCl₂", "c) Mg₂Cl", "d) Mg₂Cl₂"], 
-  correct: "b",
-  hint: "Magnesium has electronic configuration 2,8,2 and loses 2 electrons. Chlorine has 2,8,7 and gains 1 electron. How many chlorine atoms are needed to accept 2 electrons from one magnesium atom?"
-},
-{ 
-  question: "Which of the following ionic compounds has the highest melting point according to Table 3.4?", 
-  options: ["a) NaCl (1074 K)", "b) CaO (2850 K)", "c) MgCl₂ (981 K)", "d) LiCl (887 K)"], 
-  correct: "b",
-  hint: "Look at the melting point column in Table 3.4 and identify which compound requires the highest temperature to melt."
-},
-{ 
-  question: "What is the boiling point of sodium chloride (NaCl) as per Table 3.4?", 
-  options: ["a) 1074 K", "b) 1686 K", "c) 1600 K", "d) 2850 K"], 
-  correct: "b",
-  hint: "The table shows both melting and boiling points. For NaCl, the boiling point is the second temperature value listed."
-},
-{ 
-  question: "In Activity 3.13, why are ionic compounds dissolved in water to test conductivity?", 
-  options: ["a) To increase their temperature", "b) To allow ions to move freely and conduct electricity", "c) To change their color", "d) To reduce their melting point"], 
-  correct: "b",
-  hint: "Ionic compounds conduct electricity only when their ions are free to move. In solid state, ions are fixed in position. What happens when they dissolve in water?"
-},
-{ 
-  question: "According to the page, compounds formed by transfer of electrons from metal to non-metal are called:", 
-  options: ["a) Covalent compounds", "b) Metallic compounds", "c) Ionic or electrovalent compounds", "d) Molecular compounds"], 
-  correct: "c",
-  hint: "The text explicitly defines what these compounds are called when electrons are transferred between metal and non-metal atoms."
-},
-{ 
-  question: "What is the electronic configuration of magnesium cation (Mg²⁺) after losing 2 electrons?", 
-  options: ["a) 2,8,2", "b) 2,8", "c) 2,8,8", "d) 2,6"], 
-  correct: "b",
-  hint: "Magnesium atom has configuration 2,8,2. When it loses 2 electrons from the outermost shell, what remains?"
-},
-{ 
-  question: "In Activity 3.13, which liquid is suggested for testing whether ionic compounds dissolve?", 
-  options: ["a) Only water", "b) Only petrol", "c) Only kerosene", "d) Water, petrol, and kerosene"], 
-  correct: "d",
-  hint: "The activity instructs to test solubility in multiple liquids to understand the nature of ionic compounds. Read the activity steps carefully."
-},
-{ 
-  question: "What is the ratio of melting point to boiling point approximately for CaCl₂ from Table 3.4?", 
-  options: ["a) 1:2", "b) 1:1", "c) 2:3", "d) 1:3"], 
-  correct: "a",
-  hint: "CaCl₂ has melting point 1045 K and boiling point 1900 K. Calculate the approximate ratio: <span class='frac'><span class='num'>1045</span><span class='den'>1900</span></span> ≈ ?"
-}  ],
-            notesData: [ { 
-  heading: "Formation of Magnesium Chloride", 
-  content: `<div class="note-paragraph">Magnesium chloride (MgCl₂) is formed through the transfer of electrons from magnesium atoms to chlorine atoms, creating an ionic bond. Refer to Figure 3.6 in the textbook for the complete electron transfer diagram.</div><div class="definition-box"><div class="definition-term">Electron Configuration</div><div class="definition-text">Magnesium (Mg): 2,8,2 → Loses 2 electrons → Mg²⁺: 2,8 (Magnesium cation)<br>Chlorine (Cl): 2,8,7 → Gains 1 electron → Cl⁻: 2,8,8 (Chloride anion)</div></div><div class="note-paragraph">Since one magnesium atom loses 2 electrons and each chlorine atom can gain only 1 electron, two chlorine atoms are required to accept the 2 electrons from one magnesium atom. This results in the formula MgCl₂.</div><div class="equation-box"><div class="equation-text">Mg + Cl₂ → Mg²⁺ + 2Cl⁻ → MgCl₂</div></div><div class="important-note"><strong>Important:</strong> Compounds formed by the transfer of electrons from a metal to a non-metal are known as ionic compounds or electrovalent compounds.</div>` 
-},
-{ 
-  heading: "Properties of Ionic Compounds", 
-  content: `<div class="note-paragraph">Ionic compounds exhibit distinct properties due to the strong electrostatic forces of attraction between oppositely charged ions. Section 3.3.1 introduces an activity to explore these properties experimentally.</div><div class="segment-subheading">Activity 3.13: Investigating Ionic Compound Properties</div><div class="note-paragraph">This activity involves testing samples of sodium chloride, potassium iodide, barium chloride, or any other salt from the laboratory to observe their physical and chemical properties.</div><div class="highlight-box"><strong>Key Observations to Make:</strong><br>1. Physical state of these salts (solid, liquid, or gas)<br>2. Amount of sample needed in a beaker to smell the compound<br>3. Appearance under magnifying glass<br>4. Effect of hammering on the samples<br>5. Solubility in water, petrol, and kerosene<br>6. Electrical conductivity of salt solution (refer to Figure 3.8 for experimental setup)</div><div class="note-paragraph">The activity includes creating a circuit as shown in Figure 3.8, where electrodes are inserted into salt solutions to test conductivity. A beaker with salt solution under test is connected to a battery, bulb, and switch.</div><div class="important-note"><strong>Important:</strong> Ionic compounds conduct electricity in molten state or when dissolved in water because ions become free to move and carry electric charge.</div>` 
-},
-{ 
-  heading: "Melting and Boiling Points", 
-  content: `<div class="note-paragraph">Ionic compounds generally have high melting and boiling points due to strong electrostatic forces between ions. Table 3.4 provides experimental data for several common ionic compounds.</div><table class="note-table"><thead><tr><th>Ionic Compound</th><th>Melting Point (K)</th><th>Boiling Point (K)</th></tr></thead><tbody><tr><td>NaCl (Sodium Chloride)</td><td>1074</td><td>1686</td></tr><tr><td>LiCl (Lithium Chloride)</td><td>887</td><td>1600</td></tr><tr><td>CaCl₂ (Calcium Chloride)</td><td>1045</td><td>1900</td></tr><tr><td>CaO (Calcium Oxide)</td><td>2850</td><td>3120</td></tr><tr><td>MgCl₂ (Magnesium Chloride)</td><td>981</td><td>1685</td></tr></tbody></table><div class="highlight-box"><strong>Key Point:</strong> Calcium oxide (CaO) has the highest melting point (2850 K) and boiling point (3120 K) among the listed compounds, indicating very strong ionic bonding.</div><div class="note-paragraph">The large difference between melting and boiling points indicates that significant energy is required not only to break the ionic lattice structure but also to completely separate ions in the gaseous phase.</div>` 
-},
-{ 
-  heading: "Experimental Setup for Conductivity", 
-  content: `<div class="note-paragraph">Figure 3.8 shows the experimental apparatus for testing the electrical conductivity of salt solutions. The setup demonstrates an important property of ionic compounds.</div><div class="definition-box"><div class="definition-term">Components of the Circuit</div><div class="definition-text">• Spatula containing sample being heated<br>• Burner for heating (Figure 3.9)<br>• Battery as power source<br>• Bulb as indicator<br>• Switch to control circuit<br>• Beaker containing salt solution<br>• Graphite rod electrodes<br>• Salt solution under test</div></div><div class="note-paragraph">When electrodes are inserted into the salt solution, if the bulb glows, it confirms that the solution conducts electricity. This happens because dissolved ionic compounds dissociate into freely moving ions.</div><div class="important-note"><strong>Important:</strong> The inference drawn from this experiment relates to the nature of ionic compounds - they conduct electricity in aqueous solution or molten state but not in solid state.</div>` 
-} ],
-            qaData: [ { 
-  marks: 1, 
-  question: "What is an ionic compound?", 
-  answer: "An ionic compound (or electrovalent compound) is formed by the transfer of electrons from a metal to a non-metal, resulting in the formation of positively charged cations and negatively charged anions held together by electrostatic forces." 
-},
-{ 
-  marks: 2, 
-  question: "Why does magnesium chloride have the formula MgCl₂ and not MgCl?", 
-  answer: `<div class="point"><strong>Electron Loss from Magnesium:</strong> Magnesium (electronic configuration 2,8,2) loses 2 electrons to form Mg²⁺ ion with stable configuration 2,8.</div><div class="point"><strong>Electron Gain by Chlorine:</strong> Each chlorine atom (electronic configuration 2,8,7) can gain only 1 electron to form Cl⁻ ion with configuration 2,8,8. Therefore, two chlorine atoms are needed to accept the 2 electrons lost by one magnesium atom, resulting in the formula MgCl₂.</div>` 
-},
-{ 
-  marks: 1, 
-  question: "Which ionic compound in Table 3.4 has the highest boiling point?", 
-  answer: "Calcium oxide (CaO) has the highest boiling point of 3120 K among the ionic compounds listed in Table 3.4." 
-},
-{ 
-  marks: 2, 
-  question: "Why do ionic compounds conduct electricity in solution but not in solid state?", 
-  answer: `<div class="point"><strong>In Solid State:</strong> Ionic compounds have ions fixed in rigid lattice positions. The ions cannot move freely, so they cannot carry electric charge, making solid ionic compounds non-conductive.</div><div class="point"><strong>In Solution or Molten State:</strong> When dissolved in water or melted, the ionic lattice breaks down and ions become free to move. These mobile ions can carry electric charge, allowing the solution or melt to conduct electricity (as demonstrated in Activity 3.13 and Figure 3.8).</div>` 
-},
-{ 
-  marks: 3, 
-  question: "Describe the formation of magnesium chloride with electron transfer details.", 
-  answer: `<div class="point"><strong>Step 1: Initial Electron Configuration (½ mark)</strong><br>Magnesium atom has electronic configuration 2,8,2 with 2 valence electrons. Chlorine atom has configuration 2,8,7 with 7 valence electrons (needs 1 more electron to complete octet).</div><div class="point"><strong>Step 2: Electron Transfer Process (1½ marks)</strong><br>Magnesium loses 2 electrons from its outermost shell to form Mg²⁺ cation with stable configuration 2,8. Each chlorine atom gains 1 electron to form Cl⁻ anion with stable configuration 2,8,8. Since magnesium loses 2 electrons but each chlorine can accept only 1 electron, two chlorine atoms are required for one magnesium atom. (Refer to Figure 3.6)</div><div class="point"><strong>Step 3: Ionic Bond Formation (1 mark)</strong><br>The Mg²⁺ cation and two Cl⁻ anions are held together by strong electrostatic forces of attraction, forming the ionic compound magnesium chloride with formula MgCl₂. This electron transfer from metal to non-metal creates an electrovalent or ionic compound.</div>` 
-},
-{ 
-  marks: 3, 
-  question: "Explain the procedure and observations of Activity 3.13 for testing properties of ionic compounds.", 
-  answer: `<div class="point"><strong>Step 1: Sample Collection and Physical Observation (1 mark)</strong><br>Take samples of sodium chloride, potassium iodide, barium chloride, or other salts from the laboratory. Observe their physical state (all are solids). Place a small amount in a beaker and note that ionic compounds typically have no strong smell. Examine samples under a magnifying glass to see crystalline structure.</div><div class="point"><strong>Step 2: Solubility and Mechanical Tests (1 mark)</strong><br>Test whether samples impart color to flame (flame test). Try hammering the samples to observe brittleness. Attempt to dissolve samples in water, petrol, and kerosene. Ionic compounds typically dissolve in water but not in organic solvents like petrol and kerosene.</div><div class="point"><strong>Step 3: Conductivity Test (1 mark)</strong><br>Make a circuit as shown in Figure 3.8 with battery, bulb, switch, beaker, and graphite rod electrodes. Insert electrodes into salt solution. If the bulb glows, the solution conducts electricity. This proves that ionic compounds conduct electricity in aqueous solution due to free-moving ions, demonstrating their electrovalent nature.</div>` 
-},
-{ 
-  marks: 2, 
-  question: "Compare the melting and boiling points of NaCl and CaO from Table 3.4. What does this indicate?", 
-  answer: `<div class="point"><strong>Comparison of Values:</strong> NaCl has melting point 1074 K and boiling point 1686 K, while CaO has melting point 2850 K and boiling point 3120 K. CaO has significantly higher melting point (by 1776 K) and boiling point (by 1434 K) compared to NaCl.</div><div class="point"><strong>Indication:</strong> The much higher melting and boiling points of CaO indicate stronger electrostatic forces of attraction between Ca²⁺ and O²⁻ ions compared to Na⁺ and Cl⁻ ions. This is due to higher charges on calcium and oxide ions (both have ±2 charge) compared to sodium and chloride ions (both have ±1 charge), resulting in stronger ionic bonding in CaO.</div>` 
-}  ] },
-      "2": { mcqData: [], notesData: [], qaData: [] },
-      "3": { mcqData: [], notesData: [], qaData: [] },
-      "4": { mcqData: [], notesData: [], qaData: [] },
-      "5": { mcqData: [  { 
-  question: "What is the focal length of a convex mirror if its radius of curvature is 3.00 m?", 
-  options: ["a) 3.00 m", "b) 1.50 m", "c) 6.00 m", "d) 0.75 m"], 
-  correct: "b",
-  hint: "The relationship between focal length and radius of curvature is f = <span class='frac'><span class='num'>R</span><span class='den'>2</span></span>. For a convex mirror, both f and R are positive."
-},
-{ 
-  question: "In Example 9.1, a bus is located 5.00 m from a convex mirror. What is the image distance?", 
-  options: ["a) –1.15 m", "b) +5.00 m", "c) +1.15 m", "d) –5.00 m"], 
-  correct: "c",
-  hint: "For a convex mirror, the image is always formed behind the mirror, so the image distance is positive. Use the mirror formula to calculate."
-},
-{ 
-  question: "What is the magnification of the image in Example 9.1?", 
-  options: ["a) –0.23", "b) +0.23", "c) +1.15", "d) –1.15"], 
-  correct: "b",
-  hint: "Magnification m = –<span class='frac'><span class='num'>v</span><span class='den'>u</span></span>. Substitute v = +1.15 m and u = –5.00 m. Positive magnification indicates erect image."
-},
-{ 
-  question: "What is the nature of the image formed in Example 9.1 (convex mirror)?", 
-  options: ["a) Real, inverted and magnified", "b) Virtual, erect and smaller", "c) Real, erect and smaller", "d) Virtual, inverted and magnified"], 
-  correct: "b",
-  hint: "Convex mirrors always form virtual, erect images. The magnification is 0.23 (less than 1), indicating the image is smaller than the object."
-},
-{ 
-  question: "In Example 9.2, what is the object distance for a concave mirror when an object is placed 25.0 cm in front of it?", 
-  options: ["a) +25.0 cm", "b) –25.0 cm", "c) +15.0 cm", "d) –15.0 cm"], 
-  correct: "b",
-  hint: "According to sign convention, object distance is always negative when the object is in front of the mirror (real object)."
-},
-{ 
-  question: "What is the focal length of the concave mirror in Example 9.2?", 
-  options: ["a) +15.0 cm", "b) –15.0 cm", "c) +25.0 cm", "d) –25.0 cm"], 
-  correct: "b",
-  hint: "For a concave mirror, the focal length is negative according to the sign convention because the focus is in front of the mirror."
-},
-{ 
-  question: "The principal focus of a convex mirror is located:", 
-  options: ["a) In front of the mirror", "b) Behind the mirror", "c) At the pole of the mirror", "d) At infinity"], 
-  correct: "b",
-  hint: "Example 9.1 explicitly states the position of the principal focus of a convex mirror in the solution."
-},
-{ 
-  question: "If magnification m = +0.23, the image is:", 
-  options: ["a) Real and smaller", "b) Virtual and smaller", "c) Real and magnified", "d) Virtual and magnified"], 
-  correct: "b",
-  hint: "Positive magnification indicates a virtual, erect image. Magnification less than 1 (0.23 < 1) means the image is smaller than the object."
-} ], 
-            notesData: [ { 
-  heading: "Example 9.1 - Convex Mirror Image Formation", 
-  content: `<div class="note-paragraph">This example demonstrates image formation by a convex mirror used as a rear-view mirror in automobiles.</div><div class="segment-subheading">Problem Statement</div><div class="note-paragraph">A convex mirror used for rear-view on an automobile has a radius of curvature of 3.00 m. If a bus is located at 5.00 m from this mirror, find the position, nature and size of the image.</div><div class="segment-subheading">Given Data</div><div class="note-paragraph">• Radius of curvature, R = +3.00 m (positive for convex mirror)<br>• Object-distance, u = –5.00 m (negative as per sign convention)<br>• Image-distance, v = ? (to be calculated)<br>• Height of the image, h´ = ? (to be calculated)</div><div class="important-note"><strong>Important:</strong> For a convex mirror, the radius of curvature and focal length are taken as positive according to the Cartesian sign convention.</div>` 
-},
-{ 
-  heading: "Solution to Example 9.1 - Step 1", 
-  content: `<div class="segment-subheading">Calculating Focal Length</div><div class="note-paragraph">The relationship between focal length and radius of curvature is:</div><div class="formula-box"><div class="formula-label">Focal Length Formula</div><div class="formula-text">f = <span class="frac"><span class="num">R</span><span class="den">2</span></span> = + <span class="frac"><span class="num">3.00 m</span><span class="den">2</span></span> = +1.50 m</div></div><div class="highlight-box"><strong>Key Point:</strong> The principal focus of a convex mirror is behind the mirror, hence the focal length is positive (+1.50 m).</div><div class="segment-subheading">Calculating Image Distance</div><div class="note-paragraph">Using the mirror formula:</div><div class="equation-box"><div class="equation-text"><span class="frac"><span class="num">1</span><span class="den">v</span></span> + <span class="frac"><span class="num">1</span><span class="den">u</span></span> = <span class="frac"><span class="num">1</span><span class="den">f</span></span></div></div><div class="note-paragraph">Rearranging:</div><div class="equation-box"><div class="equation-text"><span class="frac"><span class="num">1</span><span class="den">v</span></span> = <span class="frac"><span class="num">1</span><span class="den">f</span></span> – <span class="frac"><span class="num">1</span><span class="den">u</span></span> = + <span class="frac"><span class="num">1</span><span class="den">1.50</span></span> – <span class="frac"><span class="num">1</span><span class="den">(–5.00)</span></span> = <span class="frac"><span class="num">1</span><span class="den">1.50</span></span> + <span class="frac"><span class="num">1</span><span class="den">5.00</span></span></div></div><div class="note-paragraph">Taking common denominator:</div><div class="equation-box"><div class="equation-text"><span class="frac"><span class="num">1</span><span class="den">v</span></span> = <span class="frac"><span class="num">5.00 + 1.50</span><span class="den">7.50</span></span></div></div><div class="formula-box"><div class="formula-label">Image Distance</div><div class="formula-text">v = <span class="frac"><span class="num">+7.50</span><span class="den">6.50</span></span> = +1.15 m</div></div><div class="important-note"><strong>Important:</strong> The image is 1.15 m at the back of the mirror (positive value confirms image is behind the mirror).</div>` 
-},
-{ 
-  heading: "Solution to Example 9.1 - Step 2", 
-  content: `<div class="segment-subheading">Calculating Magnification</div><div class="note-paragraph">The magnification of a mirror is given by:</div><div class="formula-box"><div class="formula-label">Magnification Formula</div><div class="formula-text">m = <span class="frac"><span class="num">h´</span><span class="den">h</span></span> = – <span class="frac"><span class="num">v</span><span class="den">u</span></span></div></div><div class="note-paragraph">Substituting the values:</div><div class="equation-box"><div class="equation-text">m = – <span class="frac"><span class="num">1.15 m</span><span class="den">–5.00 m</span></span> = +0.23</div></div><div class="segment-subheading">Nature and Size of Image</div><div class="definition-box"><div class="definition-term">Conclusion</div><div class="definition-text">The image is virtual, erect and smaller in size by a factor of 0.23.</div></div><div class="note-paragraph"><strong>Analysis:</strong><br>• Positive magnification (+0.23) indicates the image is erect and virtual<br>• Magnification < 1 means the image is smaller than the object<br>• The image size is only 23% of the object size<br>• This is why convex mirrors are used in rear-view mirrors - they provide a wider field of view with diminished images</div>` 
-},
-{ 
-  heading: "Example 9.2 - Concave Mirror Image Formation", 
-  content: `<div class="note-paragraph">This example demonstrates image formation by a concave mirror and how to locate the screen position for obtaining a sharp image.</div><div class="segment-subheading">Problem Statement</div><div class="note-paragraph">An object, 4.0 cm in size, is placed at 25.0 cm in front of a concave mirror of focal length 15.0 cm. At what distance from the mirror should a screen be placed in order to obtain a sharp image? Find the nature and the size of the image.</div><div class="segment-subheading">Given Data</div><div class="note-paragraph">• Object-size, h = +4.0 cm (positive for erect object)<br>• Object-distance, u = –25.0 cm (negative as per sign convention)<br>• Focal length, f = –15.0 cm (negative for concave mirror)<br>• Image-distance, v = ? (to be calculated)<br>• Image-size, h´ = ? (to be calculated)</div><div class="important-note"><strong>Important:</strong> For a concave mirror, the focal length is negative according to the Cartesian sign convention because the focus is in front of the mirror.</div>` 
-},
-{ 
-  heading: "Solution to Example 9.2 - Calculation", 
-  content: `<div class="segment-subheading">Using Mirror Formula</div><div class="note-paragraph">From Equation (10.1), the mirror formula is:</div><div class="equation-box"><div class="equation-text"><span class="frac"><span class="num">1</span><span class="den">v</span></span> + <span class="frac"><span class="num">1</span><span class="den">u</span></span> = <span class="frac"><span class="num">1</span><span class="den">f</span></span></div></div><div class="note-paragraph">Rearranging to solve for image distance:</div><div class="equation-box"><div class="equation-text"><span class="frac"><span class="num">1</span><span class="den">v</span></span> = <span class="frac"><span class="num">1</span><span class="den">f</span></span> – <span class="frac"><span class="num">1</span><span class="den">u</span></span> = <span class="frac"><span class="num">1</span><span class="den">–15.0</span></span> – <span class="frac"><span class="num">1</span><span class="den">–25.0</span></span> = – <span class="frac"><span class="num">1</span><span class="den">15.0</span></span> + <span class="frac"><span class="num">1</span><span class="den">25.0</span></span></div></div><div class="highlight-box"><strong>Key Point:</strong> The solution continues on the next page to find the final image distance, screen position, and image characteristics.</div>` 
-}  ],
-            qaData: [  { 
-  marks: 1, 
-  question: "What is the relationship between focal length and radius of curvature for a spherical mirror?", 
-  answer: "The focal length f is half of the radius of curvature R, given by the formula f = <span class='frac'><span class='num'>R</span><span class='den'>2</span></span>." 
-},
-{ 
-  marks: 1, 
-  question: "Where is the principal focus located for a convex mirror?", 
-  answer: "The principal focus of a convex mirror is located behind the mirror (on the opposite side from where the object is placed)." 
-},
-{ 
-  marks: 2, 
-  question: "A convex mirror has a radius of curvature of 3.00 m. If an object is placed 5.00 m from the mirror, find the focal length and image distance.", 
-  answer: `<div class="point"><strong>Focal Length:</strong> Using f = <span class="frac"><span class="num">R</span><span class="den">2</span></span> = <span class="frac"><span class="num">3.00 m</span><span class="den">2</span></span> = +1.50 m (positive for convex mirror)</div><div class="point"><strong>Image Distance:</strong> Using mirror formula <span class="frac"><span class="num">1</span><span class="den">v</span></span> = <span class="frac"><span class="num">1</span><span class="den">f</span></span> – <span class="frac"><span class="num">1</span><span class="den">u</span></span> with u = –5.00 m: <span class="frac"><span class="num">1</span><span class="den">v</span></span> = <span class="frac"><span class="num">1</span><span class="den">1.50</span></span> + <span class="frac"><span class="num">1</span><span class="den">5.00</span></span> = <span class="frac"><span class="num">6.50</span><span class="den">7.50</span></span>. Therefore, v = +1.15 m (image is 1.15 m behind the mirror).</div>` 
-},
-{ 
-  marks: 3, 
-  question: "A convex mirror used for rear-view on an automobile has a radius of curvature of 3.00 m. If a bus is located at 5.00 m from this mirror, find the position, nature and size of the image.", 
-  answer: `<div class="point"><strong>Step 1: Calculate Focal Length and Image Distance (1 mark)</strong><br>Focal length: f = <span class="frac"><span class="num">R</span><span class="den">2</span></span> = <span class="frac"><span class="num">3.00 m</span><span class="den">2</span></span> = +1.50 m<br>Using <span class="frac"><span class="num">1</span><span class="den">v</span></span> = <span class="frac"><span class="num">1</span><span class="den">f</span></span> – <span class="frac"><span class="num">1</span><span class="den">u</span></span> with u = –5.00 m:<br><span class="frac"><span class="num">1</span><span class="den">v</span></span> = <span class="frac"><span class="num">1</span><span class="den">1.50</span></span> + <span class="frac"><span class="num">1</span><span class="den">5.00</span></span> = <span class="frac"><span class="num">5.00 + 1.50</span><span class="den">7.50</span></span><br>v = <span class="frac"><span class="num">7.50</span><span class="den">6.50</span></span> = +1.15 m</div><div class="point"><strong>Step 2: Calculate Magnification (1 mark)</strong><br>m = – <span class="frac"><span class="num">v</span><span class="den">u</span></span> = – <span class="frac"><span class="num">1.15 m</span><span class="den">–5.00 m</span></span> = +0.23</div><div class="point"><strong>Step 3: State Position, Nature and Size (1 mark)</strong><br><strong>Position:</strong> Image is 1.15 m at the back of the mirror<br><strong>Nature:</strong> Virtual and erect (positive magnification)<br><strong>Size:</strong> Smaller by a factor of 0.23, i.e., image is 23% of the object size</div>` 
-},
-{ 
-  marks: 2, 
-  question: "Why are convex mirrors preferred for rear-view mirrors in automobiles?", 
-  answer: `<div class="point"><strong>Wider Field of View:</strong> Convex mirrors always form diminished (smaller) virtual images. This allows a wider field of view, enabling drivers to see more area behind the vehicle in a compact mirror.</div><div class="point"><strong>Always Erect Image:</strong> Convex mirrors always produce erect images regardless of object position. As seen in Example 9.1, the magnification is +0.23, meaning the image is virtual, erect, and smaller, which is ideal for monitoring traffic behind the vehicle without distortion in orientation.</div>` 
-},
-{ 
-  marks: 2, 
-  question: "State the sign conventions for focal length of concave and convex mirrors.", 
-  answer: `<div class="point"><strong>Concave Mirror:</strong> The focal length of a concave mirror is negative (f < 0) because the principal focus is located in front of the mirror on the same side as the object. In Example 9.2, f = –15.0 cm.</div><div class="point"><strong>Convex Mirror:</strong> The focal length of a convex mirror is positive (f > 0) because the principal focus is located behind the mirror on the opposite side from the object. In Example 9.1, f = +1.50 m.</div>` 
-},
-{ 
-  marks: 1, 
-  question: "What does positive magnification indicate about the nature of an image?", 
-  answer: "Positive magnification indicates that the image is virtual and erect. In Example 9.1, m = +0.23 shows the image formed by the convex mirror is virtual and erect." 
-},
-{ 
-  marks: 3, 
-  question: "Derive the image distance for a concave mirror when an object of size 4.0 cm is placed at 25.0 cm in front of a concave mirror of focal length 15.0 cm.", 
-  answer: `<div class="point"><strong>Step 1: Write Given Data with Sign Convention (½ mark)</strong><br>Object distance: u = –25.0 cm (negative, in front of mirror)<br>Focal length: f = –15.0 cm (negative for concave mirror)<br>Image distance: v = ? (to be calculated)</div><div class="point"><strong>Step 2: Apply Mirror Formula (1½ marks)</strong><br>Using the mirror formula from Equation (10.1):<br><span class="frac"><span class="num">1</span><span class="den">v</span></span> + <span class="frac"><span class="num">1</span><span class="den">u</span></span> = <span class="frac"><span class="num">1</span><span class="den">f</span></span><br>Rearranging:<br><span class="frac"><span class="num">1</span><span class="den">v</span></span> = <span class="frac"><span class="num">1</span><span class="den">f</span></span> – <span class="frac"><span class="num">1</span><span class="den">u</span></span> = <span class="frac"><span class="num">1</span><span class="den">–15.0</span></span> – <span class="frac"><span class="num">1</span><span class="den">–25.0</span></span> = – <span class="frac"><span class="num">1</span><span class="den">15.0</span></span> + <span class="frac"><span class="num">1</span><span class="den">25.0</span></span></div><div class="point"><strong>Step 3: Calculate Final Value (1 mark)</strong><br>Taking LCM and simplifying (calculation continues on next page of textbook to get the final image distance value and determine where the screen should be placed for sharp image).</div>` 
-}  ] },
-      "6": { mcqData: [], notesData: [],
-            qaData: [ { 
-  marks: 1, 
-  question: "What is the relationship between focal length and radius of curvature for a spherical mirror?", 
-  answer: "The focal length f is half of the radius of curvature R, given by the formula f = <span class='frac'><span class='num'>R</span><span class='den'>2</span></span>." 
-},
-{ 
-  marks: 1, 
-  question: "Where is the principal focus located for a convex mirror?", 
-  answer: "The principal focus of a convex mirror is located behind the mirror (on the opposite side from where the object is placed)." 
-},
-{ 
-  marks: 2, 
-  question: "A convex mirror has a radius of curvature of 3.00 m. If an object is placed 5.00 m from the mirror, find the focal length and image distance.", 
-  answer: `<div class="point"><strong>Focal Length:</strong> Using f = <span class="frac"><span class="num">R</span><span class="den">2</span></span><br>f = <span class="frac"><span class="num">3.00 m</span><span class="den">2</span></span><br>f = +1.50 m (positive for convex mirror)</div><div class="point"><strong>Image Distance:</strong> Using mirror formula <span class="frac"><span class="num">1</span><span class="den">v</span></span> = <span class="frac"><span class="num">1</span><span class="den">f</span></span> – <span class="frac"><span class="num">1</span><span class="den">u</span></span> with u = –5.00 m:<br><span class="frac"><span class="num">1</span><span class="den">v</span></span> = <span class="frac"><span class="num">1</span><span class="den">1.50</span></span> + <span class="frac"><span class="num">1</span><span class="den">5.00</span></span><br><span class="frac"><span class="num">1</span><span class="den">v</span></span> = <span class="frac"><span class="num">6.50</span><span class="den">7.50</span></span><br>v = +1.15 m (image is 1.15 m behind the mirror).</div>` 
-},
-{ 
-  marks: 3, 
-  question: "A convex mirror used for rear-view on an automobile has a radius of curvature of 3.00 m. If a bus is located at 5.00 m from this mirror, find the position, nature and size of the image.", 
-  answer: `<div class="point"><strong>Step 1: Calculate Focal Length and Image Distance (1 mark)</strong><br>Focal length: f = <span class="frac"><span class="num">R</span><span class="den">2</span></span><br>f = <span class="frac"><span class="num">3.00 m</span><span class="den">2</span></span><br>f = +1.50 m<br><br>Using <span class="frac"><span class="num">1</span><span class="den">v</span></span> = <span class="frac"><span class="num">1</span><span class="den">f</span></span> – <span class="frac"><span class="num">1</span><span class="den">u</span></span> with u = –5.00 m:<br><span class="frac"><span class="num">1</span><span class="den">v</span></span> = <span class="frac"><span class="num">1</span><span class="den">1.50</span></span> + <span class="frac"><span class="num">1</span><span class="den">5.00</span></span><br><span class="frac"><span class="num">1</span><span class="den">v</span></span> = <span class="frac"><span class="num">5.00 + 1.50</span><span class="den">7.50</span></span><br>v = <span class="frac"><span class="num">7.50</span><span class="den">6.50</span></span><br>v = +1.15 m</div><div class="point"><strong>Step 2: Calculate Magnification (1 mark)</strong><br>m = – <span class="frac"><span class="num">v</span><span class="den">u</span></span><br>m = – <span class="frac"><span class="num">1.15 m</span><span class="den">–5.00 m</span></span><br>m = +0.23</div><div class="point"><strong>Step 3: State Position, Nature and Size (1 mark)</strong><br><strong>Position:</strong> Image is 1.15 m at the back of the mirror<br><strong>Nature:</strong> Virtual and erect (positive magnification)<br><strong>Size:</strong> Smaller by a factor of 0.23, i.e., image is 23% of the object size</div>` 
-},
-{ 
-  marks: 2, 
-  question: "Why are convex mirrors preferred for rear-view mirrors in automobiles?", 
-  answer: `<div class="point"><strong>Wider Field of View:</strong> Convex mirrors always form diminished (smaller) virtual images. This allows a wider field of view, enabling drivers to see more area behind the vehicle in a compact mirror.</div><div class="point"><strong>Always Erect Image:</strong> Convex mirrors always produce erect images regardless of object position. As seen in Example 9.1, the magnification is +0.23, meaning the image is virtual, erect, and smaller, which is ideal for monitoring traffic behind the vehicle without distortion in orientation.</div>` 
-},
-{ 
-  marks: 2, 
-  question: "State the sign conventions for focal length of concave and convex mirrors.", 
-  answer: `<div class="point"><strong>Concave Mirror:</strong> The focal length of a concave mirror is negative (f < 0) because the principal focus is located in front of the mirror on the same side as the object. In Example 9.2, f = –15.0 cm.</div><div class="point"><strong>Convex Mirror:</strong> The focal length of a convex mirror is positive (f > 0) because the principal focus is located behind the mirror on the opposite side from the object. In Example 9.1, f = +1.50 m.</div>` 
-},
-{ 
-  marks: 1, 
-  question: "What does positive magnification indicate about the nature of an image?", 
-  answer: "Positive magnification indicates that the image is virtual and erect. In Example 9.1, m = +0.23 shows the image formed by the convex mirror is virtual and erect." 
-},
-{ 
-  marks: 3, 
-  question: "Derive the image distance for a concave mirror when an object of size 4.0 cm is placed at 25.0 cm in front of a concave mirror of focal length 15.0 cm.", 
-  answer: `<div class="point"><strong>Step 1: Write Given Data with Sign Convention (½ mark)</strong><br>Object distance: u = –25.0 cm (negative, in front of mirror)<br>Focal length: f = –15.0 cm (negative for concave mirror)<br>Image distance: v = ? (to be calculated)</div><div class="point"><strong>Step 2: Apply Mirror Formula (1½ marks)</strong><br>Using the mirror formula from Equation (10.1):<br><span class="frac"><span class="num">1</span><span class="den">v</span></span> + <span class="frac"><span class="num">1</span><span class="den">u</span></span> = <span class="frac"><span class="num">1</span><span class="den">f</span></span><br><br>Rearranging:<br><span class="frac"><span class="num">1</span><span class="den">v</span></span> = <span class="frac"><span class="num">1</span><span class="den">f</span></span> – <span class="frac"><span class="num">1</span><span class="den">u</span></span><br><span class="frac"><span class="num">1</span><span class="den">v</span></span> = <span class="frac"><span class="num">1</span><span class="den">–15.0</span></span> – <span class="frac"><span class="num">1</span><span class="den">–25.0</span></span><br><span class="frac"><span class="num">1</span><span class="den">v</span></span> = – <span class="frac"><span class="num">1</span><span class="den">15.0</span></span> + <span class="frac"><span class="num">1</span><span class="den">25.0</span></span></div><div class="point"><strong>Step 3: Calculate Final Value (1 mark)</strong><br>Taking LCM and simplifying (calculation continues on next page of textbook to get the final image distance value and determine where the screen should be placed for sharp image).</div>` 
-}  ] },
-      "7": { mcqData: [  // PASTE THIS IN mcqData: []
-{ 
-  question: "When magnesium (2,8,2) forms Mg²⁺ ion, how many electrons does it lose?", 
-  options: ["a) 1 electron", "b) 2 electrons", "c) 3 electrons", "d) 8 electrons"], 
-  correct: "b",
-  hint: "Look at the electron configuration of magnesium (2,8,2). The outermost shell contains electrons that are lost during ion formation to achieve a stable noble gas configuration."
-},
-{ 
-  question: "What is the electron configuration of chloride ion (Cl⁻) formed from chlorine atom with configuration (2,8,7)?", 
-  options: ["a) 2,8,6", "b) 2,8,7", "c) 2,8,8", "d) 2,7,8"], 
-  correct: "c",
-  hint: "Chlorine gains one electron to complete its octet. Add the gained electron to the outermost shell of the neutral chlorine atom."
-},
-{ 
-  question: "In the formation of MgCl₂, how many chlorine atoms combine with one magnesium atom?", 
-  options: ["a) 1", "b) 2", "c) 3", "d) 4"], 
-  correct: "b",
-  hint: "Magnesium loses 2 electrons while each chlorine atom can gain only 1 electron. Calculate how many chlorine atoms are needed to accept all electrons from one magnesium atom."
-},
-{ 
-  question: "According to Table 3.4, which ionic compound has the highest melting point?", 
-  options: ["a) NaCl (1074 K)", "b) MgCl₂ (981 K)", "c) CaCl₂ (1045 K)", "d) CaO (2850 K)"], 
-  correct: "d",
-  hint: "Higher melting points indicate stronger ionic bonds. CaO contains smaller ions with higher charges, leading to stronger electrostatic attraction between Ca²⁺ and O²⁻ ions."
-},
-{ 
-  question: "What type of compounds are formed by the transfer of electrons from a metal to a non-metal?", 
-  options: ["a) Covalent compounds", "b) Ionic or electrovalent compounds", "c) Metallic compounds", "d) Molecular compounds"], 
-  correct: "b",
-  hint: "The page explicitly defines this category of compounds formed through electron transfer between metals and non-metals."
-},
-{ 
-  question: "In Activity 3.13, why is a circuit with electrodes used to test salt solutions?", 
-  options: ["a) To measure temperature", "b) To test electrical conductivity", "c) To dissolve the salt faster", "d) To change the color of solution"], 
-  correct: "b",
-  hint: "The circuit contains a bulb. If the solution conducts electricity, ions will carry current and the bulb will glow. This tests whether the solution can conduct electricity."
-},
-{ 
-  question: "According to Table 3.4, what is the boiling point of sodium chloride (NaCl)?", 
-  options: ["a) 1074 K", "b) 1686 K", "c) 887 K", "d) 1600 K"], 
-  correct: "b",
-  hint: "Look carefully at Table 3.4. There are two columns - melting point and boiling point. Make sure you're reading the correct column for NaCl."
-},
-{ 
-  question: "Which solvent is most likely to dissolve ionic compounds according to Activity 3.13?", 
-  options: ["a) Petrol", "b) Kerosene", "c) Water", "d) All equally"], 
-  correct: "c",
-  hint: "Ionic compounds are polar in nature. They dissolve in polar solvents. Among the three solvents mentioned, consider which one is polar."
-}  ],
-            notesData: [  // PASTE THIS IN notesData: []
-{ 
-  heading: "Formation of Magnesium Chloride (MgCl₂)", 
-  content: `<div class="note-paragraph">Magnesium chloride is formed through electron transfer from magnesium atoms to chlorine atoms. This process demonstrates ionic bond formation between a metal and a non-metal.</div><div class="equation-box"><div class="equation-text">Mg (2,8,2) → Mg²⁺ (2,8) + 2e⁻<br><br>Cl (2,8,7) + e⁻ → Cl⁻ (2,8,8)<br><br>Since each Cl atom needs 1 electron:<br><br>2Cl (2,8,7) + 2e⁻ → 2Cl⁻ (2,8,8)<br><br>Final compound formation:<br><br>Mg²⁺ + 2Cl⁻ → MgCl₂</div></div><div class="note-paragraph">Magnesium atom loses 2 electrons from its outermost shell to achieve stable configuration (2,8), forming Mg²⁺ cation. Each chlorine atom gains 1 electron to achieve stable octet configuration (2,8,8), forming Cl⁻ anion. Two chlorine atoms are required to accept the 2 electrons donated by one magnesium atom.</div><div class="definition-box"><div class="definition-term">Ionic Compounds (Electrovalent Compounds)</div><div class="definition-text">The compounds formed by the transfer of electrons from a metal to a non-metal are known as ionic compounds or electrovalent compounds.</div></div>` 
-},
-{ 
-  heading: "Properties of Ionic Compounds", 
-  content: `<div class="note-paragraph">Ionic compounds exhibit characteristic properties due to the strong electrostatic forces of attraction between oppositely charged ions arranged in a regular crystal lattice structure.</div>` 
-},
-{ 
-  heading: "Activity 3.13: Investigating Ionic Compound Properties", 
-  content: `<div class="segment-subheading">Aim</div><div class="note-paragraph">To study the physical state, solubility, electrical conductivity, and thermal properties of ionic salts.</div><div class="segment-subheading">Materials Required</div><div class="note-paragraph">Sodium chloride, potassium iodide, barium chloride or other salts; metal spatula; Bunsen burner; water; petrol; kerosene; electrodes (graphite rods); battery; bulb; switch; beaker.</div><div class="segment-subheading">Procedure</div><div class="note-paragraph"><strong>Step 1:</strong> Observe the physical state of salt samples at room temperature.<br><br><strong>Step 2:</strong> Take a small amount of sample on a metal spatula and heat it directly on a flame (Refer to Figure 3.9). Observe if the samples impart any color to the flame.<br><br><strong>Step 3:</strong> Try to dissolve the salt samples separately in water, petrol, and kerosene. Note which solvents dissolve the salts.<br><br><strong>Step 4:</strong> Make a circuit as shown in Figure 3.8 with battery, switch, bulb, and two graphite rod electrodes. Insert the electrodes into a beaker containing salt solution. Observe the bulb and test other salt solutions similarly.</div><div class="segment-subheading">Expected Observations</div><div class="note-paragraph">• All salt samples are in <strong>solid state</strong> at room temperature<br>• Salts require <strong>high temperature</strong> to melt or decompose<br>• Some salts may impart <strong>characteristic colors</strong> to the flame when heated<br>• Salts dissolve readily in <strong>water</strong> but not in petrol or kerosene<br>• When electrodes are inserted in salt solution, the <strong>bulb glows</strong>, indicating electrical conductivity</div><div class="important-note"><strong>Inference:</strong> Ionic compounds are solid at room temperature, have high melting points, dissolve in polar solvents like water, and conduct electricity in solution form because ions are free to move and carry electric current.</div>` 
-},
-{ 
-  heading: "Melting and Boiling Points of Ionic Compounds", 
-  content: `<div class="note-paragraph">Ionic compounds have characteristically high melting and boiling points due to strong electrostatic forces between oppositely charged ions in the crystal lattice. Large amounts of energy are required to overcome these forces and separate the ions.</div><table class="note-table"><thead><tr><th>Ionic Compound</th><th>Melting Point (K)</th><th>Boiling Point (K)</th></tr></thead><tbody><tr><td>NaCl</td><td>1074</td><td>1686</td></tr><tr><td>LiCl</td><td>887</td><td>1600</td></tr><tr><td>CaCl₂</td><td>1045</td><td>1900</td></tr><tr><td>CaO</td><td>2850</td><td>3120</td></tr><tr><td>MgCl₂</td><td>981</td><td>1685</td></tr></tbody></table><div class="highlight-box"><strong>Key Point:</strong> CaO has the highest melting point (2850 K) and boiling point (3120 K) among the listed compounds due to the strong ionic bond between Ca²⁺ and O²⁻ ions, which are both small in size with high charge density.</div>` 
-} ],
-            qaData: [  // PASTE THIS IN qaData: []
-{ 
-  marks: 1, 
-  question: "Name the cation and anion present in MgCl₂.", 
-  answer: "The cation present in MgCl₂ is Mg²⁺ (magnesium ion) and the anion is Cl⁻ (chloride ion)." 
-},
-{ 
-  marks: 1, 
-  question: "What are ionic compounds also known as?", 
-  answer: "Ionic compounds are also known as electrovalent compounds." 
-},
-{ 
-  marks: 2, 
-  question: "Explain the formation of magnesium ion (Mg²⁺) from magnesium atom.", 
-  answer: `<div class="point"><strong>Electron Configuration:</strong> Magnesium atom has electron configuration (2,8,2) with 2 electrons in its outermost shell.</div><div class="point"><strong>Ion Formation:</strong> To achieve stable noble gas configuration, magnesium loses 2 electrons from its outermost shell, forming Mg²⁺ ion with configuration (2,8) and a positive charge of +2.</div>` 
-},
-{ 
-  marks: 2, 
-  question: "Why do ionic compounds have high melting and boiling points?", 
-  answer: `<div class="point"><strong>Strong Electrostatic Forces:</strong> Ionic compounds consist of oppositely charged ions (cations and anions) held together by strong electrostatic forces of attraction in a rigid crystal lattice structure.</div><div class="point"><strong>Energy Requirement:</strong> Large amounts of energy are required to overcome these strong forces and separate the ions, resulting in high melting and boiling points. For example, CaO has a melting point of 2850 K.</div>` 
-},
-{ 
-  marks: 3, 
-  question: "Describe the formation of magnesium chloride (MgCl₂) with electron transfer equations.", 
-  answer: `<div class="point"><strong>Step 1: Magnesium Ion Formation (1 mark)</strong><br>Magnesium atom (2,8,2) loses 2 electrons from its outermost shell to form Mg²⁺ cation:<br><br>Mg (2,8,2) → Mg²⁺ (2,8) + 2e⁻</div><div class="point"><strong>Step 2: Chloride Ion Formation (1 mark)</strong><br>Each chlorine atom (2,8,7) gains 1 electron to form Cl⁻ anion. Since magnesium loses 2 electrons, two chlorine atoms are needed:<br><br>2Cl (2,8,7) + 2e⁻ → 2Cl⁻ (2,8,8)</div><div class="point"><strong>Step 3: Compound Formation (1 mark)</strong><br>The Mg²⁺ cation and two Cl⁻ anions combine through electrostatic attraction to form magnesium chloride:<br><br>Mg²⁺ + 2Cl⁻ → MgCl₂<br><br>This is an ionic compound formed by electron transfer from metal to non-metal.</div>` 
-},
-{ 
-  marks: 2, 
-  question: "Why do ionic compounds conduct electricity in solution but not in solid state?", 
-  answer: `<div class="point"><strong>Solid State:</strong> In solid state, ions are held in fixed positions in the crystal lattice and cannot move freely. Therefore, ionic compounds do not conduct electricity in solid state.</div><div class="point"><strong>Solution/Molten State:</strong> When dissolved in water or melted, ions become free to move. These mobile ions can carry electric current, making the solution or molten compound an electrical conductor. This is demonstrated in Activity 3.13 where the bulb glows in salt solution.</div>` 
-},
-{ 
-  marks: 3, 
-  question: "Based on Activity 3.13, describe the solubility behavior of ionic compounds in different solvents.", 
-  answer: `<div class="point"><strong>Step 1: Solubility in Water (1 mark)</strong><br>Ionic compounds dissolve readily in water because water is a polar solvent. The partial positive charge on hydrogen atoms and partial negative charge on oxygen atoms in water molecules attract the ions, helping to separate them from the crystal lattice.</div><div class="point"><strong>Step 2: Insolubility in Non-polar Solvents (1 mark)</strong><br>Ionic compounds do not dissolve in non-polar solvents like petrol and kerosene. These solvents lack the polarity needed to overcome the strong electrostatic forces between ions in the crystal structure.</div><div class="point"><strong>Step 3: General Principle (1 mark)</strong><br>The solubility pattern follows the principle "like dissolves like" - polar ionic compounds dissolve in polar solvents (water) but not in non-polar solvents (petrol, kerosene). This property distinguishes ionic compounds from covalent compounds.</div>` 
-},
-{ 
-  marks: 2, 
-  question: "Compare the melting points of NaCl and CaO from Table 3.4. Why is there such a large difference?", 
-  answer: `<div class="point"><strong>Melting Point Comparison:</strong> NaCl has a melting point of 1074 K, while CaO has a much higher melting point of 2850 K - nearly 2.7 times higher than NaCl.</div><div class="point"><strong>Reason for Difference:</strong> CaO has stronger ionic bonds because both Ca²⁺ and O²⁻ are doubly charged ions with high charge density and small ionic radii. This creates much stronger electrostatic attraction compared to NaCl (Na⁺ and Cl⁻ are singly charged), requiring significantly more energy to break the bonds during melting.</div>` 
-}  ] },
-      "8": { mcqData: [], notesData: [], qaData: [] },
-      "9": { mcqData: [], notesData: [], qaData: [] },
-      "10": { mcqData: [], notesData: [], qaData: [] }
+      "51": { mcqData: [], notesData: [], qaData: [] },
+      "52": { mcqData: [], notesData: [], qaData: [] },
+      "53": { mcqData: [], notesData: [], qaData: [] },
+      "54": { mcqData: [], notesData: [], qaData: [] },
+      "55": { mcqData: [], notesData: [], qaData: [] },
+      "56": { mcqData: [], notesData: [], qaData: [] },
+      "57": { mcqData: [], notesData: [], qaData: [] },
+      "58": { mcqData: [], notesData: [], qaData: [] },
+      "59": { mcqData: [], notesData: [], qaData: [] },
+      "60": { mcqData: [], notesData: [], qaData: [] }
     },
     "7": {
-      "1": {
+      "61": { 
         mcqData: [
           { 
             question: "The electronic configuration of Aluminium is 2, 8, 3. How many electrons are present in the M shell?", 
@@ -2158,13 +951,13 @@
             hint: "Count the total number of electrons (2+8+8=18). The element with atomic number 18 is this noble gas."
           },
           { 
-            question: "Sodium atom loses one electron to form sodium cation. The electronic configuration of Na+ is:", 
+            question: "Sodium atom loses one electron to form sodium cation. The electronic configuration of Na⁺ is:", 
             options: ["a) 2, 8, 1", "b) 2, 8", "c) 2, 7", "d) 2, 8, 2"], 
             correct: "b",
             hint: "Sodium starts with 2, 8, 1. When it loses one electron from the outermost shell, what remains?"
           },
           { 
-            question: "Chlorine gains one electron to form chloride anion. The electronic configuration of Cl- is:", 
+            question: "Chlorine gains one electron to form chloride anion. The electronic configuration of Cl⁻ is:", 
             options: ["a) 2, 8, 7", "b) 2, 7, 8", "c) 2, 8, 6", "d) 2, 8, 8"], 
             correct: "d",
             hint: "Chlorine has 2, 8, 7. When it gains one electron in the M shell, the M shell will have 7+1 electrons."
@@ -2188,51 +981,51 @@
           { marks: 3, question: "Explain the formation of sodium chloride with electronic configuration.", answer: `<div class="point"><strong>Step 1: Initial Configuration (½ mark)</strong><br>Sodium (Na) has electronic configuration 2, 8, 1<br>Chlorine (Cl) has electronic configuration 2, 8, 7</div><div class="point"><strong>Step 2: Electron Transfer (1½ marks)</strong><br>Sodium atom loses one electron from M shell to form Na⁺ cation with configuration 2, 8. Chlorine atom gains one electron in M shell to form Cl⁻ anion with configuration 2, 8, 8. Both ions attain stable noble gas configuration.</div><div class="point"><strong>Step 3: Ionic Bond Formation (1 mark)</strong><br>Na⁺ and Cl⁻ ions are oppositely charged and attract each other by strong electrostatic forces to form sodium chloride (NaCl). It exists as aggregates of ions, not molecules.</div>` }
         ]
       },
-      "2": { mcqData: [], notesData: [], qaData: [] },
-      "3": { mcqData: [], notesData: [], qaData: [] },
-      "4": { mcqData: [], notesData: [], qaData: [] },
-      "5": { mcqData: [], notesData: [], qaData: [] },
-      "6": { mcqData: [], notesData: [], qaData: [] },
-      "7": { mcqData: [], notesData: [], qaData: [] },
-      "8": { mcqData: [], notesData: [], qaData: [] },
-      "9": { mcqData: [], notesData: [], qaData: [] },
-      "10": { mcqData: [], notesData: [], qaData: [] }
+      "62": { mcqData: [], notesData: [], qaData: [] },
+      "63": { mcqData: [], notesData: [], qaData: [] },
+      "64": { mcqData: [], notesData: [], qaData: [] },
+      "65": { mcqData: [], notesData: [], qaData: [] },
+      "66": { mcqData: [], notesData: [], qaData: [] },
+      "67": { mcqData: [], notesData: [], qaData: [] },
+      "68": { mcqData: [], notesData: [], qaData: [] },
+      "69": { mcqData: [], notesData: [], qaData: [] },
+      "70": { mcqData: [], notesData: [], qaData: [] }
     },
     "8": {
-      "1": { mcqData: [], notesData: [], qaData: [] },
-      "2": { mcqData: [], notesData: [], qaData: [] },
-      "3": { mcqData: [], notesData: [], qaData: [] },
-      "4": { mcqData: [], notesData: [], qaData: [] },
-      "5": { mcqData: [], notesData: [], qaData: [] },
-      "6": { mcqData: [], notesData: [], qaData: [] },
-      "7": { mcqData: [], notesData: [], qaData: [] },
-      "8": { mcqData: [], notesData: [], qaData: [] },
-      "9": { mcqData: [], notesData: [], qaData: [] },
-      "10": { mcqData: [], notesData: [], qaData: [] }
+      "71": { mcqData: [], notesData: [], qaData: [] },
+      "72": { mcqData: [], notesData: [], qaData: [] },
+      "73": { mcqData: [], notesData: [], qaData: [] },
+      "74": { mcqData: [], notesData: [], qaData: [] },
+      "75": { mcqData: [], notesData: [], qaData: [] },
+      "76": { mcqData: [], notesData: [], qaData: [] },
+      "77": { mcqData: [], notesData: [], qaData: [] },
+      "78": { mcqData: [], notesData: [], qaData: [] },
+      "79": { mcqData: [], notesData: [], qaData: [] },
+      "80": { mcqData: [], notesData: [], qaData: [] }
     },
     "9": {
-      "1": { mcqData: [], notesData: [], qaData: [] },
-      "2": { mcqData: [], notesData: [], qaData: [] },
-      "3": { mcqData: [], notesData: [], qaData: [] },
-      "4": { mcqData: [], notesData: [], qaData: [] },
-      "5": { mcqData: [], notesData: [], qaData: [] },
-      "6": { mcqData: [], notesData: [], qaData: [] },
-      "7": { mcqData: [], notesData: [], qaData: [] },
-      "8": { mcqData: [], notesData: [], qaData: [] },
-      "9": { mcqData: [], notesData: [], qaData: [] },
-      "10": { mcqData: [], notesData: [], qaData: [] }
+      "81": { mcqData: [], notesData: [], qaData: [] },
+      "82": { mcqData: [], notesData: [], qaData: [] },
+      "83": { mcqData: [], notesData: [], qaData: [] },
+      "84": { mcqData: [], notesData: [], qaData: [] },
+      "85": { mcqData: [], notesData: [], qaData: [] },
+      "86": { mcqData: [], notesData: [], qaData: [] },
+      "87": { mcqData: [], notesData: [], qaData: [] },
+      "88": { mcqData: [], notesData: [], qaData: [] },
+      "89": { mcqData: [], notesData: [], qaData: [] },
+      "90": { mcqData: [], notesData: [], qaData: [] }
     },
     "10": {
-      "1": { mcqData: [], notesData: [], qaData: [] },
-      "2": { mcqData: [], notesData: [], qaData: [] },
-      "3": { mcqData: [], notesData: [], qaData: [] },
-      "4": { mcqData: [], notesData: [], qaData: [] },
-      "5": { mcqData: [], notesData: [], qaData: [] },
-      "6": { mcqData: [], notesData: [], qaData: [] },
-      "7": { mcqData: [], notesData: [], qaData: [] },
-      "8": { mcqData: [], notesData: [], qaData: [] },
-      "9": { mcqData: [], notesData: [], qaData: [] },
-      "10": { mcqData: [], notesData: [], qaData: [] }
+      "91": { mcqData: [], notesData: [], qaData: [] },
+      "92": { mcqData: [], notesData: [], qaData: [] },
+      "93": { mcqData: [], notesData: [], qaData: [] },
+      "94": { mcqData: [], notesData: [], qaData: [] },
+      "95": { mcqData: [], notesData: [], qaData: [] },
+      "96": { mcqData: [], notesData: [], qaData: [] },
+      "97": { mcqData: [], notesData: [], qaData: [] },
+      "98": { mcqData: [], notesData: [], qaData: [] },
+      "99": { mcqData: [], notesData: [], qaData: [] },
+      "100": { mcqData: [], notesData: [], qaData: [] }
     }
   };
 
@@ -2245,14 +1038,18 @@
     currentPage = '';
     pageSelect.innerHTML = '<option value="">Select Page</option>';
     clearAllContent();
-    if (chapterSelect) {
-      for (let i = 1; i <= 10; i++) {
+    
+    if (chapterSelect && chapterData[chapterSelect]) {
+      const pageNumbers = Object.keys(chapterData[chapterSelect]).sort((a, b) => parseInt(a) - parseInt(b));
+      
+      pageNumbers.forEach(pageNum => {
         const option = document.createElement('option');
-        option.value = i;
-        option.textContent = `Page ${i}`;
+        option.value = pageNum;
+        option.textContent = `Page ${pageNum}`;
         pageSelect.appendChild(option);
-      }
-      pageSelect.disabled = false;
+      });
+      
+      pageSelect.disabled = pageNumbers.length === 0;
     } else {
       pageSelect.disabled = true;
     }
@@ -2269,17 +1066,19 @@
     const pageSelect = document.getElementById('pageSelect').value;
     currentPage = pageSelect;
     clearAllContent();
+    
     if (currentChapter && currentPage) {
       const pageData = chapterData[currentChapter]?.[currentPage];
-      if (pageData && (pageData.mcqData?.length || pageData.notesData?.length || pageData.qaData?.length)) {
+      
+      if (pageData) {
         if (pageData.mcqData?.length) renderMCQ(pageData.mcqData);
+        else document.getElementById('mcqContent').innerHTML = '<p style="text-align:center; padding:40px; color:#666; font-size:14px;">No MCQs available for this page yet</p>';
+        
         if (pageData.notesData?.length) renderNotes(pageData.notesData);
+        else document.getElementById('notesContent').innerHTML = '<p style="text-align:center; padding:40px; color:#666; font-size:14px;">No notes available for this page yet</p>';
+        
         if (pageData.qaData?.length) renderQA(pageData.qaData);
-      } else {
-        const emptyMsg = '<p style="text-align:center; padding:40px; color:#666; font-size:14px;">Content not available for this page yet</p>';
-        document.getElementById('mcqContent').innerHTML = emptyMsg;
-        document.getElementById('notesContent').innerHTML = emptyMsg;
-        document.getElementById('qaContent').innerHTML = emptyMsg;
+        else document.getElementById('qaContent').innerHTML = '<p style="text-align:center; padding:40px; color:#666; font-size:14px;">No Q&A available for this page yet</p>';
       }
     }
   }
@@ -2354,7 +1153,7 @@
       const tempDiv = document.createElement('div');
       tempDiv.innerHTML = note.content;
       const sections = [];
-      const contentBlocks = tempDiv.querySelectorAll('.note-paragraph, .definition-box, .equation-box, .important-note, .highlight-box, table');
+      const contentBlocks = tempDiv.querySelectorAll('.note-paragraph, .definition-box, .equation-box, .important-note, .highlight-box, table, .note-image, .note-image-bordered');
       contentBlocks.forEach(block => {
         sections.push(stripHtml(block.innerHTML).trim());
       });
