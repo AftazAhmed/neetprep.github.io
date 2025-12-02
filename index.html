@@ -95,316 +95,127 @@
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   }
   
-  .frac {
-    display: inline-block;
-    vertical-align: middle;
+  .scoreboard {
     text-align: center;
-    margin: 0 3px;
+    margin: 24px auto;
+    padding: 16px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    max-width: 500px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   }
   
-  .frac .num {
-    display: block;
-    padding: 1px 4px;
-    border-bottom: 2px solid currentColor;
-    line-height: 1.2;
-    font-size: 0.95em;
-  }
-  
-  .frac .den {
-    display: block;
-    padding: 1px 4px;
-    line-height: 1.2;
-    font-size: 0.95em;
-  }
-  
-  .frac-lg {
-    display: inline-block;
-    vertical-align: middle;
-    text-align: center;
-    font-size: 1em;
-    margin: 0 4px;
-  }
-  
-  .frac-lg .num {
-    display: block;
-    padding: 3px 8px;
-    border-bottom: 3px solid currentColor;
-    font-weight: 700;
-    line-height: 1.3;
-  }
-  
-  .frac-lg .den {
-    display: block;
-    padding: 3px 8px;
-    font-weight: 700;
-    line-height: 1.3;
-  }
-  
-  .note-image, .note-image-bordered {
-    margin: 16px auto;
-    text-align: center;
-    max-width: 100%;
-  }
-  
-  .note-image img, .note-image-bordered img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    display: block;
-    margin: 0 auto;
-  }
-  
-  .note-image-bordered img {
-    border: 2px solid #028090;
-    padding: 8px;
-    background: white;
-  }
-  
-  .image-caption {
-    font-size: 12.96px;
-    color: #116466;
-    font-weight: 600;
-    margin-top: 8px;
-    font-style: italic;
-    text-align: center;
-  }
-  
-  .notes-container {
-    max-width: 100%;
-    margin: 0 auto;
-    background: white;
-    padding: 20px 4px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  }
-  
-  .notes-title {
-    font-size: 23.76px;
-    font-weight: 800;
-    color: #023047;
-    margin-bottom: 20px;
-    text-align: center;
-    border-bottom: 3px solid #028090;
-    padding-bottom: 10px;
-  }
-  
-  .note-segment {
-    margin-bottom: 24px;
-    padding: 16px 8px;
-    background: #f9fafb;
-    border-radius: 6px;
-    border-left: 4px solid #028090;
-    position: relative;
-  }
-  
-  .note-segment .ai-btn {
-    position: absolute;
-    top: 12px;
-    right: 8px;
-  }
-  
-  .segment-heading {
-    font-size: 18.36px;
-    font-weight: 700;
-    color: #116466;
-    margin-bottom: 12px;
-    padding-right: 40px;
-  }
-  
-  .segment-subheading {
-    font-size: 16.2px;
-    font-weight: 700;
-    color: #2a6f62;
-    margin-top: 12px;
-    margin-bottom: 8px;
-  }
-  
-  .note-paragraph {
-    font-size: 14.04px;
-    line-height: 1.6;
-    color: #1f2937;
-    margin-bottom: 10px;
-    text-align: justify;
-  }
-  
-  .note-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 16px 0;
-    background: white;
-    border-radius: 6px;
-    overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    font-size: 12.96px;
-  }
-  
-  .note-table th {
-    background: linear-gradient(135deg, #667eea, #764ba2);
+  .scoreboard h2 {
+    margin: 0 0 12px 0;
     color: white;
-    padding: 10px 8px;
-    text-align: left;
+    font-size: 20.16px;
     font-weight: 700;
-    font-size: 12.96px;
-  }
-  
-  .note-table td {
-    padding: 10px 8px;
-    border-bottom: 1px solid #e5e7eb;
-    font-size: 12.96px;
-    line-height: 1.5;
-  }
-  
-  .note-table tr:last-child td {
-    border-bottom: none;
-  }
-  
-  .note-table tr:hover {
-    background-color: #f9fafb;
-  }
-  
-  .equation-box {
-    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-    border: 2px solid #2196f3;
-    padding: 14px;
-    margin: 14px 0;
-    border-radius: 6px;
-    text-align: center;
-  }
-  
-  .equation-text {
-    font-size: 16.2px;
-    font-weight: 600;
-    color: #0d47a1;
-  }
-  
-  .definition-box {
-    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-    border-left: 4px solid #2196f3;
-    padding: 12px 16px;
-    margin: 12px 0;
-    border-radius: 6px;
-  }
-  
-  .definition-term {
-    font-weight: 700;
-    color: #0d47a1;
-    font-size: 15.12px;
-    margin-bottom: 6px;
-  }
-  
-  .definition-text {
-    color: #1565c0;
-    line-height: 1.6;
-    font-size: 14.04px;
-  }
-  
-  .important-note {
-    background: linear-gradient(135deg, #ffebee, #ffcdd2);
-    border: 2px solid #f44336;
-    padding: 12px 16px;
-    margin: 12px 0;
-    border-radius: 6px;
-    font-size: 14.04px;
-  }
-  
-  .important-note strong {
-    color: #c62828;
-  }
-  
-  .mcq-container {
-    max-width: 700px;
-    margin: 0 auto;
   }
   
   .score-display {
-    background: linear-gradient(135deg, #0369a1 0%, #0284c7 50%, #0ea5e9 100%);
-    color: white;
-    padding: 12px 16px;
-    border-radius: 8px;
-    margin-bottom: 16px;
-    text-align: center;
-    font-weight: 700;
-    font-size: 17.28px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: space-around;
+    gap: 16px;
   }
   
-  .reset-score-btn {
-    background: #ff9800;
-    color: #000000;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 6px;
+  .score-item {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 12px;
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+  }
+  
+  .score-label {
     font-size: 12.96px;
-    font-weight: 700;
-    cursor: pointer;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 4px;
+  }
+  
+  .score-value {
+    font-size: 27px;
+    font-weight: 900;
+    color: white;
+  }
+  
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  .section {
+    background: white;
+    padding: 24px;
+    margin-bottom: 24px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     transition: all 0.3s;
   }
   
-  .reset-score-btn:hover {
-    background: #fb8c00;
+  .section:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
   }
   
-  .question-count {
+  .section h2 {
+    color: #023047;
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-size: 21.6px;
+    font-weight: 800;
+    border-bottom: 3px solid #ffb347;
+    padding-bottom: 8px;
+  }
+  
+  .mcq-container {
+    margin-top: 24px;
+  }
+  
+  .mcq-item {
+    margin-bottom: 32px;
+    padding: 20px;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    border-radius: 10px;
+    border-left: 4px solid #0284c7;
+    transition: all 0.3s;
+  }
+  
+  .mcq-item:hover {
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.2);
+    transform: translateY(-2px);
+  }
+  
+  .mcq-question {
     font-weight: 700;
-    font-size: 16.2px;
-    color: #116466;
-    margin-bottom: 14px;
-    border-left: 4px solid #028090;
-    padding-left: 12px;
-  }
-  
-  .question-item {
-    background-color: #fff8f0;
-    border-radius: 8px;
-    border: 1.5px solid #f0c49c;
-    margin-bottom: 20px;
-    padding: 16px;
-    font-size: 14.04px;
-  }
-  
-  .question-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
-    gap: 8px;
-  }
-  
-  .question-number {
-    font-weight: 700;
-    font-size: 17.28px;
-    color: #2a6f62;
-  }
-  
-  .question-text {
-    font-weight: 600;
-    font-size: 14.04px;
-    color: #255c4d;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
+    font-size: 15.12px;
+    color: #0c4a6e;
     line-height: 1.6;
   }
   
-  .options {
-    margin-bottom: 14px;
+  .mcq-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
   
   .option {
-    background-color: #ffffff;
-    border-radius: 6px;
-    border: 1.8px solid #b5d0c8;
-    padding: 10px 14px;
-    margin: 6px 0;
-    font-weight: 500;
-    font-size: 14.04px;
-    color: #244636;
+    padding: 12px 16px;
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s;
+    font-size: 14.04px;
     position: relative;
   }
   
   .option:hover:not(.selected) {
+    background-color: #f3f4f6;
+    border-color: #9ca3af;
+    transform: translateX(4px);
+  }
+  
+  .option:active:not(.selected) {
     background-color: #e8f5f1;
     border-color: #71b280;
   }
@@ -441,783 +252,344 @@
     font-size: 19.44px;
   }
   
-  .answer-display {
-    background: linear-gradient(135deg, #d4edda, #c3e6cb);
-    border: 2px solid #28a745;
-    border-radius: 6px;
+  .hint-section {
+    margin-top: 16px;
     padding: 12px;
-    margin: 12px 0;
-    font-size: 14.04px;
-    font-weight: 600;
-    color: #155724;
-    display: none;
-  }
-  
-  .answer-display.show {
-    display: block;
-  }
-  
-  .hint-display {
-    background: linear-gradient(135deg, #fff3e0, #ffe0b2);
-    border: 2px solid #ff9800;
+    background: #fff9e6;
+    border-left: 4px solid #fbbf24;
     border-radius: 6px;
-    padding: 12px;
-    margin: 12px 0;
-    font-size: 14.04px;
-    font-weight: 600;
-    color: #e65100;
-    display: none;
   }
   
-  .hint-display.show {
-    display: block;
-  }
-  
-  .button-group {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-  
-  .btn {
-    padding: 8px 14px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
+  .hint-label {
     font-weight: 700;
-    font-size: 14.04px;
-    transition: all 0.3s;
+    color: #92400e;
+    margin-bottom: 6px;
+    font-size: 13.5px;
   }
   
-  .btn-answer {
-    background-color: #047857;
-    color: #ffffff;
+  .hint-text {
+    color: #78350f;
+    font-size: 13.5px;
+    line-height: 1.5;
   }
-  
-  .btn-answer:hover {
-    background-color: #065f46;
-  }
-  
-  .btn-hint {
-    background-color: #dc2626;
-    color: #ffffff;
-  }
-  
-  .btn-hint:hover {
-    background-color: #b91c1c;
-  }
-  
-  .mark-badge {
-    display: inline-block;
-    padding: 5px 12px;
-    border-radius: 16px;
-    font-size: 11.88px;
-    font-weight: 700;
-    margin-left: 8px;
-    vertical-align: middle;
-  }
-  
-  .mark-1 { background: linear-gradient(135deg, #4caf50, #66bb6a); color: white; }
-  .mark-2 { background: linear-gradient(135deg, #2196f3, #42a5f5); color: white; }
-  .mark-3 { background: linear-gradient(135deg, #ff9800, #ffa726); color: white; }
-  .mark-5 { background: linear-gradient(135deg, #f44336, #ef5350); color: white; }
   
   .qa-container {
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 0;
+    margin-top: 20px;
   }
   
   .qa-item {
-    background: white;
-    border-radius: 8px;
-    padding: 14px 6px;
-    margin-bottom: 16px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    border-left: 4px solid #028090;
-    position: relative;
+    margin-bottom: 24px;
+    padding: 16px;
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border-radius: 10px;
+    border-left: 4px solid #f59e0b;
   }
-  
-  .qa-item .ai-btn {
-    position: absolute;
-    top: 12px;
-    right: 6px;
-  }
-  
-  .qa-item.mark-1-item { border-left-color: #4caf50; }
-  .qa-item.mark-2-item { border-left-color: #2196f3; }
-  .qa-item.mark-3-item { border-left-color: #ff9800; }
-  .qa-item.mark-5-item { border-left-color: #f44336; }
   
   .qa-question {
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #92400e;
     font-size: 15.12px;
-    font-weight: 700;
-    color: #023047;
-    margin-bottom: 14px;
-    line-height: 1.6;
-    padding-right: 40px;
   }
   
-  .qa-question-number {
-    display: inline-block;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
-    padding: 5px 12px;
-    border-radius: 16px;
-    font-size: 12.96px;
-    margin-right: 8px;
-    font-weight: 700;
+  .qa-answer {
+    color: #451a03;
+    line-height: 1.7;
+    font-size: 14.04px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
   }
   
-  .qa-answer-section {
-    background: #f9fafb;
-    padding: 12px 6px;
-    border-radius: 6px;
+  .qa-answer.show {
+    max-height: 1000px;
     margin-top: 12px;
   }
   
-  .qa-answer-label {
-    font-weight: 700;
-    color: #116466;
-    font-size: 15.12px;
-    margin-bottom: 10px;
-    display: block;
-  }
-  
-  .answer-1mark, .answer-2mark, .answer-3mark, .answer-5mark {
-    padding: 10px 6px;
-    border-radius: 6px;
-    font-size: 14.04px;
-    line-height: 1.6;
-  }
-  
-  .answer-1mark {
-    background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
-    border-left: 3px solid #4caf50;
-  }
-  
-  .answer-2mark {
-    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-    border-left: 3px solid #2196f3;
-  }
-  
-  .answer-2mark .point {
-    margin: 8px 0;
-    padding-left: 18px;
-    position: relative;
-    font-size: 14.04px;
-    line-height: 1.6;
-  }
-  
-  .answer-2mark .point:before {
-    content: "●";
-    position: absolute;
-    left: 0;
-    color: #2196f3;
-    font-weight: 700;
-  }
-  
-  .answer-3mark {
-    background: linear-gradient(135deg, #fff3e0, #ffe0b2);
-    border-left: 3px solid #ff9800;
-  }
-  
-  .answer-3mark .point {
-    margin: 10px 0;
-    padding: 8px 6px;
-    background: white;
-    border-radius: 5px;
-    font-size: 14.04px;
-    line-height: 1.6;
-  }
-  
-  .answer-3mark .point strong {
-    color: #e65100;
-  }
-  
-  .answer-5mark {
-    background: linear-gradient(135deg, #ffebee, #ffcdd2);
-    border-left: 3px solid #f44336;
-  }
-  
-  .answer-5mark .section {
-    margin: 10px 0;
-    padding: 10px 8px;
-    background: white;
-    border-radius: 6px;
-  }
-  
-  .answer-5mark .section h5 {
-    margin: 0 0 8px 0;
-    color: #c62828;
-    font-size: 15.12px;
-  }
-  
-  .answer-5mark .section p {
-    margin: 6px 0;
-    font-size: 14.04px;
-    line-height: 1.6;
-  }
-  
-  sub { font-size: 0.75em; vertical-align: sub; }
-  sup { font-size: 0.75em; vertical-align: super; }
-  
-  .controls {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 12px;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .dropdown-group {
-    min-width: 140px;
-    flex: 1;
-  }
-  
-  label {
-    display: block;
-    font-weight: 700;
-    font-size: 14.04px;
-    margin-bottom: 5px;
-    color: #344e41;
-  }
-  
-  select {
-    width: 100%;
-    padding: 8px 10px;
-    border-radius: 6px;
-    border: 2px solid #028090;
-    font-size: 14.04px;
-    background-color: #ffffff;
-    color: #023047;
-    transition: 0.3s;
-  }
-  
-  select:focus {
-    outline: none;
-    border-color: #023047;
-    background-color: #e0f7f4;
-  }
-  
-  .reload-btn {
-    cursor: pointer;
-    background-color: #8b5cf6;
-    border: none;
-    color: #fff;
-    padding: 8px 12px;
-    border-radius: 6px;
-    font-weight: 700;
-    font-size: 12.96px;
-    height: 34px;
-    transition: all 0.3s;
-  }
-  
-  .reload-btn:hover {
-    background-color: #7c3aed;
-  }
-  
-  .view-toggle {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 16px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  
-  .view-btn {
-    padding: 8px 16px;
-    border: 2px solid #028090;
-    background: white;
-    color: #023047;
-    border-radius: 6px;
-    font-weight: 700;
-    font-size: 14.04px;
-    cursor: pointer;
-    transition: all 0.3s;
-  }
-  
-  .view-btn:hover, .view-btn.active {
-    background: #028090;
+  .btn {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
     color: white;
-  }
-  
-  .mark-filter {
-    display: flex;
-    gap: 6px;
-    justify-content: center;
-    margin-bottom: 16px;
-    flex-wrap: wrap;
-  }
-  
-  .mark-filter-btn {
-    padding: 6px 12px;
-    border: 2px solid #e0e0e0;
-    background: white;
-    border-radius: 16px;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
     cursor: pointer;
-    font-weight: 600;
-    font-size: 11.88px;
+    font-size: 12.96px;
+    font-weight: 700;
+    margin-top: 10px;
     transition: all 0.3s;
+    box-shadow: 0 2px 6px rgba(16, 185, 129, 0.3);
   }
   
-  .mark-filter-btn:hover { border-color: #028090; }
-  .mark-filter-btn.active { border-color: transparent; }
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(16, 185, 129, 0.4);
+  }
   
-  .mark-filter-btn.filter-1.active { background: linear-gradient(135deg, #4caf50, #66bb6a); color: white; }
-  .mark-filter-btn.filter-2.active { background: linear-gradient(135deg, #2196f3, #42a5f5); color: white; }
-  .mark-filter-btn.filter-3.active { background: linear-gradient(135deg, #ff9800, #ffa726); color: white; }
-  .mark-filter-btn.filter-5.active { background: linear-gradient(135deg, #f44336, #ef5350); color: white; }
-  .mark-filter-btn.filter-all.active { background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
+  .btn:active {
+    transform: translateY(0);
+  }
   
-  @media (max-width: 900px) {
-    .header h1 { font-size: 2.16rem; }
-    .header .subtitle { font-size: 15.12px; }
-    .notes-container { padding: 16px 4px; }
-    .qa-container { padding: 0; }
-    .qa-item { padding: 14px 4px; }
-    .qa-answer-section { padding: 10px 4px; }
-    .answer-1mark, .answer-2mark, .answer-3mark, .answer-5mark { padding: 10px 4px; }
+  .notes {
+    background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 4px solid #6366f1;
+    line-height: 1.8;
+    font-size: 14.04px;
+    color: #312e81;
+  }
+  
+  .notes h3 {
+    color: #312e81;
+    margin-top: 16px;
+    margin-bottom: 10px;
+    font-size: 16.2px;
+    font-weight: 800;
+  }
+  
+  .notes ul, .notes ol {
+    margin: 10px 0;
+    padding-left: 24px;
+  }
+  
+  .notes li {
+    margin-bottom: 8px;
+  }
+  
+  .notes strong {
+    color: #1e1b4b;
+    font-weight: 700;
+  }
+  
+  @media (max-width: 600px) {
+    body {
+      padding: 12px 6px;
+      font-size: 13.5px;
+    }
+    
+    .header h1 {
+      font-size: 2.16rem;
+    }
+    
+    .header .subtitle {
+      font-size: 15.66px;
+    }
+    
+    .section {
+      padding: 16px;
+    }
+    
+    .section h2 {
+      font-size: 19.44px;
+    }
+    
+    .mcq-item {
+      padding: 16px;
+    }
+    
+    .score-display {
+      flex-direction: column;
+      gap: 12px;
+    }
   }
 </style>
 </head>
 <body>
-
-<div class="header" role="banner">
-  <h1>Class 9</h1>
-  <div class="subtitle">Pagewise Notes, MCQs, Q&A</div>
-</div>
-
-<div class="controls">
-  <div class="dropdown-group">
-    <label for="chapterSelect">Chapter:</label>
-    <select id="chapterSelect" onchange="updatePages()">
-      <option value="">Select Chapter</option>
-      <option value="1">Chapter 1: Atoms and molecules</option>
-      <option value="2">Chapter 2: Gravitation</option>
-      <option value="3">Chapter 3</option>
-      <option value="4">Chapter 4</option>
-      <option value="5">Chapter 5</option>
-      <option value="6">Chapter 6</option>
-      <option value="7">Chapter 7</option>
-      <option value="8">Chapter 8</option>
-      <option value="9">Chapter 9</option>
-      <option value="10">Chapter 10</option>
-    </select>
+  <div class="header">
+    <h1>Class 9 - PbP</h1>
+    <div class="subtitle">Page-by-Page Study Material</div>
   </div>
-  <div class="dropdown-group">
-    <label for="pageSelect">Page:</label>
-    <select id="pageSelect" onchange="loadPage()" disabled>
-      <option value="">Select Page</option>
-    </select>
-  </div>
-  <button class="reload-btn" onclick="window.location.reload()">↻ Reload</button>
-</div>
 
-<div class="view-toggle">
-  <button class="view-btn active" onclick="switchView('mcq')">MCQs</button>
-  <button class="view-btn" onclick="switchView('notes')">Notes</button>
-  <button class="view-btn" onclick="switchView('qa')">Q&A</button>
-</div>
-
-<div id="mcqMode" class="mode-container">
-  <div class="mcq-container">
-    <div id="mcqContent">
-      <p style="text-align:center; padding:40px; color:#666; font-size:15.12px;">Select a chapter and page to view MCQs</p>
+  <div class="scoreboard">
+    <h2>Your Score</h2>
+    <div class="score-display">
+      <div class="score-item">
+        <div class="score-label">Correct</div>
+        <div class="score-value" id="correct-count">0</div>
+      </div>
+      <div class="score-item">
+        <div class="score-label">Wrong</div>
+        <div class="score-value" id="wrong-count">0</div>
+      </div>
+      <div class="score-item">
+        <div class="score-label">Total</div>
+        <div class="score-value" id="total-count">0</div>
+      </div>
     </div>
   </div>
-</div>
 
-<div id="notesMode" class="mode-container" style="display:none;">
-  <div class="notes-container">
-    <div id="notesContent">
-      <p style="text-align:center; padding:40px; color:#666; font-size:15.12px;">Select a chapter and page to view notes</p>
-    </div>
+  <div class="container" id="content-container">
+    <!-- Content will be loaded here -->
   </div>
-</div>
-
-<div id="qaMode" class="mode-container" style="display:none;">
-  <h2 style="text-align:center; color:#023047; margin-bottom:20px; font-size:21.6px;">📝 Questions & Answers</h2>
-  
-  <div class="mark-filter">
-    <button class="mark-filter-btn filter-all active" onclick="filterByMark('all')">All Questions</button>
-    <button class="mark-filter-btn filter-1" onclick="filterByMark(1)">1 Mark</button>
-    <button class="mark-filter-btn filter-2" onclick="filterByMark(2)">2 Marks</button>
-    <button class="mark-filter-btn filter-3" onclick="filterByMark(3)">3 Marks</button>
-    <button class="mark-filter-btn filter-5" onclick="filterByMark(5)">5 Marks</button>
-  </div>
-  
-  <div class="qa-container">
-    <div id="qaContent">
-      <p style="text-align:center; padding:40px; color:#666; font-size:15.12px;">Select a chapter and page to view Q&A</p>
-    </div>
-  </div>
-</div>
 
 <script>
-  function frac(numerator, denominator, large = false) {
-    const cls = large ? 'frac-lg' : 'frac';
-    return `<span class="${cls}"><span class="num">${numerator}</span><span class="den">${denominator}</span></span>`;
-  }
-
-  let pageScores = JSON.parse(localStorage.getItem('pageScores')) || {};
-
-  const chapterData = {
-    "1": {
-      "1": { mcqData: [], notesData: [], qaData: [] },
-      "2": { mcqData: [], notesData: [], qaData: [] },
-      "3": { mcqData: [], notesData: [], qaData: [] },
-      "4": { mcqData: [], notesData: [], qaData: [] },
-      "5": { mcqData: [], notesData: [], qaData: [] },
-      "6": { mcqData: [], notesData: [], qaData: [] },
-      "7": { mcqData: [], notesData: [], qaData: [] },
-      "8": { mcqData: [], notesData: [], qaData: [] },
-      "9": { mcqData: [], notesData: [], qaData: [] },
-      "10": { mcqData: [], notesData: [], qaData: [] }
-    },
-    "2": {
-      "1": { mcqData: [], notesData: [], qaData: [] },
-      "2": { mcqData: [], notesData: [], qaData: [] },
-      "3": { mcqData: [], notesData: [], qaData: [] },
-      "4": { mcqData: [], notesData: [], qaData: [] },
-      "5": { mcqData: [], notesData: [], qaData: [] },
-      "6": { mcqData: [], notesData: [], qaData: [] },
-      "7": { mcqData: [], notesData: [], qaData: [] },
-      "8": { mcqData: [], notesData: [], qaData: [] },
-      "9": { mcqData: [], notesData: [], qaData: [] },
-      "10": { mcqData: [], notesData: [], qaData: [] }
-    },
-    "3": {
-      "1": { mcqData: [], notesData: [], qaData: [] },
-      "2": { mcqData: [], notesData: [], qaData: [] },
-      "3": { mcqData: [], notesData: [], qaData: [] },
-      "4": { mcqData: [], notesData: [], qaData: [] },
-      "5": { mcqData: [], notesData: [], qaData: [] },
-      "6": { mcqData: [], notesData: [], qaData: [] },
-      "7": { mcqData: [], notesData: [], qaData: [] },
-      "8": { mcqData: [], notesData: [], qaData: [] },
-      "9": { mcqData: [], notesData: [], qaData: [] },
-      "10": { mcqData: [], notesData: [], qaData: [] }
-    },
-    "4": {
-      "1": { mcqData: [], notesData: [], qaData: [] },
-      "2": { mcqData: [], notesData: [], qaData: [] },
-      "3": { mcqData: [], notesData: [], qaData: [] },
-      "4": { mcqData: [], notesData: [], qaData: [] },
-      "5": { mcqData: [], notesData: [], qaData: [] },
-      "6": { mcqData: [], notesData: [], qaData: [] },
-      "7": { mcqData: [], notesData: [], qaData: [] },
-      "8": { mcqData: [], notesData: [], qaData: [] },
-      "9": { mcqData: [], notesData: [], qaData: [] },
-      "10": { mcqData: [], notesData: [], qaData: [] }
-    },
-    "5": {
-      "1": { mcqData: [], notesData: [], qaData: [] },
-      "2": { mcqData: [], notesData: [], qaData: [] },
-      "3": { mcqData: [], notesData: [], qaData: [] },
-      "4": { mcqData: [], notesData: [], qaData: [] },
-      "5": { mcqData: [], notesData: [], qaData: [] },
-      "6": { mcqData: [], notesData: [], qaData: [] },
-      "7": { mcqData: [], notesData: [], qaData: [] },
-      "8": { mcqData: [], notesData: [], qaData: [] },
-      "9": { mcqData: [], notesData: [], qaData: [] },
-      "10": { mcqData: [], notesData: [], qaData: [] }
-    },
-    "6": {
-      "1": { mcqData: [], notesData: [], qaData: [] },
-      "2": { mcqData: [], notesData: [], qaData: [] },
-      "3": { mcqData: [], notesData: [], qaData: [] },
-      "4": { mcqData: [], notesData: [], qaData: [] },
-      "5": { mcqData: [], notesData: [], qaData: [] },
-      "6": { mcqData: [], notesData: [], qaData: [] },
-      "7": { mcqData: [], notesData: [], qaData: [] },
-      "8": { mcqData: [], notesData: [], qaData: [] },
-      "9": { mcqData: [], notesData: [], qaData: [] },
-      "10": { mcqData: [], notesData: [], qaData: [] }
-    },
-    "7": {
-      "1": { mcqData: [], notesData: [], qaData: [] },
-      "2": { mcqData: [], notesData: [], qaData: [] },
-      "3": { mcqData: [], notesData: [], qaData: [] },
-      "4": { mcqData: [], notesData: [], qaData: [] },
-      "5": { mcqData: [], notesData: [], qaData: [] },
-      "6": { mcqData: [], notesData: [], qaData: [] },
-      "7": { mcqData: [], notesData: [], qaData: [] },
-      "8": { mcqData: [], notesData: [], qaData: [] },
-      "9": { mcqData: [], notesData: [], qaData: [] },
-      "10": { mcqData: [], notesData: [], qaData: [] }
-    },
-    "8": {
-      "1": { mcqData: [], notesData: [], qaData: [] },
-      "2": { mcqData: [], notesData: [], qaData: [] },
-      "3": { mcqData: [], notesData: [], qaData: [] },
-      "4": { mcqData: [], notesData: [], qaData: [] },
-      "5": { mcqData: [], notesData: [], qaData: [] },
-      "6": { mcqData: [], notesData: [], qaData: [] },
-      "7": { mcqData: [], notesData: [], qaData: [] },
-      "8": { mcqData: [], notesData: [], qaData: [] },
-      "9": { mcqData: [], notesData: [], qaData: [] },
-      "10": { mcqData: [], notesData: [], qaData: [] }
-    },
-    "9": {
-      "1": { mcqData: [], notesData: [], qaData: [] },
-      "2": { mcqData: [], notesData: [], qaData: [] },
-      "3": { mcqData: [], notesData: [], qaData: [] },
-      "4": { mcqData: [], notesData: [], qaData: [] },
-      "5": { mcqData: [], notesData: [], qaData: [] },
-      "6": { mcqData: [], notesData: [], qaData: [] },
-      "7": { mcqData: [], notesData: [], qaData: [] },
-      "8": { mcqData: [], notesData: [], qaData: [] },
-      "9": { mcqData: [], notesData: [], qaData: [] },
-      "10": { mcqData: [], notesData: [], qaData: [] }
-    },
-    "10": {
-      "1": { mcqData: [  // PASTE THIS IN mcqData: []
+  const mcqData = [
 { 
-  question: "Who created the print 'The Dream of Worldwide Democratic and Social Republics' in 1848?", 
+  question: "Who was the artist who visualized in his paintings a world made up of 'democratic and social Republics'?", 
   options: ["a) Frederic Sorrieu", "b) Liberty Enlightening", "c) Karl Marx", "d) Napoleon Bonaparte"], 
   correct: "a",
   hint: "The artist mentioned at the beginning of the passage was French and visualized democratic republics through a series of prints."
 },
 { 
-  question: "In Sorrieu's prints, Liberty is personified as a female figure holding which two items?", 
+  question: "In Sorrieu's prints, Liberty is personified as a female figure holding what?", 
   options: ["a) Sword and Shield", "b) Torch of Enlightenment and Charter of the Rights of Man", "c) Flag and Crown", "d) Book and Scales of Justice"], 
   correct: "b",
   hint: "Think about the symbols associated with freedom and human rights during the French Revolution era."
 },
 { 
   question: "What lies shattered in the foreground of Sorrieu's print?", 
-  options: ["a) Weapons of war", "b) Symbols of absolutist institutions", "c) Religious monuments", "d) Ancient ruins"], 
+  options: ["a) Tools of war", "b) Symbols of absolutist institutions", "c) Religious monuments", "d) Ancient ruins"], 
   correct: "b",
   hint: "The image symbolically shows the destruction of old oppressive systems of governance."
 },
 { 
   question: "Which two countries are shown leading the procession in Sorrieu's print?", 
-  options: ["a) France and Germany", "b) Britain and Russia", "c) United States and Switzerland", "d) Italy and Austria"], 
-  correct: "c",
-  hint: "These two nations had already achieved nation-state status by 1848 and are mentioned at the end of the passage."
-},
-{ 
-  question: "According to the passage, an 'absolutist' government can be characterized as:", 
-  options: ["a) Democratic and decentralized", "b) Having no restraints on power exercised", "c) Elected by the people", "d) Protecting individual rights"], 
+  options: ["a) France and Germany", "b) United States and France", "c) Britain and Russia", "d) Germany and Italy"], 
   correct: "b",
-  hint: "The definition is provided in the 'New words' section - focus on the concept of unlimited power."
+  hint: "The two nations that had already become nation-states by 1848 are shown at the front."
 },
 { 
-  question: "How are different nations identified in Sorrieu's utopian vision?", 
-  options: ["a) Through their languages only", "b) Through their geographical locations", "c) Through their flags and national costume", "d) Through their economic status"], 
-  correct: "c",
-  hint: "The passage mentions how peoples of the world are grouped as distinct nations using specific visual markers."
+  question: "In Sorrieu's vision, what were people from different nations identified by?", 
+  options: ["a) Their languages", "b) Their flags and national costumes", "c) Their religions", "d) Their political leaders"], 
+  correct: "b",
+  hint: "Visual representations in the prints used specific symbols to distinguish each nation."
 },
 { 
-  question: "The term 'utopian' in the context of this passage refers to:", 
-  options: ["a) A practical and achievable plan", "b) A historical event that occurred", "c) A vision so ideal it is unlikely to actually exist", "d) A religious prophecy"], 
-  correct: "c",
-  hint: "Check the definition provided in the 'New words' section for the exact meaning."
+  question: "What does the term 'absolutist' refer to in the context of the passage?", 
+  options: ["a) A government based on absolute equality", "b) A government with centralized, unlimited power", "c) A government elected by the people", "d) A government based on religious authority"], 
+  correct: "b",
+  hint: "This type of government system concentrates all power in the hands of a single ruler without constitutional limitations."
 },
 { 
-  question: "What does the statue of Liberty symbolize in Sorrieu's print?", 
-  options: ["a) Military conquest", "b) Religious authority", "c) Freedom and enlightenment", "d) Economic prosperity"], 
-  correct: "c",
-  hint: "Consider what Liberty represents and what items she carries - both are associated with freedom and knowledge."
-}   ], notesData: [   // PASTE THIS IN notesData: []
-{ 
-  heading: "Frederic Sorrieu's Vision (1848)", 
-  content: `<div class="note-paragraph">In 1848, Frederic Sorrieu, a French artist, created a series of four prints that visualized his dream of a world composed of democratic and social Republics. The first print in this series depicts peoples of Europe and America—men and women of all ages and social classes—marching in a long procession, paying homage to the statue of Liberty as they pass by it.</div><div class="important-note"><strong>Key Symbolism:</strong> The print represents an idealistic vision of global democracy and freedom, showing unity among different nations while celebrating their distinct identities.</div>` 
+  question: "What concept does a 'utopian society' represent?", 
+  options: ["a) A society based on military strength", "b) A vision of a perfect, ideal society", "c) A society with no government", "d) A society focused only on economic growth"], 
+  correct: "b",
+  hint: "This term comes from 'Utopia,' an imaginary island described in Sir Thomas More's book representing an ideal place."
 },
 { 
-  heading: "Symbolism of Liberty", 
-  content: `<div class="note-paragraph">During the French Revolution, artists personified Liberty as a female figure. In Sorrieu's print, this female figure can be recognized by two important symbols she carries:</div><table class="note-table"><thead><tr><th>Symbol</th><th>Significance</th></tr></thead><tbody><tr><td>Torch of Enlightenment</td><td>Represents knowledge, reason, and intellectual freedom</td></tr><tr><td>Charter of the Rights of Man</td><td>Symbolizes fundamental human rights and freedoms</td></tr></tbody></table><div class="note-paragraph">These symbols emphasize the Enlightenment ideals of liberty, equality, and human rights that inspired revolutionary movements across Europe.</div>` 
-},
-{ 
-  heading: "Breaking Absolutism", 
-  content: `<div class="note-paragraph">In the foreground of Sorrieu's print lie the shattered remains of symbols representing absolutist institutions. This powerful imagery signifies the destruction of old oppressive systems.</div><div class="definition-box"><div class="definition-term">Absolutist Government</div><div class="definition-text">Literally, a government or system of rule that has no restraints on the power exercised. Historically, it refers to a form of monarchical government that was centralized, militarized, and repressive.</div></div><div class="highlight-box"><strong>Historical Context:</strong> The breaking of absolutist symbols represents the revolutionary movements across Europe challenging traditional monarchical power structures.</div>` 
-},
-{ 
-  heading: "National Identity in the Print", 
-  content: `<div class="note-paragraph">In Sorrieu's utopian vision, the peoples of the world are grouped as distinct nations, each identified through specific markers:</div><div class="point"><strong>Visual Identifiers:</strong> Flags representing each nation</div><div class="point"><strong>Cultural Markers:</strong> National costumes worn by people from different countries</div><div class="note-paragraph">Leading the procession, way past the statue of Liberty, are the United States and Switzerland—both of which had already achieved nation-state status by 1848. France, another emerging nation-state, also features prominently in the procession.</div>` 
-},
-{ 
-  heading: "Utopian Vision and Reality", 
-  content: `<div class="definition-box"><div class="definition-term">Utopian</div><div class="definition-text">A vision of a society that is so ideal that it is unlikely to actually exist.</div></div><div class="note-paragraph">Sorrieu's print represents a utopian vision because it imagines a world where all nations coexist peacefully as democratic republics, united in their pursuit of liberty and social justice. While this vision inspired nationalist movements throughout Europe, the reality of achieving such universal harmony proved far more complex and challenging.</div><div class="important-note"><strong>Significance:</strong> Despite its idealistic nature, Sorrieu's vision captured the spirit of 19th-century nationalist and democratic movements that would reshape Europe in the decades to come.</div>` 
-}  ], qaData: [   // PASTE THIS IN qaData: []
-{ 
-  marks: 1, 
-  question: "What does the term 'absolutist' mean in the context of government?", 
-  answer: "An absolutist government is a system of rule that has no restraints on the power exercised, typically referring to a centralized, militarized, and repressive form of monarchical government." 
-},
-{ 
-  marks: 2, 
-  question: "Who was Frederic Sorrieu and what was his vision?", 
-  answer: `<div class="point"><strong>Identity:</strong> Frederic Sorrieu was a French artist who, in 1848, prepared a series of four prints visualizing his dream of a democratic world.</div><div class="point"><strong>Vision:</strong> His vision depicted a world made up of democratic and social Republics, showing peoples of Europe and America marching together in a long procession, paying homage to the statue of Liberty while maintaining their distinct national identities through flags and costumes.</div>` 
-},
-{ 
-  marks: 2, 
-  question: "Identify the two symbols Liberty holds in Sorrieu's print and explain their significance.", 
-  answer: `<div class="point"><strong>Torch of Enlightenment:</strong> Held in one hand, this torch represents knowledge, reason, and intellectual freedom—core values of the Enlightenment period that inspired democratic movements.</div><div class="point"><strong>Charter of the Rights of Man:</strong> Held in the other hand, this document symbolizes fundamental human rights and freedoms, emphasizing the revolutionary ideals of liberty, equality, and justice for all.</div>` 
-},
-{ 
-  marks: 3, 
-  question: "Describe the symbolic elements present in Sorrieu's print 'The Dream of Worldwide Democratic and Social Republics'.", 
-  answer: `<div class="point"><strong>The Statue of Liberty (1 mark):</strong><br>Personified as a female figure bearing the torch of Enlightenment in one hand and the Charter of the Rights of Man in the other, Liberty stands as the central symbol toward which all nations march, representing freedom and democratic ideals.</div><div class="point"><strong>Shattered Absolutist Symbols (1 mark):</strong><br>In the foreground lie the broken remains of symbols representing absolutist institutions—monarchical power structures that were centralized, militarized, and repressive. This signifies the destruction of old oppressive systems and the triumph of democratic movements.</div><div class="point"><strong>National Identities (1 mark):</strong><br>Peoples of the world are shown as distinct nations identified through their flags and national costumes, marching together in unity. The United States and Switzerland lead the procession as they were already nation-states by 1848, symbolizing the achievable reality of democratic republics.</div>` 
-},
-{ 
-  marks: 3, 
-  question: "Why is Sorrieu's vision described as 'utopian'? Explain with reference to the print.", 
-  answer: `<div class="point"><strong>Definition of Utopian (½ mark):</strong><br>A utopian vision refers to an ideal society that is so perfect it is unlikely to actually exist in reality.</div><div class="point"><strong>Elements of Idealism (1½ marks):</strong><br>Sorrieu's print depicts all peoples of Europe and America—regardless of age, gender, or social class—marching together harmoniously toward Liberty. The vision shows absolutist institutions destroyed and all nations coexisting peacefully as democratic and social Republics, united in their commitment to freedom and human rights. This level of universal cooperation and complete transformation was highly idealistic for the 1840s.</div><div class="point"><strong>Historical Reality (1 mark):</strong><br>While Sorrieu's vision inspired nationalist and democratic movements across Europe, achieving such universal harmony proved extremely challenging. National conflicts, imperial ambitions, and resistance from existing power structures made the realization of this peaceful, democratic world order far more complex than the artist's idealistic portrayal suggested.</div>` 
-},
-{ 
-  marks: 2, 
-  question: "Which countries led the procession in Sorrieu's print and why were they significant?", 
-  answer: `<div class="point"><strong>Leading Nations:</strong> The United States and Switzerland led the procession in Sorrieu's print, positioned prominently ahead of other nations as they marched past the statue of Liberty.</div><div class="point"><strong>Significance:</strong> These two countries were significant because, by 1848, they had already achieved nation-state status with democratic governance structures. They served as real-world examples of successful republics, making them symbolic leaders in Sorrieu's vision of worldwide democratic transformation.</div>` 
-},
-{ 
-  marks: 1, 
-  question: "Define the term 'utopian' as used in the context of Sorrieu's vision.", 
-  answer: "Utopian refers to a vision of a society that is so ideal that it is unlikely to actually exist in reality." 
-},
-{ 
-  marks: 3, 
-  question: "In what way does Sorrieu's print depict both unity and diversity among nations?", 
-  answer: `<div class="point"><strong>Unity (1 mark):</strong><br>The print shows unity through the common march of all peoples—men and women of all ages and social classes from Europe and America—moving together in a long procession toward the statue of Liberty. They share a common goal of achieving democratic and social Republics and paying homage to freedom.</div><div class="point"><strong>Diversity (1 mark):</strong><br>Despite this unity, Sorrieu maintains the distinct identities of different nations by depicting them with their specific flags and national costumes. Each nation is recognizable as a separate entity, preserving cultural and national uniqueness.</div><div class="point"><strong>Balance (1 mark):</strong><br>This dual representation reflects the 19th-century nationalist ideal that nations could maintain their individual identities and sovereignty while simultaneously working together toward common democratic values—a vision of international cooperation without cultural homogenization.</div>` 
-}   ] },
-      "2": { mcqData: [], notesData: [], qaData: [] },
-      "3": { mcqData: [], notesData: [], qaData: [] },
-      "4": { mcqData: [], notesData: [], qaData: [] },
-      "5": { mcqData: [], notesData: [], qaData: [] },
-      "6": { mcqData: [], notesData: [], qaData: [] },
-      "7": { mcqData: [], notesData: [], qaData: [] },
-      "8": { mcqData: [], notesData: [], qaData: [] },
-      "9": { mcqData: [], notesData: [], qaData: [] },
-      "10": { mcqData: [], notesData: [], qaData: [] }
-    }
-  };
+  question: "What is the meaning of a 'nation-state' as suggested in the passage?", 
+  options: ["a) A country with multiple ethnic groups", "b) A state where the majority shares common identity and governs itself", "c) A state ruled by a monarch", "d) A state without defined borders"], 
+  correct: "b",
+  hint: "This modern form of political organization aligns national and cultural identity with the boundaries of a sovereign state."
+}
+];
 
-  function updatePages() {
-    const chapter = document.getElementById('chapterSelect').value;
-    const pageSelect = document.getElementById('pageSelect');
-    pageSelect.innerHTML = '<option value="">Select Page</option>';
-    pageSelect.disabled = true;
+  const qaData = [
+    {
+      question: "What did Frederic Sorrieu visualize in his painting?",
+      answer: "Frederic Sorrieu, a French artist, visualized a world made up of 'democratic and social Republics' through his paintings. In 1848, he created a series of four prints showing his dream of a world where all nations would come together as distinct yet united people."
+    },
+    {
+      question: "How is 'Liberty' depicted in Sorrieu's prints?",
+      answer: "In Sorrieu's prints, Liberty is personified as a female figure. She holds the torch of Enlightenment in one hand and the Charter of the Rights of Man in the other. This symbolizes the spread of freedom and human rights."
+    },
+    {
+      question: "What symbols are shown shattered in Sorrieu's painting?",
+      answer: "In the foreground of Sorrieu's painting, the symbols of absolutist institutions lie shattered. This represents the destruction of old systems of absolute monarchy and oppressive governance that restricted freedom and democracy."
+    },
+    {
+      question: "Which nations lead the procession in Sorrieu's utopian vision?",
+      answer: "In Sorrieu's prints, the United States and France lead the procession of nations. These two countries are shown in front because they had already become nation-states by 1848, having established democratic governments."
+    },
+    {
+      question: "How were different nations represented in Sorrieu's artwork?",
+      answer: "Different nations in Sorrieu's artwork were identified through their distinctive flags and national costumes. Each group of people was shown wearing traditional dress specific to their country, making it easy to distinguish one nation from another."
+    },
+    {
+      question: "What is the significance of the term 'absolutist' in this context?",
+      answer: "The term 'absolutist' refers to a system of government where power is concentrated in the hands of a single ruler (often a monarch) who has unlimited, centralized authority. Such rulers govern without being restricted by laws, constitutions, or other governmental bodies."
+    },
+    {
+      question: "What does 'utopian' mean in relation to Sorrieu's vision?",
+      answer: "The term 'utopian' describes an imaginary, ideal society that is perfect in every way. Sorrieu's vision was utopian because it depicted a world where all nations would peacefully coexist as democracies, which was an idealistic dream rather than the reality of his time."
+    },
+    {
+      question: "What is meant by a 'nation-state'?",
+      answer: "A nation-state is a form of political organization where the boundaries of a state (country) correspond with the area inhabited by a particular nation (people sharing common identity, culture, language, or history). In such a state, the people have a sense of unity and usually govern themselves."
+    }
+  ];
+
+  const notes = `
+    <h3>Understanding Frederic Sorrieu's Vision</h3>
+    <p><strong>Frederic Sorrieu</strong> was a French artist who lived during a time of great political change in Europe (mid-1800s). In 1848, he created a series of four prints that showed his dream of a world united in democracy and freedom.</p>
     
-    if (chapterData[chapter]) {
-      Object.keys(chapterData[chapter]).forEach(pageNum => {
-        pageSelect.innerHTML += `<option value="${pageNum}">Page ${pageNum}</option>`;
-      });
-      pageSelect.disabled = false;
-    }
-  }
-
-  function loadPage() {
-    const chapter = document.getElementById('chapterSelect').value;
-    const page = document.getElementById('pageSelect').value;
-    displayMCQs(chapter, page);
-    displayNotes(chapter, page);
-    displayQA(chapter, page);
-  }
-
-  function switchView(mode) {
-    document.getElementById('mcqMode').style.display = 'none';
-    document.getElementById('notesMode').style.display = 'none';
-    document.getElementById('qaMode').style.display = 'none';
-    document.getElementById(mode + 'Mode').style.display = 'block';
+    <h3>Key Elements of His Artwork</h3>
+    <ul>
+      <li><strong>Liberty as a Symbol:</strong> Liberty is shown as a woman holding a torch (representing enlightenment and knowledge) and the Charter of the Rights of Man (representing human rights and freedoms).</li>
+      <li><strong>Shattered Absolutist Symbols:</strong> In the foreground, broken symbols represent the end of absolute monarchies and oppressive governments.</li>
+      <li><strong>Procession of Nations:</strong> People from different countries march together, each identified by their unique flags and traditional costumes.</li>
+      <li><strong>Leading Nations:</strong> The United States and France lead the procession because they had already achieved nation-state status with democratic governments.</li>
+    </ul>
     
-    document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
-  }
-
-  function getPageKey() {
-    const chapter = document.getElementById('chapterSelect').value;
-    const page = document.getElementById('pageSelect').value;
-    return `ch${chapter}_p${page}`;
-  }
-
-  function updateScore(correct) {
-    const pageKey = getPageKey();
-    if (!pageScores[pageKey]) {
-      pageScores[pageKey] = { correct: 0, total: 0 };
-    }
-    if (correct) {
-      pageScores[pageKey].correct++;
-    }
-    pageScores[pageKey].total++;
-    localStorage.setItem('pageScores', JSON.stringify(pageScores));
+    <h3>Important Concepts</h3>
+    <ul>
+      <li><strong>Absolutist Government:</strong> A system where one ruler (usually a king or queen) has complete, unlimited power over the country without any checks or balances.</li>
+      <li><strong>Utopian Vision:</strong> An imaginary, perfect society that may be impossible to achieve in reality but represents an ideal to strive toward.</li>
+      <li><strong>Nation-State:</strong> A country where people share a common national identity (language, culture, history) and have their own government and defined territory.</li>
+    </ul>
     
-    // Update score display immediately
-    const scoreDisplay = document.querySelector('.score-display span');
-    if (scoreDisplay) {
-      const score = pageScores[pageKey];
-      scoreDisplay.textContent = `Score: ${score.correct} / ${score.total}`;
-    }
-  }
-
-  function displayScoreBoard() {
-    const pageKey = getPageKey();
-    const score = pageScores[pageKey] || { correct: 0, total: 0 };
-    const scoreHTML = `
-      <div class="score-display">
-        <span>Score: ${score.correct} / ${score.total}</span>
-        <button class="reset-score-btn" onclick="resetScore()">Reset</button>
-      </div>
-    `;
-    return scoreHTML;
-  }
-
-  function resetScore() {
-    const pageKey = getPageKey();
-    if (pageScores[pageKey]) {
-      pageScores[pageKey] = { correct: 0, total: 0 };
-      localStorage.setItem('pageScores', JSON.stringify(pageScores));
-      const chapter = document.getElementById('chapterSelect').value;
-      const page = document.getElementById('pageSelect').value;
-      displayMCQs(chapter, page);
-    }
-  }
-
-  function stripHTML(html) {
-    const tmp = document.createElement('DIV');
-    tmp.innerHTML = html;
-    return tmp.textContent || tmp.innerText || '';
-  }
-
-  function displayMCQs(chapter, page) {
-    const container = document.getElementById('mcqContent');
-    const data = chapterData[chapter]?.[page]?.mcqData || [];
+    <h3>Historical Context</h3>
+    <p>In the 1840s, much of Europe was still ruled by absolute monarchs. Sorrieu's artwork expressed the hopes of many people who wanted freedom, democracy, and self-governance. His prints imagined a future where all nations would be free and equal, though this was an idealistic dream at the time.</p>
     
-    if (!data.length) {
-      container.innerHTML = '<p style="text-align:center; padding:40px; color:#666; font-size:15.12px;">No MCQs available for this page.</p>';
-      return;
+    <h3>Why This Matters</h3>
+    <p>Sorrieu's artwork helps us understand the revolutionary spirit of the 19th century. It shows how artists and thinkers imagined a better world based on democratic principles and national identity—ideas that would shape the formation of modern nation-states in Europe and beyond.</p>
+  `;
+
+  let score = { correct: 0, wrong: 0, total: 0 };
+
+  function updateScore(isCorrect) {
+    if (isCorrect) {
+      score.correct++;
+    } else {
+      score.wrong++;
     }
+    score.total++;
     
-    container.innerHTML = displayScoreBoard();
+    document.getElementById('correct-count').textContent = score.correct;
+    document.getElementById('wrong-count').textContent = score.wrong;
+    document.getElementById('total-count').textContent = score.total;
+  }
+
+  function renderContent() {
+    const container = document.getElementById('content-container');
     
-    data.forEach((mcq, idx) => {
-      const optionsHTML = mcq.options.map((opt, optIdx) => 
-        `<div class="option" data-question="${idx}" data-option="${optIdx}" data-correct="${mcq.correct}">${opt}</div>`
-      ).join('');
-      
-      // Create complete MCQ prompt with question and all options
-      const mcqFullText = `${mcq.question}\n\nOptions:\n${mcq.options.join('\n')}`;
-      
-      container.innerHTML += `
-        <div class="question-item" id="mcq-${idx}">
-          <div class="question-header">
-            <span class="question-number">Q${idx + 1}</span>
-            <button class="chatgpt-btn" onclick="openChatGPT(\`${mcqFullText.replace(/`/g, '\\`')}\`)">ChatGPT</button>
+    // MCQ Section
+    let mcqHTML = '<div class="section"><h2>📝 Multiple Choice Questions</h2><div class="mcq-container">';
+    mcqData.forEach((mcq, idx) => {
+      mcqHTML += `
+        <div class="mcq-item">
+          <div class="mcq-question">${idx + 1}. ${mcq.question}</div>
+          <div class="mcq-options">
+            ${mcq.options.map(opt => `
+              <div class="option" data-question="${idx}" data-correct="${mcq.correct}">${opt}</div>
+            `).join('')}
           </div>
-          <div class="question-text">${mcq.question}</div>
-          <div class="options" data-question="${idx}">
-            ${optionsHTML}
-          </div>
-          <div class="answer-display" id="answer${idx}"><strong>Correct Answer:</strong> ${mcq.correct}</div>
-          <div class="hint-display" id="hint${idx}"><strong>Hint:</strong> ${mcq.hint || 'No hint available'}</div>
-          <div class="button-group">
-            <button class="btn btn-answer" onclick="toggleAnswer(${idx})">Show Answer</button>
-            <button class="btn btn-hint" onclick="toggleHint(${idx})">Show Hint</button>
+          <div class="hint-section">
+            <div class="hint-label">💡 Hint:</div>
+            <div class="hint-text">${mcq.hint}</div>
           </div>
         </div>
       `;
     });
+    mcqHTML += '</div></div>';
+    
+    // Q&A Section
+    let qaHTML = '<div class="section"><h2>❓ Question & Answers</h2><div class="qa-container">';
+    qaData.forEach((qa, idx) => {
+      qaHTML += `
+        <div class="qa-item">
+          <div class="qa-question">${idx + 1}. ${qa.question}</div>
+          <button class="btn" onclick="toggleAnswer(${idx})">Show Answer</button>
+          <div class="qa-answer" id="answer${idx}">${qa.answer}</div>
+        </div>
+      `;
+    });
+    qaHTML += '</div></div>';
+    
+    // Notes Section
+    const notesHTML = `<div class="section"><h2>📚 Notes</h2><div class="notes">${notes}</div></div>`;
+    
+    container.innerHTML = mcqHTML + qaHTML + notesHTML;
     
     // Add click listeners to all options
     document.querySelectorAll('.option').forEach(option => {
@@ -1237,11 +609,12 @@
     const hasAnswer = Array.from(allOptions).some(opt => opt.classList.contains('selected'));
     if (hasAnswer) return;
     
-    // Check if clicked option is correct
+    // Get the letter from the clicked option (e.g., "a" from "a) Frederic Sorrieu")
     const selectedText = clickedOption.textContent.trim();
-    const correctText = correctAnswer.trim();
+    const selectedLetter = selectedText.charAt(0).toLowerCase();
+    const correctLetter = correctAnswer.trim().toLowerCase();
     
-    if (selectedText === correctText) {
+    if (selectedLetter === correctLetter) {
       // Correct answer - show green tick
       clickedOption.classList.add('selected', 'correct');
       updateScore(true);
@@ -1252,7 +625,8 @@
       
       // Find and highlight the correct answer
       allOptions.forEach(opt => {
-        if (opt.textContent.trim() === correctText) {
+        const optLetter = opt.textContent.trim().charAt(0).toLowerCase();
+        if (optLetter === correctLetter) {
           opt.classList.add('selected', 'correct');
         }
       });
@@ -1283,89 +657,8 @@
     }
   }
 
-  function openChatGPT(question) {
-    const url = `https://chat.openai.com/?q=${encodeURIComponent(question)}`;
-    window.open(url, '_blank');
-  }
-
-  function displayNotes(chapter, page) {
-    const container = document.getElementById('notesContent');
-    const data = chapterData[chapter]?.[page]?.notesData || [];
-    
-    if (!data.length) {
-      container.innerHTML = '<p style="text-align:center; padding:40px; color:#666; font-size:15.12px;">No notes available for this page.</p>';
-      return;
-    }
-    
-    container.innerHTML = '';
-    data.forEach(note => {
-      // Create complete note prompt with heading and full content
-      const noteFullText = `${note.heading}\n\n${stripHTML(note.content)}`;
-      
-      container.innerHTML += `
-        <div class="note-segment">
-          <button class="ai-btn" onclick="openChatGPT(\`${noteFullText.replace(/`/g, '\\`')}\`)">AI</button>
-          <div class="segment-heading">${note.heading}</div>
-          ${note.content}
-        </div>
-      `;
-    });
-  }
-
-  let currentMarkFilter = 'all';
-
-  function displayQA(chapter, page) {
-    const container = document.getElementById('qaContent');
-    const data = chapterData[chapter]?.[page]?.qaData || [];
-    
-    if (!data.length) {
-      container.innerHTML = '<p style="text-align:center; padding:40px; color:#666; font-size:15.12px;">No Q&A available for this page.</p>';
-      return;
-    }
-    
-    const filtered = currentMarkFilter === 'all' 
-      ? data 
-      : data.filter(q => q.marks === parseInt(currentMarkFilter));
-    
-    if (!filtered.length) {
-      container.innerHTML = '<p style="text-align:center; padding:40px; color:#666; font-size:15.12px;">No questions match the selected filter.</p>';
-      return;
-    }
-    
-    container.innerHTML = '';
-    filtered.forEach((qa, idx) => {
-      // Create complete Q&A prompt with question and full answer
-      const qaFullText = `Question (${qa.marks} marks): ${qa.question}\n\nAnswer:\n${stripHTML(qa.answer)}`;
-      
-      container.innerHTML += `
-        <div class="qa-item mark-${qa.marks}-item">
-          <button class="ai-btn" onclick="openChatGPT(\`${qaFullText.replace(/`/g, '\\`')}\`)">AI</button>
-          <div class="qa-question">
-            <span class="qa-question-number">${qa.marks}M</span>
-            ${qa.question}
-          </div>
-          <div class="qa-answer-section">
-            <span class="qa-answer-label">Answer:</span>
-            <div class="answer-${qa.marks}mark">${qa.answer}</div>
-          </div>
-        </div>
-      `;
-    });
-  }
-
-  function filterByMark(mark) {
-    currentMarkFilter = mark;
-    const chapter = document.getElementById('chapterSelect').value;
-    const page = document.getElementById('pageSelect').value;
-    
-    if (chapter && page) {
-      displayQA(chapter, page);
-    }
-    
-    document.querySelectorAll('.mark-filter-btn').forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
-  }
+  // Initialize
+  renderContent();
 </script>
-
 </body>
 </html>
