@@ -973,7 +973,7 @@
       "10": { mcqData: [], notesData: [], qaData: [] }
     },
     "10": {
-      "1": { mcqData: [   // PASTE THIS IN mcqData: []
+      "1": { mcqData: [ // PASTE THIS IN mcqData: []
 { 
   question: "Who created the print 'The Dream of Worldwide Democratic and Social Republics' in 1848?", 
   options: ["a) Frederic Sorrieu", "b) Liberty Enlightening", "c) Karl Marx", "d) Napoleon Bonaparte"], 
@@ -1021,7 +1021,7 @@
   options: ["a) Military conquest", "b) Religious authority", "c) Freedom and enlightenment", "d) Economic prosperity"], 
   correct: "c",
   hint: "Consider what Liberty represents and what items she carries - both are associated with freedom and knowledge."
-}   ], notesData: [ // PASTE THIS IN notesData: []
+}  ], notesData: [ // PASTE THIS IN notesData: []
 { 
   heading: "Frederic Sorrieu's Vision (1848)", 
   content: `<div class="note-paragraph">In 1848, Frederic Sorrieu, a French artist, created a series of four prints that visualized his dream of a world composed of democratic and social Republics. The first print in this series depicts peoples of Europe and America—men and women of all ages and social classes—marching in a long procession, paying homage to the statue of Liberty as they pass by it.</div><div class="important-note"><strong>Key Symbolism:</strong> The print represents an idealistic vision of global democracy and freedom, showing unity among different nations while celebrating their distinct identities.</div>` 
@@ -1041,8 +1041,7 @@
 { 
   heading: "Utopian Vision and Reality", 
   content: `<div class="definition-box"><div class="definition-term">Utopian</div><div class="definition-text">A vision of a society that is so ideal that it is unlikely to actually exist.</div></div><div class="note-paragraph">Sorrieu's print represents a utopian vision because it imagines a world where all nations coexist peacefully as democratic republics, united in their pursuit of liberty and social justice. While this vision inspired nationalist movements throughout Europe, the reality of achieving such universal harmony proved far more complex and challenging.</div><div class="important-note"><strong>Significance:</strong> Despite its idealistic nature, Sorrieu's vision captured the spirit of 19th-century nationalist and democratic movements that would reshape Europe in the decades to come.</div>` 
-}  ], 
-            qaData: [   // PASTE THIS IN qaData: []
+}   ], qaData: [ // PASTE THIS IN qaData: []
 { 
   marks: 1, 
   question: "What does the term 'absolutist' mean in the context of government?", 
@@ -1082,7 +1081,7 @@
   marks: 3, 
   question: "In what way does Sorrieu's print depict both unity and diversity among nations?", 
   answer: `<div class="point"><strong>Unity (1 mark):</strong><br>The print shows unity through the common march of all peoples—men and women of all ages and social classes from Europe and America—moving together in a long procession toward the statue of Liberty. They share a common goal of achieving democratic and social Republics and paying homage to freedom.</div><div class="point"><strong>Diversity (1 mark):</strong><br>Despite this unity, Sorrieu maintains the distinct identities of different nations by depicting them with their specific flags and national costumes. Each nation is recognizable as a separate entity, preserving cultural and national uniqueness.</div><div class="point"><strong>Balance (1 mark):</strong><br>This dual representation reflects the 19th-century nationalist ideal that nations could maintain their individual identities and sovereignty while simultaneously working together toward common democratic values—a vision of international cooperation without cultural homogenization.</div>` 
-}    ] },
+}   ] },
       "2": { mcqData: [], notesData: [], qaData: [] },
       "3": { mcqData: [], notesData: [], qaData: [] },
       "4": { mcqData: [], notesData: [], qaData: [] },
@@ -1127,6 +1126,48 @@
     event.target.classList.add('active');
   }
 
+  function getPageKey() {
+    const chapter = document.getElementById('chapterSelect').value;
+    const page = document.getElementById('pageSelect').value;
+    return `ch${chapter}_p${page}`;
+  }
+
+  function updateScore(correct) {
+    const pageKey = getPageKey();
+    if (!pageScores[pageKey]) {
+      pageScores[pageKey] = { correct: 0, total: 0 };
+    }
+    if (correct) {
+      pageScores[pageKey].correct++;
+    }
+    pageScores[pageKey].total++;
+    localStorage.setItem('pageScores', JSON.stringify(pageScores));
+    displayScoreBoard();
+  }
+
+  function displayScoreBoard() {
+    const pageKey = getPageKey();
+    const score = pageScores[pageKey] || { correct: 0, total: 0 };
+    const scoreHTML = `
+      <div class="score-display">
+        <span>Score: ${score.correct} / ${score.total}</span>
+        <button class="reset-score-btn" onclick="resetScore()">Reset</button>
+      </div>
+    `;
+    return scoreHTML;
+  }
+
+  function resetScore() {
+    const pageKey = getPageKey();
+    if (pageScores[pageKey]) {
+      pageScores[pageKey] = { correct: 0, total: 0 };
+      localStorage.setItem('pageScores', JSON.stringify(pageScores));
+      const chapter = document.getElementById('chapterSelect').value;
+      const page = document.getElementById('pageSelect').value;
+      displayMCQs(chapter, page);
+    }
+  }
+
   function displayMCQs(chapter, page) {
     const container = document.getElementById('mcqContent');
     const data = chapterData[chapter]?.[page]?.mcqData || [];
@@ -1136,7 +1177,8 @@
       return;
     }
     
-    container.innerHTML = '';
+    container.innerHTML = displayScoreBoard();
+    
     data.forEach((mcq, idx) => {
       const optionsHTML = mcq.options.map(opt => 
         `<div class="option" onclick="handleMCQClick(event, '${mcq.correct}', ${idx})">${opt}</div>`
@@ -1146,18 +1188,27 @@
         <div class="question-item">
           <div class="question-header">
             <span class="question-number">Q${idx + 1}</span>
+            <button class="ai-btn" onclick="openChatGPT('${escapeForJS(mcq.question)}')">AI</button>
           </div>
           <div class="question-text">${mcq.question}</div>
           <div class="options" data-question="${idx}">
             ${optionsHTML}
           </div>
-          <div class="hint-display" id="hint${idx}">${mcq.hint || ''}</div>
+          <div class="answer-display" id="answer${idx}"><strong>Correct Answer:</strong> ${mcq.correct}</div>
+          <div class="hint-display" id="hint${idx}"><strong>Hint:</strong> ${mcq.hint || 'No hint available'}</div>
           <div class="button-group">
+            <button class="btn btn-answer" onclick="toggleAnswer(${idx})">Show Answer</button>
             <button class="btn btn-hint" onclick="toggleHint(${idx})">Show Hint</button>
+            <button class="chatgpt-btn" onclick="openChatGPT('${escapeForJS(mcq.question)}')">Ask ChatGPT</button>
           </div>
         </div>
       `;
     });
+  }
+
+  function escapeForJS(text) {
+    return text.replace(/'/g, "\\'").replace(/"/g, '\\"').replace(/
+/g, ' ');
   }
 
   function handleMCQClick(event, correct, qIdx) {
@@ -1165,10 +1216,9 @@
     const optionsContainer = clickedOption.parentElement;
     const allOptions = optionsContainer.querySelectorAll('.option');
     
-    // Remove previous selections
-    allOptions.forEach(opt => {
-      opt.classList.remove('selected', 'correct', 'wrong');
-    });
+    // Check if already answered
+    const hasAnswer = Array.from(allOptions).some(opt => opt.classList.contains('selected'));
+    if (hasAnswer) return;
     
     // Check if clicked option is correct
     const selectedText = clickedOption.textContent.trim();
@@ -1176,8 +1226,10 @@
     
     if (selectedText === correctText) {
       clickedOption.classList.add('selected', 'correct');
+      updateScore(true);
     } else {
       clickedOption.classList.add('selected', 'wrong');
+      updateScore(false);
       // Also highlight the correct answer
       allOptions.forEach(opt => {
         if (opt.textContent.trim() === correctText) {
@@ -1187,13 +1239,31 @@
     }
   }
 
+  function toggleAnswer(idx) {
+    const answer = document.getElementById('answer' + idx);
+    if (answer.classList.contains('show')) {
+      answer.classList.remove('show');
+      event.target.textContent = 'Show Answer';
+    } else {
+      answer.classList.add('show');
+      event.target.textContent = 'Hide Answer';
+    }
+  }
+
   function toggleHint(idx) {
     const hint = document.getElementById('hint' + idx);
-    if (hint.style.display === 'none' || hint.style.display === '') {
-      hint.style.display = 'block';
+    if (hint.classList.contains('show')) {
+      hint.classList.remove('show');
+      event.target.textContent = 'Show Hint';
     } else {
-      hint.style.display = 'none';
+      hint.classList.add('show');
+      event.target.textContent = 'Hide Hint';
     }
+  }
+
+  function openChatGPT(question) {
+    const url = `https://chat.openai.com/?q=${encodeURIComponent(question)}`;
+    window.open(url, '_blank');
   }
 
   function displayNotes(chapter, page) {
@@ -1209,6 +1279,7 @@
     data.forEach(note => {
       container.innerHTML += `
         <div class="note-segment">
+          <button class="ai-btn" onclick="openChatGPT('${escapeForJS(note.heading)}')">AI</button>
           <div class="segment-heading">${note.heading}</div>
           ${note.content}
         </div>
@@ -1240,6 +1311,7 @@
     filtered.forEach((qa, idx) => {
       container.innerHTML += `
         <div class="qa-item mark-${qa.marks}-item">
+          <button class="ai-btn" onclick="openChatGPT('${escapeForJS(qa.question)}')">AI</button>
           <div class="qa-question">
             <span class="qa-question-number">${qa.marks}M</span>
             ${qa.question}
